@@ -3,7 +3,7 @@ import React from "react";
 const App = () => {
   return (
     <div>
-      <span>A dársela contra la pared</span>
+      <span>A chocarse contra la pared muy fuerte</span>
     </div>
   );
 };
