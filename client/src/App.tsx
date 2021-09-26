@@ -1,11 +1,11 @@
 import React from "react";
 
-const App = () => {
+function App() {
   return (
     <div>
-      <span>A chocarse contra la pared muy fuerte</span>
+      <span>A dársela con TypeScript!</span>
     </div>
   );
-};
+}
 
 export default App;
