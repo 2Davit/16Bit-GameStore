@@ -39,19 +39,19 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const {Order, Product, User /* OrderProduct */ } = sequelize.models;
+const {Order, Product, User, OrderProduct  } = sequelize.models;
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
 /* Recipe.belongsToMany(Type, {through: "types_recipes"});
 Type.belongsToMany(Recipe, {through: "types_recipes"}); */
 
-User.hasMany(Order, { foreignKey: 'id_user' });
+User.hasMany(Order, { foreignKey: 'id_user'});
 Order.belongsTo(User);
-/* Order.hasMany(OrderProduct, { foreignKey: 'order_id' } ); */
-/* OrderProduct.belongsTo(Order); */
-/* Product.hasMany(OrderProduct, { foreignKey: 'product_id'} );
-OrderProduct.hasMany(Product); */
+Order.hasMany(OrderProduct, { foreignKey: 'order_id' } ); 
+ OrderProduct.belongsTo(Order); 
+ Product.hasMany(OrderProduct, {  foreignKey: 'product_id' } );
+OrderProduct.hasMany(Product); 
 
 
 

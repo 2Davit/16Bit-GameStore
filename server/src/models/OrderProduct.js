@@ -1,4 +1,4 @@
-/* const { DataTypes } = require('sequelize');
+ const { DataTypes } = require('sequelize');
 
 
 module.exports = (sequelize) => {
@@ -12,14 +12,15 @@ module.exports = (sequelize) => {
         },
          order_id: {
             type: DataTypes.INTEGER,
-            allowNull: false,
-           
+            allowNull: false, 
+            
         },
         product_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
+           
             
-        }, 
+        },  
         price: {
             type: DataTypes.FLOAT,
             allowNull: false,
@@ -29,4 +30,4 @@ module.exports = (sequelize) => {
             allownull: false,
         },
     })
-} */
+} 
