@@ -1,6 +1,5 @@
 [
     {
-        "id_product": 1,
         "name_product": "Ace Combat Advance",
         "price_product": 45,
         "release_year": 2005,
@@ -19,7 +18,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 2,
         "name_product": "Action Man: Robot Atak",
         "price_product": 50,
         "release_year": 2004,
@@ -38,7 +36,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 3,
         "name_product": "Agent Hugo: Roborumble ",
         "price_product": 50,
         "release_year": 2007,
@@ -57,7 +54,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 4,
         "name_product": "Astro Boy: Omega Factor",
         "price_product": 50,
         "release_year": 2004,
@@ -76,7 +72,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 5,
         "name_product": "Avatar: The Last Airbender",
         "price_product": 55,
         "release_year": 2006,
@@ -95,7 +90,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 6,
         "name_product": "Batman Returns ",
         "price_product": 60,
         "release_year": 1993,
@@ -114,7 +108,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 7,
         "name_product": "ESPN Speed World ",
         "price_product": 60,
         "release_year": 1994,
@@ -133,7 +126,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 8,
         "name_product": "The Lion King ",
         "price_product": 65,
         "release_year": 1994,
@@ -151,7 +143,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 9,
         "name_product": "The Incredible Hulk",
         "price_product": 65,
         "release_year": 1994,
@@ -170,7 +161,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 10,
         "name_product": "Goof Troop",
         "price_product": 55,
         "release_year": 1993,
@@ -188,7 +178,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 11,
         "name_product": "F-1 Grand Prix ",
         "price_product": 55,
         "release_year": 1991,
@@ -207,7 +196,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 12,
         "name_product": "FIFA Soccer 96 ",
         "price_product": 55,
         "release_year": 1995,
@@ -225,7 +213,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 13,
         "name_product": "FIFA Soccer 97 ",
         "price_product": 55,
         "release_year": 1996,
@@ -243,7 +230,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 14,
         "name_product": "FIFA 98: Road to World Cup ",
         "price_product": 60,
         "release_year": 1997,
@@ -261,7 +247,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 15,
         "name_product": "Final Fantasy II",
         "price_product": 65,
         "release_year": 1991,
@@ -280,7 +265,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 16,
         "name_product": "Final Fantasy V",
         "price_product": 70,
         "release_year": 1992,
@@ -299,7 +283,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 17,
         "name_product": "The Adventures of Batman & Robin ",
         "price_product": 70,
         "release_year": 1992,
@@ -317,7 +300,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 18,
         "name_product": "ATP Tour Championship Tennis ",
         "price_product": 70,
         "release_year": 1994,
@@ -335,7 +317,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 19,
         "name_product": "Madden NFL 95 ",
         "price_product": 70,
         "release_year": 1994,
@@ -353,7 +334,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 20,
         "name_product": "Mickey's Ultimate Challenge  ",
         "price_product": 50,
         "release_year": 1994,
@@ -371,7 +351,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 21,
         "name_product": "Michael Jackson's Moonwalker ",
         "price_product": 50,
         "release_year": 1994,
@@ -390,7 +369,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 22,
         "name_product": "Back to the Future Part III",
         "price_product": 55,
         "release_year": 1994,
@@ -408,7 +386,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 23,
         "name_product": "Barbie Super Model",
         "price_product": 55,
         "release_year": 1993,
@@ -426,7 +403,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 24,
         "name_product": "Asteroids ",
         "price_product": 40,
         "release_year": 1981,
@@ -445,7 +421,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 25,
         "name_product": "Alpine Racer ",
         "price_product": 40,
         "release_year": 1990,
@@ -463,7 +438,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 26,
         "name_product": "Marvel Vs. Capcom: Clash of Super Heroes ",
         "price_product": 45,
         "release_year": 1993,
@@ -482,7 +456,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 27,
         "name_product": "Mortal Kombat",
         "price_product": 50,
         "release_year": 1992,
@@ -501,7 +474,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 28,
         "name_product": "Football Champ: Euro Football Champ",
         "price_product": 50,
         "release_year": 1992,
@@ -519,7 +491,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 29,
         "name_product": "The Karate Kid ",
         "price_product": 45,
         "release_year": 1992,
@@ -538,7 +509,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 30,
         "name_product": "Home Alone 2 - Lost in New York ",
         "price_product": 55,
         "release_year": 1992,
@@ -556,7 +526,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 31,
         "name_product": "Captain America and the Avengers ",
         "price_product": 60,
         "release_year": 1991,
@@ -575,7 +544,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 32,
         "name_product": "Championship Bowling  ",
         "price_product": 40,
         "release_year": 1991,
@@ -593,7 +561,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 33,
         "name_product": "Last Armageddon ",
         "price_product": 50,
         "release_year": 1990,
@@ -611,7 +578,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 34,
         "name_product": "The Legend of Zelda",
         "price_product": 50,
         "release_year": 1990,
@@ -630,7 +596,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 35,
         "name_product": "Indiana Jones and the Last Crusade ",
         "price_product": 55,
         "release_year": 1991,
@@ -649,7 +614,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 36,
         "name_product": "Indiana Jones and the Temple of Doom ",
         "price_product": 40,
         "release_year": 1988,
@@ -668,7 +632,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 37,
         "name_product": "Insector X",
         "price_product": 40,
         "release_year": 1990,
@@ -687,7 +650,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 38,
         "name_product": "Ghostbusters",
         "price_product": 45,
         "release_year": 1990,
@@ -705,7 +667,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 39,
         "name_product": "IMG International Tour Tennis",
         "price_product": 65,
         "release_year": 1994,
@@ -723,7 +684,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 40,
         "name_product": "International Rugby",
         "price_product": 60,
         "release_year": 1993,
@@ -741,7 +701,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 41,
         "name_product": "The Lost World - Jurassic Park ",
         "price_product": 60,
         "release_year": 1997,
@@ -759,7 +718,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 42,
         "name_product": "Dragon - The Bruce Lee Story  ",
         "price_product": 45,
         "release_year": 1994,
@@ -777,7 +735,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 43,
         "name_product": "Golden Axe ",
         "price_product": 50,
         "release_year": 1989,
@@ -795,7 +752,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 44,
         "name_product": "Jackie Chan Adventures: Legend of the Dark Hand ",
         "price_product": 55,
         "release_year": 2001,
@@ -813,7 +769,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 45,
         "name_product": "Mario Kart: Super Circuit ",
         "price_product": 55,
         "release_year": 2001,
@@ -831,7 +786,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 46,
         "name_product": "Mario & Luigi: Superstar Saga",
         "price_product": 60,
         "release_year": 2003,
@@ -849,7 +803,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 47,
         "name_product": "Mario Golf: Advance Tour",
         "price_product": 65,
         "release_year": 2004,
@@ -867,7 +820,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 48,
         "name_product": "Disney Sports: Motocross",
         "price_product": 60,
         "release_year": 2003,
@@ -885,7 +837,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 49,
         "name_product": "Disney Princess: Royal Adventure",
         "price_product": 45,
         "release_year": 2006,
@@ -903,7 +854,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 50,
         "name_product": "GT Advance 2: Rally Racing",
         "price_product": 45,
         "release_year": 2002,
@@ -921,7 +871,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 51,
         "name_product": "NBA Jam",
         "price_product": 40,
         "release_year": 1994,
@@ -940,7 +889,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 52,
         "name_product": "NFL Football",
         "price_product": 40,
         "release_year": 1993,
@@ -958,7 +906,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 53,
         "name_product": "Nightmare Busters",
         "price_product": 40,
         "release_year": 1995,
@@ -977,7 +924,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 54,
         "name_product": "The Ninja Warriors",
         "price_product": 40,
         "release_year": 1994,
@@ -995,7 +941,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 55,
         "name_product": "Oscar",
         "price_product": 40,
         "release_year": 1996,
@@ -1013,7 +958,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 56,
         "name_product": "Paperboy 2",
         "price_product": 40,
         "release_year": 1991,
@@ -1031,7 +975,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 57,
         "name_product": "Pinocchio",
         "price_product": 40,
         "release_year": 1996,
@@ -1049,7 +992,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 58,
         "name_product": "Prince of Persia 2: The Shadow & The Flame",
         "price_product": 40,
         "release_year": 1996,
@@ -1069,7 +1011,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 59,
         "name_product": "Prince of Persia",
         "price_product": 40,
         "release_year": 1992,
@@ -1089,7 +1030,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 60,
         "name_product": "Q-bert 3",
         "price_product": 40,
         "release_year": 1992,
@@ -1108,7 +1048,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 61,
         "name_product": "Radical Rex",
         "price_product": 40,
         "release_year": 1994,
@@ -1126,7 +1065,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 62,
         "name_product": "RoboCop 3",
         "price_product": 40,
         "release_year": 1992,
@@ -1147,7 +1085,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 63,
         "name_product": "Scooby-Doo Mystery",
         "price_product": 40,
         "release_year": 1995,
@@ -1165,7 +1102,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 64,
         "name_product": "SimCity",
         "price_product": 40,
         "release_year": 1991,
@@ -1183,7 +1119,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 65,
         "name_product": "SimCity 2000",
         "price_product": 40,
         "release_year": 1995,
@@ -1201,7 +1136,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 66,
         "name_product": "The Simpsons: Bart's Nightmare",
         "price_product": 40,
         "release_year": 1993,
@@ -1220,7 +1154,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 67,
         "name_product": "The Smurfs",
         "price_product": 40,
         "release_year": 1994,
@@ -1238,7 +1171,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 68,
         "name_product": "Sonic the Hedgehog 4",
         "price_product": 40,
         "release_year": 1994,
@@ -1256,7 +1188,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 69,
         "name_product": "Space Invaders",
         "price_product": 40,
         "release_year": 1997,
@@ -1275,7 +1206,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 70,
         "name_product": "Street Fighter Alpha 2",
         "price_product": 40,
         "release_year": 1996,
@@ -1294,7 +1224,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 71,
         "name_product": "Street Fighter II",
         "price_product": 40,
         "release_year": 1992,
@@ -1313,7 +1242,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 72,
         "name_product": "Street Fighter II Turbo",
         "price_product": 40,
         "release_year": 1993,
@@ -1332,7 +1260,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 73,
         "name_product": "Super Street Fighter II",
         "price_product": 40,
         "release_year": 1994,
@@ -1351,7 +1278,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 74,
         "name_product": "Sunset Riders",
         "price_product": 40,
         "release_year": 1993,
@@ -1371,7 +1297,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 75,
         "name_product": "Super Bomberman",
         "price_product": 40,
         "release_year": 1993,
@@ -1389,7 +1314,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 76,
         "name_product": "Super Bomberman 2",
         "price_product": 40,
         "release_year": 1994,
@@ -1407,7 +1331,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 77,
         "name_product": "Super Bomberman 3",
         "price_product": 40,
         "release_year": 1995,
@@ -1425,7 +1348,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 78,
         "name_product": "Super Bomberman 4",
         "price_product": 40,
         "release_year": 1995,
@@ -1443,7 +1365,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 79,
         "name_product": "Super Bomberman 5",
         "price_product": 40,
         "release_year": 1997,
@@ -1461,7 +1382,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 80,
         "name_product": "Super Mario All-Stars",
         "price_product": 40,
         "release_year": 1993,
@@ -1479,7 +1399,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 81,
         "name_product": "Tennis ",
         "price_product": 40,
         "release_year": 1985,
@@ -1497,7 +1416,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 82,
         "name_product": "Super Mario Kart ",
         "price_product": 40,
         "release_year": 1992,
@@ -1516,7 +1434,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 83,
         "name_product": "Super Mario RPG",
         "price_product": 40,
         "release_year": 1996,
@@ -1534,7 +1451,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 84,
         "name_product": "Super Mario World",
         "price_product": 40,
         "release_year": 1991,
@@ -1552,7 +1468,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 85,
         "name_product": "Super Mario World 2: Yoshi's Island",
         "price_product": 40,
         "release_year": 1995,
@@ -1570,7 +1485,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 86,
         "name_product": "Teenage Mutant Ninja Turtles IV: Turtles in Time ",
         "price_product": 40,
         "release_year": 1992,
@@ -1588,7 +1502,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 87,
         "name_product": "Tiny Toon Adventures: Buster Busts Loose",
         "price_product": 40,
         "release_year": 1993,
@@ -1607,7 +1520,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 88,
         "name_product": "Tom & Jerry",
         "price_product": 40,
         "release_year": 1993,
@@ -1625,7 +1537,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 89,
         "name_product": "X-Men vs. Street Fighter",
         "price_product": 40,
         "release_year": 1998,
@@ -1644,7 +1555,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 90,
         "name_product": "NBA Live 96",
         "price_product": 40,
         "release_year": 1995,
@@ -1662,7 +1572,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 91,
         "name_product": "Out Run",
         "price_product": 40,
         "release_year": 1991,
@@ -1681,7 +1590,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 92,
         "name_product": "Olympic Gold",
         "price_product": 40,
         "release_year": 1992,
@@ -1699,7 +1607,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 93,
         "name_product": "Paperboy 2",
         "price_product": 40,
         "release_year": 1992,
@@ -1717,7 +1624,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 94,
         "name_product": "Pink Goes to Hollywood",
         "price_product": 40,
         "release_year": 1993,
@@ -1736,7 +1642,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 95,
         "name_product": "Rambo III",
         "price_product": 40,
         "release_year": 1989,
@@ -1755,7 +1660,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 96,
         "name_product": "Ristar ",
         "price_product": 40,
         "release_year": 1995,
@@ -1774,7 +1678,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 97,
         "name_product": "Shinobi III: Return of the Ninja Master",
         "price_product": 40,
         "release_year": 1993,
@@ -1792,7 +1695,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 98,
         "name_product": "Sonic the Hedgehog",
         "price_product": 40,
         "release_year": 1991,
@@ -1811,7 +1713,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 99,
         "name_product": "Sonic the Hedgehog 2",
         "price_product": 40,
         "release_year": 1992,
@@ -1830,7 +1731,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 100,
         "name_product": "Sonic the Hedgehog 3",
         "price_product": 40,
         "release_year": 1994,
@@ -1849,7 +1749,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 101,
         "name_product": "Spider-Man",
         "price_product": 40,
         "release_year": 1991,
@@ -1868,7 +1767,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 102,
         "name_product": "Sunset Riders",
         "price_product": 40,
         "release_year": 1993,
@@ -1888,7 +1786,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 103,
         "name_product": "The Terminator",
         "price_product": 40,
         "release_year": 1992,
@@ -1907,7 +1804,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 104,
         "name_product": "Ultimate Mortal Kombat 3",
         "price_product": 40,
         "release_year": 1996,
@@ -1926,7 +1822,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 105,
         "name_product": "Worms ",
         "price_product": 40,
         "release_year": 1996,
@@ -1944,7 +1839,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 106,
         "name_product": "X-Men",
         "price_product": 40,
         "release_year": 1993,
@@ -1963,7 +1857,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 107,
         "name_product": "Pac-Man",
         "price_product": 40,
         "release_year": 1989,
@@ -1981,7 +1874,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 108,
         "name_product": "Super Mario Bros.",
         "price_product": 40,
         "release_year": 1985,
@@ -1999,7 +1891,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 109,
         "name_product": "Super Mario Bros. 2",
         "price_product": 40,
         "release_year": 198,
@@ -2017,7 +1908,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 110,
         "name_product": "Super Mario Bros. 3",
         "price_product": 40,
         "release_year": 1990,
@@ -2035,7 +1925,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 111,
         "name_product": "Tetris",
         "price_product": 40,
         "release_year": 1989,
@@ -2053,7 +1942,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 112,
         "name_product": "Thunderbirds ",
         "price_product": 40,
         "release_year": 1990,
@@ -2072,7 +1960,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 113,
         "name_product": "Tiny Toon Adventures",
         "price_product": 40,
         "release_year": 1991,
@@ -2090,7 +1977,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 114,
         "name_product": "Where's Waldo",
         "price_product": 40,
         "release_year": 1991,
@@ -2109,7 +1995,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 115,
         "name_product": "X-Men",
         "price_product": 40,
         "release_year": 1992,
@@ -2128,7 +2013,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 116,
         "name_product": "Wonder Boy",
         "price_product": 40,
         "release_year": 1986,
@@ -2147,7 +2031,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 117,
         "name_product": "Teenage Mutant Ninja Turtles",
         "price_product": 40,
         "release_year": 1989,
@@ -2165,7 +2048,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 118,
         "name_product": "Tekken 3",
         "price_product": 40,
         "release_year": 1997,
@@ -2184,7 +2066,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 119,
         "name_product": "The Simpsons",
         "price_product": 40,
         "release_year": 1991,
@@ -2203,7 +2084,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 120,
         "name_product": "Street Fighter II: The World Warrior",
         "price_product": 40,
         "release_year": 1991,
@@ -2222,7 +2102,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 121,
         "name_product": "Pac-Man",
         "price_product": 40,
         "release_year": 1980,
@@ -2240,7 +2119,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 122,
         "name_product": "Puzzle Bobble",
         "price_product": 40,
         "release_year": 1994,
@@ -2259,7 +2137,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 123,
         "name_product": "Sonic Advance",
         "price_product": 40,
         "release_year": 2001,
@@ -2278,7 +2155,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 124,
         "name_product": "Street Fighter Alpha 3",
         "price_product": 40,
         "release_year": 2002,
@@ -2297,7 +2173,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 125,
         "name_product": "Super Mario World",
         "price_product": 40,
         "release_year": 2002,
@@ -2315,7 +2190,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 126,
         "name_product": "Pokemon Sapphire Version",
         "price_product": 40,
         "release_year": 2003,
@@ -2333,7 +2207,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 127,
         "name_product": "Pokemon Ruby Version",
         "price_product": 40,
         "release_year": 2003,
@@ -2351,7 +2224,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 128,
         "name_product": "Pokemon Emerald Version",
         "price_product": 40,
         "release_year": 2005,
@@ -2369,7 +2241,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 129,
         "name_product": "Ultimate League Soccer",
         "price_product": 40,
         "release_year": 1991,
@@ -2387,7 +2258,6 @@
         "updatedAt": ""
     },
     {
-        "id_product": 130,
         "name_product": "Target: Renegade ",
         "price_product": 40,
         "release_year": 1990,
