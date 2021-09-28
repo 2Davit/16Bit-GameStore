@@ -1,10 +1,17 @@
-import React from "react";
+import React, { FC } from "react";
+import { Home, NotFound, Landing } from './pages';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-function App() {
+
+const App: FC = () => {
   return (
-    <div>
-      <span>A dársela con TypeScript!</span>
-    </div>
+    <Router>
+      <Switch>
+        <Route exact path = '/' component={Landing} />
+        <Route exact path = '/home' component={Home} />
+        <Route path = '*' component={NotFound} />
+      </Switch>
+    </Router>
   );
 }
 
