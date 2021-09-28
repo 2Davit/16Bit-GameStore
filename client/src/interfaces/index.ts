@@ -15,6 +15,11 @@ export interface Product {
     updatedAt: string;
 }
 
+export interface ProductInCart extends Product {
+    
+    quantity: number;
+}
+
 interface DetailProduct {
     id?: number;
     name_product?: string;
@@ -32,8 +37,18 @@ interface DetailProduct {
     updatedAt?: string;
 }
 
-export interface State {
+
+export interface ProductsState {
     totalProducts: Array<Product> | Array<any>;
     renderingProducts: Array<Product> | Array<any>;
     detailProduct: DetailProduct;
+}
+
+export interface CartState{
+    cart:any;
+}
+
+export interface State{
+    productsReducer: ProductsState;
+    cartReducer:CartState;
 }

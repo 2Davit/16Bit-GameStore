@@ -11,6 +11,8 @@ import {
 import { RiEyeCloseFill, RiEyeFill } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import "nes.css/css/nes.min.css";
+import { useDispatch } from "react-redux";
+import { addItemCart } from "../../redux/actions/cart_actions";
 
 interface Props {
   image: string;
@@ -21,6 +23,11 @@ interface Props {
 
 const Card: FC<Props> = ({ image, name, price, id }) => {
   const [visible, setVisible] = useState<boolean>(false);
+  const dispatch = useDispatch();
+
+  const handleClick = () => {
+    dispatch(addItemCart({ name_product: "prueba", id: 1, quantity: 1 }));
+  };
 
   return (
     <CardContainer>
@@ -30,7 +37,9 @@ const Card: FC<Props> = ({ image, name, price, id }) => {
       <Link to={`/game/${id}`}>
         <CardImage src={image} alt={name} />
       </Link>
-      <AddToCart className="nes-btn is-primary">Add to Cart</AddToCart>
+      <AddToCart className="nes-btn is-primary" onClick={handleClick}>
+        Add to Cart
+      </AddToCart>
       <CardSubContainer visible={visible}>
         <CardTitle>{name}</CardTitle>
         <CardPrice>{price}</CardPrice>
