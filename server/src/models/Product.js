@@ -21,7 +21,7 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     image_product: {
-      type: DataTypes.STRING(600),
+      type: DataTypes.ARRAY(DataTypes.STRING(600)),
       allownull: false,
     },
     thumbnail_product: {
@@ -36,10 +36,6 @@ module.exports = (sequelize) => {
       type: DataTypes.BOOLEAN,
       allownull: false,
     },
-/*     is_videogame: {
-      type: DataTypes.BOOLEAN,
-      allownull: false,
-    }, */
     release_year: {
       type: DataTypes.DATE,
       allownull: false,

@@ -4,8 +4,8 @@ module.exports = (sequelize) => {
   sequelize.define("user", {
     id_user: {
       type: DataTypes.INTEGER,
-      primaryKey: true,
       autoIncrement: true,
+      primaryKey: true,
       allowNull: false,
     },
     nickname_user: {
