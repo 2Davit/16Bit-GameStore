@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const { Genre, Platform, Product } = require("../db");
+const { Genre, Platform, Product, User } = require("../db");
 
 const router = Router();
 
@@ -51,6 +51,38 @@ router.post("/videogames", async (req, res) => {
     productCreated.addGenre(genreDB);
     productCreated.addPlatform(platformDB);
     res.status(200).send("Product succesfully added");
+  } catch {
+    res.status(404).send("Error");
+  }
+});
+router.post("/user", async (req, res) => {
+  const {
+    id_user,
+    nickname_user,
+    name_user,
+    lastname_user,
+    avatar_user,
+    address_user,
+    email_user,
+    password_user,
+    is_admin,
+    is_active,
+  } = req.body;
+
+  try {
+    await User.create({
+      id_user,
+      nickname_user,
+      name_user,
+      lastname_user,
+      avatar_user,
+      address_user,
+      email_user,
+      password_user,
+      is_admin,
+      is_active,
+    });
+    res.status(200).send("User succesfully added");
   } catch {
     res.status(404).send("Error");
   }
