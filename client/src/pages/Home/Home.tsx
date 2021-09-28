@@ -45,6 +45,7 @@ const Home: FC = () => {
               image={product.thumbnail_product}
               name={product.name_product}
               price={product.price_product}
+              id={product.id}
             />
           ))}
       </div>

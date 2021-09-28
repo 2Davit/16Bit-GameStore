@@ -2,6 +2,7 @@ import { Product } from '../../interfaces'
 
 export const totalProducts: Array<Product> = [
     {
+        "id": 1,
         "name_product": "Ace Combat Advance",
         "price_product": 45,
         "release_year": 2005,
