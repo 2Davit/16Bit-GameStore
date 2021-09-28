@@ -7,7 +7,7 @@
             "action",
             "shooter"
         ],
-        "description_product": "Ace Combat Advance is a 2005 air combat video game in the Ace Combat series. Developed by Hungarian studio Humansoft, it is the first in the series for a handheld gaming system and, unlike the usual flight simulation games in the Ace Combat series, it is a top-down shooter similar to Strike, but using fighter jets rather than helicopters. It has been criticized for awkward controls, lack of appeal, difficulty and very poor graphics. Unlike other Ace Combat games, a Japanese release for the title was absent.",
+        "description_product": "Ace Combat Advance is a 2005 air combat video game in the Ace Combat series. Developed by Hungarian studio Humansoft, it is the first in the series for a handheld gaming system and, unlike the usual flight simulation games in the Ace Combat series, it is a top-down shooter similar to Strike, but using fighting jets rather than helicopters. It has been criticized for awkward controls, lack of appeal, difficulty and very poor graphics. Unlike other Ace Combat games, a Japanese release for the title was absent.",
         "image_product": "https://openretro.org/image/dab9adf403a0becaa5fa234ba5113d204a5985a1?s=2x",
         "thumbnail_product": "https://openretro.org/image/a54b118632b7ab5249d607d171a22d42b04e7548?s=512&f=jpg",
         "platform": "gba",
@@ -59,7 +59,7 @@
         "release_year": 2004,
         "genres": [
             "action",
-            "fighter"
+            "fighting"
         ],
         "description_product": "Omega Factor is a beat 'em up game starring Astro Boy, the main character of the Astro Boy media franchise. Astro attacks enemies using high-powered punches and kicks, which can also knock enemies into other ones and destroy them as well.",
         "image_product": "https://openretro.org/image/32f5faf1a4e5c41cbaab8eae08f90cb861f8a742?s=2x",
@@ -496,7 +496,7 @@
         "release_year": 1992,
         "genres": [
             "action",
-            "fighter"
+            "fighting"
         ],
         "description_product": "Based on the 1986 John G. Avildsen film, The Karate Kid 2. The Karate Kid is a beat'em up game where the player, as Daniel Larusso, must go through some stages (including bonus ones) from the karate competition to the final battle in Okinawa against Chozen.",
         "image_product": "https://openretro.org/image/20e20d52e911ab7fd38f2f486fd188e4118f2320?s=2x",
@@ -531,7 +531,7 @@
         "release_year": 1991,
         "genres": [
             "action",
-            "fighter"
+            "fighting"
         ],
         "description_product": "You play as Captain America or Hawkeye. In the one player mode, you must fight your way through various thugs to rescue Iron Man and the Vision. This game is a side scroller, somewhat reminiscent of Bionic Commando in which you fight through a level then move to an overhead map to decide where to go next. In between levels, Wasp gives you hints.",
         "image_product": "https://openretro.org/image/383f06bb3511ac4a42afba2383b8de95e8fbe3e0?s=2x",
@@ -722,7 +722,7 @@
         "price_product": 45,
         "release_year": 1994,
         "genres": [
-            "fighter"
+            "fighting"
         ],
         "description_product": "Dragon: The Bruce Lee Story is a fighting video game developed and originally published by Virgin Interactive Entertainment in Europe for the Sega Genesis on June 1994",
         "image_product": "https://openretro.org/image/1987991874ef2f380d6506fc3f813587232b332d?s=2x",
@@ -1146,7 +1146,7 @@
         "description_product": "Bart's Nightmare is an action game based on the TV cartoon show The Simpsons. The player navigates Bart through the side-scrolling overworld, collecting pages of his homework while avoiding various enemies modeled after characters from the show. For example, his sister Lisa would occasionally turn him into a frog, Principal Skinner may force him to wear a Sunday school uniform (slowing his movement), etc. Bart can repel enemies by blowing a bubble gum at them.",
         "image_product": "https://openretro.org/image/d6073b191a22c6c57581767586d5442d75cfa165?s=2x",
         "thumbnail_product": "https://openretro.org/image/6caaab2e6f989f9972dc8f9e6ecbec0e8cff3ca4?s=512&f=jpg",
-        "platform": "",
+        "platform": "snes",
         "in_stock": true,
         "on_sale": false,
         "is_videogame": true,
@@ -1206,14 +1206,14 @@
         "updatedAt": ""
     },
     {
-        "name_product": "Street Fighter Alpha 2",
+        "name_product": "Street fighting Alpha 2",
         "price_product": 40,
         "release_year": 1996,
         "genres": [
             "arcade",
             "fighting"
         ],
-        "description_product": "The sequel to (and remake of) Street Fighter Alpha brings five new fighters into the fray including newcomer schoolgirl Sakura while adding a new special ability: the 'Custom Combo', in which players can trigger a massive timed combo chain using their Super Meter.",
+        "description_product": "The sequel to (and remake of) Street fighting Alpha brings five new fightings into the fray including newcomer schoolgirl Sakura while adding a new special ability: the 'Custom Combo', in which players can trigger a massive timed combo chain using their Super Meter.",
         "image_product": "https://openretro.org/image/07656c86fc7fa80cfffbfd8a90faba9eb7e74868?s=2x",
         "thumbnail_product": "https://openretro.org/image/1cfe17210416679ed66a2e3ba6d85b359a126581?s=512&f=jpg",
         "platform": "snes",
@@ -1224,7 +1224,7 @@
         "updatedAt": ""
     },
     {
-        "name_product": "Street Fighter II",
+        "name_product": "Street fighting II",
         "price_product": 40,
         "release_year": 1992,
         "genres": [
@@ -1242,7 +1242,7 @@
         "updatedAt": ""
     },
     {
-        "name_product": "Street Fighter II Turbo",
+        "name_product": "Street fighting II Turbo",
         "price_product": 40,
         "release_year": 1993,
         "genres": [
@@ -1260,14 +1260,14 @@
         "updatedAt": ""
     },
     {
-        "name_product": "Super Street Fighter II",
+        "name_product": "Super Street fighting II",
         "price_product": 40,
         "release_year": 1994,
         "genres": [
             "arcade",
             "fighting"
         ],
-        "description_product": "Four new warriors enter the World Warrior tournament in the fourth main iteration of the classic Street Fighter II series.",
+        "description_product": "Four new warriors enter the World Warrior tournament in the fourth main iteration of the classic Street fighting II series.",
         "image_product": "https://openretro.org/image/f410037a7285aa25f9ae27982c451c7987ce741a?s=2x",
         "thumbnail_product": "https://openretro.org/image/95617e6521eb17aac030b9324d330416ba52ea01?s=512&f=jpg",
         "platform": "snes",
@@ -1537,14 +1537,14 @@
         "updatedAt": ""
     },
     {
-        "name_product": "X-Men vs. Street Fighter",
+        "name_product": "X-Men vs. Street fighting",
         "price_product": 40,
         "release_year": 1998,
         "genres": [
             "fighting",
             "action"
         ],
-        "description_product": "X-Men vs. Street Fighter is an unlicensed one-on-one fighting game for the SNES developed by an unknown company. Although it uses the name of the arcade title, it does not have a tag feature and has some characters that were not used in the original game.",
+        "description_product": "X-Men vs. Street fighting is an unlicensed one-on-one fighting game for the SNES developed by an unknown company. Although it uses the name of the arcade title, it does not have a tag feature and has some characters that were not used in the original game.",
         "image_product": "https://openretro.org/image/65de6773dcb5f40270487b7c21d6a5d20dddd270?s=2x",
         "thumbnail_product": "https://openretro.org/image/b23df84bf5301b79522c2d869bef5e06ae1196aa?s=512&f=jpg",
         "platform": "snes",
@@ -2084,14 +2084,14 @@
         "updatedAt": ""
     },
     {
-        "name_product": "Street Fighter II: The World Warrior",
+        "name_product": "Street fighting II: The World Warrior",
         "price_product": 40,
         "release_year": 1991,
         "genres": [
             "arcade",
             "fighting"
         ],
-        "description_product": "Street Fighter II: The World Warrior[a] is a competitive fighting game developed by Capcom and originally released for arcades in 1991. It is the second installment in the Street Fighter series and the sequel to Street Fighter, released in 1987. It is Capcom's fourteenth game to use the CP System arcade system board. Street Fighter II improved many of the concepts introduced in the first game, including the use of special command-based moves, combo system, six-button configuration, and wider selection of playable characters, each with unique fighting style.",
+        "description_product": "Street fighting II: The World Warrior[a] is a competitive fighting game developed by Capcom and originally released for arcades in 1991. It is the second installment in the Street fighting series and the sequel to Street fighting, released in 1987. It is Capcom's fourteenth game to use the CP System arcade system board. Street fighting II improved many of the concepts introduced in the first game, including the use of special command-based moves, combo system, six-button configuration, and wider selection of playable characters, each with unique fighting style.",
         "image_product": "https://openretro.org/image/c36475be1c8aaabb3248aa18fcf733af01b00a7a?s=2x",
         "thumbnail_product": "https://openretro.org/image/18eb4fdf8da61c1b50944f770f0014f98cfe6c93?s=512&f=jpg",
         "platform": "arcade",
@@ -2155,14 +2155,14 @@
         "updatedAt": ""
     },
     {
-        "name_product": "Street Fighter Alpha 3",
+        "name_product": "Street fighting Alpha 3",
         "price_product": 40,
         "release_year": 2002,
         "genres": [
             "arcade",
             "fighting"
         ],
-        "description_product": "Street Fighter Alpha 3, the third game in the Alpha series, has a total of 31 fighters, the most in the series so far. New characters include old favorites E. Honda, Blanka, Vega, Cammy, T. Hawk, Dee Jay, Juni and Juli. Some of the newest fighters on the block include a former Final Fight character (Cody, who has been in jail since the last Final Fight game, or so his clothing suggests), Karin Kanzuki and Rainbow Mika.",
+        "description_product": "Street fighting Alpha 3, the third game in the Alpha series, has a total of 31 fightings, the most in the series so far. New characters include old favorites E. Honda, Blanka, Vega, Cammy, T. Hawk, Dee Jay, Juni and Juli. Some of the newest fightings on the block include a former Final Fight character (Cody, who has been in jail since the last Final Fight game, or so his clothing suggests), Karin Kanzuki and Rainbow Mika.",
         "image_product": "https://openretro.org/image/a977d7a8d552a5d5f56da2e6840f0100758bde94?s=2x",
         "thumbnail_product": "https://openretro.org/image/51da059222b9eac83c955ae8e653179e4789edbb?s=512&f=jpg",
         "platform": "gba",
