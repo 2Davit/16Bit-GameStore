@@ -1,7 +1,6 @@
 import React, { FC } from "react";
-import { Home, NotFound, Landing } from "./pages";
+import { Home, NotFound, Landing, Cart } from "./pages";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { NavBar } from "./components";
 
 const App: FC = () => {
   return (
@@ -9,7 +8,7 @@ const App: FC = () => {
       <Switch>
         <Route exact path="/" component={Landing} />
         <Route exact path="/home" component={Home} />
-        <Route path="/" component={NavBar} />
+        <Route exact path="/cart" component={Cart} />
         <Route path="*" component={NotFound} />
       </Switch>
     </Router>

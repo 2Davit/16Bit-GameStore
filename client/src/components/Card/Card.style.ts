@@ -24,7 +24,7 @@ export const CardSubContainer = styled.div<CardSubProps> `
     height: 100%;
     background-color: blue;
     position: absolute;
-    top: 60%;
+    top: 0;
     display: ${({visible}) => visible ? 'block' : 'none'};
 `
 
