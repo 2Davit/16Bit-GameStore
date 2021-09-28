@@ -1,9 +1,11 @@
-import { GET_ALL_PRODUCTS } from '../types';
+import { GET_ALL_PRODUCTS, GET_PRODUCT_DETAIL } from '../types';
 import { State } from '../../interfaces';
 
 
 const initialState: State = {
-    totalProducts: []
+    totalProducts: [],
+    renderingProducts: [],
+    detailProduct: {}
 }
 
 
@@ -17,8 +19,16 @@ function reducer(state: State = initialState, action: any): State {
         case GET_ALL_PRODUCTS:
             return {
                 ...state,
-                totalProducts: payload 
+                totalProducts: payload,
+                renderingProducts: payload 
             }
+
+        case GET_PRODUCT_DETAIL:
+            return {
+                ...state,
+                detailProduct: payload
+            }
+        
 
         default:
             return state
