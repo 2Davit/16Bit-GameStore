@@ -13,7 +13,7 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     price_product: {
-      type: DataTypes.FLOAT,
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
     description_product: {
@@ -37,7 +37,7 @@ module.exports = (sequelize) => {
       allownull: false,
     },
     release_year: {
-      type: DataTypes.DATE,
+      type: DataTypes.INTEGER,
       allownull: false,
     },
   });
