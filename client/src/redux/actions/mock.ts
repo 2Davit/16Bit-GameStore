@@ -1,4 +1,4 @@
-import { Product } from '../reducer'
+import { Product } from '../../interfaces'
 
 export const totalProducts: Array<Product> = [
     {
@@ -65,7 +65,7 @@ export const totalProducts: Array<Product> = [
         ],
         "description_product": "Omega Factor is a beat'em up game starring Astro Boy, the main character of the Astro Boy media franchise. Astro attacks enemies using high-powered punches and kicks, which can also knock enemies into other ones and destroy them as well.",
         "image_product": "https://openretro.org/image/32f5faf1a4e5c41cbaab8eae08f90cb861f8a742?s=2x",
-        "thumbnail_product": "hhttps://openretro.org/image/83729408759504bba0ac1c1fe9ff3af2e2b0c425?s=512&f=jpg",
+        "thumbnail_product": "https://openretro.org/image/83729408759504bba0ac1c1fe9ff3af2e2b0c425?s=512&f=jpg",
         "platform": "gba",
         "in_stock": true,
         "on_sale": false,
@@ -1290,7 +1290,7 @@ export const totalProducts: Array<Product> = [
         ],
         "description_product": "The Wild West...full of the criminal element. Sir Richard Rose, the most despicable face in the criminal lot, has enough power to control the mining facilities, cattle ranches, and trading communities and turn everything to his favor. With that much power, he could literally buy himself the Wild West and control everything!",
         "image_product": "",
-        "thumbnail_product": "",
+        "thumbnail_product": "https://upload.wikimedia.org/wikipedia/en/thumb/3/39/Sunset_Riders_arcade_flyer.jpg/220px-Sunset_Riders_arcade_flyer.jpg",
         "platform": "snes",
         "in_stock": true,
         "on_sale": false,

@@ -2,7 +2,8 @@ import React, { useEffect, FC, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProducts } from "../../redux/actions";
 import { NavBar, Card, Paginate } from "../../components";
-import { Store, Product } from "../../redux/reducer";
+import { Store } from "../../redux/reducer";
+import { Product } from '../../interfaces';
 
 
 const Home: FC = () => {
@@ -41,7 +42,7 @@ const Home: FC = () => {
           currentProducts.map((product, i) => (
             <Card
               key={i}
-              image={product.image_product}
+              image={product.thumbnail_product}
               name={product.name_product}
               price={product.price_product}
             />

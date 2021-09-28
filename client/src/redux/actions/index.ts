@@ -1,6 +1,6 @@
 /* import axios from 'axios'; */
 import { GET_ALL_PRODUCTS } from "../types";
-import { Product } from '../reducer';
+import { Product } from '../../interfaces';
 import { Dispatch } from "redux";
 import { totalProducts } from './mock'
 
