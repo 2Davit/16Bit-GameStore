@@ -1,3 +1,4 @@
+
 import styled from 'styled-components';
 
 
@@ -46,4 +47,9 @@ export const CardTitle = styled.h2 `
 export const CardPrice = styled.h3 `
     color: white;
     
+`
+
+export const AddToCart = styled.button `
+position: relative;
+bottom: 3.5rem;
 `
