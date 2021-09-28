@@ -3,19 +3,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllProducts } from "../../redux/actions";
 import { NavBar, Card, Paginate } from "../../components";
 import { Store } from "../../redux/reducer";
-import { Product } from '../../interfaces';
-
+import { Product } from "../../interfaces";
 
 const Home: FC = () => {
   const dispatch = useDispatch();
   const totalProducts = useSelector((state: Store) => state.totalProducts);
-  
+
   //Paginate
   // const [order, setOrder] = useState<string>("");
   //uso estados locales para el paginado
   const [currentPage, setCurrentPage] = useState<number>(1); // empiezo en la pag 1
 
-  const pages = (pageNum:number):void => {
+  const pages = (pageNum: number): void => {
     setCurrentPage(pageNum);
   };
   const productsPerPage: number = 10;
@@ -32,10 +31,10 @@ const Home: FC = () => {
   return (
     <div>
       <NavBar />
-      <Paginate 
-        amountPerPage = {productsPerPage} 
-        totalAmount = {totalProducts.length} 
-        pageNumber = {pages}
+      <Paginate
+        amountPerPage={productsPerPage}
+        totalAmount={totalProducts.length}
+        pageNumber={pages}
       />
       <div style={{ display: "flex", flexWrap: "wrap" }}>
         {currentProducts.length !== 0 &&
