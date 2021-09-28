@@ -1,22 +1,18 @@
 import React, { FC } from "react";
-import { CartButton, Title } from "./NavBar.style";
-import { FiShoppingCart } from "react-icons/fi";
+import { StyledNavBar } from "./NavBar.style";
 import { NavLink } from "react-router-dom";
 import "nes.css/css/nes.min.css";
 
 const NavBar: FC = () => {
   return (
-    <div>
+    <StyledNavBar>
       <NavLink to="/home">
-        <Title>Home</Title>
+        <button className="nes-btn is-success">Home</button>
       </NavLink>
-
       <NavLink to="/cart">
-        <CartButton>
-          <FiShoppingCart />
-        </CartButton>
+        <button className="nes-btn is-success">Cart</button>
       </NavLink>
-    </div>
+    </StyledNavBar>
   );
 };
 
