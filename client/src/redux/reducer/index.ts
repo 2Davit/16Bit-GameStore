@@ -5,8 +5,8 @@ export interface Product {
     name_product: string;
     price_product: number;
     description_product: string;
-    image_product: string;
-    thumbnail: Array<string>;
+    image_product: Array<string>;
+    thumbnail: string;       // la miniatura es img unica
     in_stock: boolean;
     on_sale: boolean;
     is_videogame: boolean;
