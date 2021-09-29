@@ -1,4 +1,4 @@
-import { GET_ALL_PRODUCTS, GET_PRODUCT_BY_PLATFORM, GET_NAME_PRODUCT , GET_PRODUCT_DETAIL } from '../types';
+import { GET_ALL_PRODUCTS, GET_PRODUCT_BY_PLATFORM, GET_NAME_PRODUCT , GET_PRODUCT_DETAIL, GET_PRODUCT_BY_GENRE } from '../types';
 import { ProductsState } from '../../interfaces';
 
 
@@ -34,13 +34,19 @@ export function productsReducer(state: ProductsState = initialState, action: any
             }
 
         case GET_PRODUCT_BY_PLATFORM:
-            console.log(state.renderingProducts)
-            const AllProducts = state.renderingProducts;
-
             return {
                 ...state,
-                totalProducts: payload.platformType === 'all' ? AllProducts : payload.data 
+                totalProducts: payload
             }
+
+        case GET_PRODUCT_BY_GENRE:
+            return {
+                ...state,
+                totalProducts: payload
+            }
+
+
+        
         default:
             return state
     }
