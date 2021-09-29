@@ -1,8 +1,8 @@
 import React, { useEffect, FC, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllProducts } from "../../redux/actions/products_action";
+import { getAllProducts, platformFilter } from "../../redux/actions/products_action";
 import { toggleCart } from "../../redux/actions/global_actions";
-import { NavBar, Card, Paginate, CartSideBar } from "../../components";
+import { NavBar, Card, Paginate, CartSideBar, Filter } from "../../components";
 import { Store } from "../../redux/reducer/productsReducer";
 import { Product } from "../../interfaces";
 import SearchBar from "../../components/SearchBar/SearchBar";
@@ -42,11 +42,18 @@ const Home: FC = () => {
     dispatch(toggleCart());
   };
 
+  function handlePlatformFilter(e: any) { //
+    dispatch(platformFilter(e.target.value))
+    setCurrentPage(1)
+}
+
+
   return (
     <div>
       <NavBar toggleModal={toggleModal} />
       <SearchBar />
       <CartSideBar closeCallback={toggleModal} show={showCart} cart={cart} />
+      <Filter handlePlatformFilter={handlePlatformFilter} />
       <Paginate
         amountPerPage={productsPerPage}
         totalAmount={totalProducts?.length}
