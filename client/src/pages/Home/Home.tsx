@@ -11,12 +11,14 @@ const Home: FC = () => {
   const totalProducts = useSelector(
     (state: Store) => state.productsReducer.totalProducts
   );
+
   const cart: Array<number> = useSelector(
     (state: Store) => state.cartReducer.cart.list
   );
   const showCart: boolean = useSelector(
     (state: Store) => state.globalReducer.showCart
   );
+
 
   //Paginate
   // const [order, setOrder] = useState<string>("");
@@ -49,14 +51,16 @@ const Home: FC = () => {
         pageNumber={pages}
       />
       <div style={{ display: "flex", flexWrap: "wrap" }}>
-        {currentProducts.length !== 0 &&
-          currentProducts.map((product, i) => (
+
+        {currentProducts?.length !== 0 &&
+          currentProducts?.map((product) => (
+
             <Card
-              key={i}
+              key={product.id_product}
               image={product.thumbnail_product}
               name={product.name_product}
               price={product.price_product}
-              id={product.id}
+              id={product.id_product}
             />
           ))}
       </div>

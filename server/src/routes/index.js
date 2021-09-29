@@ -203,6 +203,7 @@ router.get("/videogames", async (req, res) => {
         name_product: el.dataValues.name_product,
         price_product: el.dataValues.price_product,
         description_product: el.dataValues.description_product,
+        image_product: el.dataValues.image_product,
         thumbnail_product: el.dataValues.thumbnail_product,
         in_stock: el.dataValues.in_stock,
         on_sale: el.dataValues.on_sale,
@@ -229,6 +230,7 @@ router.get("/videogames", async (req, res) => {
     res.status(404).send(error);
   }
 });
+
 
 //Ruta posteo de un post.
 router.post("/videogame", async (req, res) => {
@@ -322,6 +324,7 @@ router.post("/videogames", async (req, res) => {
   res.status(200).send("Product succesfully added");
 });
 
+//Ruta videogame por ID
 router.get("/videogames/:id", async (req, res) => {
     const {id} = req.params;
   
