@@ -48,7 +48,21 @@ export interface CartState{
     cart:any;
 }
 
+export interface GlobalState{
+    showCart:boolean;
+}
+
 export interface State{
     productsReducer: ProductsState;
     cartReducer:CartState;
+    globalReducer:GlobalState;
 }
+
+
+// export interface KonvaTextEventTarget extends EventTarget {
+//     index: number
+//   }
+  
+//  export interface KonvaMouseEvent extends React.MouseEvent<HTMLElement> {
+//     target: KonvaTextEventTarget
+//   }

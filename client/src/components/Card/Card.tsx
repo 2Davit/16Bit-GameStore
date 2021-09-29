@@ -7,7 +7,7 @@ import {
   CardTitle,
   CardButton,
   AddToCart,
-} from "./Card.style";
+} from "./StyledCard";
 import { RiEyeCloseFill, RiEyeFill } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import "nes.css/css/nes.min.css";
