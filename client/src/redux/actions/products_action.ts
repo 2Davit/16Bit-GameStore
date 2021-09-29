@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_ALL_PRODUCTS, GET_PRODUCT_DETAIL } from "../types";
+import { GET_ALL_PRODUCTS, GET_PRODUCT_DETAIL, GET_PRODUCT_BY_PLATFORM } from "../types";
 import { Product } from '../../interfaces';
 import { Dispatch } from "redux";
 /* import { ThunkAction } from 'redux-thunk'; */
@@ -43,6 +43,27 @@ export const getProductDetail = (id: number) => {
                 payload: json.data
             })
         }
+    } catch(err) {
+        console.log(err)
+    }
+}
+
+
+export const platformFilter = (platformType: string) => {
+    
+    try {
+        return async (dispatch: Dispatch<Detail> ): Promise<any> => {
+            var json = await axios.get(`http://localhost:3001/videogamesPlatform?platform=${platformType}`)
+            return dispatch({
+                type: GET_PRODUCT_BY_PLATFORM,
+                payload: {
+                    data: json.data,
+                    platformType
+                }
+                
+            })
+        }
+
     } catch(err) {
         console.log(err)
     }

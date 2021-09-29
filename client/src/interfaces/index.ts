@@ -23,7 +23,6 @@ export interface Product {
 
 
 export interface ProductInCart extends Product {
-    
     quantity: number;
 }
 
@@ -32,7 +31,7 @@ export interface ProductInCart extends Product {
 export interface ProductsState {
     totalProducts: Array<Product> | Array<any>;
     renderingProducts: Array<Product> | Array<any>;
-    detailProduct: Product;
+    detailProduct: Product | unknown;
 }
 
 export interface CartState{
