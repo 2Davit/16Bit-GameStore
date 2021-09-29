@@ -3,10 +3,11 @@ import React, { FC } from 'react'
 
 interface Props {
     handlePlatformFilter(e: any): void;
+    handleGenreFilter(e: any): void;
 }
 
 
-const Filter: FC<Props> = ({ handlePlatformFilter }) => {
+const Filter: FC<Props> = ({ handlePlatformFilter, handleGenreFilter }) => {
     
     
     return (
@@ -22,7 +23,25 @@ const Filter: FC<Props> = ({ handlePlatformFilter }) => {
                         <option value="snes">SNES</option>
                         <option value="a2600">A2600</option>
                     </select>
-                    </section>      
+            </section>  
+
+            <section>
+                    <h5>By genre</h5>
+                    <select onChange={handleGenreFilter}>
+                        <option value="">All</option>
+                        <option value="action">Action</option>
+                        <option value="shooter">Shooter</option>
+                        <option value="racing">Racing</option>
+                        <option value="fighting">Fighting</option>
+                        <option value="sports">Sports</option>
+                        <option value="arcade">Arcade</option>
+                        <option value="adventure">Adventure</option>
+                        <option value="platform">Platform</option>
+                        <option value="puzzle">Puzzle</option>
+                        <option value="strategy">Strategy</option>
+                        <option value="rpg">RPG</option>
+                    </select>
+            </section>      
         </div>
     )
 }
