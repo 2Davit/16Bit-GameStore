@@ -39,7 +39,13 @@ export interface CartState{
     cart: any;
 }
 
+export interface GlobalState{
+    showCart:boolean;
+}
+
 export interface State{
     productsReducer: ProductsState;
-    cartReducer: CartState;
+
+    cartReducer:CartState;
+    globalReducer:GlobalState;
 }
