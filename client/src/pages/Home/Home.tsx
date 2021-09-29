@@ -10,7 +10,7 @@ const Home: FC = () => {
   const totalProducts = useSelector(
     (state: Store) => state.productsReducer.totalProducts
   );
-
+  
   //Paginate
   // const [order, setOrder] = useState<string>("");
   //uso estados locales para el paginado
@@ -40,13 +40,13 @@ const Home: FC = () => {
       />
       <div style={{ display: "flex", flexWrap: "wrap" }}>
         {currentProducts?.length !== 0 &&
-          currentProducts?.map((product, i) => (
+          currentProducts?.map((product) => (
             <Card
-              key={i}
+              key={product.id_product}
               image={product.thumbnail_product}
               name={product.name_product}
               price={product.price_product}
-              id={product.id}
+              id={product.id_product}
             />
           ))}
       </div>
