@@ -56,7 +56,7 @@ const Home: FC = () => {
   return (
     <div>
       <NavBar toggleModal={toggleModal} />
-      <SearchBar />
+      <SearchBar currentPage={setCurrentPage}/>
       <CartSideBar closeCallback={toggleModal} show={showCart} cart={cart} />
       <Filter handlePlatformFilter={handlePlatformFilter} handleGenreFilter={handleGenreFilter} />
       <Paginate

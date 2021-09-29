@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, FC } from 'react';
 import { useDispatch } from 'react-redux';
 import { getNameProduct } from '../../redux/actions/products_action'
 
+interface Props {
+    currentPage(pageNum: number): void
+}
 
-function SearchBar() {
+const SearchBar: FC<Props> = ({currentPage}) => {
     const [name, setName] = useState('')
     const dispatch = useDispatch();
 
@@ -13,6 +16,7 @@ function SearchBar() {
     const handleSubmit = () => {
         dispatch(getNameProduct(name))
         setName('')
+        currentPage(1)
     }
     
     return (
