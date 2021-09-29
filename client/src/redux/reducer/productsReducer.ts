@@ -1,4 +1,4 @@
-import { GET_ALL_PRODUCTS, GET_PRODUCT_DETAIL } from '../types';
+import { GET_ALL_PRODUCTS, GET_PRODUCT_DETAIL, GET_NAME_PRODUCT } from '../types';
 import { ProductsState } from '../../interfaces';
 
 
@@ -7,8 +7,6 @@ const initialState: ProductsState = {
     renderingProducts: [],
     detailProduct: {}
 }
-
-
 
 export function productsReducer(state: ProductsState = initialState, action: any): ProductsState {
     
@@ -29,7 +27,11 @@ export function productsReducer(state: ProductsState = initialState, action: any
                 detailProduct: payload
             }
         
-
+        case GET_NAME_PRODUCT:
+            return {
+                ...state,
+                totalProducts: payload
+            }
         default:
             return state
     }

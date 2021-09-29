@@ -5,6 +5,7 @@ import { toggleCart } from "../../redux/actions/global_actions";
 import { NavBar, Card, Paginate, CartSideBar } from "../../components";
 import { Store } from "../../redux/reducer/productsReducer";
 import { Product } from "../../interfaces";
+import SearchBar from "../../components/SearchBar/SearchBar";
 
 const Home: FC = () => {
   const dispatch = useDispatch();
@@ -44,6 +45,7 @@ const Home: FC = () => {
   return (
     <div>
       <NavBar toggleModal={toggleModal} />
+      <SearchBar />
       <CartSideBar closeCallback={toggleModal} show={showCart} cart={cart} />
       <Paginate
         amountPerPage={productsPerPage}

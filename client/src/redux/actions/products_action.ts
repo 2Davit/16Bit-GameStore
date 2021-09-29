@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_ALL_PRODUCTS, GET_PRODUCT_DETAIL } from "../types";
+import { GET_ALL_PRODUCTS, GET_PRODUCT_DETAIL, GET_NAME_PRODUCT } from "../types";
 import { Product } from '../../interfaces';
 import { Dispatch } from "redux";
 /* import { ThunkAction } from 'redux-thunk'; */
@@ -11,6 +11,10 @@ interface AllProducts {
 }
 
 interface Detail {
+    type: string;
+}
+
+interface Name {
     type: string;
 }
 
@@ -28,7 +32,7 @@ export const getAllProducts = () => {
     }
 
     } catch(err) {
-        console.log(err)
+        return console.log(err)
     }
 }
 
@@ -44,6 +48,20 @@ export const getProductDetail = (id: number) => {
             })
         }
     } catch(err) {
-        console.log(err)
+       return console.log(err)
+    }
+}
+
+export const getNameProduct = (name: string) => {
+    try {
+        return async (dispatch: Dispatch<Name> ): Promise<any> => {
+            let json = await axios.get(`http://localhost:3001/videogames?name=${name}`)
+            return dispatch({
+                type: GET_NAME_PRODUCT,
+                payload: json.data
+            })
+        }
+    } catch (error) {
+      return alert(`${name} no existe`);
     }
 }

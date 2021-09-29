@@ -32,7 +32,7 @@ export interface ProductInCart extends Product {
 export interface ProductsState {
     totalProducts: Array<Product> | Array<any>;
     renderingProducts: Array<Product> | Array<any>;
-    detailProduct: Product;
+    detailProduct: Product | unknown;
 }
 
 export interface CartState{
