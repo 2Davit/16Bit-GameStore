@@ -29,7 +29,7 @@ $ git pull
 ### Commits
 
 - Idioma de nombres: **Español**.
-- Formato de nombres : `'<type>(<scope>): <subject> '` .
+- Formato de nombres : `'<type>(<scope>): <subject> '`
   > Ejemplo: `$ feat(navbar): agregue una searchbar para buscar productos por nombre`
 - Usar nombres _descriptivos_ (recordar que cualquiera puede acceder a los nombres de los commits).
 
