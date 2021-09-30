@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const { Genre, Platform, Product, User } = require("../db");
-const { checkSignUp } = require("../middlewares/checkSignUp");
+const checkSignUp = require("../middlewares/checkSignUp");
 const { logIn, signUp } = require("../controllers/controllers");
 
 const router = Router();
@@ -377,7 +377,7 @@ router.post("/user", async (req, res) => {
 });
 
 // Rutas para testear autenticación
-router.post("/signup", /* checkSignUp, */ signUp);
+router.post("/signup", checkSignUp, signUp);
 router.post("/login", logIn);
 
 module.exports = router;
