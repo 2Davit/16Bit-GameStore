@@ -13,7 +13,7 @@ const App: FC = () => {
       <Switch>
         <Route exact path="/" component={Landing} />
         <Route exact path="/home" component={Home} />
-        <Route exact path="/cart" component={Cart} />
+        <Route exact path="/cart" component={CartSideBar} />
         <Route exact path="/game/:id" component={Detail} />
         <Route exact path='/form' component={FormProduct}/>
         <Route path="*" component={NotFound} />

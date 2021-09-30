@@ -1,6 +1,6 @@
 
 import axios from "axios";
-import { Product } from "../../interfaces";
+import { Product, ProductCreate } from "../../interfaces";
 import {
   GET_ALL_PRODUCTS,
   GET_PRODUCT_DETAIL,
