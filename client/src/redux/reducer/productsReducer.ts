@@ -19,7 +19,6 @@ export function productsReducer(
   const { type, payload } = action;
   switch (type) {
     case GET_ALL_PRODUCTS:
-      console.log(payload);
       return {
         ...state,
         totalProducts: payload,
@@ -62,5 +61,4 @@ export function productsReducer(
   }
 }
 
-///////////////////////////////////////////////
 export type Store = ReturnType<any>;

@@ -1,31 +1,30 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { getNameProduct } from '../../redux/actions/products_action'
+import React, { useState, FC } from "react";
+import { useDispatch } from "react-redux";
+import { getNameProduct } from "../../redux/actions/products_action";
 
+const SearchBar = () => {
+  const [name, setName] = useState("");
+  const dispatch = useDispatch();
 
-function SearchBar() {
-    const [name, setName] = useState('')
-    const dispatch = useDispatch();
+  const handleInputChange = (e: React.FormEvent<HTMLInputElement>) => {
+    setName(e.currentTarget.value);
+  };
+  const handleSubmit = () => {
+    dispatch(getNameProduct(name));
+    setName("");
+  };
 
-    const handleInputChange = (e: React.FormEvent<HTMLInputElement>) => {
-        setName(e.currentTarget.value)
-    }
-    const handleSubmit = () => {
-        dispatch(getNameProduct(name))
-        setName('')
-    }
-    
-    return (
-        <div>
-            <input 
-                type="text"
-                placeholder="find videogame..."
-                value={name}
-                onChange={(e) => handleInputChange(e)}
-            />
-            <button onClick={() => handleSubmit()} >Search</button>
-        </div>
-    )
-}
+  return (
+    <div>
+      <input
+        type="text"
+        placeholder="find videogame..."
+        value={name}
+        onChange={(e) => handleInputChange(e)}
+      />
+      <button onClick={() => handleSubmit()}>Search</button>
+    </div>
+  );
+};
 
 export default SearchBar;
