@@ -20,6 +20,7 @@ export interface Product {
     genres: Array<Genre>;
     platforms: Array<Platform>;
 }
+
 export interface ProductCreate {
     id_product?: number;
     name_product: string;

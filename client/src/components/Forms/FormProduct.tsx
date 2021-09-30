@@ -4,6 +4,7 @@ import { ProductCreate } from '../../interfaces'
 import { useDispatch} from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import {createVideogame} from '../../redux/actions/products_action'
+import { platform } from 'os';
 
 
 
@@ -18,6 +19,8 @@ const FormProduct = () => {
     const [info, setInfo] = useState<Info>({ url: "" })
     const history = useHistory();
     const dispatch = useDispatch();
+
+
 
     const [input, setInput] = useState<ProductCreate>({
         name_product: "",
@@ -50,6 +53,20 @@ const FormProduct = () => {
             url: e.currentTarget.value
         })
 
+    }
+
+    function handleGenreDelete(g:string) {
+        setInput({
+            ...input,
+            genres: input.genres.filter(genre => genre !== g)
+        })
+    }
+
+    function handlePlatformDelete(p:string) {
+        setInput({
+            ...input,
+            platforms: input.platforms.filter(platform => platform !== p)
+        })
     }
 
     function handleChange(e: React.FormEvent<HTMLInputElement>) {
@@ -196,6 +213,9 @@ const FormProduct = () => {
 
     return (
         <div>
+       <div>
+          <button>Back</button> 
+       </div>
             <form onSubmit={(e) => handleSubmit(e)}>
                 <label htmlFor="name_product">Name</label>
                 <input onChange={(e) => handleChange(e)} name="name_product" placeholder="Introduce a Name..." />
@@ -249,6 +269,12 @@ const FormProduct = () => {
                     <option value="strategy">Strategy</option>
                     <option value="rpg">RPG</option>
                 </select>
+                            {input.genres?.map(g =>
+                                <div key={g}>
+                                    <button    onClick={() => handleGenreDelete(g)} >x</button>
+                                    <p>{g}</p>
+                                </div>
+                            )}
 
                 <label htmlFor="platforms">Platforms</label>
                 <select name="platforms" onChange={(e) => handleSelectPlatform(e)}>
@@ -260,6 +286,12 @@ const FormProduct = () => {
                     <option value="gba" >gba</option>
                     <option value="a2600" >a2600</option>
                 </select>
+                {input.platforms?.map(p =>
+                                <div key={p}>
+                                    <button    onClick={() => handlePlatformDelete(p)} >x</button>
+                                    <p>{p}</p>
+                                </div>
+                            )}
 
                 <button type="submit">Submit</button>
             </form>
