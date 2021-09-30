@@ -8,26 +8,15 @@ interface CartSideBarProps {
   closeCallback: any;
 } //pasarle las props a un functional component
 
-const CartSideBar: FC<CartSideBarProps> = ({
-  cart,
-  show,
-  closeCallback,
-}: CartSideBarProps) => {
+const CartSideBar: FC<CartSideBarProps> = () => {
   return (
     <StyledCartSideBar>
-      <div
-        className={`.cart__overlay ${show ? "slide-in" : "slide-out"}`}
-        // style={{ display: show ? "block" : "none" }}
-      >
+      <div>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium
         dicta a commodi, veniam, repellat ipsa excepturi laboriosam ratione eius
         quae quo animi tempora quibusdam sit id dolorum accusantium expedita
         dignissimos.
-        <button>
-          <i onClick={closeCallback} className="nes-icon close is-small"></i>
-        </button>
       </div>
-      <div className="modalPrueba"></div>
     </StyledCartSideBar>
   );
 };

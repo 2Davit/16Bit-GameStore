@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import { StyledPaginate } from "./StyledPaginate";
 
 interface Props {
   amountPerPage: number;
@@ -14,7 +15,7 @@ const Paginate: FC<Props> = ({ amountPerPage, totalAmount, pageNumber }) => {
   }
 
   return (
-    <div>
+    <StyledPaginate>
       {pageNumbers &&
         pageNumbers.map((num) => {
           return (
@@ -23,9 +24,8 @@ const Paginate: FC<Props> = ({ amountPerPage, totalAmount, pageNumber }) => {
             </button>
           );
         })}
-    </div>
+    </StyledPaginate>
   );
 };
 
 export default Paginate;
-
