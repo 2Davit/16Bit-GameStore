@@ -1,24 +1,25 @@
 import axios from 'axios';
 import { GET_ALL_PRODUCTS, GET_PRODUCT_DETAIL, 
          GET_NAME_PRODUCT, GET_PRODUCT_BY_PLATFORM, 
-         GET_PRODUCT_BY_GENRE } from "../types";
+         GET_PRODUCT_BY_GENRE,CREATE_NEW_PRODUCT } from "../types";
          
-import { Product } from '../../interfaces';
+import { Product, ProductCreate } from '../../interfaces';
 import { Dispatch } from "redux";
 
-
+        //Discutir el uso de try-catch en los actions, debido a que siempre va a estar funcional hasta este punto porque el back esta funcional y sin bugs, para reducir la cantidad de warnings innecesarios que tenemos en el codigo ya que quedan los catch como "codigo inaccesible"
 
 interface AllProducts {
     type: string;
     payload: Array<Product> | Product
 }
 
-interface Detail {
+interface Detail { 
     type: string;
 }
 
 interface Name {
     type: string;
+    payload: Product
 }
 
 
@@ -104,3 +105,12 @@ export const genreFilter = (genreType: string) => {
     }
 }
 
+export const createVideogame =(payload: ProductCreate) => {
+    console.log(payload,'acaaaa')
+    console.log('hola actions')
+    return async function (dispatch: Dispatch<Name>) {
+        const data = await axios.post("http://localhost:3001/videogame", payload);
+        return data;
+
+    }
+}
