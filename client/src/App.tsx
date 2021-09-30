@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { Home, NotFound, Landing, Cart, Detail } from "./pages";
+import { Home, NotFound, Landing, CartSideBar, Detail } from "./pages";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { GlobalStyle } from "./GlobalStyles/GlobalStyles";
 import FormProduct from "./components/Forms/FormProduct"
@@ -7,6 +7,7 @@ import FormProduct from "./components/Forms/FormProduct"
 const App: FC = () => {
   return (
     <>
+
     <GlobalStyle/>
     <Router>
       <Switch>
@@ -18,6 +19,8 @@ const App: FC = () => {
         <Route path="*" component={NotFound} />
       </Switch>
     </Router>
+
+
     </>
   );
 };
