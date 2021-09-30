@@ -171,6 +171,7 @@ router.get("/videogamesPlatform", async (req, res) => {
 //Ruta de get de todos los videogames.
 router.get("/videogames", async (req, res) => {
   try {
+    let count = await Product.count();
     const getDbInfo = async () => {
       return await Product.findAll({
         include: [
@@ -189,6 +190,8 @@ router.get("/videogames", async (req, res) => {
             },
           },
         ],
+        limit: req.query.limit || null,
+        offset: req.query.offset !== undefined ? req.query.offset : null,
       });
     };
     const dbInfoA = await getDbInfo();
@@ -217,9 +220,9 @@ router.get("/videogames", async (req, res) => {
         .status(404)
         .send("The videogame doesn't exist, please check the name");
     } else {
-      res.status(200).send(dbInfoB);
+      res.status(200).send({ result: dbInfoB, count });
     }
-    //fin del try!!!!
+    //fin del try!!!
   } catch (error) {
     console.log(error);
     res.status(404).send(error);

@@ -1,17 +1,17 @@
-import { TOGGLE_CART } from "../types";
+import { CHANGE_CURRENT_PAGE } from "../types";
 import {GlobalState} from "../../interfaces"
 
 const initialState:GlobalState = {
-    showCart: false
+    currentPage:0
   };
 
 export const globalReducer = (state:GlobalState = initialState, action:any) => {
   switch (action.type) {
-    case TOGGLE_CART:
-      return {
-        ...state,
-        showCart: !state.showCart,
-      };
+    case CHANGE_CURRENT_PAGE:
+			return {
+				...state,
+				currentPage: action.payload
+			}
      default:
           return state;
   }

@@ -5,7 +5,6 @@ import { useDispatch } from "react-redux";
 import { addItemCart } from "../../redux/actions/cart_actions";
 import { StyledSVG, Btn } from "../../GlobalStyles/GlobalStyles";
 import { StyledProductCard } from "./StyledProductCard";
-
 import cart from "../../assets/img/svg/cart.svg";
 
 interface Props {

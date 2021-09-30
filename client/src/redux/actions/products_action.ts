@@ -7,8 +7,8 @@ import {
   DOUBLE_FILTER,
   GET_PRODUCT_ON_SALE,
 } from "../types";
-
 import { Dispatch } from "redux";
+
 
 interface AllProducts {
   type: string;
@@ -23,10 +23,10 @@ interface Name {
   type: string;
 }
 
-export const getAllProducts = () => {
+export const getAllProducts = ({limit, offset}:any) => {
   try {
     return async (dispatch: Dispatch<AllProducts>): Promise<any> => {
-      const totalProducts = await axios.get("http://localhost:3001/videogames");
+      const totalProducts = await axios.get(`http://localhost:3001/videogames?limit=${limit}&offset=${offset}`);
 
       return dispatch({
         type: GET_ALL_PRODUCTS,

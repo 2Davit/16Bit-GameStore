@@ -32,6 +32,7 @@ export interface ProductsState {
     totalProducts: Array<Product> | Array<any>;
     renderingProducts: Array<Product> | Array<any>;
     detailProduct: Product | unknown;
+    count:number;
 }
 
 export interface CartState{
@@ -39,7 +40,7 @@ export interface CartState{
 }
 
 export interface GlobalState{
-    showCart:boolean;
+    currentPage:number;
 }
 
 export interface State{

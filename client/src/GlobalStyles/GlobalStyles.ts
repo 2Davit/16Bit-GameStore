@@ -10,6 +10,7 @@ export const GlobalStyle = createGlobalStyle`
         font-family: 'Press Start 2P', cursive;
         background-color:#2c2f31;
         color:white;
+		
     }
 
 `
@@ -23,6 +24,7 @@ export const Btn = styled.button`
 	min-width: 175px;
 	letter-spacing: 0.03em;
     height: fit-content;
+	
 
     &.btn-card {
 		color: white;

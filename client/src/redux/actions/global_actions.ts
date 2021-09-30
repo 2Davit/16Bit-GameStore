@@ -1,8 +1,9 @@
-import { TOGGLE_CART } from "../types";
+import { CHANGE_CURRENT_PAGE } from "../types";
 
 
-export const toggleCart = () => {
+export const changeCurrentPage = (payload:number) => {
 	return {
-		type: TOGGLE_CART
+		type: CHANGE_CURRENT_PAGE,
+		payload
 	}
 }

@@ -7,9 +7,10 @@ import {
 import { ProductsState } from "../../interfaces";
 
 const initialState: ProductsState = {
-  totalProducts: [],
   renderingProducts: [],
+  totalProducts: [],
   detailProduct: {},
+  count:0
 };
 
 export function productsReducer(
@@ -19,10 +20,12 @@ export function productsReducer(
   const { type, payload } = action;
   switch (type) {
     case GET_ALL_PRODUCTS:
+      console.log(payload)
       return {
         ...state,
-        totalProducts: payload,
-        renderingProducts: payload,
+        totalProducts: payload.result,
+        renderingProducts: payload.result,
+        count:payload.count
       };
 
     case GET_PRODUCT_DETAIL:
@@ -34,7 +37,7 @@ export function productsReducer(
     case GET_NAME_PRODUCT:
       return {
         ...state,
-        totalProducts: payload,
+        renderingProducts: payload,
       };
 
     case DOUBLE_FILTER:
@@ -53,7 +56,7 @@ export function productsReducer(
             );
       return {
         ...state,
-        totalProducts: productFilteredB,
+        renderingProducts: productFilteredB,
       };
 
     default:

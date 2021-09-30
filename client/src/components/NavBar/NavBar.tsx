@@ -5,11 +5,7 @@ import { SearchBar } from "../index";
 
 import "nes.css/css/nes.min.css";
 
-interface NavBarProps {
-  toggleModal: any;
-}
-
-const NavBar: FC<NavBarProps> = ({ toggleModal }) => {
+const NavBar = () => {
   return (
     <StyledNavBar>
       <NavLink to="/home">
