@@ -1,6 +1,6 @@
 import React, { useEffect, FC, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllProducts, platformFilter, genreFilter } from "../../redux/actions/products_action";
+import { getAllProducts, platformFilter, genreFilter, onSaleFilter } from "../../redux/actions/products_action";
 import { toggleCart } from "../../redux/actions/global_actions";
 import { NavBar, Card, Paginate, CartSideBar, Filter } from "../../components";
 import { Store } from "../../redux/reducer/productsReducer";
@@ -52,13 +52,18 @@ const Home: FC = () => {
     setCurrentPage(1)
 }
 
+function handleOnSaleFilter(e: any) { //
+  dispatch(onSaleFilter(e.target.value))
+  setCurrentPage(1)
+}
+
 
   return (
     <div>
       <NavBar toggleModal={toggleModal} />
       <SearchBar currentPage={setCurrentPage}/>
       <CartSideBar closeCallback={toggleModal} show={showCart} cart={cart} />
-      <Filter handlePlatformFilter={handlePlatformFilter} handleGenreFilter={handleGenreFilter} />
+      <Filter handlePlatformFilter={handlePlatformFilter} handleGenreFilter={handleGenreFilter} handleOnSaleFilter={handleOnSaleFilter}/>
       <Paginate
         amountPerPage={productsPerPage}
         totalAmount={totalProducts?.length}

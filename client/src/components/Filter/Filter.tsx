@@ -4,10 +4,11 @@ import React, { FC } from 'react'
 interface Props {
     handlePlatformFilter(e: any): void;
     handleGenreFilter(e: any): void;
+    handleOnSaleFilter(e: any): void;
 }
 
 
-const Filter: FC<Props> = ({ handlePlatformFilter, handleGenreFilter }) => {
+const Filter: FC<Props> = ({ handlePlatformFilter, handleGenreFilter, handleOnSaleFilter }) => {
     
     
     return (
@@ -41,6 +42,11 @@ const Filter: FC<Props> = ({ handlePlatformFilter, handleGenreFilter }) => {
                         <option value="strategy">Strategy</option>
                         <option value="rpg">RPG</option>
                     </select>
+
+                    <section>
+                    <h5>On sale</h5>
+                    <button onClick={handleOnSaleFilter} value="on_sale">On sale</button>
+            </section>      
             </section>      
         </div>
     )
