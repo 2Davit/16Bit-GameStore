@@ -1,13 +1,17 @@
-import React, { FC } from "react";
+import React, { FC, useState  } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { doubleFilter } from "../../redux/actions/products_action";
+import { doubleFilter, onSaleFilter, getAllProducts } from "../../redux/actions/products_action";
 import { Store } from "../../redux/reducer/productsReducer";
 
-interface Props {
+/* interface Props {
   handleOnSaleFilter(e: any): void;
 }
+ */
 
-const Filter: FC<Props> = ({ handleOnSaleFilter }) => {
+
+
+const Filter/* : FC<Props> */ = ({ /* handleOnSaleFilter  */}) => {
+
   const totalProducts = useSelector(
     (state: Store) => state.productsReducer.totalProducts
   );
@@ -15,6 +19,7 @@ const Filter: FC<Props> = ({ handleOnSaleFilter }) => {
     (state: Store) => state.productsReducer.renderingProducts
   );
 
+  const [show, setShow] = useState(true)
   const dispatch = useDispatch();
 
   function handleFilter() {
@@ -29,6 +34,18 @@ const Filter: FC<Props> = ({ handleOnSaleFilter }) => {
     };
     dispatch(doubleFilter(filterPlatform));
   }
+
+  const  handleOnSaleFilter = () => {
+    dispatch(onSaleFilter());
+   setShow(!show)
+  }
+
+  const  handleAll = () => {
+    dispatch(getAllProducts());
+   setShow(!show)
+  }
+
+
 
   return (
     <div>
@@ -63,9 +80,8 @@ const Filter: FC<Props> = ({ handleOnSaleFilter }) => {
       </section>
       <section>
         <h5>On sale</h5>
-        <button onClick={handleOnSaleFilter} value="on_sale">
-          On sale
-        </button>
+      
+        {show ? <button onClick={handleOnSaleFilter}>get on sale</button> : <button onClick={handleAll}>getall</button>}
       </section>
     </div>
   );
