@@ -10,6 +10,9 @@ import { Store } from "../../redux/reducer/productsReducer";
 import { Product } from "../../interfaces";
 
 const Home: FC = () => {
+
+
+  
   const dispatch = useDispatch();
   const totalProducts: any = useSelector(
     (state: Store) => state.productsReducer.totalProducts
@@ -43,16 +46,13 @@ const Home: FC = () => {
     dispatch(toggleCart());
   };
 
-  function handleOnSaleFilter() {
-    dispatch(onSaleFilter());
-    setCurrentPage(1);
-  }
 
   return (
     <div>
       <NavBar toggleModal={toggleModal} />
-      <Filter handleOnSaleFilter={handleOnSaleFilter} />
+      <Filter  />
       <Catalog currentProducts={currentProducts} />
+     
       <Paginate
         amountPerPage={productsPerPage}
         totalAmount={totalProducts?.length}
