@@ -11,11 +11,21 @@ router.post("/genres", async (req, res) => {
   res.json(await Genre.bulkCreate(req.body));
 });
 
+//Ruta de posteo de genre individual.
+router.post("/genre", async (req, res) => {
+  res.json(await Genre.create(req.body));
+});
+
 //Ruta de posteo de plataformas.
 router.post("/platforms", async (req, res) => {
   res.json(await Platform.bulkCreate(req.body));
 });
 
+//Ruta de posteo de plataforma individual.
+router.post("/platform", async (req, res) => {
+  res.json(await Platform.create(req.body));
+});
+z
 //filtra por on_sale
 
 router.get("/videogamesOnsale", async (req, res) => {
@@ -226,8 +236,6 @@ router.get("/videogames", async (req, res) => {
   }
 });
 
-
-
 //Ruta posteo de un (1)videogame.
 
 router.post("/videogame", async (req, res) => {
@@ -267,8 +275,8 @@ router.post("/videogame", async (req, res) => {
     productCreated.addGenre(genreDB);
     productCreated.addPlatform(platformDB);
     res.status(200).send("Product succesfully added");
-  } catch(error) {
-    console.log(error)
+  } catch (error) {
+    console.log(error);
     res.status(404).send("Error");
   }
 });
