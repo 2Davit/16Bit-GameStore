@@ -1,6 +1,6 @@
 import React, { useEffect, FC, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllProducts } from "../../redux/actions/products_action";
+import { getAllProducts, onSaleFilter } from "../../redux/actions/products_action";
 import { toggleCart } from "../../redux/actions/global_actions";
 import { NavBar, Paginate, Filter, Catalog } from "../../components";
 import { Store } from "../../redux/reducer/productsReducer";
@@ -42,11 +42,18 @@ const Home: FC = () => {
   };
 
 
+
+function handleOnSaleFilter(e: any) { //
+  dispatch(onSaleFilter(e.target.value))
+  setCurrentPage(1)
+}
+
+
+
   return (
     <div>
-      <NavBar toggleModal={toggleModal} />
-      <Filter />
-      <Catalog currentProducts={currentProducts} />
+      <NavBar toggleModal={toggleModal} />    
+      <Catalog currentProducts={currentProducts} />     
       <Paginate
         amountPerPage={productsPerPage}
         totalAmount={totalProducts?.length}

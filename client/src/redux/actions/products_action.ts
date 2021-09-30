@@ -1,12 +1,19 @@
+
+import axios from 'axios';
+import { GET_ALL_PRODUCTS, GET_PRODUCT_DETAIL, 
+         GET_NAME_PRODUCT, GET_PRODUCT_BY_PLATFORM, 
+         GET_PRODUCT_BY_GENRE, GET_PRODUCT_ON_SALE } from "../types";
+         import { Product } from '../../interfaces';
 import axios from "axios";
 import {
   GET_ALL_PRODUCTS,
   GET_PRODUCT_DETAIL,
   GET_NAME_PRODUCT,
   DOUBLE_FILTER,
+  GET_PRODUCT_ON_SALE
 } from "../types";
-
 import { Product } from "../../interfaces";
+
 import { Dispatch } from "redux";
 
 interface AllProducts {
@@ -73,4 +80,25 @@ export const doubleFilter = function (payload: any) {
     payload,
   };
 };
+
+
+export const onSaleFilter = (genreType: string) => {
+    
+    try {
+        return async (dispatch: Dispatch<Detail> ): Promise<any> => {
+            var json = await axios.get(`http://localhost:3001/videogamesOnsale`)
+            return dispatch({
+                type: GET_PRODUCT_ON_SALE,
+                payload: json.data
+            })
+        }
+
+    } catch(err) {
+        console.log(err)
+    }
+}
+
+
+
+
 
