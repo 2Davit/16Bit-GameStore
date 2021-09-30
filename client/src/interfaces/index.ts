@@ -1,4 +1,4 @@
-interface Platform {
+export interface Platform {
     name_platform: string
   }
   
@@ -8,7 +8,7 @@ interface Platform {
 
 
 export interface Product {
-    id_product: number;
+    id_product?: number;
     name_product: string;
     price_product: number;
     description_product: string;
@@ -19,6 +19,19 @@ export interface Product {
     release_year: number;
     genres: Array<Genre>;
     platforms: Array<Platform>;
+}
+export interface ProductCreate {
+    id_product?: number;
+    name_product: string;
+    price_product: number;
+    description_product: string;
+    image_product: Array<string>;
+    thumbnail_product: string;
+    in_stock: boolean;
+    on_sale: boolean; 
+    release_year: number;
+    genres: Array<string>;
+    platforms: Array<string>;
 }
 
 
@@ -48,3 +61,4 @@ export interface State{
     cartReducer:CartState;
     globalReducer:GlobalState;
 }
+

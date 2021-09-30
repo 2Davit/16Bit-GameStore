@@ -1,3 +1,4 @@
+
 import axios from "axios";
 import { Product } from "../../interfaces";
 import {
@@ -6,21 +7,27 @@ import {
   GET_NAME_PRODUCT,
   DOUBLE_FILTER,
   GET_PRODUCT_ON_SALE,
+  CREATE_NEW_PRODUCT
 } from "../types";
 
 import { Dispatch } from "redux";
+//Discutir el uso de try-catch en los actions, debido a que siempre va a estar funcional hasta este punto porque el back esta funcional y sin bugs, para reducir la cantidad de warnings innecesarios que tenemos en el codigo ya que quedan los catch como "codigo inaccesible"
+
 
 interface AllProducts {
   type: string;
   payload: Array<Product> | Product;
 }
 
-interface Detail {
-  type: string;
+
+interface Detail { 
+    type: string;
 }
 
 interface Name {
-  type: string;
+    type: string;
+    payload: Product
+
 }
 
 export const getAllProducts = () => {
@@ -53,6 +60,7 @@ export const getProductDetail = (id: number) => {
 };
 
 export const getNameProduct = (name: string) => {
+
   try {
     return async (dispatch: Dispatch<Name>): Promise<any> => {
       let json = await axios.get(
@@ -88,3 +96,14 @@ export const onSaleFilter = () => {
     console.log(err);
   }
 };
+
+export const createVideogame =(payload: ProductCreate) => {
+    console.log(payload,'acaaaa')
+    console.log('hola actions')
+    return async function (dispatch: Dispatch<Name>) {
+        const data = await axios.post("http://localhost:3001/videogame", payload);
+        return data;
+
+    }
+}
+

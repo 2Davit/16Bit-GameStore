@@ -226,7 +226,10 @@ router.get("/videogames", async (req, res) => {
   }
 });
 
-//Ruta posteo de un post.
+
+
+//Ruta posteo de un (1)videogame.
+
 router.post("/videogame", async (req, res) => {
   const {
     name_product,
@@ -237,18 +240,18 @@ router.post("/videogame", async (req, res) => {
     in_stock,
     on_sale,
     release_year,
-    name_genre,
-    name_platform,
+    genres,
+    platforms,
   } = req.body;
   try {
     let genreDB = await Genre.findAll({
       where: {
-        name_genre: name_genre,
+        name_genre: genres,
       },
     });
     let platformDB = await Platform.findAll({
       where: {
-        name_platform: name_platform,
+        name_platform: platforms,
       },
     });
     let productCreated = await Product.create({
@@ -264,7 +267,8 @@ router.post("/videogame", async (req, res) => {
     productCreated.addGenre(genreDB);
     productCreated.addPlatform(platformDB);
     res.status(200).send("Product succesfully added");
-  } catch {
+  } catch(error) {
+    console.log(error)
     res.status(404).send("Error");
   }
 });
