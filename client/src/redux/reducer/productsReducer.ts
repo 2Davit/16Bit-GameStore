@@ -1,4 +1,3 @@
-
 import { GET_ALL_PRODUCTS, GET_PRODUCT_BY_PLATFORM, GET_NAME_PRODUCT , GET_PRODUCT_DETAIL, GET_PRODUCT_BY_GENRE } from '../types';
 import { ProductsState } from '../../interfaces';
 
@@ -52,12 +51,6 @@ export function productsReducer(state: ProductsState = initialState, action: any
             return state
     }
 }
-
-
-
-
-
-
 
 ///////////////////////////////////////////////
 export type Store = ReturnType<any>;
