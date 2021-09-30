@@ -3,15 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { doubleFilter } from "../../redux/actions/products_action";
 import { Store } from "../../redux/reducer/productsReducer";
 
-interface Props {}
-
-
 interface Props {
-     handleFilter(e: any): void;
-    handleOnSaleFilter(e: any): void;
+  handleOnSaleFilter(e: any): void;
 }
 
-const Filter: FC<Props> = () => {
+const Filter: FC<Props> = ({ handleOnSaleFilter }) => {
   const totalProducts = useSelector(
     (state: Store) => state.productsReducer.totalProducts
   );
@@ -20,9 +16,6 @@ const Filter: FC<Props> = () => {
   );
 
   const dispatch = useDispatch();
-
-
-const Filter: FC<Props> = ({ handleFilter, handleOnSaleFilter }) => {
 
   function handleFilter() {
     let filterPlatform = {
@@ -52,11 +45,28 @@ const Filter: FC<Props> = ({ handleFilter, handleOnSaleFilter }) => {
         </select>
       </section>
       <section>
-         <h5>On sale</h5>
-          <button onClick={handleOnSaleFilter} value="on_sale">On sale</button>
-       </section> 
-
-      
+        <h5>By genre</h5>
+        <select id="filterGenre" onChange={handleFilter}>
+          <option value="">All</option>
+          <option value="action">Action</option>
+          <option value="shooter">Shooter</option>
+          <option value="racing">Racing</option>
+          <option value="fighting">Fighting</option>
+          <option value="sports">Sports</option>
+          <option value="arcade">Arcade</option>
+          <option value="adventure">Adventure</option>
+          <option value="platform">Platform</option>
+          <option value="puzzle">Puzzle</option>
+          <option value="strategy">Strategy</option>
+          <option value="rpg">RPG</option>
+        </select>
+      </section>
+      <section>
+        <h5>On sale</h5>
+        <button onClick={handleOnSaleFilter} value="on_sale">
+          On sale
+        </button>
+      </section>
     </div>
   );
 };
