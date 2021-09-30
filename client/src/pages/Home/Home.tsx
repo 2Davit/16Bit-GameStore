@@ -43,9 +43,8 @@ const Home: FC = () => {
     dispatch(toggleCart());
   };
 
-  function handleOnSaleFilter(e: any) {
-    //
-    dispatch(onSaleFilter(e.target.value));
+  function handleOnSaleFilter() {
+    dispatch(onSaleFilter());
     setCurrentPage(1);
   }
 

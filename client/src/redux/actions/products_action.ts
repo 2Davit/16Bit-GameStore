@@ -75,7 +75,7 @@ export const doubleFilter = function (payload: any) {
   };
 };
 
-export const onSaleFilter = (genreType: string) => {
+export const onSaleFilter = () => {
   try {
     return async (dispatch: Dispatch<Detail>): Promise<any> => {
       var json = await axios.get(`http://localhost:3001/videogamesOnsale`);
