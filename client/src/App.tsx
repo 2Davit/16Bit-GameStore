@@ -2,12 +2,14 @@ import React, { FC } from "react";
 import { Home, NotFound, Landing, CartSideBar, ProductDetail } from "./pages/";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { GlobalStyle } from "./GlobalStyles/GlobalStyles";
+import { Theme } from "./Theme";
 import FormProduct from "./components/Forms/FormProduct";
 import AdminPanel from "./components/AdminPanel/AdminPanel";
 
+
 const App: FC = () => {
   return (
-    <>
+    <Theme /* none="none" */>
       <GlobalStyle />
       <Router>
         <Switch>
@@ -20,7 +22,8 @@ const App: FC = () => {
           <Route path="*" component={NotFound} />
         </Switch>
       </Router>
-    </>
+      <GlobalStyle />
+    </Theme>
   );
 };
 

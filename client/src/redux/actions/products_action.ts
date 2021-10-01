@@ -31,7 +31,7 @@ interface Name {
 }
 
 export const getAllProducts = () => {
-    return async (dispatch: Dispatch<AllProducts>): Promise<any> => {
+  return async (dispatch: Dispatch<AllProducts>): Promise<any> => {
       const totalProducts = await axios.get("http://localhost:3001/videogames");
       return dispatch({
         type: GET_ALL_PRODUCTS,
@@ -75,7 +75,6 @@ export const doubleFilter = function (payload: any) {
 
 
 export const onSaleFilter = () => {
-
   try {
     return async (dispatch: Dispatch<Detail>): Promise<any> => {
       var json = await axios.get(`http://localhost:3001/videogames/Onsale`);
@@ -101,5 +100,4 @@ export const createVideogame =(payload: ProductCreate) => {
 
     }
 }
-
 
