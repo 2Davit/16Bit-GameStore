@@ -1,0 +1,17 @@
+.container {
+    margin: 10px;
+    background-color:aqua ;
+    display: flex;
+    align-items: center;
+}
+.product {
+    background-color: bisque;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.img {
+    margin: 1vw;
+    object-fit: cover;
+    width: 20vw;
+}
