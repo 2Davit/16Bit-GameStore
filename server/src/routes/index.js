@@ -15,7 +15,7 @@ const router = Router();
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 
-router.use('/recipes', AuthRoutes);
+router.use('/auth', AuthRoutes);
 router.use('/genres',  GenreRoutes); 
 router.use('/platforms', PlatformRoutes);
 router.use('/videogames', ProductRoutes);
