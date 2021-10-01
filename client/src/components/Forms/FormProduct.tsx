@@ -2,7 +2,6 @@ import React from "react";
 import { useState } from "react";
 import { ProductCreate } from "../../interfaces";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
 import { createVideogame } from "../../redux/actions/products_action";
 import { Link } from "react-router-dom";
 
@@ -13,7 +12,6 @@ interface Info {
 const FormProduct = () => {
   const [images, setImages] = useState<Array<string>>([]);
   const [info, setInfo] = useState<Info>({ url: "" });
-  const history = useHistory();
   const dispatch = useDispatch();
 
   const [input, setInput] = useState<ProductCreate>({
@@ -142,7 +140,7 @@ const FormProduct = () => {
     // history.push('/home');
   }
 
-  const years:number[] = [
+  const years: number[] = [
     1950, 1951, 1952, 1953, 1954, 1955, 1956, 1957, 1958, 1959, 1960, 1961,
     1962, 1963, 1964, 1965, 1966, 1967, 1968, 1969, 1970, 1971, 1972, 1973,
     1974, 1975, 1976, 1977, 1978, 1979, 1980, 1981, 1982, 1983, 1984, 1985,

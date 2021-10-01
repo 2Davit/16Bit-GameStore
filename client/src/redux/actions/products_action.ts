@@ -6,8 +6,7 @@ import {
   GET_PRODUCT_DETAIL,
   GET_NAME_PRODUCT,
   DOUBLE_FILTER,
-  GET_PRODUCT_ON_SALE,
-  CREATE_NEW_PRODUCT
+  GET_PRODUCT_ON_SALE
 } from "../types";
 
 import { Dispatch } from "redux";
@@ -75,7 +74,6 @@ export const doubleFilter = function (payload: any) {
 
 
 export const onSaleFilter = () => {
-  try {
     return async (dispatch: Dispatch<Detail>): Promise<any> => {
       var json = await axios.get(`http://localhost:3001/videogames/Onsale`);
       return dispatch({
@@ -83,10 +81,7 @@ export const onSaleFilter = () => {
         payload: json.data,
       });
     };
-  } catch(err){
-    console.log(err);
   }
-}
 
 
 export const createVideogame =(payload: ProductCreate) => {
