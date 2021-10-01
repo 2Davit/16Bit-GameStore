@@ -3,7 +3,8 @@ import {
   GET_NAME_PRODUCT,
   GET_PRODUCT_DETAIL,
   DOUBLE_FILTER,
-  GET_PRODUCT_ON_SALE
+  GET_PRODUCT_ON_SALE,
+  CREATE_NEW_PRODUCT
 } from "../types";
 import { ProductsState } from "../../interfaces";
 
@@ -40,6 +41,10 @@ export function productsReducer(
         ...state,
         totalProducts: payload,
       };
+        case CREATE_NEW_PRODUCT: 
+        return{
+            ...state
+        };
 
     case DOUBLE_FILTER:
       let allProductsByFilter = payload.renderingProducts;
@@ -71,4 +76,7 @@ export function productsReducer(
   }
 }
 
+
+
 export type Store = ReturnType<any>;
+

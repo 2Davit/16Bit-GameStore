@@ -13,6 +13,9 @@ import { ContainerHome } from "./Home.style";
 
 
 const Home: FC = () => {
+
+
+  
   const dispatch = useDispatch();
   const totalProducts: any = useSelector(
     (state: Store) => state.productsReducer.totalProducts
@@ -48,9 +51,6 @@ const Home: FC = () => {
     dispatch(onSaleFilter());
   }, [dispatch]);
 
-  const toggleModal = () => {
-    dispatch(toggleCart());
-  };
 
   function handleOnSaleFilter() {
     dispatch(onSaleFilter());
@@ -61,8 +61,9 @@ const Home: FC = () => {
     <ContainerHome>
       <NavBar toggleModal={toggleModal} />
       {onSaleProducts.length !== 0 &&  <Carousel products={onSaleProducts} />}
-      <Filter handleOnSaleFilter={handleOnSaleFilter} />
+      <Filter /*handleOnSaleFilter={handleOnSaleFilter}*/ />
       <Catalog currentProducts={currentProducts} />
+
       <Paginate
         amountPerPage={productsPerPage}
         totalAmount={totalProducts?.length}
