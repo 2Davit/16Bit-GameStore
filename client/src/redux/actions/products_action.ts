@@ -79,15 +79,15 @@ export const onSaleFilter = () => {
   try {
     return async (dispatch: Dispatch<Detail>): Promise<any> => {
       var json = await axios.get(`http://localhost:3001/videogames/Onsale`);
-
       return dispatch({
         type: GET_PRODUCT_ON_SALE,
         payload: json.data,
       });
     };
-  };
-
- 
+  } catch(err){
+    console.log(err);
+  }
+}
 
 
 export const createVideogame =(payload: ProductCreate) => {

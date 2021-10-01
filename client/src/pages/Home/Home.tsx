@@ -38,7 +38,7 @@ const Home: FC = () => {
 
   return (
     <div>
-      <NavBar />
+      <NavBar setPage={setCurrentPage}/>
        <Filter  />
       <Catalog currentProducts={currentProducts} />     
       <Paginate
