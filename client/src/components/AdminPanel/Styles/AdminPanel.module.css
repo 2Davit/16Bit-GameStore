@@ -1,0 +1,7 @@
+.mainContainer{
+    display: flex;
+    flex-direction: column;
+}
+.infoContainer{
+    display: flex;
+}
