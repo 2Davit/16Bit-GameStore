@@ -25,7 +25,7 @@ router.post("/platforms", async (req, res) => {
 router.post("/platform", async (req, res) => {
   res.json(await Platform.create(req.body));
 });
-z
+
 //filtra por on_sale
 
 router.get("/videogamesOnsale", async (req, res) => {
