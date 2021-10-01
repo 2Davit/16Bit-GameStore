@@ -85,14 +85,9 @@ export const onSaleFilter = () => {
 
 
 export const createVideogame =(payload: ProductCreate) => {
-
-    console.log(payload,'acaaaa')
-    console.log('hola actions')
     return async function (dispatch: Dispatch<Name>) {
         const data = await axios.post("http://localhost:3001/videogames/OneGame", payload);
-
         return data;
-
     }
 }
 
