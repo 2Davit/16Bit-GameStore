@@ -1,8 +1,12 @@
 import React, { FC } from "react";
-import { StyledCartSideBar } from "./StyledCartSideBar";
+import { StyledCartSideBar, StyledCloseBtn } from "./StyledCartSideBar";
 import "nes.css/css/nes.min.css";
+import BigCloseButton from "../../assets/img/svg/close-transparent.svg";
+import { Btn, Hr } from "../../GlobalStyles/GlobalStyles";
+import { Link } from "react-router-dom";
 
 interface CartSideBarProps {
+  // no borrar, se va a usar!!
   cart: Array<number>;
   show: boolean;
   closeCallback: any;
@@ -11,11 +15,23 @@ interface CartSideBarProps {
 const CartSideBar: FC<CartSideBarProps> = () => {
   return (
     <StyledCartSideBar>
-      <div>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium
-        dicta a commodi, veniam, repellat ipsa excepturi laboriosam ratione eius
-        quae quo animi tempora quibusdam sit id dolorum accusantium expedita
-        dignissimos.
+      <div className="modal">
+        <Link to="/home" title="Close" className="modal__close">
+          <StyledCloseBtn src={BigCloseButton} />
+        </Link>
+        <h2 className="modal__title">Your Cart:</h2>
+        <h2>MiniProductCard coming soon!! 😁</h2>
+        <Hr />
+        <div className="modal__subtotal">
+          <p>Subtotal:</p>
+          <p>$999</p>
+        </div>
+        <div className="modal__buttons">
+          <Link to="/order">
+            <Btn className="btn btn-card">Checkout</Btn>
+          </Link>
+          <Btn className="btn btn-sec">Clear Cart</Btn>
+        </div>
       </div>
     </StyledCartSideBar>
   );

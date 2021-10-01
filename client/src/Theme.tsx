@@ -10,8 +10,8 @@ const themes = {
     font: `'MuseoModerno', cursive`,
   },
   retro: {
-    bg: "#300092",
-    color: "#300092",
+    bg: "#2c2f31",
+    color: "#2c2f31",
     font: `'Press Start 2P', cursive`,
   },
 };
