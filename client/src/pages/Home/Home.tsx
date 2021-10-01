@@ -9,6 +9,9 @@ import { Store } from "../../redux/reducer/productsReducer";
 import { Product } from "../../interfaces";
 
 const Home: FC = () => {
+
+
+  
   const dispatch = useDispatch();
   const totalProducts: any = useSelector(
     (state: Store) => state.productsReducer.totalProducts
@@ -31,17 +34,13 @@ const Home: FC = () => {
     dispatch(getAllProducts());
   }, [dispatch]);
 
-  function handleOnSaleFilter(e: any) {
-    //
-    dispatch(onSaleFilter(e.target.value));
-    setCurrentPage(1);
-  }
+
 
   return (
     <div>
       <NavBar />
-      <Filter handleOnSaleFilter={handleOnSaleFilter} />
-      <Catalog currentProducts={currentProducts} />
+       <Filter  />
+      <Catalog currentProducts={currentProducts} />     
       <Paginate
         amountPerPage={productsPerPage}
         totalAmount={totalProducts?.length}
