@@ -106,7 +106,12 @@ export const QuantityButton = styled.button`
 	}
 `
 
-
+export const Hr = styled.hr`
+	height: 1px;
+	margin: 3em auto;
+	border: none;
+	background: #CCC;
+`
 
 export const StyledSVG = styled(SVG)`
 `

@@ -9,4 +9,5 @@ export const ButtonTheme2 = styled.button<BtnProps> `
     top: 50%;
     right: 8px;
     display: ${({none}) => none === 'none' ? 'none' : 'block'};
+    z-index: 1000;
 `
