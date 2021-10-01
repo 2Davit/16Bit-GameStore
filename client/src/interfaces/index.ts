@@ -35,6 +35,15 @@ export interface ProductCreate {
     platforms: Array<string>;
 }
 
+export interface UserCreate {
+    username: string;
+    password: string;
+    email: string;
+    name: string;
+    lastname: string;
+    adress: string; // !
+}
+
 
 export interface ProductInCart extends Product {
     quantity: number;
