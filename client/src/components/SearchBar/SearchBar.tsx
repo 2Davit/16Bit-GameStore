@@ -1,4 +1,4 @@
-import React, { useState, FC } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getNameProduct } from "../../redux/actions/products_action";
 

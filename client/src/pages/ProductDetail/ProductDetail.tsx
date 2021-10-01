@@ -27,10 +27,6 @@ const Detail: FC = () => {
     (state: Store) => state.productsReducer.detailProduct
   );
 
-  interface Platform {
-    name_platform: string;
-  }
-
   interface Genre {
     name_genre: string;
   }
@@ -59,7 +55,11 @@ const Detail: FC = () => {
           <div className="game__container-price-score">
             <p className="game__price">${detailProduct.price_product}</p>
             <span className="game__star-container">
-              <img className="ratingStars" src={fivestars} />
+              <img
+                className="ratingStars"
+                src={fivestars}
+                alt="fivestars rating"
+              />
             </span>
           </div>
           <p className="game__description">
@@ -84,7 +84,11 @@ const Detail: FC = () => {
                 <StyledSVG src={cart} />
               </Btn>
             </div>
-            <img className="game__payment-methods-icons" src={mercadopagoimg} />
+            <img
+              className="game__payment-methods-icons"
+              src={mercadopagoimg}
+              alt="mercadopago img"
+            />
           </div>
         </div>
       </GameDetail>

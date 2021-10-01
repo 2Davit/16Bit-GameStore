@@ -1,6 +1,5 @@
 import React, { FC } from "react";
 import { Home, NotFound, Landing, CartSideBar, ProductDetail } from "./pages/";
-import { NavBar } from "./components/";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { GlobalStyle } from "./GlobalStyles/GlobalStyles";
 

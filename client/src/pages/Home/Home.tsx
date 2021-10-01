@@ -4,7 +4,6 @@ import {
   getAllProducts,
   onSaleFilter,
 } from "../../redux/actions/products_action";
-import { toggleCart } from "../../redux/actions/global_actions";
 import { NavBar, Paginate, Filter, Catalog } from "../../components";
 import { Store } from "../../redux/reducer/productsReducer";
 import { Product } from "../../interfaces";
@@ -13,13 +12,6 @@ const Home: FC = () => {
   const dispatch = useDispatch();
   const totalProducts: any = useSelector(
     (state: Store) => state.productsReducer.totalProducts
-  );
-
-  const cart: Array<number> = useSelector(
-    (state: Store) => state.cartReducer.cart.list
-  );
-  const showCart: boolean = useSelector(
-    (state: Store) => state.globalReducer.showCart
   );
 
   //Paginate
@@ -39,10 +31,6 @@ const Home: FC = () => {
     dispatch(getAllProducts());
   }, [dispatch]);
 
-  const toggleModal = () => {
-    dispatch(toggleCart());
-  };
-
   function handleOnSaleFilter(e: any) {
     //
     dispatch(onSaleFilter(e.target.value));
@@ -51,7 +39,7 @@ const Home: FC = () => {
 
   return (
     <div>
-      <NavBar toggleModal={false} />
+      <NavBar />
       <Filter handleOnSaleFilter={handleOnSaleFilter} />
       <Catalog currentProducts={currentProducts} />
       <Paginate
