@@ -1,54 +1,31 @@
-import React from "react";
+import { FC } from "react";
 import styles from "./Styles/MainContent.module.css";
+import { Product } from "../../interfaces/index";
+import PanelCatalog from "../AdminPanel/PanelContent/PanelCatalog"
 
-const MainContent = () => {
+interface Props {
+  totalProducts: any;
+}
+
+const MainContent: FC<Props> = ({ totalProducts }) => {
+  /* console.log(totalProducts.renderingProducts[0]) */
   return (
     <div className={styles.mainContainer}>
-      <div className={styles.grid}>
-        <div>
-          <h2>Title 1</h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-            libero enim, ultricies at rhoncus sit amet, commodo et tortor. Fusce
-            porta nibh in ligula sodales iaculis.
-          </p>
-        </div>
-
-        <div>
-          <h2>Title 2</h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-            libero enim, ultricies at rhoncus sit amet, commodo et tortor. Fusce
-            porta nibh in ligula sodales iaculis.
-          </p>
-        </div>
-
-        <div>
-          <h2>Title 3</h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-            libero enim, ultricies at rhoncus sit amet, commodo et tortor. Fusce
-            porta nibh in ligula sodales iaculis.
-          </p>
-        </div>
-      </div>
-
-      <div className={styles.tables}>
-        <div className={styles.tableInfo}>
-          <img
-            style={{ width: "86%", objectFit: "cover" }}
-            src="https://blog.open-office.es/media/blogs/writer/Trucos_Writer/Insertar-grafica-a-partir-de-tabla-openoffice-writer.png"
-            alt="table"
-          />
-        </div>
-
-        <div className={styles.tableInfo}>
-          <img
-            style={{ width: "86%", objectFit: "cover" }}
-            src="http://unarubiamatematica.com/wp-content/uploads/2019/03/RepresentacionTablaValores.png"
-            alt="table"
-          />
-        </div>
+      <div>
+        {totalProducts.renderingProducts?.length !== 0 &&
+          totalProducts.renderingProducts?.map((product: Product) => (
+            <PanelCatalog
+              key={product.id_product}
+              image={product.thumbnail_product}
+              name={product.name_product}
+              released={product.release_year}
+              description={product.description_product}
+              price={product.price_product}
+              id={product.id_product}
+              stock={product.in_stock}
+              genre={product.genres}
+            />
+          ))}
       </div>
     </div>
   );
