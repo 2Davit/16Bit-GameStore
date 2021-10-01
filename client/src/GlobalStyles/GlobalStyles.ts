@@ -24,6 +24,29 @@ export const Btn = styled.button`
 	letter-spacing: 0.03em;
     height: fit-content;
 
+
+	&.btn-sec {
+			color: white;
+			background-color: #2c2f31;
+			box-shadow: rgb(0 0 0 / 50%) 5px 5px 0px;
+			border: 2px solid white;
+			&:hover {
+				border: 2px solid #51A5FE;
+				background-color: #51A5FE;
+			}
+		}
+
+		&.btn-youtube {
+			color: white;
+			background-color: #2c2f31;
+			box-shadow: rgb(0 0 0 / 50%) 5px 5px 0px;
+			border: 2px solid white;
+			&:hover {
+				border: 2px solid #FE5EC4;
+				background-color: #FE5EC4;
+			}
+		}
+
     &.btn-card {
 		color: white;
 		background-color: #51A5FE;
@@ -52,6 +75,20 @@ export const Btn = styled.button`
 
 
 
+`
+
+export const QuantityButton = styled.button`
+	color: #000;
+	background-color: #51A5FE;
+	border-radius: 100%;
+	border: none;
+	width: 25px;
+	height: 25px;
+	font-weight: 400;
+
+	&:active {
+		background-color: 0B53D7;
+	}
 `
 
 

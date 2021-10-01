@@ -1,15 +1,11 @@
-import React, { FC } from "react";
+import React from "react";
 import { StyledNavBar } from "./StyledNavBar";
 import { NavLink } from "react-router-dom";
 import { SearchBar } from "../index";
 
 import "nes.css/css/nes.min.css";
 
-interface NavBarProps {
-  toggleModal: any;
-}
-
-const NavBar: FC<NavBarProps> = ({ toggleModal }) => {
+const NavBar = () => {
   return (
     <StyledNavBar>
       <NavLink to="/home">

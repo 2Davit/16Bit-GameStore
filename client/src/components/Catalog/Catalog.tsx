@@ -1,5 +1,4 @@
 import React, { FC } from "react";
-import { Store } from "../../redux/reducer/productsReducer";
 import { Product } from "../../interfaces";
 import { ProductCard } from "../index";
 import { StyledCatalog } from "./StyledCatalog";

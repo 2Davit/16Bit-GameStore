@@ -16,7 +16,7 @@ const Paginate: FC<Props> = ({ amountPerPage, totalAmount, pageNumber }) => {
 
   return (
     <StyledPaginate>
-      {pageNumbers &&
+      {pageNumbers.length > 1 &&
         pageNumbers.map((num) => {
           return (
             <button key={num} onClick={() => pageNumber(num)}>
