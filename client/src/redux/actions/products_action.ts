@@ -86,7 +86,7 @@ export const doubleFilter = function (payload: any) {
 export const onSaleFilter = () => {
   try {
     return async (dispatch: Dispatch<Detail>): Promise<any> => {
-      var json = await axios.get(`http://localhost:3001/videogamesOnsale`);
+      var json = await axios.get(`http://localhost:3001/videogames/Onsale`);
       return dispatch({
         type: GET_PRODUCT_ON_SALE,
         payload: json.data,
@@ -101,7 +101,7 @@ export const createVideogame =(payload: ProductCreate) => {
     console.log(payload,'acaaaa')
     console.log('hola actions')
     return async function (dispatch: Dispatch<Name>) {
-        const data = await axios.post("http://localhost:3001/videogame", payload);
+        const data = await axios.post("http://localhost:3001/videogames/OneGame", payload);
         return data;
 
     }

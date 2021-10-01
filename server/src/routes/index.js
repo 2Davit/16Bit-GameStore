@@ -1,24 +1,87 @@
-const { Router } = require("express");
+
+const {Router} = require('express');
+// Importar todos los routers;
+// Ejemplo: const authRouter = require('./auth.js');
+/* const axios = require ('axios') */
+const AuthRoutes = require('./Auth');
+const GenreRoutes = require('./Genre');
+const PlatformRoutes = require('./Platform');
+const ProductRoutes = require('./Product');
+const UserRoutes = require('./User');
+
+
+const router = Router();
+
+// Configurar los routers
+// Ejemplo: router.use('/auth', authRouter);
+
+router.use('/recipes', AuthRoutes);
+router.use('/genres',  GenreRoutes); 
+router.use('/platforms', PlatformRoutes);
+router.use('/videogames', ProductRoutes);
+router.use('/user', UserRoutes);
+
+module.exports = router;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* const { Router } = require("express");
 const { Genre, Platform, Product, User } = require("../db");
 const checkSignUp = require("../middlewares/checkSignUp");
-const { logIn, signUp } = require("../controllers/controllers");
+const { logIn, signUp } = require("../controllers/Auth");
 const { verifyToken, isAdmin } = require("../middlewares/checkJwt");
 
 const router = Router();
 
-//Ruta de posteo de géneros.
-router.post("/genres", async (req, res) => {
-  res.json(await Genre.bulkCreate(req.body));
+router.post("/signup", checkSignUp, signUp);
+router.post("/login", logIn);
+router.post("/reqToken", verifyToken, (req, res) => {
+  res.send("Token provided");
+});
+router.post("/reqAdmin", verifyToken, isAdmin, (req, res) => {
+  res.send("Authorized");
 });
 
-//Ruta de posteo de plataformas.
-router.post("/platforms", async (req, res) => {
+module.exports = router;
+ */
+
+//Ruta de posteo de géneros.
+/* router.post("/genres", async (req, res) => {
+  res.json(await Genre.bulkCreate(req.body));
+}); */
+
+
+
+/* router.post("/platforms", async (req, res) => {
   res.json(await Platform.bulkCreate(req.body));
 });
+ */
+//Ruta de posteo de plataformas.
 
-//filtra por on_sale
 
-router.get("/videogamesOnsale", async (req, res) => {
+
+
+/* router.get("/videogamesOnsale", async (req, res) => {
   try {
     const gamesOnSale = await Product.findAll({
       where: {
@@ -45,10 +108,12 @@ router.get("/videogamesOnsale", async (req, res) => {
   } catch (error) {
     res.status(404).send("error");
   }
-});
+}); */
 
-//filtra por genero
-router.get("/videogamesGenres", async (req, res) => {
+
+
+
+/* router.get("/videogamesGenres", async (req, res) => {
   try {
     const getDbInfo = async () => {
       return await Product.findAll({
@@ -105,10 +170,13 @@ router.get("/videogamesGenres", async (req, res) => {
   } catch (error) {
     res.status(404).send("Hubo un error: " + error);
   }
-});
+}); */
+
+//filtra por genero
+
 
 //filtra por plataforma
-router.get("/videogamesPlatform", async (req, res) => {
+/* router.get("/videogamesPlatform", async (req, res) => {
   try {
     const getDbInfo = async () => {
       return await Product.findAll({
@@ -165,11 +233,14 @@ router.get("/videogamesPlatform", async (req, res) => {
   } catch (error) {
     res.status(404).send("Hubo un error: " + error);
   }
-});
+}) */;
+
+
+
 
 //Rutas de videogames.
 //Ruta de get de todos los videogames.
-router.get("/videogames", async (req, res) => {
+/* router.get("/videogames", async (req, res) => {
   try {
     const getDbInfo = async () => {
       return await Product.findAll({
@@ -219,18 +290,17 @@ router.get("/videogames", async (req, res) => {
     } else {
       res.status(200).send(dbInfoB);
     }
-    //fin del try!!!!
+    
   } catch (error) {
     console.log(error);
     res.status(404).send(error);
   }
-});
+}); */
 
 
 
-//Ruta posteo de un (1)videogame.
-
-router.post("/videogame", async (req, res) => {
+//Ruta posteo de un (1)videogame
+/* router.post("/videogame", async (req, res) => {
   const {
     name_product,
     price_product,
@@ -271,10 +341,12 @@ router.post("/videogame", async (req, res) => {
     console.log(error)
     res.status(404).send("Error");
   }
-});
+}); */
+
+
 
 //Ruta de posteo de post masivos.
-router.post("/videogames", async (req, res) => {
+/* router.post("/videogames", async (req, res) => {
   req.body.forEach(async (index) => {
     const {
       id_product,
@@ -321,9 +393,9 @@ router.post("/videogames", async (req, res) => {
   });
   res.status(200).send("Product succesfully added");
 });
+ */
 
-//Ruta videogame por ID
-router.get("/videogames/:id", async (req, res) => {
+/* router.get("/videogames/:id", async (req, res) => {
   const { id } = req.params;
 
   try {
@@ -346,9 +418,13 @@ router.get("/videogames/:id", async (req, res) => {
     res.status(404).send("not found");
   }
 });
+ */
+
+//Ruta videogame por ID
+
 
 //Ruta de posteo de user.
-router.post("/user", async (req, res) => {
+/* router.post("/user", async (req, res) => {
   const {
     id_user,
     nickname_user,
@@ -379,17 +455,62 @@ router.post("/user", async (req, res) => {
   } catch {
     res.status(404).send("Error");
   }
+}); */
+
+
+
+
+
+/* async function createNewRecipe(req, res, next) {
+  try{
+  let { title, summary, healthScore, spoonacularScore, steps, diets} = req.body
+ 
+  if(!title || !summary) {
+    return res.status(404).send('We need a diet and a summary')
+  }
+    let newRecipe = await Recipe.create({ title, summary, healthScore, spoonacularScore, steps, id: uuidv4() });
+    
+    const dietas = await Type.findAll({
+      where: {
+          name: {
+              [Op.in]: diets
+          },
+      }
+      });
+dietas.map((c) => {
+  
+newRecipe.addType(c)
+
 });
+ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Rutas para testear autenticación
 
-router.post("/signup", checkSignUp, signUp);
-router.post("/login", logIn);
-router.post("/reqToken", verifyToken, (req, res) => {
-  res.send("Token provided");
-});
-router.post("/reqAdmin", verifyToken, isAdmin, (req, res) => {
-  res.send("Authorized");
-});
-
-module.exports = router;
