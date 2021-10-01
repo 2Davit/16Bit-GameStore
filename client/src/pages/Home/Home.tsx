@@ -51,7 +51,7 @@ const Home: FC = () => {
 
   return (
     <div>
-      <NavBar toggleModal={toggleModal} />
+      <NavBar toggleModal={false} />
       <Filter handleOnSaleFilter={handleOnSaleFilter} />
       <Catalog currentProducts={currentProducts} />
       <Paginate
