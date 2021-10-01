@@ -1,4 +1,4 @@
-const {Router} = require('express');
+const { Router } = require("express");
 const checkSignUp = require("../middlewares/checkSignUp");
 const { logIn, signUp } = require("../controllers/Auth");
 const { verifyToken, isAdmin } = require("../middlewares/checkJwt");
