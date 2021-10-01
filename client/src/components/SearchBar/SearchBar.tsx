@@ -1,30 +1,22 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { getNameProduct } from "../../redux/actions/products_action";
-import { Store } from "../../redux/reducer/productsReducer";
 
-
-const SearchBar = ({setPage}: any) => {
-  const [display, setDisplay] = useState(false)
+const SearchBar = ({ setPage }: any) => {
+  const [display, setDisplay] = useState(false);
   const [name, setName] = useState("");
-  
-  const totalProducts: any = useSelector(
-    (state: Store) => state.productsReducer.totalProducts
-    );
-    
+
   const dispatch = useDispatch();
-  
+
   const handleInputChange = (e: React.FormEvent<HTMLInputElement>) => {
-    let matches = [];
-    setName(e.currentTarget.value)
-} 
+    setName(e.currentTarget.value);
+  };
   const handleSubmit = () => {
     dispatch(getNameProduct(name));
     setName("");
-    setPage(1)
+    setPage(1);
   };
 
-  
   return (
     <div>
       <input

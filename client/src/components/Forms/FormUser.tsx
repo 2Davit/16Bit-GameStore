@@ -1,3 +1,4 @@
+
 // import React, { useState } from 'react';
 import * as Yup from 'yup';
 import { withFormik, FormikProps, FormikErrors, Form, Field } from 'formik';
@@ -45,6 +46,7 @@ const InnerForm = (props:  FormikProps<UserCreate>) => {
 
 
 
+
 // The type of props MyForm receives
 
 interface MyFormProps {
@@ -60,16 +62,20 @@ interface MyFormProps {
 
 // Wrap our form with the withFormik HoC
 
+
 const MyForm = withFormik<MyFormProps, UserCreate> ({
+
   // Transform outer props into form values
-  mapPropsToValues: props => {
+  mapPropsToValues: (props) => {
     return {
+
         username: props.initialUsername || '',
         password: props.initialPassword || '',
         email: props.initialEmail || '',
         name: props.initialName || '',
         lastname: props.initialLastname || '',
         adress: props.initialAdress || '',
+
     };
   },
 
@@ -78,81 +84,85 @@ const MyForm = withFormik<MyFormProps, UserCreate> ({
     let errors: FormikErrors<UserCreate> = {};
 
     /*  ------------  validate email   ----------------*/
-    
+
     function isValidEmail(email: string) {
-        const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        return re.test(String(email).toLowerCase());
+      const re =
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(String(email).toLowerCase());
     }
     if (!values.email) {
-      errors.email = 'Required';
+      errors.email = "Required";
     } else if (!isValidEmail(values.email)) {
-      errors.email = 'Invalid email address';
+      errors.email = "Invalid email address";
     }
 
-   /*  ------------  validate username   ----------------*/
+    /*  ------------  validate username   ----------------*/
 
-    if(!values.username) {
-        errors.username = 'User name is required'
-    } else if(values.username.length < 4 ){
-        errors.username = 'User name is too short'
-    } else if(values.username.length > 15){
-        errors.username = 'User name is too long'
-    } else if (!/(?=.*)/.test(values.username)){
-        errors.username = 'User name must be alphanumeric'
+    if (!values.username) {
+      errors.username = "User name is required";
+    } else if (values.username.length < 4) {
+      errors.username = "User name is too short";
+    } else if (values.username.length > 15) {
+      errors.username = "User name is too long";
+    } else if (!/(?=.*)/.test(values.username)) {
+      errors.username = "User name must be alphanumeric";
     }
 
-   /*  ------------  validate password   ----------------*/
+    /*  ------------  validate password   ----------------*/
 
-   if(!values.password) {
-    errors.password = 'Password is required'
-    } else if(values.password.length < 4 ){
-    errors.password = 'Password is too short'
-    } else if (!/(?=.*)/.test(values.password)){
-    errors.password = 'Password must be alphanumeric'
-    }
-    
-   /*  ------------  validate name   ----------------*/
-
-   if(!values.name) {
-    errors.name = 'Name is required'
-    } else if(values.name.length < 1 ){
-    errors.name = 'Name is too short'
-    } else if(values.name.length > 30){
-    errors.name = 'Name is too long'
-    } else if (!/(?=.*)/.test(values.name)){ // testear
-    errors.name = 'Name must be only letters'
+    if (!values.password) {
+      errors.password = "Password is required";
+    } else if (values.password.length < 4) {
+      errors.password = "Password is too short";
+    } else if (!/(?=.*)/.test(values.password)) {
+      errors.password = "Password must be alphanumeric";
     }
 
-   /*  ------------  validate lastname   ----------------*/
+    /*  ------------  validate name   ----------------*/
 
-   if(!values.lastname) {
-    errors.lastname = 'Lastname is required'
-    } else if(values.lastname.length < 1 ){
-    errors.lastname = 'Lastname is too short'
-    } else if(values.lastname.length > 30){
-    errors.lastname = 'Lastname is too long'
-    } else if (!/(?=.*)/.test(values.lastname)){ // testear
-    errors.lastname = 'Lastname must be only letters'
+    if (!values.name) {
+      errors.name = "Name is required";
+    } else if (values.name.length < 1) {
+      errors.name = "Name is too short";
+    } else if (values.name.length > 30) {
+      errors.name = "Name is too long";
+    } else if (!/(?=.*)/.test(values.name)) {
+      // testear
+      errors.name = "Name must be only letters";
     }
-    
+
+    /*  ------------  validate lastname   ----------------*/
+
+    if (!values.lastname) {
+      errors.lastname = "Lastname is required";
+    } else if (values.lastname.length < 1) {
+      errors.lastname = "Lastname is too short";
+    } else if (values.lastname.length > 30) {
+      errors.lastname = "Lastname is too long";
+    } else if (!/(?=.*)/.test(values.lastname)) {
+      // testear
+      errors.lastname = "Lastname must be only letters";
+    }
+
     /*  ------------  validate adress   ----------------*/
-    
-    if(!values.adress) {
-        errors.adress = 'adress is required'
-    } else if(values.adress.length < 1 ){
-        errors.adress = 'adress is too short'
-    } else if(values.adress.length > 255){
-        errors.adress = 'adress is too long'
+
+    if (!values.adress) {
+      errors.adress = "adress is required";
+    } else if (values.adress.length < 1) {
+      errors.adress = "adress is too short";
+    } else if (values.adress.length > 255) {
+      errors.adress = "adress is too long";
     }
 
     return errors;
-
   },
+
 
   handleSubmit: props => {
     axios.post('http://localhost:3001/auth/signup', props).then((res) => console.log(res.data))
     console.log(props);
   }
+
 })(InnerForm);
 
 // Use <MyForm /> wherevs

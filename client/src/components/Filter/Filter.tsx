@@ -1,17 +1,13 @@
-import React, { FC, useState  } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { doubleFilter, onSaleFilter, getAllProducts } from "../../redux/actions/products_action";
+import {
+  doubleFilter,
+  onSaleFilter,
+  getAllProducts,
+} from "../../redux/actions/products_action";
 import { Store } from "../../redux/reducer/productsReducer";
 
-/* interface Props {
-  handleOnSaleFilter(e: any): void;
-}
- */
-
-
-
-const Filter/* : FC<Props> */ = ({ /* handleOnSaleFilter  */}) => {
-
+const Filter = () => {
   const totalProducts = useSelector(
     (state: Store) => state.productsReducer.totalProducts
   );
@@ -19,7 +15,7 @@ const Filter/* : FC<Props> */ = ({ /* handleOnSaleFilter  */}) => {
     (state: Store) => state.productsReducer.renderingProducts
   );
 
-  const [show, setShow] = useState(true)
+  const [show, setShow] = useState(true);
   const dispatch = useDispatch();
 
   function handleFilter() {
@@ -35,20 +31,24 @@ const Filter/* : FC<Props> */ = ({ /* handleOnSaleFilter  */}) => {
     dispatch(doubleFilter(filterPlatform));
   }
 
-  const  handleOnSaleFilter = () => {
+  const handleOnSaleFilter = () => {
     dispatch(onSaleFilter());
-   setShow(!show)
-  }
+    setShow(!show);
+  };
 
-  const  handleAll = () => {
+  const handleAll = () => {
     dispatch(getAllProducts());
-   setShow(!show)
-  }
-
-
+    setShow(!show);
+  };
 
   return (
-    <div>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "space-around",
+      }}
+    >
       <section>
         <h5>By platform</h5>
         <select id="filterPlatform" onChange={handleFilter}>
@@ -80,8 +80,12 @@ const Filter/* : FC<Props> */ = ({ /* handleOnSaleFilter  */}) => {
       </section>
       <section>
         <h5>On sale</h5>
-      
-        {show ? <button onClick={handleOnSaleFilter}>get on sale</button> : <button onClick={handleAll}>getall</button>}
+
+        {show ? (
+          <button onClick={handleOnSaleFilter}>get on sale</button>
+        ) : (
+          <button onClick={handleAll}>getall</button>
+        )}
       </section>
     </div>
   );

@@ -4,17 +4,19 @@ import {
   getAllProducts,
   onSaleFilter,
 } from "../../redux/actions/products_action";
-import { NavBar, Paginate, Filter, Catalog } from "../../components";
+import { NavBar, Paginate, Filter, Catalog, Carousel } from "../../components";
 import { Store } from "../../redux/reducer/productsReducer";
 import { Product } from "../../interfaces";
+import { ContainerHome } from "./Home.style";
 
 const Home: FC = () => {
-
-
-  
   const dispatch = useDispatch();
   const totalProducts: any = useSelector(
     (state: Store) => state.productsReducer.totalProducts
+  );
+
+  const onSaleProducts: any = useSelector(
+    (state: Store) => state.productsReducer.onSaleProducts
   );
 
   //Paginate
@@ -32,21 +34,26 @@ const Home: FC = () => {
 
   useEffect(() => {
     dispatch(getAllProducts());
+    dispatch(onSaleFilter());
   }, [dispatch]);
 
-
+  // function handleOnSaleFilter() {
+  //   dispatch(onSaleFilter());
+  //   setCurrentPage(1);
+  // }
 
   return (
-    <div>
-      <NavBar setPage={setCurrentPage}/>
-       <Filter  />
-      <Catalog currentProducts={currentProducts} />     
+    <ContainerHome>
+      <NavBar />
+      {onSaleProducts.length !== 0 && <Carousel products={onSaleProducts} />}
+      <Filter /*handleOnSaleFilter={handleOnSaleFilter}*/ />
+      <Catalog currentProducts={currentProducts} />
       <Paginate
         amountPerPage={productsPerPage}
         totalAmount={totalProducts?.length}
         pageNumber={pages}
       />
-    </div>
+    </ContainerHome>
   );
 };
 
