@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const StyledProductCard = styled.article`
-	font-family: 'Press Start 2P';
+	/* font-family: 'Press Start 2P'; */
 	font-size: 0.8em;
 	border: 3px solid #51A5FE;
 	width: 260px;

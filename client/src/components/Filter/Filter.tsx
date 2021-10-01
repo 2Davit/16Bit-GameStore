@@ -31,7 +31,7 @@ const Filter: FC<Props> = ({ handleOnSaleFilter }) => {
   }
 
   return (
-    <div>
+    <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-around'}} >
       <section>
         <h5>By platform</h5>
         <select id="filterPlatform" onChange={handleFilter}>

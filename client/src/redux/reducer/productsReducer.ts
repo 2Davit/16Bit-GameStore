@@ -3,14 +3,18 @@ import {
   GET_NAME_PRODUCT,
   GET_PRODUCT_DETAIL,
   DOUBLE_FILTER,
+  GET_PRODUCT_ON_SALE
 } from "../types";
 import { ProductsState } from "../../interfaces";
+
 
 const initialState: ProductsState = {
   totalProducts: [],
   renderingProducts: [],
   detailProduct: {},
+  onSaleProducts: []
 };
+
 
 export function productsReducer(
   state: ProductsState = initialState,
@@ -55,6 +59,12 @@ export function productsReducer(
         ...state,
         totalProducts: productFilteredB,
       };
+
+      case GET_PRODUCT_ON_SALE:
+        return {
+          ...state,
+          onSaleProducts: payload,
+        };
 
     default:
       return state;

@@ -1,18 +1,33 @@
 import styled, { createGlobalStyle } from 'styled-components';
 import SVG from 'react-inlinesvg';
 
+interface DefaultTheme {
+    bg: string;
+	color: string;
+	font: string;
+}
 
-export const GlobalStyle = createGlobalStyle`
+export const GlobalStyle = createGlobalStyle<{theme: DefaultTheme }>`
 
     body {
         margin: 0;
         padding: 0;
-        font-family: 'Press Start 2P', cursive;
-        background-color:#2c2f31;
+        font-family: ${p => p.theme.font};
+		background-color: ${p => p.theme.bg};
         color:white;
     }
 
 `
+
+
+export const Container = styled.div`
+	width: 100%;
+	/* max-width: 800px; */
+	height: 100%;
+	margin: 0;
+	padding: 0;
+`
+
 
 // Styled components globales:
 export const Btn = styled.button`

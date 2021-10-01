@@ -5,9 +5,12 @@ import {
   onSaleFilter,
 } from "../../redux/actions/products_action";
 import { toggleCart } from "../../redux/actions/global_actions";
-import { NavBar, Paginate, Filter, Catalog } from "../../components";
+import { NavBar, Paginate, Filter, Catalog, Carousel } from "../../components";
 import { Store } from "../../redux/reducer/productsReducer";
 import { Product } from "../../interfaces";
+import { ContainerHome } from "./Home.style";
+
+
 
 const Home: FC = () => {
   const dispatch = useDispatch();
@@ -18,8 +21,13 @@ const Home: FC = () => {
   const cart: Array<number> = useSelector(
     (state: Store) => state.cartReducer.cart.list
   );
+
   const showCart: boolean = useSelector(
     (state: Store) => state.globalReducer.showCart
+  );
+
+  const onSaleProducts: any = useSelector(
+    (state: Store) => state.productsReducer.onSaleProducts
   );
 
   //Paginate
@@ -37,6 +45,7 @@ const Home: FC = () => {
 
   useEffect(() => {
     dispatch(getAllProducts());
+    dispatch(onSaleFilter());
   }, [dispatch]);
 
   const toggleModal = () => {
@@ -47,10 +56,11 @@ const Home: FC = () => {
     dispatch(onSaleFilter());
     setCurrentPage(1);
   }
-
+  
   return (
-    <div>
+    <ContainerHome>
       <NavBar toggleModal={toggleModal} />
+      {onSaleProducts.length !== 0 &&  <Carousel products={onSaleProducts} />}
       <Filter handleOnSaleFilter={handleOnSaleFilter} />
       <Catalog currentProducts={currentProducts} />
       <Paginate
@@ -58,7 +68,7 @@ const Home: FC = () => {
         totalAmount={totalProducts?.length}
         pageNumber={pages}
       />
-    </div>
+    </ContainerHome>
   );
 };
 

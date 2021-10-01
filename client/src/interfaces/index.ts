@@ -32,6 +32,7 @@ export interface ProductsState {
     totalProducts: Array<Product> | Array<any>;
     renderingProducts: Array<Product> | Array<any>;
     detailProduct: Product | unknown;
+    onSaleProducts: Array<Product> | Array<any>;
 }
 
 export interface CartState{
@@ -44,7 +45,6 @@ export interface GlobalState{
 
 export interface State{
     productsReducer: ProductsState;
-
-    cartReducer:CartState;
-    globalReducer:GlobalState;
+    cartReducer: CartState;
+    globalReducer: GlobalState;
 }
