@@ -33,7 +33,7 @@ const CartSideBar: FC<CartSideBarProps> = () => {
         <Link to="/home" title="Close" className="modal__close">
           <StyledCloseBtn src={BigCloseButton} />
         </Link>
-        b<h2 className="modal__title">Your Cart:</h2>
+        <h2 className="modal__title">Your Cart:</h2>
         {cartList?.map((purchase: ProductInCart) => (
           <Mini
             detail={purchase}

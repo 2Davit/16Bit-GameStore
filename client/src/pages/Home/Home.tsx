@@ -44,9 +44,9 @@ const Home: FC = () => {
 
   return (
     <ContainerHome>
-      <NavBar />
-      {onSaleProducts.length !== 0 && <Carousel products={onSaleProducts} />}
-      <Filter /*handleOnSaleFilter={handleOnSaleFilter}*/ />
+      <NavBar setPage={setCurrentPage} />
+      {onSaleProducts.length !== 0 && <Carousel products={onSaleProducts}  />}
+      <Filter /*handleOnSaleFilter={handleOnSaleFilter}*/ setPage={setCurrentPage} />
       <Catalog currentProducts={currentProducts} />
       <Paginate
         amountPerPage={productsPerPage}

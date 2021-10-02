@@ -46,11 +46,18 @@ const PanelCatalog: FC<Props> = ({
     alert("Cambio realizado con éxito.");
   }
   function handleChangeName(e: React.FormEvent<HTMLInputElement>) {
-    console.log(e.currentTarget.value)
-    console.log(e.currentTarget.name)
+    console.log(e.currentTarget.value);
+    console.log(e.currentTarget.name);
     setInput({
       ...input,
       [e.currentTarget.name]: e.currentTarget.value,
+    });
+  }
+
+  function handleGenreDelete(e: React.FormEvent<HTMLInputElement>) {
+    setInput({
+      ...input,
+      genre: input.genre.filter((genre: string) => genre !== e.currentTarget.value),
     });
   }
 
@@ -107,7 +114,12 @@ const PanelCatalog: FC<Props> = ({
         >
           <div style={{ display: "flex", flexDirection: "row" }}>
             <label>Product Name</label>
-            <input className="card__title" name="name" onChange={(e: any) => handleChangeName(e)} value={input.name}></input>
+            <input
+              className="card__title"
+              name="name"
+              onChange={(e: any) => handleChangeName(e)}
+              value={input.name}
+            ></input>
           </div>
           <div style={{ display: "flex", flexDirection: "row" }}>
             <label>Product Price</label>
@@ -136,6 +148,14 @@ const PanelCatalog: FC<Props> = ({
             <select>
               <option>gba</option>
             </select>
+            {input.genre?.map((index: any) => (
+              <div key={index}>
+                <button type="button" onClick={() => handleGenreDelete(index)}>
+                  x
+                </button>
+                <p>{index}</p>
+              </div>
+            ))}
           </div>
         </form>
         <div
