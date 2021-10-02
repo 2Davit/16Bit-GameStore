@@ -100,9 +100,13 @@ export const QuantityButton = styled.button`
 	width: 25px;
 	height: 25px;
 	font-weight: 400;
+	
 
 	&:active {
-		background-color: 0B53D7;
+		background-color: #0B53D7;
+	}
+	&:focus{
+		outline:none;
 	}
 `
 

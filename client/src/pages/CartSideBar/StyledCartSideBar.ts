@@ -51,15 +51,16 @@ export const  StyledCartSideBar = styled.div`
 			}
 		}
 
-		.modal__buttons {
-      position:relative;
-      top: 6em;
-			display: flex;
-			justify-content: space-between;
-			margin: 0 0.2em;
-		}
-
+		.modal__buttons{
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				.btn{
+					margin-left:1em;
+				
+				}
 			}
+		}
 `
 
 export const StyledCloseBtn = styled(SVG)`
