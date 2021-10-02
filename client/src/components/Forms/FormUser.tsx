@@ -1,5 +1,4 @@
 // import React, { useState } from 'react';
-import * as Yup from "yup";
 import { withFormik, FormikProps, FormikErrors, Form, Field } from "formik";
 import { UserCreate } from "../../interfaces/index";
 import axios from "axios";

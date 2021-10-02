@@ -16,7 +16,7 @@ const Catalog: FC<Props> = ({ currentProducts }) => {
     <StyledCatalog id="catalog">
       {currentProducts?.length !== 0 &&
         currentProducts?.map((product: Product) => (
-          <ProductCard game={product} />
+          <ProductCard game={product} key={product.id_product} />
         ))}
     </StyledCatalog>
   );

@@ -1,29 +1,12 @@
-import React, { FC } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import "nes.css/css/nes.min.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addItemCart } from "../../redux/actions/cart_actions";
 import { StyledSVG, Btn } from "../../GlobalStyles/GlobalStyles";
 import { StyledProductCard } from "./StyledProductCard";
 import cart from "../../assets/img/svg/cart.svg";
-
-interface Props {
-  image: string;
-  name: string;
-  price: number;
-  id: number | undefined;
-}
-
-// const handleClick = () => {
-//   let gameToDispatch = { ...game };
-//   gameToDispatch.quantity = 1;
-//   dispatch(addItemCart(gameToDispatch));
-//   let payload = {
-//     id: game.id,
-//     quantity: 1,
-//   };
-//   //¿¿aca iraa el toast??
-// };
+import { toast } from "react-toastify";
 
 const ProductCard = ({ game }: any) => {
   const dispatch = useDispatch();
@@ -32,6 +15,16 @@ const ProductCard = ({ game }: any) => {
     let gameToDispatch = { ...game };
     gameToDispatch.quantity = 1;
     dispatch(addItemCart(gameToDispatch));
+    toast.success("🎮 Added to cart!", {
+      position: "bottom-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
   };
 
   return (
