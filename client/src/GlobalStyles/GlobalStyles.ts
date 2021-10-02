@@ -93,7 +93,7 @@ export const Btn = styled.button`
 `
 
 export const QuantityButton = styled.button`
-	color: #000;
+	color: #fff;
 	background-color: #51A5FE;
 	border-radius: 100%;
 	border: none;

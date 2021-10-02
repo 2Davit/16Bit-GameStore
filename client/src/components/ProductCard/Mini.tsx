@@ -4,27 +4,22 @@ import { QuantityButton, StyledSVG } from "../../GlobalStyles/GlobalStyles";
 import { MiniCard } from "./StyledProductCard";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import {
-  addItemCart,
-  restItemCart,
-  removeItemCart,
-} from "../../redux/actions/cart_actions";
+import { addItemCart, removeItemCart } from "../../redux/actions/cart_actions";
 
-const Mini = ({ detail, sumarTotal }: any) => {
+const Mini = ({ detail }: any) => {
   const dispatch = useDispatch();
   let price = detail.price_product * detail.quantity;
 
-  const handleQuantity = (text: any) => {
-    text === "suma"
-      ? dispatch(addItemCart(detail))
-      : dispatch(restItemCart(detail.id_product));
-      sumarTotal(price)
+  const handleQuantityChange = (amount: number) => {
+    const newValue = detail.quantity + amount;
+    if (newValue >= 1 && newValue <= 99) {
+      dispatch(addItemCart(detail));
+    }
   };
 
   const handleRemove = () => {
     dispatch(removeItemCart(detail.id_product));
   };
-
 
   return (
     <MiniCard>
@@ -39,7 +34,7 @@ const Mini = ({ detail, sumarTotal }: any) => {
         <div className="article__quantitybuttons">
           <QuantityButton
             className="quantitybutton-small"
-            onClick={() => handleQuantity("resta")}
+            onClick={() => handleQuantityChange(-1)}
           >
             -
           </QuantityButton>
@@ -47,7 +42,7 @@ const Mini = ({ detail, sumarTotal }: any) => {
           <span>Unit(s)</span>
           <QuantityButton
             className="quantitybutton-small"
-            onClick={() => handleQuantity("suma")}
+            onClick={() => handleQuantityChange(+1)}
           >
             +
           </QuantityButton>
