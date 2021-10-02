@@ -88,3 +88,78 @@ export const StyledProductCard = styled.article`
 	}
 
 `;
+
+export const MiniCard = styled.article`
+	position: relative;
+	display: flex;
+	border: 2px solid #51A5FE;
+	border-radius: 0.5em;
+	margin-bottom: 1em;
+	align-items: center;
+	justify-content: flex-start;
+	padding: 1em 1.5em 1em 1em;
+
+	a {
+		color: currentColor;
+		text-decoration: none;
+
+		&:hover {
+			color: #51A5FE;
+		}
+	}
+
+	&:hover {
+		border: 2px solid #0B53D7;
+	}
+
+	.article__img{
+		height: 100px;
+		flex: 0 0 150px;
+		margin-right: 1em;
+		border-radius: 10px;
+		overflow: hidden;
+	}
+
+	
+	img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.delete__product {
+		position: absolute;
+		right: 10px;
+		top: 10px;
+		background: none;
+		border: none;
+		width: 25px;
+		height: 25px;
+		transition: opacity 0.4s ease;
+		
+		svg {
+			width: 25px;
+			height: 25px;
+			fill: #51A5FE;
+			}
+
+		&:hover svg {
+			fill: #0B53D7;
+		}
+
+		&:focus {
+			outline: none;
+		}
+		&:active{
+			transform: translateY(1px);
+		}
+	}	
+
+	.article__quantitybuttons{			
+		span{
+			margin-left: 5px;
+			font-size:0.8em;
+		
+		}
+	}
+`

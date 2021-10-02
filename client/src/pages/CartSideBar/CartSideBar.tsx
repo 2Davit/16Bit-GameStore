@@ -4,6 +4,7 @@ import "nes.css/css/nes.min.css";
 import BigCloseButton from "../../assets/img/svg/close-transparent.svg";
 import { Btn, Hr } from "../../GlobalStyles/GlobalStyles";
 import { Link } from "react-router-dom";
+import { Mini } from "../../components/index";
 
 interface CartSideBarProps {
   // no borrar, se va a usar!!
@@ -20,7 +21,8 @@ const CartSideBar: FC<CartSideBarProps> = () => {
           <StyledCloseBtn src={BigCloseButton} />
         </Link>
         <h2 className="modal__title">Your Cart:</h2>
-        <h2>MiniProductCard coming soon!! 😁</h2>
+        <Mini />
+        <Mini />
         <Hr />
         <div className="modal__subtotal">
           <p>Subtotal:</p>
