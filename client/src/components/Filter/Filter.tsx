@@ -5,7 +5,7 @@ import {
   onSaleFilter,
   getAllProducts,
 } from "../../redux/actions/products_action";
-import { Store } from "../../redux/reducer/productsReducer";
+import { Store } from "../../redux/reducer/";
 
 const Filter = () => {
   const totalProducts = useSelector(

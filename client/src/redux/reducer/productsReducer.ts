@@ -78,5 +78,5 @@ export function productsReducer(
 
 
 
-export type Store = ReturnType<any>;
+
 

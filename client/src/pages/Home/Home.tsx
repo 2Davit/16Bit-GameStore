@@ -5,7 +5,7 @@ import {
   onSaleFilter,
 } from "../../redux/actions/products_action";
 import { NavBar, Paginate, Filter, Catalog, Carousel } from "../../components";
-import { Store } from "../../redux/reducer/productsReducer";
+import { Store } from "../../redux/reducer/";
 import { Product } from "../../interfaces";
 import { ContainerHome } from "./Home.style";
 
