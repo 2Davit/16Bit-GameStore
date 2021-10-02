@@ -7,11 +7,10 @@ interface Action {
     payload: number //id
 }
 
-export const addItemCart = (payload: any) =>
-    (dispatch: Dispatch<Action>): any => {
-        return dispatch({
+export const addItemCart = (payload: any) =>{
+           return {
             type: ADD_ITEM_CART,
             payload: payload
-        })
+        }
     }
 
