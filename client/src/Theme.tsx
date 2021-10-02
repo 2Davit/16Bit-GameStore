@@ -22,7 +22,7 @@ interface Props {
 }
 
 export const Theme: FC<Props> = ({ children, none }) => {
-  const [theme, setTheme] = useState<any>(themes.original);
+  const [theme, setTheme] = useState<any>(themes.retro);
   const [icon, setIcon] = useState<boolean>(true);
 
   const updateTheme = () => {
