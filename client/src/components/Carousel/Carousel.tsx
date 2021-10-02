@@ -16,7 +16,7 @@ const Carousel: FC<Props> = ({ products }) => {
 
     const [disable, setDisable] = useState<boolean>(false);
 
-    if (!disable) {
+    if (products.length > 1 && !disable) {
         setTimeout(() => {
             if (index === (products.length -1)) setIndex(0);
             else setIndex(index + 1);
@@ -38,7 +38,7 @@ const Carousel: FC<Props> = ({ products }) => {
 
     return (
         <div style={{width:'100%', display: 'flex', justifyContent: 'center', alignItems: 'center'}} >
-        <Button onClick={handleLeftOnClick} ><IconLeft /></Button>
+        {products.length > 1 ? <Button onClick={handleLeftOnClick} ><IconLeft /></Button> : null}
         <CarouselContainer to={`/game/${products[index].id_product}`} >
             <Image src={products[index].thumbnail_product} alt={products[index].name_product} />
             <CarouselSubContainer>
@@ -46,12 +46,12 @@ const Carousel: FC<Props> = ({ products }) => {
                 <h1>{products[index].name_product}</h1>
                 <OnSale src={onSale} alt={products[index].name_product} />
                 </div>
-                <span>{products[index].price_product}</span>
+                <span>Price: ${products[index].price_product}</span>
                 <p>{products[index].description_product.slice(0, 120)}...</p>
                 
             </CarouselSubContainer>
         </CarouselContainer>
-        <Button onClick={handleRightOnClick} ><IconRight /></Button>
+        {products.length > 1 ? <Button onClick={handleRightOnClick} ><IconRight /></Button> : null}
         </div>
     )
 

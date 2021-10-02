@@ -1,6 +1,6 @@
 import React, { FC, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import { getProductDetail } from "../../redux/actions/products_action";
 import { Store } from "../../redux/reducer/productsReducer";
 import { GameDetail, StyledSVG } from "./StyledProductDetail";
@@ -9,6 +9,8 @@ import cart from "../../assets/img/svg/cart.svg";
 import joystick from "../../assets/img/svg/joystick.svg";
 import mercadopagoimg from "../../assets/img/mercadopagoimg.webp";
 import fivestars from "../../assets/img/fivestars.png";
+
+
 
 interface Props {
   id: string;
@@ -34,6 +36,9 @@ const Detail: FC = () => {
   return (
     <>
       <GameDetail>
+        <NavLink to="/home" className='btn' >
+          <button className="nes-btn is-primary">Home</button>
+        </NavLink>
         <div className="game__img">
           {detailProduct.image_product?.map((e: string, i: number) => (
             <img

@@ -34,6 +34,14 @@ export const GameDetail = styled.section`
     }
   }
 
+  .btn{
+    display: flex;
+    position: absolute;
+    right: 0;
+    margin-right: 2em;
+    text-decoration: none;
+  }
+
   .game__info {
     flex: 1;
     margin-left: 1.5em;
