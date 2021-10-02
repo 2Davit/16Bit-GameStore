@@ -1,6 +1,6 @@
 import { FC } from "react";
 import styles from "./Styles/MainContent.module.css";
-import { Product } from "../../interfaces/index";
+import { AdminProduct } from "../../interfaces/index";
 import PanelCatalog from "../AdminPanel/PanelContent/PanelCatalog"
 
 interface Props {
@@ -8,12 +8,11 @@ interface Props {
 }
 
 const MainContent: FC<Props> = ({ totalProducts }) => {
-  /* console.log(totalProducts.renderingProducts[0]) */
   return (
     <div className={styles.mainContainer}>
       <div>
         {totalProducts.renderingProducts?.length !== 0 &&
-          totalProducts.renderingProducts?.map((product: Product) => (
+          totalProducts.renderingProducts?.map((product: AdminProduct) => (
             <PanelCatalog
               key={product.id_product}
               image={product.thumbnail_product}
@@ -23,7 +22,8 @@ const MainContent: FC<Props> = ({ totalProducts }) => {
               price={product.price_product}
               id={product.id_product}
               stock={product.in_stock}
-              genre={product.genres}
+              genre={product.name_genre}
+              platform={product.name_platform}
             />
           ))}
       </div>
