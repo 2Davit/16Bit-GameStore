@@ -1,10 +1,10 @@
-import React, { FC, useState } from "react";
+import React, { FC, useState, useEffect } from "react";
 import { StyledCartSideBar, StyledCloseBtn } from "./StyledCartSideBar";
 import "nes.css/css/nes.min.css";
 import BigCloseButton from "../../assets/img/svg/close-transparent.svg";
 import { Btn, Hr } from "../../GlobalStyles/GlobalStyles";
 import { Link } from "react-router-dom";
-import { Mini, ProductCard } from "../../components/index";
+import { Mini } from "../../components/index";
 import { useSelector } from "react-redux";
 import { Store } from "../../redux/reducer/";
 import { ProductInCart } from "../../interfaces";
@@ -21,11 +21,17 @@ const CartSideBar: FC<CartSideBarProps> = () => {
     (state: Store) => state.cartReducer.cart.list
   );
 
-  const [price, setPrice] = useState(0);
-
-  function sumarTotal(totalPrice: number) {
-    setPrice(price + totalPrice);
-  }
+  const [subtotal, setSubtotal] = useState(0.0);
+  useEffect(() => {
+    if (cartList) {
+      setSubtotal(
+        cartList.reduce((acc: number, product: ProductInCart) => {
+          acc = acc + product.price_product * product.quantity;
+          return acc;
+        }, 0.0)
+      );
+    }
+  }, [cartList]);
 
   return (
     <StyledCartSideBar>
@@ -35,16 +41,12 @@ const CartSideBar: FC<CartSideBarProps> = () => {
         </Link>
         <h2 className="modal__title">Your Cart:</h2>
         {cartList?.map((purchase: ProductInCart) => (
-          <Mini
-            detail={purchase}
-            sumarTotal={sumarTotal}
-            key={purchase.id_product}
-          />
+          <Mini detail={purchase} key={purchase.id_product} />
         ))}
         <Hr />
         <div className="modal__subtotal">
           <p>Subtotal:</p>
-          <p>${price}</p>
+          <p>${subtotal}</p>
         </div>
         <div className="modal__buttons">
           <Link to="/order">

@@ -34,7 +34,7 @@ export const GameDetail = styled.section`
     }
   }
 
-  .btn{
+  .btn {
     display: flex;
     position: absolute;
     right: 0;
@@ -126,6 +126,7 @@ export const GameDetail = styled.section`
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      margin-right: 2rem;
 
       button {
         margin-bottom: 0.5em;
@@ -144,6 +145,7 @@ export const GameDetail = styled.section`
       display: flex;
       justify-content: space-between;
       align-items: center;
+
       @media (max-width: 700px) {
         flex-direction: column;
         align-items: center;

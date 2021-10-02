@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useParams } from "react-router-dom";
 import { getProductDetail } from "../../redux/actions/products_action";
@@ -9,6 +9,8 @@ import cart from "../../assets/img/svg/cart.svg";
 import joystick from "../../assets/img/svg/joystick.svg";
 import mercadopagoimg from "../../assets/img/mercadopagoimg.webp";
 import fivestars from "../../assets/img/fivestars.png";
+import { addItemCart } from "../../redux/actions/cart_actions";
+import { toast } from "react-toastify";
 
 interface Props {
   id: string;
@@ -30,6 +32,34 @@ const Detail: FC = () => {
   interface Genre {
     name_genre: string;
   }
+
+  const [quantity, setQuantity] = useState(1);
+  function handleQuantityChange(amount: number) {
+    const newValue = quantity + amount;
+    if (newValue >= 1 && newValue <= 99) {
+      setQuantity((quantity) => quantity + amount);
+    }
+  }
+
+  const handleClick = () => {
+    let productToDispatch = { ...detailProduct };
+    productToDispatch.quantity = quantity;
+    dispatch(addItemCart(productToDispatch));
+    toast.success(
+      `${detailProduct.name_product} x${quantity} was added to your cart! 👾`,
+      {
+        position: "bottom-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      }
+    );
+    setQuantity(1);
+  };
 
   return (
     <>
@@ -68,12 +98,22 @@ const Detail: FC = () => {
           <p className="game__description">
             {detailProduct.description_product}
           </p>
-          <Btn className="btn-youtube">Ver video</Btn>
+
           <div className="game__quantity">
             <span>Amount to buy:</span>
-            <QuantityButton>-</QuantityButton>
-            <span className="game__quantityvalue quantitytext">{20}</span>
-            <QuantityButton>+</QuantityButton>
+            <QuantityButton
+              className="quantitybutton-small"
+              onClick={() => handleQuantityChange(-1)}
+            >
+              -
+            </QuantityButton>
+            <span className="game__quantityvalue quantitytext">{quantity}</span>
+            <QuantityButton
+              className="quantitybutton-small"
+              onClick={() => handleQuantityChange(1)}
+            >
+              +
+            </QuantityButton>
           </div>
           <p className="game__stock">Stock: 25</p>
           <div className="game__purchase-container">
@@ -82,7 +122,7 @@ const Detail: FC = () => {
                 Buy now
                 <StyledSVG src={joystick} />
               </Btn>
-              <Btn className="btn-sec btn-img">
+              <Btn className="btn-sec btn-img" onClick={handleClick}>
                 Add to cart
                 <StyledSVG src={cart} />
               </Btn>
