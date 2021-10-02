@@ -72,3 +72,16 @@ export interface State{
     globalReducer: GlobalState;
 }
 
+export interface AdminProduct {
+    id_product?: number;
+    name_product: string;
+    price_product: number;
+    description_product: string;
+    image_product: Array<string>;
+    thumbnail_product: string;
+    in_stock: boolean;
+    on_sale: boolean; 
+    release_year: number;
+    name_genre: Array<Genre>;
+    name_platform: Array<Platform>;
+}

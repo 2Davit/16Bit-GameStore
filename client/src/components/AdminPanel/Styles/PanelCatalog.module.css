@@ -10,6 +10,14 @@
     flex-direction: column;
     align-items: center;
 }
+.card__content {
+    padding: 0.5em 1em;
+    width: 100%;
+    height: 50%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
 .img {
     margin: 1vw;
     object-fit: cover;
