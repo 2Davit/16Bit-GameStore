@@ -34,6 +34,19 @@ export interface ProductCreate {
     genres: Array<string>;
     platforms: Array<string>;
 }
+export interface ProductValidate {
+    id_product?: number;
+    name_product: string;
+    price_product: string;
+    description_product: string;
+    image_product: string;
+    thumbnail_product: string;
+    in_stock: string;
+    on_sale: string; 
+    release_year: string;
+    genres: string;
+    platforms: string;
+}
 
 export interface UserCreate {
     username: string;
