@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Store } from "../../redux/reducer/productsReducer";
+import { Store } from "../../redux/reducer/";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProducts } from "../../redux/actions/products_action";
 import MainContent from "./MainContent";

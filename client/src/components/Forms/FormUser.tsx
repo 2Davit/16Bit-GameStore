@@ -1,11 +1,10 @@
-
 // import React, { useState } from 'react';
-import * as Yup from 'yup';
-import { withFormik, FormikProps, FormikErrors, Form, Field } from 'formik';
-import {UserCreate} from '../../interfaces/index';
-import axios from 'axios';
+import { withFormik, FormikProps, FormikErrors, Form, Field } from "formik";
+import { UserCreate } from "../../interfaces/index";
+import axios from "axios";
 
 // Aside: You may see InjectedFormikProps<OtherProps, FormValues> instead of what comes below in older code.. InjectedFormikProps was artifact of when Formik only exported a HoC. It is also less flexible as it MUST wrap all props (it passes them through).
+<<<<<<< HEAD
 const InnerForm = (props:  FormikProps<UserCreate>) => {
    
     const { touched, errors, isSubmitting } = props;
@@ -38,15 +37,39 @@ const InnerForm = (props:  FormikProps<UserCreate>) => {
         </Form>
   );
 };
+=======
+const InnerForm = (props: FormikProps<UserCreate>) => {
+  const { touched, errors, isSubmitting } = props;
+>>>>>>> f279ec9e22e36c3568cdf7ee95c8d44ddf3fe369
 
+  return (
+    <Form>
+      <Field name="username" placeholder="Intoduce a username" />
+      {touched.username && errors.username && <div>{errors.username}</div>}
 
+      <Field name="password" placeholder="Intoduce a password" />
+      {touched.password && errors.password && <div>{errors.password}</div>}
+
+      <Field name="email" placeholder="Intoduce an email" />
+      {touched.email && errors.email && <div>{errors.email}</div>}
+
+      <Field name="name" placeholder="Intoduce a Name" />
+      {touched.name && errors.name && <div>{errors.name}</div>}
+
+      <Field name="lastname" placeholder="Intoduce a last name" />
+      {touched.lastname && errors.lastname && <div>{errors.lastname}</div>}
+
+      <Field name="adress" placeholder="Intoduce an address" />
+      {touched.adress && errors.adress && <div>{errors.adress}</div>}
+
+      <button type="submit" disabled={isSubmitting}>
+        Submit
+      </button>
+    </Form>
+  );
+};
 
 /* .--------------------------------------------------------------------------------------- */
-
-
-
-
-
 
 // The type of props MyForm receives
 
@@ -59,24 +82,18 @@ interface MyFormProps {
   initialAdress?: string;
 }
 
-
-
 // Wrap our form with the withFormik HoC
 
-
-const MyForm = withFormik<MyFormProps, UserCreate> ({
-
+const MyForm = withFormik<MyFormProps, UserCreate>({
   // Transform outer props into form values
   mapPropsToValues: (props) => {
     return {
-
-        username: props.initialUsername || '',
-        password: props.initialPassword || '',
-        email: props.initialEmail || '',
-        name: props.initialName || '',
-        lastname: props.initialLastname || '',
-        adress: props.initialAdress || '',
-
+      username: props.initialUsername || "",
+      password: props.initialPassword || "",
+      email: props.initialEmail || "",
+      name: props.initialName || "",
+      lastname: props.initialLastname || "",
+      adress: props.initialAdress || "",
     };
   },
 
@@ -158,12 +175,12 @@ const MyForm = withFormik<MyFormProps, UserCreate> ({
     return errors;
   },
 
-
-  handleSubmit: props => {
-    axios.post('http://localhost:3001/auth/signup', props).then((res) => console.log(res.data))
+  handleSubmit: (props) => {
+    axios
+      .post("http://localhost:3001/auth/signup", props)
+      .then((res) => console.log(res.data));
     console.log(props);
-  }
-
+  },
 })(InnerForm);
 
 // Use <MyForm /> wherevs

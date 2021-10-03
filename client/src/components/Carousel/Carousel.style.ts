@@ -46,12 +46,12 @@ export const CarouselSubContainer = styled.div`
 
 
 export const OnSale = styled.img`
-    transform: rotate(35deg);
+    transform: rotate(-20deg);
     position: absolute;
-    width: 170px;
-    height: 100px;
-    right: 7%;
-    top: 11%;
+    width: 190px;
+    height: 120px;
+    right: 12%;
+    top: 5%;
 `
 
 

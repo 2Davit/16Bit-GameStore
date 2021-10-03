@@ -8,3 +8,5 @@ export default combineReducers({
 	cartReducer,
 	globalReducer
 })
+
+export type Store = ReturnType<any>;

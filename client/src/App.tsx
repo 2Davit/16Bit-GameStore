@@ -5,8 +5,9 @@ import { GlobalStyle } from "./GlobalStyles/GlobalStyles";
 import { Theme } from "./Theme";
 import FormProduct from "./components/Forms/FormProduct";
 import AdminPanel from "./components/AdminPanel/AdminPanel";
-import FormUser from './components/Forms/FormUser';
-
+import FormUser from "./components/Forms/FormUser";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const App: FC = () => {
   return (
@@ -24,6 +25,7 @@ const App: FC = () => {
           <Route path="*" component={NotFound} />
         </Switch>
       </Router>
+      <ToastContainer />
       <GlobalStyle />
     </Theme>
   );

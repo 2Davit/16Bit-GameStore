@@ -5,7 +5,7 @@ import {
   onSaleFilter,
 } from "../../redux/actions/products_action";
 import { NavBar, Paginate, Filter, Catalog, Carousel } from "../../components";
-import { Store } from "../../redux/reducer/productsReducer";
+import { Store } from "../../redux/reducer/";
 import { Product } from "../../interfaces";
 import { ContainerHome } from "./Home.style";
 
@@ -44,9 +44,9 @@ const Home: FC = () => {
 
   return (
     <ContainerHome>
-      <NavBar />
-      {onSaleProducts.length !== 0 && <Carousel products={onSaleProducts} />}
-      <Filter /*handleOnSaleFilter={handleOnSaleFilter}*/ />
+      <NavBar setPage={setCurrentPage} />
+      {onSaleProducts.length !== 0 && <Carousel products={onSaleProducts}  />}
+      <Filter /*handleOnSaleFilter={handleOnSaleFilter}*/ setPage={setCurrentPage} />
       <Catalog currentProducts={currentProducts} />
       <Paginate
         amountPerPage={productsPerPage}

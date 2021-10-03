@@ -27,6 +27,13 @@ const PanelCatalog: FC<Props> = ({
   genre,
 }) => {
   const [cond, setCond] = useState(false);
+  const years: number[] = [
+    1950, 1951, 1952, 1953, 1954, 1955, 1956, 1957, 1958, 1959, 1960, 1961,
+    1962, 1963, 1964, 1965, 1966, 1967, 1968, 1969, 1970, 1971, 1972, 1973,
+    1974, 1975, 1976, 1977, 1978, 1979, 1980, 1981, 1982, 1983, 1984, 1985,
+    1986, 1987, 1988, 1989, 1990, 1991, 1992, 1993, 1994, 1995, 1996, 1997,
+    1998, 1999, 2000,
+  ];
   const [input, setInput] = useState({
     name,
     price,
@@ -42,15 +49,64 @@ const PanelCatalog: FC<Props> = ({
   function handleEdit() {
     setCond(!cond);
   }
-  function handleSave() {
+  function handleSave(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
     alert("Cambio realizado con éxito.");
   }
   function handleChangeName(e: React.FormEvent<HTMLInputElement>) {
-    console.log(e.currentTarget.value)
-    console.log(e.currentTarget.name)
     setInput({
       ...input,
       [e.currentTarget.name]: e.currentTarget.value,
+    });
+  }
+  function handleChangeDescription(e: React.FormEvent<HTMLInputElement>) {
+    setInput({
+      ...input,
+      [e.currentTarget.name]: e.currentTarget.value,
+    });
+  }
+  function handleChangeYear(e: React.FormEvent<HTMLSelectElement>) {
+    console.log(e.currentTarget);
+    setInput({
+      ...input,
+      released: parseInt(e.currentTarget.value),
+    });
+  }
+  function handleChangePrice(e: React.FormEvent<HTMLInputElement>) {
+    setInput({
+      ...input,
+      [e.currentTarget.name]: e.currentTarget.value,
+    });
+  }
+  function handleAddGenre(e: React.FormEvent<HTMLInputElement>) {
+    setInput({
+      ...input,
+      genre: [...input.genre, e.currentTarget.value],
+    });
+  }
+  function handleAddPlatform(e: React.FormEvent<HTMLInputElement>) {
+    setInput({
+      ...input,
+      platform: [...input.platform, e.currentTarget.value],
+    });
+  }
+
+  function handleGenreDelete(e: React.FormEvent<HTMLInputElement>) {
+    setInput({
+      ...input,
+      genre:
+        input.genre.length > 1
+          ? input.genre.filter((genre: any) => genre !== e)
+          : [],
+    });
+  }
+  function handlePlatformDelete(e: React.FormEvent<HTMLInputElement>) {
+    setInput({
+      ...input,
+      platform:
+        input.platform.length > 1
+          ? input.platform.filter((platform: any) => platform !== e)
+          : [],
     });
   }
 
@@ -107,11 +163,22 @@ const PanelCatalog: FC<Props> = ({
         >
           <div style={{ display: "flex", flexDirection: "row" }}>
             <label>Product Name</label>
-            <input className="card__title" name="name" onChange={(e: any) => handleChangeName(e)} value={input.name}></input>
+            <input
+              className="card__title"
+              name="name"
+              onChange={handleChangeName}
+              value={input.name}
+            ></input>
           </div>
           <div style={{ display: "flex", flexDirection: "row" }}>
             <label>Product Price</label>
-            <input type="number" step="0.01" value={input.price}></input>
+            <input
+              name="price"
+              type="number"
+              step="0.1"
+              value={input.price}
+              onChange={handleChangePrice}
+            ></input>
           </div>
           <div>
             <label>Quantity</label>
@@ -119,23 +186,70 @@ const PanelCatalog: FC<Props> = ({
           </div>
           <div>
             <label>Description:</label>
-            <textarea value={input.description}></textarea>
+            <input
+              type="text"
+              name="description"
+              value={input.description}
+              onChange={handleChangeDescription}
+            ></input>
           </div>
           <div>
             <label>Release Year</label>
-            <input type="number" min="1950" value={input.released}></input>
+            <select name="release_year" onChange={(e) => handleChangeYear(e)}>
+              {years?.map((year) => (
+                <option key={year} value={year}>
+                  {year}
+                </option>
+              ))}
+            </select>
           </div>
-          <div>
+          <div style={{ display: "flex", alignItems: "flex-start" }}>
             <label>Genres:</label>
-            <select>
-              <option>Sports</option>
+            <select name="genre" onChange={(e: any) => handleAddGenre(e)}>
+              <option value="sports">Sports</option>
+              <option value="prueba">Prueba</option>
+              <option>Denis</option>
+              <option>Deportes</option>
             </select>
+            <div style={{ display: "flex", height: "2vw" }}>
+              {input.genre.length > 0 ? (
+                input.genre.map((index: any) => (
+                  <div key={index} style={{ margin: "0 0.5vw 0 0.5vw" }}>
+                    <button
+                      type="button"
+                      onClick={() => handleGenreDelete(index)}
+                    >
+                      x
+                    </button>
+                    <p>{index}</p>
+                  </div>
+                ))
+              ) : (
+                <div>No Genre</div>
+              )}
+            </div>
           </div>
-          <div>
+          <div style={{ display: "flex", height: "2vw" }}>
             <label>Platforms:</label>
-            <select>
+            <select name="platform" onChange={(e: any) => handleAddPlatform(e)}>
               <option>gba</option>
+              <option>denis</option>
             </select>
+            {input.platform.length > 0 ? (
+              input.platform.map((index: any) => (
+                <div key={index} style={{ margin: "0 0.5vw 0 0.5vw" }}>
+                  <button
+                    type="button"
+                    onClick={() => handlePlatformDelete(index)}
+                  >
+                    x
+                  </button>
+                  <p>{index}</p>
+                </div>
+              ))
+            ) : (
+              <div>No Platform</div>
+            )}
           </div>
         </form>
         <div
@@ -147,7 +261,7 @@ const PanelCatalog: FC<Props> = ({
         >
           <div>
             <button onClick={handleEdit}>EDIT INFO</button>
-            <button onClick={handleSave}>SAVE</button>
+            <button onClick={(e:any) => handleSave(e)}>SAVE</button>
           </div>
         </div>
       </div>

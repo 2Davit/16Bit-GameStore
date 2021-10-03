@@ -5,9 +5,9 @@ import {
   onSaleFilter,
   getAllProducts,
 } from "../../redux/actions/products_action";
-import { Store } from "../../redux/reducer/productsReducer";
+import { Store } from "../../redux/reducer/";
 
-const Filter = () => {
+const Filter = ({ setPage }: any) => {
   const totalProducts = useSelector(
     (state: Store) => state.productsReducer.totalProducts
   );
@@ -29,6 +29,7 @@ const Filter = () => {
       renderingProducts,
     };
     dispatch(doubleFilter(filterPlatform));
+    setPage(1);
   }
 
   const handleOnSaleFilter = () => {

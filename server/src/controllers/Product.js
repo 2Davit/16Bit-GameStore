@@ -319,6 +319,74 @@ async function listProductOnSale(req, res){
       res.status(404).send("not found");
     }
   };
+
+  async function updateOneProduct(req, res){
+    const {
+      id,
+      name,
+      price,
+      description,
+      image,
+      thumbnail,
+      stock,
+      onSale,
+      released,
+      genre,
+      platform,
+    } = req.body;
+    
+    try {
+
+      await Product.destroy({
+        where: { id_product: id }
+       })
+
+      let genreDB = await Genre.findAll({
+        where: {
+          name_genre: genre,
+        },
+      });
+      let platformDB = await Platform.findAll({
+        where: {
+          name_platform: platform,
+        },
+      });
+      let productUpdated = await Product.create({
+        id_product: id,
+        name_product: name,
+        price_product: price,
+        description_product: description,
+        image_product: image,
+        thumbnail_product: thumbnail,
+        in_stock: stock,
+        on_sale: onSale,
+        release_year: released,
+      });
+      productUpdated.addGenre(genreDB);
+      productUpdated.addPlatform(platformDB);
+      res.status(200).send("Product succesfully updated");
+    } catch(error) {
+      console.log(error)
+      res.status(404).send("Error");
+    }
+  };
+
+
+  async function deleteOneProduct(req, res) {
+
+    const { id } = req.params;
+
+    try {
+      await Product.destroy({
+        where: { id_product: id }
+       })
+       res.status(200).send("Product succesfully deleted");
+       
+    } catch(err) {
+        res.status(404).send("Error");
+    }
+  };
+
   
   module.exports = {
     listProductOnSale,
@@ -327,6 +395,8 @@ async function listProductOnSale(req, res){
     postOneProduct,
     getProductById,
     postProduct,
-    getAllProduct
+    getAllProduct,
+    updateOneProduct,
+    deleteOneProduct
   }
   
