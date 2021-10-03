@@ -1,15 +1,15 @@
 export interface Platform {
     name_platform: string
   }
-export interface PlatformCreate{
-    platforms: Array<Platform>
+export interface CreatePlatform{
+    platform: string;
 }
   
 export interface Genre {
     name_genre: string
   }
-export interface GenreCreate{
-    genres: Array<Genre>
+export interface CreateGenre{
+    genre: string;
 }
 
 

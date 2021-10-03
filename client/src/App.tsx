@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { GlobalStyle } from "./GlobalStyles/GlobalStyles";
 import { Theme } from "./Theme";
 import FormProduct from "./components/Forms/FormProduct";
+import {FormGenre} from './components/Forms/FormGenre'
+import {FormPlatform} from './components/Forms/FormPlatform'
 import AdminPanel from "./components/AdminPanel/AdminPanel";
 import FormUser from "./components/Forms/FormUser";
 import { ToastContainer } from "react-toastify";
@@ -22,6 +24,10 @@ const App: FC = () => {
           <Route exact path="/form" component={FormProduct} />
           <Route exact path="/admin" component={AdminPanel} />
           <Route exact path="/createUser" component={FormUser} />
+          <Route exact path="/createGenre" component={FormGenre} />
+          <Route exact path="/createPlatform" component={FormPlatform} />
+
+
           <Route path="*" component={NotFound} />
         </Switch>
       </Router>

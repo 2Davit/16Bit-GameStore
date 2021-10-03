@@ -1,20 +1,20 @@
 import React from "react";
 import { useState } from "react";
-import { CreateGenre } from "../../interfaces";
-import { createNewGenre } from "../../redux/actions/products_action";
+import { CreatePlatform } from "../../interfaces";
+import { createNewPlatform } from "../../redux/actions/products_action";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
-interface GenreValidate {
-    genre: string;
+interface PlatformValidate {
+    platform: string;
 }
-export const FormGenre = () => {
+export const FormPlatform = () => {
     const dispatch = useDispatch();
-    const [input, setInput] = useState<CreateGenre>({
-        genre: ''
+    const [input, setInput] = useState<CreatePlatform>({
+        platform: ''
     })
     const [error, setError] = useState<any>({
-        genre: ''
+        Platform: ''
     })
 
     function handleChange(e: React.FormEvent<HTMLInputElement>) {
@@ -30,33 +30,33 @@ export const FormGenre = () => {
     function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
         // console.log(input)
-        if (input.genre === '') {
+        if (input.platform === '') {
             e.preventDefault()
             alert("Please complete the required field")
         } else {
-            dispatch(createNewGenre(input));
-            alert("Genre succesfully created");
+            dispatch(createNewPlatform(input));
+            alert("Platform succesfully created");
             setInput({
-                genre: ''
+                platform: ''
             });
             // history.push('/home');
         }
     }
 
-    const validate = (input: GenreValidate) => {
+    const validate = (input: PlatformValidate) => {
         let error = {
-            genres: "",
+            platform: "",
 
         }
 
-        if (!input.genre) {
-            error.genres = "Genre name is required";
-        } else if (input.genre.length < 3) {
-            error.genres = "Genre name is too short";
-        } else if (input.genre.length > 15) {
-            error.genres = "Genre name is too long";
-        } else if (!/(?=.*)/.test(input.genre)) {
-            error.genres = "Genre name must be alphanumeric";
+        if (!input.platform) {
+            error.platform = "Genre name is required";
+        } else if (input.platform.length < 3) {
+            error.platform = "Genre name is too short";
+        } else if (input.platform.length > 15) {
+            error.platform = "Genre name is too long";
+        } else if (!/(?=.*)/.test(input.platform)) {
+            error.platform = "Genre name must be alphanumeric";
         }
 
         return error;
@@ -67,13 +67,14 @@ export const FormGenre = () => {
             <Link to="/admin">
                 <button>Back</button>
             </Link>
-            <h1>Create a new genre</h1>
+
+            <h1>Create a new platform</h1>
             <form style={{ display: 'flex', flexDirection: 'column', width: '50%', margin: '0 auto' }} onSubmit={(e) => handleSubmit(e)}>
-                <label htmlFor="name_product">Genre's name</label>
+                <label htmlFor="name_product">Platform's name</label>
                 <input
                     onChange={(e) => handleChange(e)}
-                    name="genre"
-                    placeholder="Introduce a name for your new genre..."
+                    name="platform"
+                    placeholder="Introduce a name for your new Platform..."
                 />
 
                 {error.genre && (<div>{error.genre}</div>)}
