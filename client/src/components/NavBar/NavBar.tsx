@@ -1,9 +1,10 @@
 import React from "react";
 import { StyledNavBar } from "./StyledNavBar";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { SearchBar } from "../index";
 import { useDispatch } from "react-redux";
 import { getAllProducts } from "../../redux/actions/products_action";
+import { Title } from "../index";
 
 import "nes.css/css/nes.min.css";
 
@@ -16,13 +17,13 @@ const NavBar = ({ setPage }: any) => {
 
   return (
     <StyledNavBar>
-      <NavLink to="/home" onClick={homeOnClick}>
-        <button className="nes-btn is-primary">Home</button>
-      </NavLink>
+      <Link to="/home" onClick={homeOnClick}>
+        <Title/>
+      </Link>
       <SearchBar setPage={setPage} />
-      <NavLink to="/cart">
+      <Link to="/cart">
         <button className="nes-btn is-primary">Cart</button>
-      </NavLink>
+      </Link>
     </StyledNavBar>
   );
 };

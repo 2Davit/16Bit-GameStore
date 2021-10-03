@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const StyledCatalog = styled.div`
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
   gap: 2em;
   min-height: 700px;
