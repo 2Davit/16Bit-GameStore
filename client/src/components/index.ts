@@ -7,3 +7,6 @@ export { default as SearchBar } from './SearchBar/SearchBar';
 export { default as ButtonTheme } from './ButtonTheme/ButtonTheme';
 export { default as Carousel } from './Carousel/Carousel';
 export { default as Mini } from './ProductCard/Mini';
+export { default as Title } from './Title/Title';
+export { default as MarioLoading} from './MarioLoading/MarioLoading';
+
