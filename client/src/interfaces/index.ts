@@ -104,3 +104,14 @@ export interface AdminProduct {
     name_genre: Array<Genre>;
     name_platform: Array<Platform>;
 }
+export interface EditProduct {
+    id?: number;
+    name: string;
+    price: number;
+    description: string;
+    image: Array<string>;
+    stock: boolean;
+    released: number;
+    genre: any;
+    platform: any;
+}

@@ -8,3 +8,4 @@ export const GET_PRODUCT_ON_SALE: string = "GET_PRODUCT_ON_SALE";
 export const CREATE_NEW_PRODUCT: string = "CREATE_NEW_PRODUCT";
 export const REMOVE_ITEM_CART: string = "REMOVE_ITEM_CART";
 export const REST_ITEM_CART: string = "REST_ITEM_CART";
+export const EDIT_PRODUCT: string = "EDIT_PRODUCT"
