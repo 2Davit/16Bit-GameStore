@@ -1,6 +1,6 @@
 
 import axios from "axios";
-import { Product, ProductCreate } from "../../interfaces";
+import { Product, ProductCreate, GenreCreate, Genre, Platform, PlatformCreate } from "../../interfaces";
 import {
   GET_ALL_PRODUCTS,
   GET_PRODUCT_DETAIL,
@@ -16,6 +16,14 @@ import { Dispatch } from "redux";
 interface AllProducts {
   type: string;
   payload: Array<Product> | Product;
+}
+interface Platforms {
+  type: string;
+  payload: Array<Platform> | Platform;
+}
+interface Genres {
+  type: string;
+  payload: Array<Genre> | Genre;
 }
 
 
@@ -90,4 +98,15 @@ export const createVideogame =(payload: ProductCreate) => {
         return data;
     }
 }
-
+export const createGenre =(payload: Genres) => {
+  return async function (dispatch: Dispatch<Name>) {
+      const data = await axios.post("http://localhost:3001/videogames/OneGame", payload);
+      return data;
+  }
+}
+export const createPlatform =(payload: Platforms) => {
+  return async function (dispatch: Dispatch<Name>) {
+      const data = await axios.post("http://localhost:3001/videogames/OneGame", payload);
+      return data;
+  }
+}

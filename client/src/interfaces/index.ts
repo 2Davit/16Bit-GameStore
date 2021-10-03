@@ -1,10 +1,16 @@
 export interface Platform {
     name_platform: string
   }
+export interface PlatformCreate{
+    platforms: Array<Platform>
+}
   
-  interface Genre {
+export interface Genre {
     name_genre: string
   }
+export interface GenreCreate{
+    genres: Array<Genre>
+}
 
 
 export interface Product {
