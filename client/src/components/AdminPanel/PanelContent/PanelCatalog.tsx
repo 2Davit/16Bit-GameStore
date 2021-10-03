@@ -1,6 +1,8 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { editProduct } from "../../../redux/actions/admin_actions";
+import { EditProduct } from "../../../interfaces";
 import style from "../Styles/PanelCatalog.module.css";
 
 interface Props {
@@ -34,23 +36,25 @@ const PanelCatalog: FC<Props> = ({
     1986, 1987, 1988, 1989, 1990, 1991, 1992, 1993, 1994, 1995, 1996, 1997,
     1998, 1999, 2000,
   ];
-  const [input, setInput] = useState({
+  const [input, setInput] = useState<EditProduct>({
+    id,
     name,
     price,
-    image,
-    id,
-    stock,
     description,
+    image: [],
+    stock,
     released,
-    platform,
     genre,
+    platform,
   });
+  const dispatch = useDispatch();
 
   function handleEdit() {
     setCond(!cond);
   }
   function handleSave(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    dispatch(editProduct(input));
     alert("Cambio realizado con éxito.");
   }
   function handleChangeName(e: React.FormEvent<HTMLInputElement>) {
@@ -261,7 +265,7 @@ const PanelCatalog: FC<Props> = ({
         >
           <div>
             <button onClick={handleEdit}>EDIT INFO</button>
-            <button onClick={(e:any) => handleSave(e)}>SAVE</button>
+            <button onClick={(e: any) => handleSave(e)}>SAVE</button>
           </div>
         </div>
       </div>
