@@ -17,3 +17,7 @@
     width: 50%;
     margin-left: 20px;
 }
+
+.btnContainer{
+    display: flex;
+}

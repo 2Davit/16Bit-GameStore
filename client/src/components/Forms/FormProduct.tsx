@@ -246,6 +246,7 @@ const FormProduct = () => {
           <button>Back</button>
         </Link>
       </div>
+      <h1>Create a new product</h1>
       <form style={{ display: 'flex', flexDirection: 'column', width: '50%', margin: '0 auto' }} onSubmit={(e) => handleSubmit(e)}>
         <label htmlFor="name_product">Name</label>
         <input
