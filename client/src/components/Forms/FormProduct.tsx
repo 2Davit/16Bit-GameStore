@@ -59,6 +59,14 @@ const FormProduct = () => {
 
   }
 
+  function handleImageDelete(img: string) {
+    setImages(images.filter((image) => image !== img));
+    setInput({
+      ...input,
+      image_product: input.image_product.filter((image) => image !== img),
+    });
+  }
+
   function handleGenreDelete(g: string) {
     setInput({
       ...input,
@@ -292,6 +300,10 @@ const FormProduct = () => {
         <button type="button" onClick={() => handleImage()}>Add</button>
         {error.image_product && (<div>{error.image_product}</div>)}
 
+        {input.image_product && input.image_product.map((img) => (<div>
+          <img src={img} style={{width: '70px', height:'70px'}}/>
+          <span style={{cursor: 'pointer'}} onClick={()=> handleImageDelete(img)}>x</span>
+          </div>))}
 
         <label htmlFor="thumbnail_product">Thumbnail</label>
         <input
