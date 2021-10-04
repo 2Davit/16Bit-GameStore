@@ -2,8 +2,10 @@ const {Router} = require('express')
 
 const router = Router();
 
-const { createNewGenre } = require('../controllers/Genre')
+const { createNewGenre, createBulkGenre } = require('../controllers/Genre')
 
-router.post("/", createNewGenre)
+router.post("/", createBulkGenre)
+router.post("/oneGenre", createNewGenre)
+
 
 module.exports = router;
