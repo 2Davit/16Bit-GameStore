@@ -16,7 +16,8 @@ const Carousel: FC<Props> = ({ products }) => {
 
     const [disable, setDisable] = useState<boolean>(false);
 
-    if (products.length > 1 && !disable) {
+    
+    if (products.length > 1 && !disable) {       
         setTimeout(() => {
             if (index === (products.length -1)) setIndex(0);
             else setIndex(index + 1);

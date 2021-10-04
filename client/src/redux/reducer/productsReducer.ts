@@ -39,6 +39,8 @@ export function productsReducer(
       };
 
     case GET_NAME_PRODUCT:
+      
+      
       return {
         ...state,
         totalProducts: payload,

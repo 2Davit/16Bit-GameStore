@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getNameProduct } from "../../redux/actions/products_action";
+import { BtnSearch } from './SearchBar.style'
 
 const SearchBar = ({ setPage }: any) => {
   const [display, setDisplay] = useState(false);
@@ -16,18 +17,33 @@ const SearchBar = ({ setPage }: any) => {
     setName("");
     setPage(1);
   };
+  
+
+
+  const handleKeyDown  = (e: React.KeyboardEvent<HTMLDivElement>) : void => {
+    if (e.key === 'Enter' && name.length > 0) {
+      e.preventDefault();
+      dispatch(getNameProduct(name));
+      setName("");
+      setPage(1);
+    }
+  } 
 
   return (
     <div>
-      <input
-        type="text"
-        placeholder="find videogame..."
-        value={name}
-        onChange={(e) => handleInputChange(e)}
-        onClick={() => setDisplay(!display)}
-      />
-
-      <button onClick={() => handleSubmit()}>Search</button>
+        <input
+          type="text"
+          placeholder="find videogame..."
+          value={name}
+          onChange={(e) => handleInputChange(e)}
+          onClick={() => setDisplay(!display)}
+          onKeyDown={handleKeyDown }
+        />
+        {
+          name.length === 0 ?
+          <BtnSearch disabled onClick={() => handleSubmit()} >Search</BtnSearch> :
+          <BtnSearch  onClick={() => handleSubmit()} >Search</BtnSearch> 
+        }
     </div>
   );
 };
