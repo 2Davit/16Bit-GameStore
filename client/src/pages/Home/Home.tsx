@@ -34,7 +34,7 @@ const Home: FC = () => {
 
   useEffect(() => {
     dispatch(getAllProducts());
-    dispatch(onSaleFilter());
+    dispatch(onSaleFilter('carousel'));
   }, [dispatch]);
 
   // function handleOnSaleFilter() {
