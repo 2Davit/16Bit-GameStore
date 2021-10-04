@@ -5,9 +5,10 @@ import BigCloseButton from "../../assets/img/svg/close-transparent.svg";
 import { Btn, Hr } from "../../GlobalStyles/GlobalStyles";
 import { Link } from "react-router-dom";
 import { Mini } from "../../components/index";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Store } from "../../redux/reducer/";
 import { ProductInCart } from "../../interfaces";
+import { clearCart } from "../../redux/actions/cart_actions";
 
 interface CartSideBarProps {
   // no borrar, se va a usar!!
@@ -17,6 +18,7 @@ interface CartSideBarProps {
 } //pasarle las props a un functional component
 
 const CartSideBar: FC<CartSideBarProps> = () => {
+  const dispatch = useDispatch();
   const cartList: any = useSelector(
     (state: Store) => state.cartReducer.cart.list
   );
@@ -52,7 +54,9 @@ const CartSideBar: FC<CartSideBarProps> = () => {
           <Link to="/order">
             <Btn className="btn btn-card">Checkout</Btn>
           </Link>
-          <Btn className="btn btn-sec">Clear Cart</Btn>
+          <Btn className="btn btn-sec" onClick={() => dispatch(clearCart())}>
+            Clear Cart
+          </Btn>
         </div>
       </div>
     </StyledCartSideBar>

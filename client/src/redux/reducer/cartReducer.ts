@@ -1,4 +1,4 @@
-import { ADD_ITEM_CART, REMOVE_ITEM_CART,REST_ITEM_CART } from "../types";
+import { ADD_ITEM_CART, REMOVE_ITEM_CART,REST_ITEM_CART, CLEAR_CART } from "../types";
 import { ProductInCart } from "../../interfaces";
 import { CartState } from "../../interfaces";
 
@@ -22,7 +22,7 @@ export const cartReducer = (state: CartState = initialState, action: any) => {
             ...state.cart,
             list: state.cart.list.map((prod: ProductInCart) => {
               if (prod.id_product === action.payload.id_product) {
-                prod.quantity +=1;
+                prod.quantity += action.payload.quantity;
               }
               return prod;
             }),
@@ -35,6 +35,15 @@ export const cartReducer = (state: CartState = initialState, action: any) => {
           list: [...state.cart.list, action.payload],
         },
       };
+
+      case CLEAR_CART:
+			return {
+				...state,
+				cart: {
+					...state.cart,
+					list: [],				
+				}
+			}
 
     case REST_ITEM_CART:
       return {
