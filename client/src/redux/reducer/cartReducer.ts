@@ -1,4 +1,4 @@
-import { ADD_ITEM_CART, REMOVE_ITEM_CART,REST_ITEM_CART } from "../types";
+import { ADD_ITEM_CART, REMOVE_ITEM_CART,REST_ITEM_CART, CLEAR_CART } from "../types";
 import { ProductInCart } from "../../interfaces";
 import { CartState } from "../../interfaces";
 
@@ -35,6 +35,15 @@ export const cartReducer = (state: CartState = initialState, action: any) => {
           list: [...state.cart.list, action.payload],
         },
       };
+
+      case CLEAR_CART:
+			return {
+				...state,
+				cart: {
+					...state.cart,
+					list: [],				
+				}
+			}
 
     case REST_ITEM_CART:
       return {
