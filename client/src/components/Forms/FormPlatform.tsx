@@ -50,17 +50,17 @@ export const FormPlatform = () => {
         }
 
         if (!input.platform) {
-            error.platform = "Genre name is required";
+            error.platform = "Platform name is required";
         } else if (input.platform.length < 3) {
-            error.platform = "Genre name is too short";
+            error.platform = "Platform name is too short";
         } else if (input.platform.length > 15) {
-            error.platform = "Genre name is too long";
-        } else if (!/(?=.*)/.test(input.platform)) {
-            error.platform = "Genre name must be alphanumeric";
-        }
+            error.platform = "Platform name is too long";
+        } 
 
         return error;
     }
+
+    let disabledBtn = !(input.platform?.length > 0 && error.platform.length === 0);
 
     return (
         <div>
@@ -77,9 +77,9 @@ export const FormPlatform = () => {
                     placeholder="Introduce a name for your new Platform..."
                 />
 
-                {error.genre && (<div>{error.genre}</div>)}
+                {error.platform && (<div style={{color: 'red'}}>{error.platform}</div>)}
 
-                <button type="submit">Create</button>
+                <button type="submit" disabled={disabledBtn}>Create</button>
             </form>
 
         </div>

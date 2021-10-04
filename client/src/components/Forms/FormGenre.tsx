@@ -62,6 +62,8 @@ export const FormGenre = () => {
         return error;
     }
 
+    let disabledBtn = !(input.genre?.length > 0 && error.genres.length === 0);
+
     return (
         <div>
             <Link to="/admin">
@@ -76,9 +78,9 @@ export const FormGenre = () => {
                     placeholder="Introduce a name for your new genre..."
                 />
 
-                {error.genre && (<div>{error.genre}</div>)}
+                {error.genres && (<div style={{color: 'red'}}>{error.genres}</div>)}
 
-                <button type="submit">Create</button>
+                <button type="submit" disabled={disabledBtn}>Create</button>
             </form>
 
         </div>

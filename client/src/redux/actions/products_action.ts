@@ -95,13 +95,13 @@ export const createVideogame =(payload: ProductCreate) => {
 }
 export const createNewGenre =(payload: CreateGenre) => {
   return async function (dispatch: Dispatch<Name>) {
-      const data = await axios.post("http://localhost:3001/genres", payload);
+      const data = await axios.post("http://localhost:3001/genres/oneGenre", payload);
       return data;
   }
 }
 export const createNewPlatform =(payload: CreatePlatform) => {
   return async function (dispatch: Dispatch<Name>) {
-      const data = await axios.post("http://localhost:3001/platforms", payload);
+      const data = await axios.post("http://localhost:3001/platforms/onePlatform", payload);
       return data;
   }
 }

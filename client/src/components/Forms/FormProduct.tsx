@@ -25,7 +25,6 @@ const FormProduct = () => {
     genres: "",
     platforms: "",
   })
-
   const [input, setInput] = useState<ProductCreate>({
     name_product: "",
     price_product: 0,
@@ -38,13 +37,20 @@ const FormProduct = () => {
     genres: [],
     platforms: [],
   });
+  // console.log(input)
 
-  const handleImage = (e: React.MouseEvent<HTMLElement>) => {
-    e.preventDefault();
+  const handleImage = () => {
     setImages([...images, info.url]);
+    setInput((prevState: any) => ({
+      ...prevState,
+      image_product: [...images, info.url]
+    }))
     setInfo({ url: "" });
+
+    alert('has añadido una imagen')
+
   };
-  
+
   function handleInfoChange(e: React.FormEvent<HTMLInputElement>) {
     setInfo({
       ...info,
@@ -241,11 +247,11 @@ const FormProduct = () => {
 
   return (
     <div>
-      <div>
+
         <Link to="/admin">
           <button>Back</button>
         </Link>
-      </div>
+
       <h1>Create a new product</h1>
       <form style={{ display: 'flex', flexDirection: 'column', width: '50%', margin: '0 auto' }} onSubmit={(e) => handleSubmit(e)}>
         <label htmlFor="name_product">Name</label>
@@ -283,7 +289,7 @@ const FormProduct = () => {
           name="image_product"
           placeholder="Add Images..."
         />
-        <button type="button" onClick={(e) => handleImage(e)}>Add</button>
+        <button type="button" onClick={() => handleImage()}>Add</button>
         {error.image_product && (<div>{error.image_product}</div>)}
 
 

@@ -26,8 +26,6 @@ const App: FC = () => {
           <Route exact path="/createUser" component={FormUser} />
           <Route exact path="/createGenre" component={FormGenre} />
           <Route exact path="/createPlatform" component={FormPlatform} />
-
-
           <Route path="*" component={NotFound} />
         </Switch>
       </Router>

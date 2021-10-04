@@ -2,8 +2,10 @@ const {Router} = require('express')
 
 const router = Router();
 
-const { createNewPlatform  } = require('../controllers/Platform')
+const { createNewPlatform, createBulkPlatform } = require('../controllers/Platform')
 
-router.post("/", createNewPlatform)
+router.post("/", createBulkPlatform)
+router.post("/onePlatform", createNewPlatform)
+
 
 module.exports = router;
