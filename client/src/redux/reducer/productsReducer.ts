@@ -76,10 +76,20 @@ export function productsReducer(
       };
 
       case GET_PRODUCT_ON_SALE:
-        return {
-          ...state,
-          onSaleProducts: payload,
-        };
+        
+        if (payload.place === 'carousel') {
+          return {
+            ...state,
+            onSaleProducts: payload.data,
+          };
+        }
+        else {
+          return {
+            ...state,
+            totalProducts: payload.data,
+          };
+        }
+        
 
 
     default:

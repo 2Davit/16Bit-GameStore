@@ -73,12 +73,15 @@ export const doubleFilter = function (payload: any) {
 };
 
 
-export const onSaleFilter = () => {
+export const onSaleFilter = (place: string) => {
     return async (dispatch: Dispatch<Detail>): Promise<any> => {
       var json = await axios.get(`http://localhost:3001/videogames/Onsale`);
       return dispatch({
         type: GET_PRODUCT_ON_SALE,
-        payload: json.data,
+        payload: {
+          data: json.data,
+          place
+        }
       });
     };
   }
