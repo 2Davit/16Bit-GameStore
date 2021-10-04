@@ -73,12 +73,15 @@ export const doubleFilter = function (payload: any) {
 };
 
 
-export const onSaleFilter = () => {
+export const onSaleFilter = (place: string) => {
     return async (dispatch: Dispatch<Detail>): Promise<any> => {
       var json = await axios.get(`http://localhost:3001/videogames/Onsale`);
       return dispatch({
         type: GET_PRODUCT_ON_SALE,
-        payload: json.data,
+        payload: {
+          data: json.data,
+          place
+        }
       });
     };
   }
@@ -92,13 +95,13 @@ export const createVideogame =(payload: ProductCreate) => {
 }
 export const createNewGenre =(payload: CreateGenre) => {
   return async function (dispatch: Dispatch<Name>) {
-      const data = await axios.post("http://localhost:3001/genres", payload);
+      const data = await axios.post("http://localhost:3001/genres/oneGenre", payload);
       return data;
   }
 }
 export const createNewPlatform =(payload: CreatePlatform) => {
   return async function (dispatch: Dispatch<Name>) {
-      const data = await axios.post("http://localhost:3001/platforms", payload);
+      const data = await axios.post("http://localhost:3001/platforms/onePlatform", payload);
       return data;
   }
 }

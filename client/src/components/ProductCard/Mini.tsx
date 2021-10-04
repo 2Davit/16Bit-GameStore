@@ -13,7 +13,9 @@ const Mini = ({ detail }: any) => {
   const handleQuantityChange = (amount: number) => {
     const newValue = detail.quantity + amount;
     if (newValue >= 1 && newValue <= 99) {
-      dispatch(addItemCart(detail));
+      let gameToDispatch = { ...detail };
+      gameToDispatch.quantity = amount;
+      dispatch(addItemCart(gameToDispatch));
     }
   };
 
@@ -42,7 +44,7 @@ const Mini = ({ detail }: any) => {
           <span>Unit(s)</span>
           <QuantityButton
             className="quantitybutton-small"
-            onClick={() => handleQuantityChange(+1)}
+            onClick={() => handleQuantityChange(1)}
           >
             +
           </QuantityButton>

@@ -33,7 +33,7 @@ const Filter = ({ setPage }: any) => {
   }
 
   const handleOnSaleFilter = () => {
-    dispatch(onSaleFilter());
+    dispatch(onSaleFilter('filter'));
     setShow(!show);
   };
 

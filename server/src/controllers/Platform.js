@@ -1,7 +1,7 @@
 const {  Platform } = require('../db')
 const axios = require('axios')
 
-async function createNewPlatform(req,res){
+async function createBulkPlatform(req,res){
     try{
       await Platform.bulkCreate(req.body)
     res.status(200).json('Plataforma creada con exito');
@@ -9,8 +9,18 @@ async function createNewPlatform(req,res){
       console.log(err)
     }
   }
+  async function createNewPlatform(req, res, next) {
+    try {
+      let {platform} = req.body;
+      await Platform.findOrCreate({where: {name_platform: platform}})
+      res.status(200).json('Genero creado con exito');
+    } catch (err) {
+      console.log(err)
+    }
+  };
 
   module.exports = {
-    createNewPlatform
+    createNewPlatform,
+    createBulkPlatform
   }
   
