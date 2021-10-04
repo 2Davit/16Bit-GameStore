@@ -48,7 +48,7 @@ const Detail: FC = () => {
     toast.success(
       `${detailProduct.name_product} x${quantity} was added to your cart! 👾`,
       {
-        position: "bottom-right",
+        position: "bottom-left",
         autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,

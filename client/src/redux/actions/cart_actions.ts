@@ -1,5 +1,5 @@
 import { ProductInCart } from "../../interfaces";
-import { ADD_ITEM_CART, REMOVE_ITEM_CART, REST_ITEM_CART } from "../types";
+import { ADD_ITEM_CART, REMOVE_ITEM_CART, REST_ITEM_CART, CLEAR_CART } from "../types";
 
 export const addItemCart = (payload: ProductInCart) => {
   return {
@@ -21,4 +21,9 @@ export const removeItemCart =(payload:number)=>{
         payload:payload
     }
 
+}
+export const clearCart = () => {
+  return {
+type: CLEAR_CART
+}
 }

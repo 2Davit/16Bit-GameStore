@@ -16,7 +16,7 @@ const ProductCard = ({ game }: any) => {
     gameToDispatch.quantity = 1;
     dispatch(addItemCart(gameToDispatch));
     toast.success(`${game.name_product} was added to your cart! 👾`, {
-      position: "bottom-right",
+      position: "bottom-left",
       autoClose: 3000,
       hideProgressBar: false,
       closeOnClick: true,
