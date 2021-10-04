@@ -20,8 +20,20 @@ async function createNewGenre(req, res, next) {
   }
 };
 
+async function getAllGenre(req, res, next) {
+  try {
+    const allGenres = await Genre.findAll()
+    const cleanGenres = allGenres.map(el => el.name_genre)
+    
+    res.status(200).send(cleanGenres);
+  } catch (err) {
+    res.status(404).send(err);
+  }
+};
+
 
 module.exports = {
   createNewGenre,
-  createBulkGenre
+  createBulkGenre,
+  getAllGenre
 }

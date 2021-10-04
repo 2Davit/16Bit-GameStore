@@ -21,7 +21,7 @@ const SearchBar = ({ setPage }: any) => {
 
 
   const handleKeyDown  = (e: React.KeyboardEvent<HTMLDivElement>) : void => {
-    if (e.key === 'Enter') {
+    if (e.key === 'Enter' && name.length > 0) {
       e.preventDefault();
       dispatch(getNameProduct(name));
       setName("");
@@ -37,7 +37,7 @@ const SearchBar = ({ setPage }: any) => {
           value={name}
           onChange={(e) => handleInputChange(e)}
           onClick={() => setDisplay(!display)}
-          onKeyDown={handleKeyDown}
+          onKeyDown={handleKeyDown }
         />
         {
           name.length === 0 ?
