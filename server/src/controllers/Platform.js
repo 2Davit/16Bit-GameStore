@@ -13,9 +13,9 @@ async function createBulkPlatform(req,res){
     try {
       let {platform} = req.body;
       await Platform.findOrCreate({where: {name_platform: platform}})
-      res.status(200).json('Genero creado con exito');
+      res.status(200).json('Plataforma creado con exito');
     } catch (err) {
-      console.log(err)
+      res.status(404).send('Error en: ', err)
     }
   };
 

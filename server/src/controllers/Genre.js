@@ -16,7 +16,7 @@ async function createNewGenre(req, res, next) {
     await Genre.findOrCreate({where: {name_genre: genre}})
     res.status(200).json('Genero creado con exito');
   } catch (err) {
-    console.log(err)
+    res.status(404).send('Error en: ', err)
   }
 };
 
