@@ -5,6 +5,8 @@ import PanelCatalog from "../PanelCatalog/PanelCatalog"
 
 interface Props {
   totalProducts: any;
+  totalGenres: any;
+  totalPlatforms: any;
 }
 
 const MainContent: FC<Props> = ({ totalProducts }) => {

@@ -1,6 +1,7 @@
 import React, { FC, useState } from "react";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { Store } from "../../redux/reducer/";
 import { editProduct } from "../../redux/actions/admin_actions";
 import { EditProduct } from "../../interfaces";
 import style from "./PanelCatalog.module.css";
@@ -15,7 +16,7 @@ interface Props {
   stock: boolean;
   genre: any;
   platform: any;
-  thumbnail: string,
+  thumbnail: string;
 }
 
 const PanelCatalog: FC<Props> = ({
@@ -51,6 +52,12 @@ const PanelCatalog: FC<Props> = ({
     thumbnail,
   });
   const dispatch = useDispatch();
+  const totalGenres = useSelector(
+    (state: Store) => state.productsReducer.genres
+  );
+  const totalPlatforms = useSelector(
+    (state: Store) => state.productsReducer.platforms
+  );
 
   function handleEdit() {
     setCond(!cond);
@@ -211,17 +218,11 @@ const PanelCatalog: FC<Props> = ({
           <div style={{ display: "flex", alignItems: "flex-start" }}>
             <label>Genres:</label>
             <select name="genre" onChange={(e: any) => handleAddGenre(e)}>
-              <option value="action">Action</option>
-              <option value="shooter">Shooter</option>
-              <option value="racing">Racing</option>
-              <option value="fighting">Fighting</option>
-              <option value="sports">Sports</option>
-              <option value="arcade">Arcade</option>
-              <option value="adventure">Adventure</option>
-              <option value="platform">Platform</option>
-              <option value="puzzle">Puzzle</option>
-              <option value="strategy">Strategy</option>
-              <option value="rpg">RPG</option>
+              {totalGenres.map((index: any) => (
+                <option value={index} key={index}>
+                  {index}
+                </option>
+              ))}
             </select>
             <div style={{ display: "flex", height: "2vw" }}>
               {input.genre.length > 0 ? (
@@ -244,12 +245,11 @@ const PanelCatalog: FC<Props> = ({
           <div style={{ display: "flex", height: "2vw" }}>
             <label>Platforms:</label>
             <select name="platform" onChange={(e: any) => handleAddPlatform(e)}>
-              <option>gba</option>
-              <option>nes</option>
-              <option>arcade</option>
-              <option>sega</option>
-              <option>snes</option>
-              <option>a2600</option>
+              {totalPlatforms.map((index: any) => (
+                <option value={index} key={index}>
+                  {index}
+                </option>
+              ))}
             </select>
             {input.platform.length > 0 ? (
               input.platform.map((index: any) => (
