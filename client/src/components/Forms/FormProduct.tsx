@@ -73,12 +73,12 @@ const FormProduct = () => {
       genres: input.genres.filter((genre) => genre !== g),
     });
   }
-  function handleImageDelete(img: string) {
+/*   function handleImageDelete(img: string) {
     setInput({
       ...input,
       image_product: input.image_product.filter((image) => image !== img),
     });
-  }
+  } */
 
   function handlePlatformDelete(p: string) {
     setInput({
@@ -308,7 +308,7 @@ const FormProduct = () => {
 
         {input.image_product && input.image_product.map((img) => (<div>
           <img src={img} style={{width: '70px', height:'70px'}}/>
-          <span style={{cursor: 'pointer'}} onClick={()=> handleImageDelete(img)}>x</span>
+          <span style={{cursor: 'pointer'}} /* onClick={()=> handleImageDelete(img)} */>x</span>
           </div>))}
 
         <label htmlFor="thumbnail_product">Thumbnail</label>

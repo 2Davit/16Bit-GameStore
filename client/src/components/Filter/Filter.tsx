@@ -33,13 +33,19 @@ const Filter = ({ setPage }: any) => {
   }
 
   const handleOnSaleFilter = () => {
-    dispatch(onSaleFilter('filter'));
+    dispatch(onSaleFilter("filter"));
     setShow(!show);
   };
 
   const handleAll = () => {
     dispatch(getAllProducts());
     setShow(!show);
+  };
+
+  const handleReset = () => {
+    dispatch(getAllProducts());
+    (document.getElementById("filterPlatform") as HTMLInputElement).value = "";
+    (document.getElementById("filterGenre") as HTMLInputElement).value = "";
   };
 
   return (
@@ -87,6 +93,9 @@ const Filter = ({ setPage }: any) => {
         ) : (
           <button onClick={handleAll}>getall</button>
         )}
+      </section>
+      <section style={{}}>
+        <button onClick={handleReset}>Reset filters</button>
       </section>
     </div>
   );
