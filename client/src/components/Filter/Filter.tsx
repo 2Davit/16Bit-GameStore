@@ -52,6 +52,7 @@ const Filter: FC<Props> = ({ setPage }) => {
     dispatch(getAllProducts());
     (document.getElementById("filterPlatform") as HTMLInputElement).value = "";
     (document.getElementById("filterGenre") as HTMLInputElement).value = "";
+    setPage(1);
   };
 
   return (
@@ -97,6 +98,12 @@ const Filter: FC<Props> = ({ setPage }) => {
             Get All
           </button>
         )}
+      </section>
+      <section>
+      <h5>Remove Filters</h5>
+        <button className="nes-btn is-primary" onClick={handleReset}>
+          Remove
+        </button>
       </section>
     </StyledFilter>
 
