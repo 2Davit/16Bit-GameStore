@@ -4,7 +4,6 @@ export const StyledAbout = styled.div`
   min-height: 60vh;
   line-height: 1.5;
   text-align: center;
-  height: 100vh;
   margin-top: 4rem;
 
   h2 {
