@@ -1,12 +1,11 @@
-import React, { useEffect, FC, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getAllProducts,
   onSaleFilter,
 } from "../../redux/actions/products_action";
-import { NavBar, Paginate, Filter, Catalog, Carousel } from "../../components";
+import { Paginate, Filter, Catalog, Carousel } from "../../components";
 import { Store } from "../../redux/reducer/";
-import { Product } from "../../interfaces";
 import { ContainerHome } from "./Home.style";
 
 const Home = ({ setPage, currentProducts, productsPerPage, pages }: any) => {

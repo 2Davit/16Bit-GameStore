@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const StyledProductCard = styled.article`
-	/* font-family: 'Press Start 2P'; */
 	font-size: 0.8em;
 	border: 3px solid #51A5FE;
 	width: 260px;
@@ -37,7 +36,7 @@ export const StyledProductCard = styled.article`
 		height: 100%;
 		object-fit: cover;
 		object-position: top center;
-		transition: filter 0.5s ease;
+		transition: filter 0.5s ease;	
 	}
 
 	&:hover .card__img {
@@ -54,15 +53,12 @@ export const StyledProductCard = styled.article`
 
 	.card__title {
 		font-size: 1.2em;
-		color: #fff !important;
-		font-weight: 900;
+		font-weight: 200;
 
 	}
 
 	.card__price {
-		font-size: 1.2em;
-		font-weight: 900;
-		position: relative;
+		font-size: 1.2em;		
 	}
 
 	.card__price::before {
@@ -80,12 +76,12 @@ export const StyledProductCard = styled.article`
 		margin-bottom: .5em;
 		z-index: 100;
 		min-width: 200px;
+		&:focus{
+			outline:none;
+		}
 	}
 	
-	.card__noStock {
-		margin-top: auto;
-		margin-bottom: .5em;
-	}
+	
 
 `;
 

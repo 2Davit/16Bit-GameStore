@@ -4,15 +4,6 @@ const StyledFooter = styled.footer`
   background-color: #1b1a1f;
   padding: 3em 0;
   text-align: center;
-  color: #fff;
-  margin-top: auto;
-  position: relative;
-  width: 100%;
-  bottom: -12em;
-
-  .about__us {
-    display: none;
-  }
 
   a {
     color: #51a5fe;
@@ -43,7 +34,7 @@ const StyledFooter = styled.footer`
   }
 
   p {
-    max-width: 600px;
+    max-width: 60%;
     margin: 2.5em auto 0;
     padding-top: 2em;
     font-size: 0.8em;
@@ -53,14 +44,11 @@ const StyledFooter = styled.footer`
 
     &::before {
       content: "";
-      width: 150px;
-      display: block;
-      margin: 0 auto;
+      width: 250px;
       border-top: 1px solid #333;
       position: absolute;
       top: 0;
-      left: 50%;
-      transform: translateX(-50%);
+      left: 35%;
     }
   }
 

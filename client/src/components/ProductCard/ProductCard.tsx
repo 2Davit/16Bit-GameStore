@@ -7,9 +7,14 @@ import { StyledSVG, Btn } from "../../GlobalStyles/GlobalStyles";
 import { StyledProductCard } from "./StyledProductCard";
 import cart from "../../assets/img/svg/cart.svg";
 import { toast } from "react-toastify";
+import { animateScroll } from "react-scroll";
 
 const ProductCard = ({ game }: any) => {
   const dispatch = useDispatch();
+
+  const handleOpenClick = (ev: any) => {
+    animateScroll.scrollTo(250, { duration: 300 });
+  };
 
   const handleClick = () => {
     let gameToDispatch = { ...game };
@@ -48,7 +53,11 @@ const ProductCard = ({ game }: any) => {
           <StyledSVG src={cart} />
         </Btn>
       </div>
-      <Link to={`/game/${game.id_product}`} className="card__link">
+      <Link
+        to={`/game/${game.id_product}`}
+        className="card__link"
+        onClick={handleOpenClick}
+      >
         Click to see the product
       </Link>
     </StyledProductCard>

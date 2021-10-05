@@ -3,7 +3,7 @@ import SVG from "react-inlinesvg";
 
 export const GameDetail = styled.section`
   display: flex;
-  margin: 1rem 8rem;
+  margin: 5rem 4rem;
 
   @media (max-width: 1000px) {
     flex-direction: column;

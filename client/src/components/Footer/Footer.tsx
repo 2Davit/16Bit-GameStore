@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import StyledFooter from "./StyledFooter";
-import { StyledSVG } from "../../GlobalStyles/GlobalStyles";
 import { animateScroll } from "react-scroll";
 import { Title } from "../index";
 

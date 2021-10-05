@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { SearchBar } from "../index";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProducts } from "../../redux/actions/products_action";
-import { StyledSVG, Dropdown } from "../../GlobalStyles/GlobalStyles";
+import { StyledSVG } from "../../GlobalStyles/GlobalStyles";
 import { Title } from "../index";
 import { Store } from "../../redux/reducer";
 import { ProductInCart } from "../../interfaces";
@@ -16,7 +16,7 @@ import userPic from "../../assets/img/svg/user.svg";
 
 import "nes.css/css/nes.min.css";
 
-const NavBar = ({ setPage }: any) => {
+const NavBar = ({ setPage, toggleModal }: any) => {
   const dispatch = useDispatch();
 
   const homeOnClick = () => {
@@ -51,7 +51,7 @@ const NavBar = ({ setPage }: any) => {
             </li>
 
             <li>
-              <Link to="/cart">
+              <button onClick={toggleModal}>
                 <StyledSVG src={cart} />
                 <span>Cart</span>
                 {!!number && (
@@ -59,7 +59,7 @@ const NavBar = ({ setPage }: any) => {
                     {number >= 100 ? "99+" : number}
                   </span>
                 )}
-              </Link>
+              </button>
             </li>
             <li>
               <button>

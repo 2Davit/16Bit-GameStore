@@ -11,5 +11,8 @@ export { default as Title } from './Title/Title';
 export { default as MarioLoading} from './MarioLoading/MarioLoading';
 export { default as Footer} from './Footer/Footer';
 export { default as About} from './About/About';
+export { default as CartSideBar} from './CartSideBar/CartSideBar';
+
+
 
 

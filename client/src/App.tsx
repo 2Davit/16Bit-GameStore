@@ -1,10 +1,9 @@
 import React, { FC, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import {
   Home,
   NotFound,
   Landing,
-  CartSideBar,
   ProductDetail,
   Terms,
   Privacy,
@@ -13,7 +12,7 @@ import {
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { GlobalStyle } from "./GlobalStyles/GlobalStyles";
 import { Theme } from "./Theme";
-import { NavBar, Footer, About } from "./components";
+import { NavBar, Footer, About, CartSideBar } from "./components";
 import FormProduct from "./components/Forms/FormProduct";
 import { FormGenre } from "./components/Forms/FormGenre";
 import { FormPlatform } from "./components/Forms/FormPlatform";
@@ -23,8 +22,10 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Store } from "./redux/reducer";
 import { Product } from "./interfaces";
+import { toggleCart } from "./redux/actions/global_actions";
 
 const App: FC = () => {
+  const dispatch = useDispatch();
   const totalProducts: any = useSelector(
     (state: Store) => state.productsReducer.totalProducts
   );
@@ -42,11 +43,19 @@ const App: FC = () => {
   let currentProducts: Array<Product> = totalProducts.slice(firstIdx, lastIdx); // en la primera página, currentCharacters = countries.slice(0,9)
   ///////////
 
+  const showCart = useSelector((state: Store) => state.globalReducer.showCart);
+  //cart modal ->
+  const toggleModal = () => {
+    dispatch(toggleCart());
+  };
+  // <-
+
   return (
     <Theme /* none="none" */>
       <GlobalStyle />
       <Router>
-        <NavBar setPage={setCurrentPage} />
+        <NavBar setPage={setCurrentPage} toggleModal={toggleModal} />
+        <CartSideBar closeCallback={toggleModal} show={showCart} />
         <Switch>
           <Route exact path="/" component={Landing} />
           <Route exact path="/home">

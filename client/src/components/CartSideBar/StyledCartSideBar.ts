@@ -2,6 +2,17 @@ import styled from 'styled-components';
 import SVG from 'react-inlinesvg';
 
 export const  StyledCartSideBar = styled.div`
+
+.cart__overlay {
+		background-color: rgba(0,0,0,.3);
+		backdrop-filter: blur(2px);
+		position: fixed;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;	
+	}
+
 		.modal {
 		position: fixed;
 		right: 0;
@@ -11,6 +22,7 @@ export const  StyledCartSideBar = styled.div`
 		padding: 4em 2em;
 		overflow: auto;
 		box-shadow: 0 0 50px rgba(0,0,0,0.7);
+		background:#2c2f31 ;
 
 
 		.modal__title{
@@ -60,6 +72,18 @@ export const  StyledCartSideBar = styled.div`
 				
 				}
 			}
+
+			@media (max-width: 800px) {
+			width: 100vw;
+			.modal__buttons{
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+			}
+			.btn{
+				margin: 1em 0 0 0;
+			}
+		}
 		}
 `
 

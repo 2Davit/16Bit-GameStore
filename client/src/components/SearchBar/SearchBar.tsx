@@ -5,7 +5,6 @@ import { FormSearchBar } from "./StyledSearchBar";
 import loupe from "../../assets/img/svg/loupe.svg";
 
 const SearchBar = ({ setPage }: any) => {
-  const [display, setDisplay] = useState(false);
   const [inputText, setinputText] = useState("");
 
   const dispatch = useDispatch();
@@ -14,6 +13,7 @@ const SearchBar = ({ setPage }: any) => {
     setinputText(e.currentTarget.value);
   };
   const handleSubmit = (e: any) => {
+    setPage(1);
     e.preventDefault();
     setinputText("");
     dispatch(getNameProduct(inputText));

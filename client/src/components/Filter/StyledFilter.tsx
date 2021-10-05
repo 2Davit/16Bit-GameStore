@@ -6,6 +6,13 @@ export const StyledFilter = styled.div`
   flex-direction: row;
   justify-content: space-around;
   padding: 1rem;
+
+  h5 {
+    text-align: center;
+  }
+  button {
+    width: 200px;
+  }
 `;
 
 export const SelectStyled = styled.select`
@@ -17,12 +24,11 @@ export const SelectStyled = styled.select`
   padding: 0.5em 3em 0.5em 0.7em;
   -moz-appearance: none;
   -webkit-appearance: none;
-  appearance: none;
   background: url(${arrow}) 95% center no-repeat;
-  background-size: 1.5em;
   margin-left: 1em;
   text-transform: uppercase;
   color: #51a5fe;
+  cursor: inherit;
   &::-ms-expand {
     display: none;
   }

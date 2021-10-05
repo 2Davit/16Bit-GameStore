@@ -80,11 +80,11 @@ const Filter = ({ setPage }: any) => {
 
         {show ? (
           <button className="nes-btn is-primary" onClick={handleOnSaleFilter}>
-            get on sale
+            Get On Sale
           </button>
         ) : (
           <button className="nes-btn is-primary" onClick={handleAll}>
-            getall
+            Get All
           </button>
         )}
       </section>

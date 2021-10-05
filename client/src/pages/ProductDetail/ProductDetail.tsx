@@ -60,13 +60,10 @@ const Detail: FC = () => {
     );
     setQuantity(1);
   };
-
+  console.log(detailProduct);
   return (
     <>
       <GameDetail>
-        <NavLink to="/home" className="btn">
-          <button className="nes-btn is-primary">Home</button>
-        </NavLink>
         <div className="game__img">
           {detailProduct.image_product?.map((e: string, i: number) => (
             <img
@@ -77,7 +74,9 @@ const Detail: FC = () => {
           ))}
         </div>
         <div className="game__info">
-          <h1 className="game__title">{detailProduct.name_product}</h1>
+          <h1 className="game__title">
+            {detailProduct.name_product} ({detailProduct.release_year})
+          </h1>
           <ul className="game__categories">
             {detailProduct.genres?.map((e: Genre, i: number) => (
               <li key={i} className="game__category">

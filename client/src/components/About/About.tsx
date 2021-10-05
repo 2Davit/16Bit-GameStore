@@ -19,10 +19,18 @@ const AboutUs = () => {
               <img alt="profile" src="https://assets.soyhenry.com/logoOG.png" />
             </div>
             <div className="about_social">
-              <a href="https://www.linkedin.com/" target="_blank">
+              <a
+                href="https://www.linkedin.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <i className="fab fa-linkedin-in"></i>
               </a>
-              <a href="https://github.com/" target="_blank">
+              <a
+                href="https://github.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <i className="fab fa-github"></i>
               </a>
             </div>
@@ -33,10 +41,18 @@ const AboutUs = () => {
               <img alt="profile" src="https://assets.soyhenry.com/logoOG.png" />
             </div>
             <div className="about_social">
-              <a href="https://www.linkedin.com/" target="_blank">
+              <a
+                href="https://www.linkedin.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <i className="fab fa-linkedin-in"></i>
               </a>
-              <a href="https://github.com/" target="_blank">
+              <a
+                href="https://github.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <i className="fab fa-github"></i>
               </a>
             </div>
@@ -47,10 +63,18 @@ const AboutUs = () => {
               <img alt="profile" src="https://assets.soyhenry.com/logoOG.png" />
             </div>
             <div className="about_social">
-              <a href="https://www.linkedin.com/" target="_blank">
+              <a
+                href="https://www.linkedin.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <i className="fab fa-linkedin-in"></i>
               </a>
-              <a href="https://github.com/" target="_blank">
+              <a
+                href="https://github.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <i className="fab fa-github"></i>
               </a>
             </div>
@@ -61,10 +85,18 @@ const AboutUs = () => {
               <img alt="profile" src="https://assets.soyhenry.com/logoOG.png" />
             </div>
             <div className="about_social">
-              <a href="https://www.linkedin.com/" target="_blank">
+              <a
+                href="https://www.linkedin.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <i className="fab fa-linkedin-in"></i>
               </a>
-              <a href="https://github.com/" target="_blank">
+              <a
+                href="https://github.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <i className="fab fa-github"></i>
               </a>
             </div>
@@ -75,10 +107,18 @@ const AboutUs = () => {
               <img alt="profile" src="https://assets.soyhenry.com/logoOG.png" />
             </div>
             <div className="about_social">
-              <a href="https://www.linkedin.com/" target="_blank">
+              <a
+                href="https://www.linkedin.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <i className="fab fa-linkedin-in"></i>
               </a>
-              <a href="https://github.com/" target="_blank">
+              <a
+                href="https://github.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <i className="fab fa-github"></i>
               </a>
             </div>
@@ -89,10 +129,18 @@ const AboutUs = () => {
               <img alt="profile" src="https://assets.soyhenry.com/logoOG.png" />
             </div>
             <div className="about_social">
-              <a href="https://www.linkedin.com/" target="_blank">
+              <a
+                href="https://www.linkedin.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <i className="fab fa-linkedin-in"></i>
               </a>
-              <a href="https://github.com/" target="_blank">
+              <a
+                href="https://github.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <i className="fab fa-github"></i>
               </a>
             </div>
@@ -103,10 +151,18 @@ const AboutUs = () => {
               <img alt="profile" src="https://assets.soyhenry.com/logoOG.png" />
             </div>
             <div className="about_social">
-              <a href="https://www.linkedin.com/" target="_blank">
+              <a
+                href="https://www.linkedin.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <i className="fab fa-linkedin-in"></i>
               </a>
-              <a href="https://github.com/" target="_blank">
+              <a
+                href="https://github.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <i className="fab fa-github"></i>
               </a>
             </div>
@@ -117,10 +173,18 @@ const AboutUs = () => {
               <img alt="profile" src="https://assets.soyhenry.com/logoOG.png" />
             </div>
             <div className="about_social">
-              <a href="https://www.linkedin.com/" target="_blank">
+              <a
+                href="https://www.linkedin.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <i className="fab fa-linkedin-in"></i>
               </a>
-              <a href="https://github.com/" target="_blank">
+              <a
+                href="https://github.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <i className="fab fa-github"></i>
               </a>
             </div>
