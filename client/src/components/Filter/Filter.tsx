@@ -13,7 +13,6 @@ interface Props {
   setPage(num: number): void;
 }
 
-
 const Filter: FC<Props> = ({ setPage }) => {
   const totalProducts = useSelector(
     (state: Store) => state.productsReducer.totalProducts
@@ -47,6 +46,12 @@ const Filter: FC<Props> = ({ setPage }) => {
   const handleAll = () => {
     dispatch(getAllProducts());
     setShow(!show);
+  };
+
+  const handleReset = () => {
+    dispatch(getAllProducts());
+    (document.getElementById("filterPlatform") as HTMLInputElement).value = "";
+    (document.getElementById("filterGenre") as HTMLInputElement).value = "";
   };
 
   return (
@@ -94,6 +99,7 @@ const Filter: FC<Props> = ({ setPage }) => {
         )}
       </section>
     </StyledFilter>
+
   );
 };
 
