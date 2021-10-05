@@ -44,7 +44,7 @@ const App: FC = () => {
   ///////////
 
   const showCart = useSelector((state: Store) => state.globalReducer.showCart);
-  //cart modal ->
+  //cart modal -
   const toggleModal = () => {
     dispatch(toggleCart());
   };
