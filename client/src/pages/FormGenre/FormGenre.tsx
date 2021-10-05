@@ -1,4 +1,4 @@
-import React from "react";
+import React, {FC} from "react";
 import { useState } from "react";
 import { CreateGenre } from "../../interfaces";
 import { createNewGenre } from "../../redux/actions/products_action";
@@ -8,7 +8,7 @@ import { useDispatch } from "react-redux";
 interface GenreValidate {
     genre: string;
 }
-export const FormGenre = () => {
+const FormGenre: FC = () => {
     const dispatch = useDispatch();
     const [input, setInput] = useState<CreateGenre>({
         genre: ''
@@ -86,3 +86,5 @@ export const FormGenre = () => {
         </div>
     )
 }
+
+export default FormGenre

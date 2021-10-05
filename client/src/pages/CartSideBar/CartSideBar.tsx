@@ -4,7 +4,7 @@ import "nes.css/css/nes.min.css";
 import BigCloseButton from "../../assets/img/svg/close-transparent.svg";
 import { Btn, Hr } from "../../GlobalStyles/GlobalStyles";
 import { Link } from "react-router-dom";
-import { Mini } from "../../components/index";
+import { Mini } from "../../components";
 import { useSelector, useDispatch } from "react-redux";
 import { Store } from "../../redux/reducer/";
 import { ProductInCart } from "../../interfaces";
@@ -27,7 +27,7 @@ const CartSideBar: FC<CartSideBarProps> = () => {
   useEffect(() => {
     if (cartList) {
       setSubtotal(
-        cartList.reduce((acc: number, product: ProductInCart) => {
+        cartList.reduce((acc: number, product: ProductInCart | any) => {
           acc = acc + product.price_product * product.quantity;
           return acc;
         }, 0.0)

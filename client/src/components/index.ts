@@ -9,4 +9,8 @@ export { default as Carousel } from './Carousel/Carousel';
 export { default as Mini } from './ProductCard/Mini';
 export { default as Title } from './Title/Title';
 export { default as MarioLoading} from './MarioLoading/MarioLoading';
+export { default as AdminNavbar} from './AdminNavbar/AdminNavbar';
+export { default as MainContent} from './MainContent/MainContent';
+export { default as Panel} from './Panel/Panel';
+
 

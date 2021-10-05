@@ -3,3 +3,8 @@ export { default as NotFound } from './NotFound/NotFound';
 export { default as Landing } from './Landing/Landing';
 export { default as CartSideBar } from './CartSideBar/CartSideBar';
 export { default as ProductDetail } from './ProductDetail/ProductDetail';
+export { default as AdminPanel } from './AdminPanel/AdminPanel';
+export { default as FormProduct } from './FormProduct/FormProduct';
+export { default as FormUser } from './FormUser/FormUser';
+export { default as FormGenre } from './FormGenre/FormGenre';
+export { default as FormPlatform } from './FormPlatform/FormPlatform';

@@ -1,12 +1,18 @@
-import React from "react";
+import React, { FC } from "react";
 import CloseButton from "../../assets/img/svg/close-filled-purple.svg";
 import { QuantityButton, StyledSVG } from "../../GlobalStyles/GlobalStyles";
 import { MiniCard } from "./StyledProductCard";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addItemCart, removeItemCart } from "../../redux/actions/cart_actions";
+import { ProductInCart } from "../../interfaces";
 
-const Mini = ({ detail }: any) => {
+
+interface Props {
+  detail: ProductInCart; 
+}
+
+const Mini: FC<Props> = ({ detail }: any) => {
   const dispatch = useDispatch();
   let price = detail.price_product * detail.quantity;
 

@@ -1,7 +1,7 @@
-import React from "react";
-import styles from "./Styles/Panel.module.css";
+import React,{ FC } from "react";
+import styles from "./Panel.module.css";
 
-const Panel = () => {
+const Panel: FC = () => {
   return (
     <div className={styles.mainContainer}>
       <div>

@@ -1,4 +1,4 @@
-// import React, { useState } from 'react';
+import React, { FC } from 'react';
 import { withFormik, FormikProps, FormikErrors, Form, Field } from "formik";
 import { UserCreate } from "../../interfaces/index";
 import axios from "axios";
@@ -154,7 +154,7 @@ const MyForm = withFormik<MyFormProps, UserCreate>({
 })(InnerForm);
 
 // Use <MyForm /> wherevs
-const Basic = () => (
+const Basic: FC = () => (
   <div>
     <h1>My App</h1>
     <p>This can be anywhere in your application</p>
