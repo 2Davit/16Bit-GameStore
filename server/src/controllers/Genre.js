@@ -20,7 +20,7 @@ async function createNewGenre(req, res, next) {
       res.status(404).send('Genre name cannot be empty');
     }
   } catch (err) {
-    console.log(err)
+    res.status(404).send('Error en: ', err)
   }
 };
 

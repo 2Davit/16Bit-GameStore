@@ -13,6 +13,10 @@ module.exports = (sequelize) => {
       name_genre: {
         type: DataTypes.STRING,
         allowNull: false,
+        validate: {
+          notEmpty: true,
+          len: [1, 15]
+        }
       },
     },
     {

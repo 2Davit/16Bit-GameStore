@@ -12,14 +12,11 @@ async function createBulkPlatform(req,res){
   async function createNewPlatform(req, res, next) {
     try {
       let {platform} = req.body;
-      if(platform.length > 0) {
-        await Platform.findOrCreate({where: {name_platform: platform}})
-      res.status(200).json('Platform successfully created');
-      } else{
-        res.status(404).send('Platform name cannot be empty');
-      }
+
+      await Platform.findOrCreate({where: {name_platform: platform}})
+      res.status(200).json('Plataforma creado con exito');
     } catch (err) {
-      res.send(error)
+      res.status(404).send('Error en: ', err)
     }
   };
 
@@ -31,6 +28,7 @@ async function createBulkPlatform(req,res){
       res.status(200).send(cleanPlatform);
     } catch (err) {
       res.status(404).send(err);
+
     }
   };
 

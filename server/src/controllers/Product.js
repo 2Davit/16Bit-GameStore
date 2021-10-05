@@ -149,6 +149,7 @@ async function listProductOnSale(req, res){
       res.status(404).send("Hubo un error: " + error);
     }
   };
+  
   async function getAllProduct(req, res){
     try {
       const getDbInfo = async () => {
