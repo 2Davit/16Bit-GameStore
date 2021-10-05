@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import { StyledNavBar } from "./StyledNavBar";
 import { Link } from "react-router-dom";
 import { SearchBar } from "../index";
@@ -16,7 +16,12 @@ import userPic from "../../assets/img/svg/user.svg";
 
 import "nes.css/css/nes.min.css";
 
-const NavBar = ({ setPage, toggleModal }: any) => {
+interface Props {
+  setPage(num: number): void;
+  toggleModal: any;
+}
+
+const NavBar: FC<Props> = ({ setPage, toggleModal }: any) => {
   const dispatch = useDispatch();
 
   const homeOnClick = () => {
@@ -28,7 +33,7 @@ const NavBar = ({ setPage, toggleModal }: any) => {
   );
 
   const number = cartNumber.reduce((acc: number, prod: ProductInCart) => {
-    acc = acc + prod.quantity;
+    acc = acc + prod.quantity!;
     return acc;
   }, 0);
 

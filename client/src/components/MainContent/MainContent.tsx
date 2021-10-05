@@ -1,7 +1,7 @@
 import { FC } from "react";
-import styles from "./Styles/MainContent.module.css";
+import styles from "./MainContent.module.css";
 import { AdminProduct } from "../../interfaces/index";
-import PanelCatalog from "../AdminPanel/PanelContent/PanelCatalog"
+import PanelCatalog from "../PanelCatalog/PanelCatalog"
 
 interface Props {
   totalProducts: any;
@@ -15,7 +15,7 @@ const MainContent: FC<Props> = ({ totalProducts }) => {
           totalProducts.renderingProducts?.map((product: AdminProduct) => (
             <PanelCatalog
               key={product.id_product}
-              image={product.thumbnail_product}
+              image={product.image_product}
               name={product.name_product}
               released={product.release_year}
               description={product.description_product}
@@ -24,6 +24,7 @@ const MainContent: FC<Props> = ({ totalProducts }) => {
               stock={product.in_stock}
               genre={product.name_genre}
               platform={product.name_platform}
+              thumbnail={product.thumbnail_product}
             />
           ))}
       </div>

@@ -5,19 +5,19 @@ import {
   NotFound,
   Landing,
   ProductDetail,
+  AdminPanel,
+  FormProduct,
+  FormUser,
+  FormGenre,
+  FormPlatform,
   Terms,
   Privacy,
   Legal,
 } from "./pages/";
+import { NavBar, Footer, About, CartSideBar } from "./components";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { GlobalStyle } from "./GlobalStyles/GlobalStyles";
 import { Theme } from "./Theme";
-import { NavBar, Footer, About, CartSideBar } from "./components";
-import FormProduct from "./components/Forms/FormProduct";
-import { FormGenre } from "./components/Forms/FormGenre";
-import { FormPlatform } from "./components/Forms/FormPlatform";
-import AdminPanel from "./components/AdminPanel/AdminPanel";
-import FormUser from "./components/Forms/FormUser";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Store } from "./redux/reducer";
@@ -45,7 +45,7 @@ const App: FC = () => {
 
   const showCart = useSelector((state: Store) => state.globalReducer.showCart);
   //cart modal -
-  const toggleModal = () => {
+  const toggleModal: any = () => {
     dispatch(toggleCart());
   };
   // <-

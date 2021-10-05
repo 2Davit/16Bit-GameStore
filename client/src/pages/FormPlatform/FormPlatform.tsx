@@ -1,5 +1,4 @@
-import React from "react";
-import { useState } from "react";
+import { useState, FC } from "react";
 import { CreatePlatform } from "../../interfaces";
 import { createNewPlatform } from "../../redux/actions/products_action";
 import { Link } from "react-router-dom";
@@ -8,7 +7,7 @@ import { useDispatch } from "react-redux";
 interface PlatformValidate {
     platform: string;
 }
-export const FormPlatform = () => {
+const FormPlatform: FC = () => {
     const dispatch = useDispatch();
     const [input, setInput] = useState<CreatePlatform>({
         platform: ''
@@ -85,3 +84,5 @@ export const FormPlatform = () => {
         </div>
     )
 }
+
+export default FormPlatform

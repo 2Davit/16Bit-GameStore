@@ -12,7 +12,9 @@ export { default as MarioLoading} from './MarioLoading/MarioLoading';
 export { default as Footer} from './Footer/Footer';
 export { default as About} from './About/About';
 export { default as CartSideBar} from './CartSideBar/CartSideBar';
-
+export { default as AdminNavbar} from './AdminNavbar/AdminNavbar';
+export { default as MainContent} from './MainContent/MainContent';
+export { default as Panel} from './Panel/Panel';
 
 
 

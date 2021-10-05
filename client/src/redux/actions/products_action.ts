@@ -51,18 +51,18 @@ export const getProductDetail = (id: number) => {
   } 
 
 
-export const getNameProduct = (name: string) => {
-
-     return async (dispatch: Dispatch<Name>): Promise<any> => {
-
-      let json = await axios.get(
-        `http://localhost:3001/videogames?name=${name}`
-      );
-      return dispatch({
-        type: GET_NAME_PRODUCT,
-        payload: json.data,
-      });
-    };  
+export const getNameProduct = (name: string) => {   
+      return async (dispatch: Dispatch<Name>): Promise<any> => {
+  
+        let json = await axios.get(
+          `http://localhost:3001/videogames?name=${name}`
+          );
+          
+        return dispatch({
+          type: GET_NAME_PRODUCT,
+          payload: json.data,
+        });
+      };   
 };
 
 export const doubleFilter = function (payload: any) {

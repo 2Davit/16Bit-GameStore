@@ -2,11 +2,11 @@ import styled from 'styled-components';
 
 export const StyledProductCard = styled.article`
 	font-size: 0.8em;
-	border: 3px solid #51A5FE;
+	border: 3px solid ${p => p.theme.bgBorder};
 	width: 260px;
 	border-radius: 10px;
 	overflow: hidden;
-	box-shadow: 5px 5px 0px #51A5FE;
+	box-shadow: 5px 5px 0px ${p => p.theme.bgBorder};
 	position: relative;
 	transition: all 0.1s ease-in-out;
 	height: 400px;
@@ -63,7 +63,7 @@ export const StyledProductCard = styled.article`
 
 	.card__price::before {
 		content: '';
-		background: #51A5FE;
+		background: ${p => p.theme.bgSub};
 		display: block;
 		width: 20%;
 		height: 5px;

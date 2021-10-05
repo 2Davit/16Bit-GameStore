@@ -1,13 +1,11 @@
-import React, { useEffect } from "react";
-import { Store } from "../../redux/reducer/";
+import React, { useEffect, FC } from "react";
+import { Store } from "../../redux/reducer";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProducts } from "../../redux/actions/products_action";
-import MainContent from "./MainContent";
-import Panel from "./Panel";
-import AdminNavbar from "./AdminNavbar";
-import styles from "./Styles/AdminPanel.module.css";
+import styles from "./AdminPanel.module.css";
+import { AdminNavbar, MainContent, Panel } from '../../components'
 
-const AdminPanel = () => {
+const AdminPanel: FC = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {

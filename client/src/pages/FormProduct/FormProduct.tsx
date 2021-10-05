@@ -1,5 +1,4 @@
-import React from "react";
-import { useState } from "react";
+import { useState, FC } from "react";
 import { ProductCreate, ProductValidate } from "../../interfaces";
 import { useDispatch } from "react-redux";
 import { createVideogame } from "../../redux/actions/products_action";
@@ -9,7 +8,7 @@ interface Info {
   url: string;
 }
 
-const FormProduct = () => {
+const FormProduct: FC = () => {
   const [images, setImages] = useState<Array<string>>([]);
   const [info, setInfo] = useState<Info>({ url: "" });
   const dispatch = useDispatch();
@@ -57,6 +56,14 @@ const FormProduct = () => {
       url: e.currentTarget.value,
     });
 
+  }
+
+  function handleImageDelete(img: string) {
+    setImages(images.filter((image) => image !== img));
+    setInput({
+      ...input,
+      image_product: input.image_product.filter((image) => image !== img),
+    });
   }
 
   function handleGenreDelete(g: string) {
@@ -112,7 +119,7 @@ const FormProduct = () => {
       ...input,
       release_year: parseInt(e.currentTarget.value),
     }))
-    
+
   }
 
   function handleSelectPlatform(e: React.FormEvent<HTMLSelectElement>) {
@@ -165,26 +172,26 @@ const FormProduct = () => {
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     // console.log(input)
-    if(input.name_product === "" || input.price_product === 0 || input.description_product === "" || images.length === 0 || input.thumbnail_product === "" || input.release_year === 0 || input.genres.length === 0 || input.platforms.length === 0){
+    if (input.name_product === "" || input.price_product === 0 || input.description_product === "" || images.length === 0 || input.thumbnail_product === "" || input.release_year === 0 || input.genres.length === 0 || input.platforms.length === 0) {
       e.preventDefault()
       alert("Please complete all required fields")
-  } else{
-    dispatch(createVideogame(input));
-    alert("Videogame successfully created");
-    setInput({
-      name_product: "",
-      price_product: 0,
-      description_product: "",
-      image_product: images,
-      thumbnail_product: "",
-      in_stock: false,
-      on_sale: false,
-      release_year: 0,
-      genres: [],
-      platforms: [],
-    });
-    // history.push('/home');
-  }
+    } else {
+      dispatch(createVideogame(input));
+      alert("Videogame successfully created");
+      setInput({
+        name_product: "",
+        price_product: 0,
+        description_product: "",
+        image_product: images,
+        thumbnail_product: "",
+        in_stock: false,
+        on_sale: false,
+        release_year: 0,
+        genres: [],
+        platforms: [],
+      });
+      // history.push('/home');
+    }
   }
 
   const years: number[] = [
@@ -212,12 +219,12 @@ const FormProduct = () => {
 
     if (!input.name_product) {
       error.name_product = "Product name is required";
-    } else if (input.name_product.length < 4) {
-      error.name_product = "User name is too short";
-    } else if (input.name_product.length > 15) {
-      error.name_product = "User name is too long";
+    } else if (input.name_product.length < 3) {
+      error.name_product = "Product name is too short";
+    } else if (input.name_product.length > 50) {
+      error.name_product = "Product name is too long";
     } else if (!/(?=.*)/.test(input.name_product)) {
-      error.name_product = "User name must be alphanumeric";
+      error.name_product = "Product name must be alphanumeric";
     }
 
     if (input.price_product < 1) {
@@ -248,9 +255,9 @@ const FormProduct = () => {
   return (
     <div>
 
-        <Link to="/admin">
-          <button>Back</button>
-        </Link>
+      <Link to="/admin">
+        <button>Back</button>
+      </Link>
 
       <h1>Create a new product</h1>
       <form style={{ display: 'flex', flexDirection: 'column', width: '50%', margin: '0 auto' }} onSubmit={(e) => handleSubmit(e)}>
@@ -291,6 +298,11 @@ const FormProduct = () => {
         />
         <button type="button" onClick={() => handleImage()}>Add</button>
         {error.image_product && (<div>{error.image_product}</div>)}
+
+        {input.image_product && input.image_product.map((img) => (<div key={img}>
+          <img src={img} style={{ width: '70px', height: '70px' }} />
+          <span style={{ cursor: 'pointer' }} onClick={() => handleImageDelete(img)}>x</span>
+        </div>))}
 
 
         <label htmlFor="thumbnail_product">Thumbnail</label>

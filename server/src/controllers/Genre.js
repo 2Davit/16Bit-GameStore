@@ -4,7 +4,7 @@ const axios = require('axios');
 async function createBulkGenre(req, res, next) {
   try {
     await Genre.bulkCreate(req.body)
-    res.status(200).json('Generos creados con exito');
+    res.status(200).json('Genre successfully created');
   } catch (err) {
     console.log(err)
   }
@@ -13,15 +13,31 @@ async function createBulkGenre(req, res, next) {
 async function createNewGenre(req, res, next) {
   try {
     let {genre} = req.body;
-    await Genre.findOrCreate({where: {name_genre: genre}})
-    res.status(200).json('Genero creado con exito');
+    if(genre.length > 0) {
+      await Genre.findOrCreate({where: {name_genre: genre}})
+    res.status(200).json('Genre successfully created');
+    } else{
+      res.status(404).send('Genre name cannot be empty');
+    }
   } catch (err) {
-    console.log(err)
+    res.status(404).send('Error en: ', err)
+  }
+};
+
+async function getAllGenre(req, res, next) {
+  try {
+    const allGenres = await Genre.findAll()
+    const cleanGenres = allGenres.map(el => el.name_genre)
+    
+    res.status(200).send(cleanGenres);
+  } catch (err) {
+    res.status(404).send(err);
   }
 };
 
 
 module.exports = {
   createNewGenre,
-  createBulkGenre
+  createBulkGenre,
+  getAllGenre
 }

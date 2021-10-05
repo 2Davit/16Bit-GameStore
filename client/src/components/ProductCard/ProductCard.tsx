@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import { Link } from "react-router-dom";
 import "nes.css/css/nes.min.css";
 import { useDispatch } from "react-redux";
@@ -8,8 +8,13 @@ import { StyledProductCard } from "./StyledProductCard";
 import cart from "../../assets/img/svg/cart.svg";
 import { toast } from "react-toastify";
 import { animateScroll } from "react-scroll";
+import { ProductInCart } from "../../interfaces";
 
-const ProductCard = ({ game }: any) => {
+interface Props {
+  game: ProductInCart;
+}
+
+const ProductCard: FC<Props> = ({ game }) => {
   const dispatch = useDispatch();
 
   const handleOpenClick = (ev: any) => {

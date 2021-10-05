@@ -1,8 +1,8 @@
-import React from "react";
+import React, { FC } from "react";
 import { Link } from "react-router-dom";
-import styles from "./Styles/AdminNavbar.module.css"
+import styles from "./AdminNavbar.module.css"
 
-const AdminNavbar = () => {
+const AdminNavbar: FC = () => {
   return (
     <nav className={styles.navbar}>
       <Link to="/home">
