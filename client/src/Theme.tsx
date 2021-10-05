@@ -7,7 +7,7 @@ const themes = {
   original: {
     bg: "#2c2f31",
     color: "#2c2f31",
-    font: `'MuseoModerno', cursive`,
+    font: `Raleway`,
   },
   retro: {
     bg: "#2c2f31",

@@ -8,12 +8,14 @@ export const CarouselContainer = styled(Link)`
     display: flex;
     width: 80%;
     text-decoration: none;
+    margin: 1rem auto;
     &:hover{
         text-decoration: none;
     }
 `
 
 export const Image = styled.img`
+position:relative;
     height: 100%;
     width: 30%;
     background-repeat: no-repeat;
@@ -47,11 +49,11 @@ export const CarouselSubContainer = styled.div`
 
 export const OnSale = styled.img`
     transform: rotate(-20deg);
-    position: absolute;
+    position: relative;
     width: 190px;
     height: 120px;
-    right: 12%;
-    top: 5%;
+    left: 2em;
+    top: -3em;
 `
 
 

@@ -1,34 +1,38 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getNameProduct } from "../../redux/actions/products_action";
+import { FormSearchBar } from "./StyledSearchBar";
+import loupe from "../../assets/img/svg/loupe.svg";
 
 const SearchBar = ({ setPage }: any) => {
   const [display, setDisplay] = useState(false);
-  const [name, setName] = useState("");
+  const [inputText, setinputText] = useState("");
 
   const dispatch = useDispatch();
 
   const handleInputChange = (e: React.FormEvent<HTMLInputElement>) => {
-    setName(e.currentTarget.value);
+    setinputText(e.currentTarget.value);
   };
-  const handleSubmit = () => {
-    dispatch(getNameProduct(name));
-    setName("");
-    setPage(1);
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    setinputText("");
+    dispatch(getNameProduct(inputText));
   };
 
   return (
-    <div>
-      <input
-        type="text"
-        placeholder="find videogame..."
-        value={name}
-        onChange={(e) => handleInputChange(e)}
-        onClick={() => setDisplay(!display)}
-      />
-
-      <button onClick={() => handleSubmit()}>Search</button>
-    </div>
+    <>
+      <FormSearchBar onSubmit={handleSubmit}>
+        <input
+          onChange={handleInputChange}
+          type="text"
+          placeholder="Search a Game..."
+          value={inputText}
+        />
+        <button type="submit">
+          <img src={loupe} alt="" />
+        </button>
+      </FormSearchBar>
+    </>
   );
 };
 

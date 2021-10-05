@@ -9,4 +9,7 @@ export { default as Carousel } from './Carousel/Carousel';
 export { default as Mini } from './ProductCard/Mini';
 export { default as Title } from './Title/Title';
 export { default as MarioLoading} from './MarioLoading/MarioLoading';
+export { default as Footer} from './Footer/Footer';
+export { default as About} from './About/About';
+
 

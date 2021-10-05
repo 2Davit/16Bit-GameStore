@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { StyledFilter, SelectStyled } from "./StyledFilter";
+
 import {
   doubleFilter,
   onSaleFilter,
@@ -33,7 +35,7 @@ const Filter = ({ setPage }: any) => {
   }
 
   const handleOnSaleFilter = () => {
-    dispatch(onSaleFilter('filter'));
+    dispatch(onSaleFilter("filter"));
     setShow(!show);
   };
 
@@ -43,16 +45,10 @@ const Filter = ({ setPage }: any) => {
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "space-around",
-      }}
-    >
+    <StyledFilter>
       <section>
         <h5>By platform</h5>
-        <select id="filterPlatform" onChange={handleFilter}>
+        <SelectStyled id="filterPlatform" onChange={handleFilter}>
           <option value="">All</option>
           <option value="gba">GBA</option>
           <option value="nes">NES</option>
@@ -60,11 +56,11 @@ const Filter = ({ setPage }: any) => {
           <option value="sega">Sega</option>
           <option value="snes">SNES</option>
           <option value="a2600">A2600</option>
-        </select>
+        </SelectStyled>
       </section>
       <section>
         <h5>By genre</h5>
-        <select id="filterGenre" onChange={handleFilter}>
+        <SelectStyled id="filterGenre" onChange={handleFilter}>
           <option value="">All</option>
           <option value="action">Action</option>
           <option value="shooter">Shooter</option>
@@ -77,18 +73,22 @@ const Filter = ({ setPage }: any) => {
           <option value="puzzle">Puzzle</option>
           <option value="strategy">Strategy</option>
           <option value="rpg">RPG</option>
-        </select>
+        </SelectStyled>
       </section>
       <section>
         <h5>On sale</h5>
 
         {show ? (
-          <button onClick={handleOnSaleFilter}>get on sale</button>
+          <button className="nes-btn is-primary" onClick={handleOnSaleFilter}>
+            get on sale
+          </button>
         ) : (
-          <button onClick={handleAll}>getall</button>
+          <button className="nes-btn is-primary" onClick={handleAll}>
+            getall
+          </button>
         )}
       </section>
-    </div>
+    </StyledFilter>
   );
 };
 
