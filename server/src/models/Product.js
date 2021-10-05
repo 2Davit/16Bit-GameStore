@@ -14,7 +14,7 @@ module.exports = (sequelize) => {
       allowNull: false,
       validate: {
         notEmpty: true,
-        len: [4 ,50]
+        len: [3 ,50]
       }
     },
     price_product: {
