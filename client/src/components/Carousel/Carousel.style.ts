@@ -27,20 +27,21 @@ export const Image = styled.img`
 `
 
 export const CarouselSubContainer = styled.div`
-    background: #51A5FE;
+    background: ${p => p.theme.bgSub};
+    /* background: #51A5FE; */
     height: 100%;
     width: 70%;
     padding: 1rem;
     border-top-right-radius: 2rem;
     border-bottom-right-radius: 2rem;
     h1{
-        color: white;
+        color: ${p => p.theme.color};
     };
     span{
-        color: white;
+        color: ${p => p.theme.color};
     };
     p{
-        color: white;
+        color: ${p => p.theme.color};
     };
 `
 
@@ -66,7 +67,7 @@ export const Button = styled.button`
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #51A5FE;
+    background: ${p => p.theme.bgSub};
     &:hover{
         border: none;
         outline: none;
@@ -80,9 +81,9 @@ export const Button = styled.button`
 `
 
 export const IconRight = styled(BiRightArrow)`
-    color: white;
+    color: ${p => p.theme.color};
 `
 
 export const IconLeft = styled(BiLeftArrow)`
-    color: white;
+    color: ${p => p.theme.color};
 `

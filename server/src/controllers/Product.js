@@ -57,7 +57,7 @@ async function listProductOnSale(req, res){
       const dbInfoA = await getDbInfo();
       const dbInfoB = await dbInfoA.map((el) => {
         return {
-          name_platform: el.dataValues.platforms?.map((el) => el.name_platform),
+          name_platform: el.dataValues.platforms.map((el) => el.name_platform),
           id_product: el.dataValues.id_product,
           name_product: el.dataValues.name_product,
           price_product: el.dataValues.price_product,
@@ -66,7 +66,7 @@ async function listProductOnSale(req, res){
           in_stock: el.dataValues.in_stock,
           on_sale: el.dataValues.on_sale,
           release_year: el.dataValues.release_year,
-          name_genre: el.dataValues.genres?.map((el) => el.name_genre),
+          name_genre: el.dataValues.genres.map((el) => el.name_genre),
         };
       });
   
@@ -116,7 +116,7 @@ async function listProductOnSale(req, res){
       const dbInfoA = await getDbInfo();
       const dbInfoB = await dbInfoA.map((el) => {
         return {
-          name_platform: el.dataValues.platforms?.map((el) => el.name_platform),
+          name_platform: el.dataValues.platforms.map((el) => el.name_platform),
           id_product: el.dataValues.id_product,
           name_product: el.dataValues.name_product,
           price_product: el.dataValues.price_product,
@@ -125,7 +125,7 @@ async function listProductOnSale(req, res){
           in_stock: el.dataValues.in_stock,
           on_sale: el.dataValues.on_sale,
           release_year: el.dataValues.release_year,
-          name_genre: el.dataValues.genres?.map((el) => el.name_genre),
+          name_genre: el.dataValues.genres.map((el) => el.name_genre),
         };
       });
   
@@ -183,8 +183,8 @@ async function listProductOnSale(req, res){
           in_stock: el.dataValues.in_stock,
           on_sale: el.dataValues.on_sale,
           release_year: el.dataValues.release_year,
-          name_genre: el.dataValues.genres?.map((el) => el.name_genre),
-          name_platform: el.dataValues.platforms?.map((el) => el.name_platform),
+          name_genre: el.dataValues.genres.map((el) => el.name_genre),
+          name_platform: el.dataValues.platforms.map((el) => el.name_platform),
         };
       });
       const { name } = req.query;
@@ -193,16 +193,16 @@ async function listProductOnSale(req, res){
           v.name_product.toLowerCase().includes(name.toLowerCase())
         );
         if (gameName.length >= 1) return res.status(200).send(gameName);
-        res
-          .status(404)
-          .send("The videogame doesn't exist, please check the name");
+        if(gameName.length === 0) {
+         return res.send([]);
+        }
       } else {
         res.status(200).send(dbInfoB);
       }
       //fin del try!!!!
     } catch (error) {
       console.log(error);
-      res.status(404).send(error);
+      res.status(404).send({error: 'error back'});
     }
   };
   async function postOneProduct(req, res){

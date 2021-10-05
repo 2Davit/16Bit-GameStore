@@ -114,4 +114,5 @@ export interface EditProduct {
     released: number;
     genre: any;
     platform: any;
+    thumbnail: string;
 }

@@ -23,8 +23,20 @@ async function createBulkPlatform(req,res){
     }
   };
 
+  async function getAllPlatform(req, res, next) {
+    try {
+      const allPlatform = await Platform.findAll()
+      const cleanPlatform = allPlatform.map(el => el.name_platform)
+      
+      res.status(200).send(cleanPlatform);
+    } catch (err) {
+      res.status(404).send(err);
+    }
+  };
+
   module.exports = {
     createNewPlatform,
-    createBulkPlatform
+    createBulkPlatform,
+    getAllPlatform
   }
   
