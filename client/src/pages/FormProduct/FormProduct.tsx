@@ -219,7 +219,7 @@ const FormProduct: FC = () => {
 
     if (!input.name_product) {
       error.name_product = "Product name is required";
-    } else if (input.name_product.length < 4) {
+    } else if (input.name_product.length < 3) {
       error.name_product = "Product name is too short";
     } else if (input.name_product.length > 50) {
       error.name_product = "Product name is too long";
