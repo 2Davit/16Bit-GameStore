@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, FC } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   doubleFilter,
@@ -7,7 +7,12 @@ import {
 } from "../../redux/actions/products_action";
 import { Store } from "../../redux/reducer/";
 
-const Filter = ({ setPage }: any) => {
+interface Props {
+  setPage(num: number): void;
+}
+
+
+const Filter: FC<Props> = ({ setPage }) => {
   const totalProducts = useSelector(
     (state: Store) => state.productsReducer.totalProducts
   );

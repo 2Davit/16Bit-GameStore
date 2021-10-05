@@ -1,5 +1,4 @@
-import React from "react";
-import { useState } from "react";
+import { useState, FC } from "react";
 import { ProductCreate, ProductValidate } from "../../interfaces";
 import { useDispatch } from "react-redux";
 import { createVideogame } from "../../redux/actions/products_action";
@@ -9,7 +8,7 @@ interface Info {
   url: string;
 }
 
-const FormProduct = () => {
+const FormProduct: FC = () => {
   const [images, setImages] = useState<Array<string>>([]);
   const [info, setInfo] = useState<Info>({ url: "" });
   const dispatch = useDispatch();

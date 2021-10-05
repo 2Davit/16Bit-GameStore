@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import { StyledNavBar } from "./StyledNavBar";
 import { Link } from "react-router-dom";
 import { SearchBar } from "../index";
@@ -8,7 +8,11 @@ import { Title } from "../index";
 
 import "nes.css/css/nes.min.css";
 
-const NavBar = ({ setPage }: any) => {
+interface Props {
+  setPage(num: number): void;
+}
+
+const NavBar: FC<Props> = ({ setPage }) => {
   const dispatch = useDispatch();
 
   const homeOnClick = () => {

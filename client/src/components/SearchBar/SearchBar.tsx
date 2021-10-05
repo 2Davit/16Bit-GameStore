@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, FC } from "react";
 import { useDispatch } from "react-redux";
 import { getNameProduct } from "../../redux/actions/products_action";
 import { BtnSearch } from './SearchBar.style'
 
-const SearchBar = ({ setPage }: any) => {
+interface Props {
+  setPage(num: number): void;
+}
+
+const SearchBar: FC<Props> = ({ setPage }) => {
   const [display, setDisplay] = useState(false);
   const [name, setName] = useState("");
 

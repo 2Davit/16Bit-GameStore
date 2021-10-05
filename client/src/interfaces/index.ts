@@ -65,7 +65,7 @@ export interface UserCreate {
 
 
 export interface ProductInCart extends Product {
-    quantity: number;
+    quantity?: number ;
 }
 
 

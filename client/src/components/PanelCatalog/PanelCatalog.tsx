@@ -1,9 +1,9 @@
 import React, { FC, useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { editProduct } from "../../../redux/actions/admin_actions";
-import { EditProduct } from "../../../interfaces";
-import style from "../Styles/PanelCatalog.module.css";
+import { editProduct } from "../../redux/actions/admin_actions";
+import { EditProduct } from "../../interfaces";
+import style from "./PanelCatalog.module.css";
 
 interface Props {
   image: Array<string> | any;

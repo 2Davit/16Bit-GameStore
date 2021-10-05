@@ -1,13 +1,8 @@
 import React, { FC } from "react";
-import { Home, NotFound, Landing, CartSideBar, ProductDetail } from "./pages/";
+import { Home, NotFound, Landing, CartSideBar, ProductDetail, AdminPanel, FormProduct, FormUser, FormGenre, FormPlatform } from "./pages/";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { GlobalStyle } from "./GlobalStyles/GlobalStyles";
 import { Theme } from "./Theme";
-import FormProduct from "./components/Forms/FormProduct";
-import {FormGenre} from './components/Forms/FormGenre'
-import {FormPlatform} from './components/Forms/FormPlatform'
-import AdminPanel from "./components/AdminPanel/AdminPanel";
-import FormUser from "./components/Forms/FormUser";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 

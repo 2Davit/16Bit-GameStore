@@ -1,7 +1,7 @@
 import { FC } from "react";
-import styles from "./Styles/MainContent.module.css";
+import styles from "./MainContent.module.css";
 import { AdminProduct } from "../../interfaces/index";
-import PanelCatalog from "../AdminPanel/PanelContent/PanelCatalog"
+import PanelCatalog from "../PanelCatalog/PanelCatalog"
 
 interface Props {
   totalProducts: any;
