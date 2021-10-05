@@ -34,13 +34,11 @@ export function productsReducer(
         renderingProducts: payload,
       };
     case GET_ALL_GENRES:
-      console.log('reducer genres',payload)
       return {
         ...state,
         genres: payload,
       };
     case GET_ALL_PLATFORMS:
-      console.log('reducer platforms', payload)
       return {
         ...state,
         platforms: payload,
