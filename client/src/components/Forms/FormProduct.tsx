@@ -73,12 +73,6 @@ const FormProduct = () => {
       genres: input.genres.filter((genre) => genre !== g),
     });
   }
-  function handleImageDelete(img: string) {
-    setInput({
-      ...input,
-      image_product: input.image_product.filter((image) => image !== img),
-    });
-  }
 
   function handlePlatformDelete(p: string) {
     setInput({
@@ -126,7 +120,7 @@ const FormProduct = () => {
       ...input,
       release_year: parseInt(e.currentTarget.value),
     }))
-    
+
   }
 
   function handleSelectPlatform(e: React.FormEvent<HTMLSelectElement>) {
@@ -179,26 +173,26 @@ const FormProduct = () => {
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     // console.log(input)
-    if(input.name_product === "" || input.price_product === 0 || input.description_product === "" || images.length === 0 || input.thumbnail_product === "" || input.release_year === 0 || input.genres.length === 0 || input.platforms.length === 0){
+    if (input.name_product === "" || input.price_product === 0 || input.description_product === "" || images.length === 0 || input.thumbnail_product === "" || input.release_year === 0 || input.genres.length === 0 || input.platforms.length === 0) {
       e.preventDefault()
       alert("Please complete all required fields")
-  } else{
-    dispatch(createVideogame(input));
-    alert("Videogame successfully created");
-    setInput({
-      name_product: "",
-      price_product: 0,
-      description_product: "",
-      image_product: images,
-      thumbnail_product: "",
-      in_stock: false,
-      on_sale: false,
-      release_year: 0,
-      genres: [],
-      platforms: [],
-    });
-    // history.push('/home');
-  }
+    } else {
+      dispatch(createVideogame(input));
+      alert("Videogame successfully created");
+      setInput({
+        name_product: "",
+        price_product: 0,
+        description_product: "",
+        image_product: images,
+        thumbnail_product: "",
+        in_stock: false,
+        on_sale: false,
+        release_year: 0,
+        genres: [],
+        platforms: [],
+      });
+      // history.push('/home');
+    }
   }
 
   const years: number[] = [
@@ -262,9 +256,9 @@ const FormProduct = () => {
   return (
     <div>
 
-        <Link to="/admin">
-          <button>Back</button>
-        </Link>
+      <Link to="/admin">
+        <button>Back</button>
+      </Link>
 
       <h1>Create a new product</h1>
       <form style={{ display: 'flex', flexDirection: 'column', width: '50%', margin: '0 auto' }} onSubmit={(e) => handleSubmit(e)}>
@@ -306,10 +300,11 @@ const FormProduct = () => {
         <button type="button" onClick={() => handleImage()}>Add</button>
         {error.image_product && (<div>{error.image_product}</div>)}
 
-        {input.image_product && input.image_product.map((img) => (<div>
-          <img src={img} style={{width: '70px', height:'70px'}}/>
-          <span style={{cursor: 'pointer'}} onClick={()=> handleImageDelete(img)}>x</span>
-          </div>))}
+        {input.image_product && input.image_product.map((img) => (<div key={img}>
+          <img src={img} style={{ width: '70px', height: '70px' }} />
+          <span style={{ cursor: 'pointer' }} onClick={() => handleImageDelete(img)}>x</span>
+        </div>))}
+
 
         <label htmlFor="thumbnail_product">Thumbnail</label>
         <input
