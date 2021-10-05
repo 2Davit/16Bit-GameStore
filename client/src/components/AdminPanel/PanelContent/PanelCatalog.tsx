@@ -6,7 +6,7 @@ import { EditProduct } from "../../../interfaces";
 import style from "../Styles/PanelCatalog.module.css";
 
 interface Props {
-  image: string;
+  image: Array<string> | any;
   name: string;
   released: number;
   description: string;
@@ -15,6 +15,7 @@ interface Props {
   stock: boolean;
   genre: any;
   platform: any;
+  thumbnail: string,
 }
 
 const PanelCatalog: FC<Props> = ({
@@ -27,6 +28,7 @@ const PanelCatalog: FC<Props> = ({
   released,
   platform,
   genre,
+  thumbnail,
 }) => {
   const [cond, setCond] = useState(false);
   const years: number[] = [
@@ -41,11 +43,12 @@ const PanelCatalog: FC<Props> = ({
     name,
     price,
     description,
-    image: [],
+    image,
     stock,
     released,
     genre,
     platform,
+    thumbnail,
   });
   const dispatch = useDispatch();
 
@@ -53,7 +56,6 @@ const PanelCatalog: FC<Props> = ({
     setCond(!cond);
   }
   function handleSave(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
     dispatch(editProduct(input));
     alert("Cambio realizado con éxito.");
   }
@@ -179,7 +181,6 @@ const PanelCatalog: FC<Props> = ({
             <input
               name="price"
               type="number"
-              step="0.1"
               value={input.price}
               onChange={handleChangePrice}
             ></input>
@@ -210,10 +211,17 @@ const PanelCatalog: FC<Props> = ({
           <div style={{ display: "flex", alignItems: "flex-start" }}>
             <label>Genres:</label>
             <select name="genre" onChange={(e: any) => handleAddGenre(e)}>
+              <option value="action">Action</option>
+              <option value="shooter">Shooter</option>
+              <option value="racing">Racing</option>
+              <option value="fighting">Fighting</option>
               <option value="sports">Sports</option>
-              <option value="prueba">Prueba</option>
-              <option>Denis</option>
-              <option>Deportes</option>
+              <option value="arcade">Arcade</option>
+              <option value="adventure">Adventure</option>
+              <option value="platform">Platform</option>
+              <option value="puzzle">Puzzle</option>
+              <option value="strategy">Strategy</option>
+              <option value="rpg">RPG</option>
             </select>
             <div style={{ display: "flex", height: "2vw" }}>
               {input.genre.length > 0 ? (
@@ -237,7 +245,11 @@ const PanelCatalog: FC<Props> = ({
             <label>Platforms:</label>
             <select name="platform" onChange={(e: any) => handleAddPlatform(e)}>
               <option>gba</option>
-              <option>denis</option>
+              <option>nes</option>
+              <option>arcade</option>
+              <option>sega</option>
+              <option>snes</option>
+              <option>a2600</option>
             </select>
             {input.platform.length > 0 ? (
               input.platform.map((index: any) => (
