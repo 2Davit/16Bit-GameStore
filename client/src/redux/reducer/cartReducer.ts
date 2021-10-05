@@ -39,16 +39,7 @@ export const cartReducer = (state: CartState = initialState, action: any) => {
           list: [...state.cart.list, action.payload],
         },
       };
-
-      case CLEAR_CART:
-			return {
-				...state,
-				cart: {
-					...state.cart,
-					list: [],				
-				}
-			}
-
+     
     case REST_ITEM_CART:
       return {
         ...state,

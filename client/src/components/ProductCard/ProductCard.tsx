@@ -7,6 +7,7 @@ import { StyledSVG, Btn } from "../../GlobalStyles/GlobalStyles";
 import { StyledProductCard } from "./StyledProductCard";
 import cart from "../../assets/img/svg/cart.svg";
 import { toast } from "react-toastify";
+import { animateScroll } from "react-scroll";
 import { ProductInCart } from "../../interfaces";
 
 interface Props {
@@ -15,6 +16,10 @@ interface Props {
 
 const ProductCard: FC<Props> = ({ game }) => {
   const dispatch = useDispatch();
+
+  const handleOpenClick = (ev: any) => {
+    animateScroll.scrollTo(250, { duration: 300 });
+  };
 
   const handleClick = () => {
     let gameToDispatch = { ...game };
@@ -53,7 +58,11 @@ const ProductCard: FC<Props> = ({ game }) => {
           <StyledSVG src={cart} />
         </Btn>
       </div>
-      <Link to={`/game/${game.id_product}`} className="card__link">
+      <Link
+        to={`/game/${game.id_product}`}
+        className="card__link"
+        onClick={handleOpenClick}
+      >
         Click to see the product
       </Link>
     </StyledProductCard>

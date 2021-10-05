@@ -60,12 +60,12 @@ export function productsReducer(
 
     case DOUBLE_FILTER:
       let allProductsByFilter = payload.renderingProducts;
-      let productFilteredA =
+            let productFilteredA =
         action.payload.valuePlatform === ""
           ? allProductsByFilter
-          : allProductsByFilter.filter((index: any) =>
+          : allProductsByFilter.filter((index: any) =>          
               index.name_platform.includes(action.payload.valuePlatform)
-            );
+            );        
       let productFilteredB =
         action.payload.valueGenre === ""
           ? productFilteredA

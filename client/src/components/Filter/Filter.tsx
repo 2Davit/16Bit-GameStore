@@ -1,5 +1,7 @@
 import React, { useState, FC } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { StyledFilter, SelectStyled } from "./StyledFilter";
+
 import {
   doubleFilter,
   onSaleFilter,
@@ -53,16 +55,10 @@ const Filter: FC<Props> = ({ setPage }) => {
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "space-around",
-      }}
-    >
+    <StyledFilter>
       <section>
         <h5>By platform</h5>
-        <select id="filterPlatform" onChange={handleFilter}>
+        <SelectStyled id="filterPlatform" onChange={handleFilter}>
           <option value="">All</option>
           <option value="gba">GBA</option>
           <option value="nes">NES</option>
@@ -70,11 +66,11 @@ const Filter: FC<Props> = ({ setPage }) => {
           <option value="sega">Sega</option>
           <option value="snes">SNES</option>
           <option value="a2600">A2600</option>
-        </select>
+        </SelectStyled>
       </section>
       <section>
         <h5>By genre</h5>
-        <select id="filterGenre" onChange={handleFilter}>
+        <SelectStyled id="filterGenre" onChange={handleFilter}>
           <option value="">All</option>
           <option value="action">Action</option>
           <option value="shooter">Shooter</option>
@@ -87,27 +83,23 @@ const Filter: FC<Props> = ({ setPage }) => {
           <option value="puzzle">Puzzle</option>
           <option value="strategy">Strategy</option>
           <option value="rpg">RPG</option>
-        </select>
+        </SelectStyled>
       </section>
       <section>
         <h5>On sale</h5>
 
         {show ? (
-          <button onClick={handleOnSaleFilter}>Get on sale</button>
+          <button className="nes-btn is-primary" onClick={handleOnSaleFilter}>
+            Get On Sale
+          </button>
         ) : (
-          <button onClick={handleAll}>Get all</button>
+          <button className="nes-btn is-primary" onClick={handleAll}>
+            Get All
+          </button>
         )}
       </section>
-      <section
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "flex-end",
-        }}
-      >
-        <button onClick={handleReset}>Reset filters</button>
-      </section>
-    </div>
+    </StyledFilter>
+
   );
 };
 

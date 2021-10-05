@@ -9,13 +9,20 @@ interface DefaultTheme {
 
 export const GlobalStyle = createGlobalStyle<{theme: DefaultTheme }>`
 
+
     body {
         margin: 0;
         padding: 0;
         font-family: ${p => p.theme.font};
 		background-color: ${p => p.theme.bg};
         color:white;
+		min-height: 100vh;
+
     }
+
+	ul{
+		padding-inline-start: 0;
+	}
 
 `
 
@@ -116,6 +123,7 @@ export const Hr = styled.hr`
 	border: none;
 	background: #CCC;
 `
+
 
 export const StyledSVG = styled(SVG)`
 `

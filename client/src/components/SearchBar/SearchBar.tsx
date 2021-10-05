@@ -1,54 +1,37 @@
 import React, { useState, FC } from "react";
 import { useDispatch } from "react-redux";
 import { getNameProduct } from "../../redux/actions/products_action";
-import { BtnSearch } from './SearchBar.style'
+import { FormSearchBar } from "./StyledSearchBar";
+import loupe from "../../assets/img/svg/loupe.svg";
 
-interface Props {
-  setPage(num: number): void;
-}
-
-const SearchBar: FC<Props> = ({ setPage }) => {
-  const [display, setDisplay] = useState(false);
-  const [name, setName] = useState("");
-
+const SearchBar = ({ setPage }: any) => {
+  const [inputText, setinputText] = useState("");
   const dispatch = useDispatch();
 
   const handleInputChange = (e: React.FormEvent<HTMLInputElement>) => {
-    setName(e.currentTarget.value);
+    setinputText(e.currentTarget.value);
   };
-  const handleSubmit = () => {
-    dispatch(getNameProduct(name));
-    setName("");
+  const handleSubmit = (e: any) => {
     setPage(1);
+    e.preventDefault();
+    setinputText("");
+    dispatch(getNameProduct(inputText));
   };
-  
-
-
-  const handleKeyDown  = (e: React.KeyboardEvent<HTMLDivElement>) : void => {
-    if (e.key === 'Enter' && name.length > 0) {
-      e.preventDefault();
-      dispatch(getNameProduct(name));
-      setName("");
-      setPage(1);
-    }
-  } 
 
   return (
-    <div>
+    <>
+      <FormSearchBar onSubmit={handleSubmit}>
         <input
+          onChange={handleInputChange}
           type="text"
-          placeholder="find videogame..."
-          value={name}
-          onChange={(e) => handleInputChange(e)}
-          onClick={() => setDisplay(!display)}
-          onKeyDown={handleKeyDown }
+          placeholder="Search a Game..."
+          value={inputText}
         />
-        {
-          name.length === 0 ?
-          <BtnSearch disabled onClick={() => handleSubmit()} >Search</BtnSearch> :
-          <BtnSearch  onClick={() => handleSubmit()} >Search</BtnSearch> 
-        }
-    </div>
+        <button type="submit">
+          <img src={loupe} alt="" />
+        </button>
+      </FormSearchBar>
+    </>
   );
 };
 

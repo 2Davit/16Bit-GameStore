@@ -6,10 +6,11 @@ import { ButtonTheme } from "./components";
 const themes = {
   original: {
     bg: "#000000",
-    bgSub: " linear-gradient(174deg, rgba(222,2,2,1) 0%, rgba(255,222,0,1) 95%)",
+    bgSub:
+      " linear-gradient(174deg, rgba(222,2,2,1) 0%, rgba(255,222,0,1) 95%)",
     bgBorder: "#ffde00",
     color: "#fff",
-    font: `'MuseoModerno', cursive`,
+    font: `'Raleway', cursive`,
   },
   retro: {
     bg: "#2c2f31",
