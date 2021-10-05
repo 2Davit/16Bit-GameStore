@@ -73,6 +73,12 @@ const FormProduct = () => {
       genres: input.genres.filter((genre) => genre !== g),
     });
   }
+  function handleImageDelete(img: string) {
+    setInput({
+      ...input,
+      image_product: input.image_product.filter((image) => image !== img),
+    });
+  }
 
   function handlePlatformDelete(p: string) {
     setInput({
@@ -221,11 +227,11 @@ const FormProduct = () => {
     if (!input.name_product) {
       error.name_product = "Product name is required";
     } else if (input.name_product.length < 4) {
-      error.name_product = "User name is too short";
-    } else if (input.name_product.length > 15) {
-      error.name_product = "User name is too long";
+      error.name_product = "Product name is too short";
+    } else if (input.name_product.length > 50) {
+      error.name_product = "Product name is too long";
     } else if (!/(?=.*)/.test(input.name_product)) {
-      error.name_product = "User name must be alphanumeric";
+      error.name_product = "Product name must be alphanumeric";
     }
 
     if (input.price_product < 1) {
