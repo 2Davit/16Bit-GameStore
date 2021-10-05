@@ -11,7 +11,6 @@ interface Props {
   setPage(num: number): void;
 }
 
-
 const Filter: FC<Props> = ({ setPage }) => {
   const totalProducts = useSelector(
     (state: Store) => state.productsReducer.totalProducts
@@ -38,13 +37,19 @@ const Filter: FC<Props> = ({ setPage }) => {
   }
 
   const handleOnSaleFilter = () => {
-    dispatch(onSaleFilter('filter'));
+    dispatch(onSaleFilter("filter"));
     setShow(!show);
   };
 
   const handleAll = () => {
     dispatch(getAllProducts());
     setShow(!show);
+  };
+
+  const handleReset = () => {
+    dispatch(getAllProducts());
+    (document.getElementById("filterPlatform") as HTMLInputElement).value = "";
+    (document.getElementById("filterGenre") as HTMLInputElement).value = "";
   };
 
   return (
@@ -88,10 +93,19 @@ const Filter: FC<Props> = ({ setPage }) => {
         <h5>On sale</h5>
 
         {show ? (
-          <button onClick={handleOnSaleFilter}>get on sale</button>
+          <button onClick={handleOnSaleFilter}>Get on sale</button>
         ) : (
-          <button onClick={handleAll}>getall</button>
+          <button onClick={handleAll}>Get all</button>
         )}
+      </section>
+      <section
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "flex-end",
+        }}
+      >
+        <button onClick={handleReset}>Reset filters</button>
       </section>
     </div>
   );
