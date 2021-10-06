@@ -6,7 +6,6 @@ import {
   getAllPlatforms,
   getAllProducts,
 } from "../../redux/actions/products_action";
-import styles from "./AdminPanel.module.css";
 import {
   AdminHome,
   Panel,
@@ -14,6 +13,7 @@ import {
   UserContent,
   SalesContent,
 } from "../../components";
+import { ContainerAdmin, InfoContainer, MainContainer } from './AdminPanel.style'
 
 const AdminPanel: FC = () => {
   const dispatch = useDispatch();
@@ -70,9 +70,11 @@ const AdminPanel: FC = () => {
     (state: Store) => state.productsReducer
   );
   return (
-    <div className={styles.mainContainer}>
-      <div className={styles.infoContainer}>
+    <ContainerAdmin>
+      <InfoContainer>
         <Panel handleInfo={handleInfo} />
+      </InfoContainer>
+      <MainContainer>
         {info.setHome ? (
           <AdminHome />
         ) : info.setProducts ? (
@@ -84,8 +86,8 @@ const AdminPanel: FC = () => {
         ) : (
           "Oops Something Went Wrong..."
         )}
-      </div>
-    </div>
+      </MainContainer>
+    </ContainerAdmin>
   );
 };
 export default AdminPanel;

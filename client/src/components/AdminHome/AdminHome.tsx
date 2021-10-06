@@ -1,9 +1,10 @@
 import React from "react";
 import styles from "./AdminHome.module.css";
+import { ContainerAdminHome } from './AdminHome.style'
 
 const AdminHome = () => {
   return (
-    <div>
+    <ContainerAdminHome>
       <div className={styles.grid}>
         <div>
           <h2>Title 1</h2>
@@ -49,7 +50,7 @@ const AdminHome = () => {
           />
         </div>
       </div>
-    </div>
+    </ContainerAdminHome>
   );
 };
 

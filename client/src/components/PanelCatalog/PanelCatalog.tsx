@@ -5,6 +5,7 @@ import { Store } from "../../redux/reducer/";
 import { editProduct } from "../../redux/actions/admin_actions";
 import { EditProduct } from "../../interfaces";
 import style from "./PanelCatalog.module.css";
+import { ContainerPanelCata, CardContent, ImageContent, Image } from './PanelCatalog.style'
 
 interface Props {
   image: Array<string> | any;
@@ -124,38 +125,37 @@ const PanelCatalog: FC<Props> = ({
   }
 
   return cond === false ? (
-    <div className={style.container}>
-      <div className={style.product}>
-        <img className={style.img} src={image} alt={name} />
-        <Link to={`/game/${id}`} className="card__link">
-          Click to see the product
-        </Link>
-      </div>
-      <div className={style.card__content}>
-        <h3 className="card__title">
-          {name.length > 33 ? name.substring(0, 30) + "..." : name}
-        </h3>
-        <p>$ {price}</p>
-        <p>Quantity: {stock}</p>
-        <p>{description}</p>
-        <div style={{ display: "flex", alignItems: "center" }}>
-          <div style={{ width: "80%" }}>
-            <p>Release Year: {released}</p>
-            <p>Genres: {genre}</p>
-            <p>Platform: {platform}</p>
+    <ContainerPanelCata>
+        <ImageContent>
+          <Link to={`/game/${id}`} className="card__link">
+            <Image src={image} alt={name} />
+          </Link>
+        </ImageContent>
+        <CardContent >
+          <h3 className="card__title">
+            {name.length > 33 ? name.substring(0, 30) + "..." : name}
+          </h3>
+          <p>$ {price}</p>
+          <p>Quantity: {stock}</p>
+          <p>{description}</p>
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <div style={{ width: "80%" }}>
+              <p>Release Year: {released}</p>
+              <p>Genres: {genre}</p>
+              <p>Platform: {platform}</p>
+            </div>
+            <div>
+              <button onClick={handleEdit}>EDIT INFO</button>
+              <button
+                onClick={handleEdit}
+                style={{ pointerEvents: "none", color: "gray" }}
+              >
+                SAVE
+              </button>
+            </div>
           </div>
-          <div>
-            <button onClick={handleEdit}>EDIT INFO</button>
-            <button
-              onClick={handleEdit}
-              style={{ pointerEvents: "none", color: "gray" }}
-            >
-              SAVE
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
+        </CardContent>
+    </ContainerPanelCata>
   ) : (
     /* A PARTIR DE ACÁ SE COMIENZA A EDITAR */
     <div className={style.container}>
