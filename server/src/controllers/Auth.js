@@ -5,14 +5,14 @@ const { User } = require("../db.js");
 const { SECRET } = process.env;
 
 const signUp = async (req, res) => {
-  const { username, password, email, name, lastname, adress } = req.body;
+  const { username, password, email, name, lastname, address } = req.body;
   await User.create({
     nickname_user: username,
     password_user: bcrypt.hashSync(password, 8),
     email_user: email,
     name_user: name,
     lastname_user: lastname,
-    address_user: adress,
+    address_user: address,
   });
 
   return res.status(200).send("User successfully registered!");
@@ -45,7 +45,7 @@ const logIn = async (req, res) => {
     email: user.email_user,
     name: user.name_user,
     lastname: user.lastname_user,
-    adress: user.adress_user,
+    address: user.adress_user,
   });
 };
 

@@ -4,7 +4,7 @@ export { default as Landing } from "./Landing/Landing";
 export { default as ProductDetail } from "./ProductDetail/ProductDetail";
 export { default as AdminPanel } from "./AdminPanel/AdminPanel";
 export { default as FormProduct } from "./FormProduct/FormProduct";
-export { default as FormUser } from "./FormUser/FormUser";
+export { default as FormRegister } from "./FormRegister/FormRegister";
 export { default as FormLogin } from "./FormLogin/FormLogin";
 export { default as FormGenre } from "./FormGenre/FormGenre";
 export { default as FormPlatform } from "./FormPlatform/FormPlatform";

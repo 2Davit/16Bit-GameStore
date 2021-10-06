@@ -53,19 +53,6 @@ export interface ProductValidate {
   platforms: string;
 }
 
-export interface UserCreate {
-  username: string;
-  password: string;
-  email: string;
-  name: string;
-  lastname: string;
-  adress: string; // !
-}
-
-export interface UserLogin {
-  username: string;
-  password: string;
-}
 export interface ProductInCart extends Product {
   quantity?: number;
 }
@@ -118,6 +105,21 @@ export interface EditProduct {
   genre: any;
   platform: any;
   thumbnail: string;
+}
+
+export interface UserRegister {
+  username: string;
+  password: string;
+  passwordConfirm: string;
+  email: string;
+  name: string;
+  lastname: string;
+  address: string;
+}
+
+export interface UserLogin {
+  username: string;
+  password: string;
 }
 
 export interface User {
