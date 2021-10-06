@@ -14,6 +14,7 @@ import {
   Terms,
   Privacy,
   Legal,
+  Order
 } from "./pages/";
 import { NavBar, Footer, About, CartSideBar } from "./components";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -79,6 +80,7 @@ const App: FC = () => {
           <Route exact path="/privacy" component={Privacy} />
           <Route exact path="/legal" component={Legal} />
           <Route exact path="/about" component={About} />
+          <Route exact path="/order" component={Order} />
 
           <Route path="*" component={NotFound} />
         </Switch>
