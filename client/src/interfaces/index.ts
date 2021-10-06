@@ -77,6 +77,7 @@ export interface ProductsState {
     onSaleProducts: Array<Product> | Array<any>;
     genres: Array<Genre>;
     platforms: Array<Platform>;
+    totalProductsBar: Array<Product>;
 }
 
 export interface CartState{

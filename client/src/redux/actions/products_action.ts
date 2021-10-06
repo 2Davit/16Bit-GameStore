@@ -15,6 +15,7 @@ import {
   GET_PRODUCT_ON_SALE,
   GET_ALL_GENRES,
   GET_ALL_PLATFORMS,
+  GET_NAME_PRODUCT_BAR,
 } from "../types";
 
 import { Dispatch } from "redux";
@@ -70,6 +71,16 @@ export const getNameProduct = (name: string) => {
 
     return dispatch({
       type: GET_NAME_PRODUCT,
+      payload: json.data,
+    });
+  };
+};
+export const getNameProductBar = (name: string) => {
+  return async (dispatch: Dispatch<Name>): Promise<any> => {
+    let json = await axios.get(`http://localhost:3001/videogames?name=${name}`);
+
+    return dispatch({
+      type: GET_NAME_PRODUCT_BAR,
       payload: json.data,
     });
   };
