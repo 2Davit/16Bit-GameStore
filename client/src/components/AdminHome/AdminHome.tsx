@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../Styles/MainContent.module.css";
+import styles from "./AdminHome.module.css";
 
 const AdminHome = () => {
   return (
