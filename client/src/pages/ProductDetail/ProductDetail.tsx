@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { getProductDetail } from "../../redux/actions/products_action";
 import { Store } from "../../redux/reducer/";
 import { GameDetail, StyledSVG } from "./StyledProductDetail";

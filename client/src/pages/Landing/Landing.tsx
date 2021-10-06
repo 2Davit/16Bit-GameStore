@@ -6,7 +6,7 @@ const Landing: FC = () => {
   return (
     <StyledLanding>
       <Link to="/home">
-        <button type="button" className="nes-btn is-primary">
+        <button type="button" className="nes-btn is-warning">
           HOME
         </button>
       </Link>
