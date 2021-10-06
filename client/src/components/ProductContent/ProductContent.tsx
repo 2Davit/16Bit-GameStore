@@ -2,6 +2,7 @@ import { FC } from "react";
 import styles from "./MainContent.module.css";
 import { AdminProduct } from "../../interfaces/index";
 import PanelCatalog from "../PanelCatalog/PanelCatalog"
+import { Link } from "react-router-dom";
 
 interface Props {
   totalProducts: any;
@@ -9,7 +10,20 @@ interface Props {
 
 const MainContent: FC<Props> = ({ totalProducts }) => {
   return (
+
     <div className={styles.mainContainer}>
+      <button>posible searchbar</button>
+      <div className={styles.btnContainer}>
+      <Link to="/form">
+        <button className={styles.button}>Add Product</button>
+      </Link>
+      <Link to="/creategenre">
+        <button className={styles.button}>Add Genre</button>
+      </Link>
+      <Link to="/createplatform">
+        <button className={styles.button}>Add Platform</button>
+      </Link>
+      </div>
       <div>
         {totalProducts.renderingProducts?.length !== 0 &&
           totalProducts.renderingProducts?.map((product: AdminProduct) => (
@@ -29,6 +43,7 @@ const MainContent: FC<Props> = ({ totalProducts }) => {
           ))}
       </div>
     </div>
+
   );
 };
 

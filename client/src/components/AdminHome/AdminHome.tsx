@@ -1,7 +1,7 @@
-import React from "react";
-import styles from "../Styles/MainContent.module.css";
+import React, {FC} from "react";
+import styles from "./AdminHome.module.css";
 
-const AdminHome = () => {
+const AdminHome:FC = () => {
   return (
     <div>
       <div className={styles.grid}>
