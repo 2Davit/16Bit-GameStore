@@ -8,6 +8,7 @@ import {
   AdminPanel,
   FormProduct,
   FormUser,
+  FormLogin,
   FormGenre,
   FormPlatform,
   Terms,
@@ -71,6 +72,7 @@ const App: FC = () => {
           <Route exact path="/game/:id" component={ProductDetail} />
           <Route exact path="/form" component={FormProduct} />
           <Route exact path="/admin" component={AdminPanel} />
+          <Route exact path="/login" component={FormLogin} />
           <Route exact path="/createUser" component={FormUser} />
           <Route exact path="/createGenre" component={FormGenre} />
           <Route exact path="/createPlatform" component={FormPlatform} />

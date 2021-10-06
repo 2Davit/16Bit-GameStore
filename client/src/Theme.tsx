@@ -11,6 +11,7 @@ const themes = {
     bgBorder: "#ffde00",
     color: "#fff",
     font: `'Raleway', cursive`,
+    fontAdmin: `'Raleway', cursive`,
   },
   retro: {
     bg: "#2c2f31",
@@ -18,6 +19,7 @@ const themes = {
     bgBorder: "#51A5FE",
     color: "#ffffff",
     font: `'Press Start 2P', cursive`,
+    fontAdmin: `'Raleway', cursive`,
   },
 };
 
