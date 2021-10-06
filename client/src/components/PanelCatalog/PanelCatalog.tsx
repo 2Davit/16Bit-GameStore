@@ -5,7 +5,7 @@ import { Store } from "../../redux/reducer/";
 import { editProduct } from "../../redux/actions/admin_actions";
 import { EditProduct } from "../../interfaces";
 import style from "./PanelCatalog.module.css";
-import { ContainerPanelCata, CardContent, ImageContent, Image } from './PanelCatalog.style'
+import { ContainerPanelCata, CardContent, ImageContent, Image, H3, Paragraph, Info, EditInfoBtns, ContainerDiv, BtnEdit, InputLabel, Form, Input } from './PanelCatalog.style'
 
 interface Props {
   image: Array<string> | any;
@@ -127,63 +127,55 @@ const PanelCatalog: FC<Props> = ({
   return cond === false ? (
     <ContainerPanelCata>
         <ImageContent>
-          <Link to={`/game/${id}`} className="card__link">
+          <Link to={`/game/${id}`}>
             <Image src={image} alt={name} />
           </Link>
         </ImageContent>
         <CardContent >
-          <h3 className="card__title">
+          <H3 >
             {name.length > 33 ? name.substring(0, 30) + "..." : name}
-          </h3>
-          <p>$ {price}</p>
-          <p>Quantity: {stock}</p>
-          <p>{description}</p>
-          <div style={{ display: "flex", alignItems: "center" }}>
-            <div style={{ width: "80%" }}>
-              <p>Release Year: {released}</p>
-              <p>Genres: {genre}</p>
-              <p>Platform: {platform}</p>
-            </div>
-            <div>
-              <button onClick={handleEdit}>EDIT INFO</button>
-              <button
-                onClick={handleEdit}
-                style={{ pointerEvents: "none", color: "gray" }}
-              >
-                SAVE
-              </button>
-            </div>
-          </div>
+          </H3>
+          <Paragraph>$ {price}</Paragraph>
+          <Paragraph>Quantity: {stock}</Paragraph>
+          <Paragraph>{description}</Paragraph>
+          <ContainerDiv>
+            <Info>
+                <Paragraph>Release Year: {released}</Paragraph>
+                <Paragraph>Genres: {genre}</Paragraph>
+                <Paragraph>Platform: {platform}</Paragraph>
+            </Info>
+            <EditInfoBtns>
+                <BtnEdit onClick={handleEdit}>EDIT INFO</BtnEdit>
+                {/* <button
+                  onClick={handleEdit}
+                  style={{ pointerEvents: "none", color: "gray" }}
+                >
+                  SAVE
+                </button> */}
+            </EditInfoBtns>
+            </ContainerDiv>
         </CardContent>
     </ContainerPanelCata>
   ) : (
     /* A PARTIR DE ACÁ SE COMIENZA A EDITAR */
-    <div className={style.container}>
-      <div className={style.product}>
-        <img className={style.img} src={image} alt={name} />
-        <Link to={`/game/${id}`} className="card__link">
-          Click to see the product
+    <ContainerPanelCata>
+      <ImageContent>
+        <Link to={`/game/${id}`} >
+          <Image src={image} alt={name} />
         </Link>
-      </div>
-      <div className={style.card__content}>
-        <form
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            width: "100%",
-            marginTop: "0.8vw",
-          }}
-        >
-          <div style={{ display: "flex", flexDirection: "row" }}>
-            <label>Product Name</label>
-            <input
+      </ImageContent>
+      <CardContent>
+        <Form>
+          <InputLabel style={{ display: "flex", flexDirection: "row" }}>
+            {/* <H3>Product Name</ H3> */}
+            <Input
               className="card__title"
               name="name"
               onChange={handleChangeName}
               value={input.name}
-            ></input>
-          </div>
-          <div style={{ display: "flex", flexDirection: "row" }}>
+            />
+          </InputLabel>
+          <InputLabel style={{ display: "flex", flexDirection: "row" }}>
             <label>Product Price</label>
             <input
               name="price"
@@ -191,12 +183,12 @@ const PanelCatalog: FC<Props> = ({
               value={input.price}
               onChange={handleChangePrice}
             ></input>
-          </div>
-          <div>
+          </InputLabel>
+          <InputLabel>
             <label>Quantity</label>
             <input type="number" min="0"></input>
-          </div>
-          <div>
+          </InputLabel>
+          <InputLabel>
             <label>Description:</label>
             <input
               type="text"
@@ -204,8 +196,9 @@ const PanelCatalog: FC<Props> = ({
               value={input.description}
               onChange={handleChangeDescription}
             ></input>
-          </div>
-          <div>
+          </InputLabel>
+          
+          <InputLabel>
             <label>Release Year</label>
             <select name="release_year" onChange={(e) => handleChangeYear(e)}>
               {years?.map((year) => (
@@ -214,8 +207,8 @@ const PanelCatalog: FC<Props> = ({
                 </option>
               ))}
             </select>
-          </div>
-          <div style={{ display: "flex", alignItems: "flex-start" }}>
+          </InputLabel>
+          <InputLabel>
             <label>Genres:</label>
             <select name="genre" onChange={(e: any) => handleAddGenre(e)}>
               {totalGenres.map((index: any) => (
@@ -224,14 +217,15 @@ const PanelCatalog: FC<Props> = ({
                 </option>
               ))}
             </select>
-            <div style={{ display: "flex", height: "2vw" }}>
+            </InputLabel>
+            <InputLabel>
               {input.genre.length > 0 ? (
                 input.genre.map((index: any) => (
                   <div key={index} style={{ margin: "0 0.5vw 0 0.5vw" }}>
                     <button
                       type="button"
                       onClick={() => handleGenreDelete(index)}
-                    >
+                      >
                       x
                     </button>
                     <p>{index}</p>
@@ -240,9 +234,10 @@ const PanelCatalog: FC<Props> = ({
               ) : (
                 <div>No Genre</div>
               )}
-            </div>
-          </div>
-          <div style={{ display: "flex", height: "2vw" }}>
+            </InputLabel>
+          
+                              
+          <InputLabel>
             <label>Platforms:</label>
             <select name="platform" onChange={(e: any) => handleAddPlatform(e)}>
               {totalPlatforms.map((index: any) => (
@@ -251,13 +246,17 @@ const PanelCatalog: FC<Props> = ({
                 </option>
               ))}
             </select>
+            </InputLabel>
+            <ContainerDiv> 
+            <Info>
+            <InputLabel>
             {input.platform.length > 0 ? (
               input.platform.map((index: any) => (
                 <div key={index} style={{ margin: "0 0.5vw 0 0.5vw" }}>
                   <button
                     type="button"
                     onClick={() => handlePlatformDelete(index)}
-                  >
+                    >
                     x
                   </button>
                   <p>{index}</p>
@@ -266,22 +265,16 @@ const PanelCatalog: FC<Props> = ({
             ) : (
               <div>No Platform</div>
             )}
-          </div>
-        </form>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "flex-end",
-            alignItems: "center",
-          }}
-        >
-          <div>
-            <button onClick={handleEdit}>EDIT INFO</button>
-            <button onClick={(e: any) => handleSave(e)}>SAVE</button>
-          </div>
-        </div>
-      </div>
-    </div>
+                    </InputLabel>
+          </Info>
+          <EditInfoBtns>
+            <BtnEdit onClick={handleEdit}>EDIT INFO</BtnEdit>
+            <BtnEdit onClick={(e: any) => handleSave(e)}>SAVE</BtnEdit>
+          </EditInfoBtns>
+          </ContainerDiv>
+        </Form>
+      </CardContent>
+    </ContainerPanelCata>
   );
 };
 
