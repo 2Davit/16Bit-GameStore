@@ -1,8 +1,9 @@
 import { FC } from "react";
-import styles from "./MainContent.module.css";
+
 import { AdminProduct } from "../../interfaces/index";
 import PanelCatalog from "../PanelCatalog/PanelCatalog";
 import { Link } from "react-router-dom";
+import { ContainerMainContent, ContainerNav, Searchbar, AddBtns, AddBtn, Search, ContainerCards } from "./ProductContent.style"
 
 interface Props {
   totalProducts: any;
@@ -10,20 +11,18 @@ interface Props {
 
 const MainContent: FC<Props> = ({ totalProducts }) => {
   return (
-    <div className={styles.mainContainer}>
-      <button>posible searchbar</button>
-      <div className={styles.btnContainer}>
-        <Link to="/form">
-          <button className={styles.button}>Add Product</button>
-        </Link>
-        <Link to="/creategenre">
-          <button className={styles.button}>Add Genre</button>
-        </Link>
-        <Link to="/createplatform">
-          <button className={styles.button}>Add Platform</button>
-        </Link>
-      </div>
-      <div>
+    <ContainerMainContent>
+      <ContainerNav>
+        <Searchbar>
+          <Search placeholder='Search products...'/>
+        </Searchbar>
+        <AddBtns>
+          <AddBtn><Link style={{color: '#EEEEEE', textDecoration: 'none'}} to="/form">Add Product</Link></AddBtn>
+          <AddBtn><Link style={{color: '#EEEEEE', textDecoration: 'none'}} to="/creategenre">Add Genre</Link></AddBtn>
+          <AddBtn><Link style={{color: '#EEEEEE', textDecoration: 'none'}} to="/createplatform">Add Platform</Link></AddBtn>
+        </AddBtns>
+      </ContainerNav>
+      <ContainerCards>
         {totalProducts.renderingProducts?.length !== 0 &&
           totalProducts.renderingProducts?.map((product: AdminProduct) => (
             <PanelCatalog
@@ -40,8 +39,8 @@ const MainContent: FC<Props> = ({ totalProducts }) => {
               thumbnail={product.thumbnail_product}
             />
           ))}
-      </div>
-    </div>
+      </ContainerCards>
+    </ContainerMainContent>
   );
 };
 

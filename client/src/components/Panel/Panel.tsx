@@ -1,5 +1,7 @@
 import React, { FC } from "react";
 import styles from "./Panel.module.css";
+import { ContainerPanel, ContainerImageUser, NameImage, Image, BtnAdminPanel, IconHome, IconSales, IconProducts, IconUsers } from './Panel.style'
+import { Title } from '../index'
 
 interface Props {
   handleInfo(v: any): void;
@@ -7,35 +9,28 @@ interface Props {
 
 const Panel: FC<Props> = ({handleInfo}) => {
   return (
-    <div className={styles.mainContainer}>
-      <button>Logo</button>
-      <div>
-        <button value="home" onClick={handleInfo} className={styles.button}>
-          HOME
-        </button>
-        <button value="sales" onClick={handleInfo} className={styles.button}>
-          SALES
-        </button>
-        <button value="products" onClick={handleInfo} className={styles.button}>
-          PRODUCTS
-        </button>
-        <button value="users" onClick={handleInfo} className={styles.button}>
-          USERS
-        </button>
-      </div>
-      <div className={styles.button}>
-        <img
-          style={{
-            width: "100%",
-            height: "100%",
-            padding: "1rem",
-            borderRadius: "9999px",
-          }}
-          src="https://d500.epimg.net/cincodias/imagenes/2016/07/04/lifestyle/1467646262_522853_1467646344_noticia_normal.jpg"
-          alt="user"
-        />
-      </div>
-    </div>
+    <ContainerPanel>
+        <Title/>
+        <ContainerImageUser>
+          <Image 
+            src="https://d500.epimg.net/cincodias/imagenes/2016/07/04/lifestyle/1467646262_522853_1467646344_noticia_normal.jpg"
+            alt="user"/>
+          <NameImage>ARMAND GABO</NameImage>
+        </ContainerImageUser>
+        
+          <BtnAdminPanel value="home" onClick={handleInfo} className={styles.BtnAdminPanel}>
+            <IconHome/> HOME
+          </BtnAdminPanel>
+          <BtnAdminPanel value="sales" onClick={handleInfo} className={styles.BtnAdminPanel}>
+            <IconSales/>SALES
+          </BtnAdminPanel>
+          <BtnAdminPanel value="products" onClick={handleInfo} className={styles.BtnAdminPanel}>
+            <IconProducts/>PRODUCTS
+          </BtnAdminPanel>
+          <BtnAdminPanel value="users" onClick={handleInfo} className={styles.BtnAdminPanel}>
+            <IconUsers/>USERS
+          </BtnAdminPanel>      
+    </ContainerPanel>
   );
 };
 
