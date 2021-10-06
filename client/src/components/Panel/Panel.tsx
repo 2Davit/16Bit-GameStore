@@ -1,14 +1,27 @@
-import React,{ FC } from "react";
+import React, { FC } from "react";
 import styles from "./Panel.module.css";
 
-const Panel: FC = () => {
+interface Props {
+  handleInfo(v: any): void;
+}
+
+const Panel: FC<Props> = ({handleInfo}) => {
   return (
     <div className={styles.mainContainer}>
+      <button>Logo</button>
       <div>
-        <button className={styles.button}>HOME</button>
-        <button className={styles.button}>SALES</button>
-        <button className={styles.button}>PRODUCTS</button>
-        <button className={styles.button}>USERS</button>
+        <button value="home" onClick={handleInfo} className={styles.button}>
+          HOME
+        </button>
+        <button value="sales" onClick={handleInfo} className={styles.button}>
+          SALES
+        </button>
+        <button value="products" onClick={handleInfo} className={styles.button}>
+          PRODUCTS
+        </button>
+        <button value="users" onClick={handleInfo} className={styles.button}>
+          USERS
+        </button>
       </div>
       <div className={styles.button}>
         <img
