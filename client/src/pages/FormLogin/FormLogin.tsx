@@ -10,10 +10,10 @@ const FormLogin: FC = () => {
   const handleSubmit = (values: UserLogin) => {
     try {
       dispatch(login(values));
-      dispatch(getRole);
     } catch (err) {
       console.log(err);
     }
+    dispatch(getRole());
   };
 
   return (

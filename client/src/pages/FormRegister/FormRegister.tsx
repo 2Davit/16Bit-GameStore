@@ -1,11 +1,11 @@
 // Dependencias
 import React, { FC } from "react";
 import axios from "axios";
-import { Field, Form, Formik } from "formik";
+import { Field, Form, Formik, FormikHelpers } from "formik";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 
-// Cosas nuestras? jaja
+//
 import { UserRegister } from "../../interfaces/index";
 import { login } from "../../redux/actions/auth_actions";
 
@@ -50,13 +50,13 @@ const SignupSchema = Yup.object().shape({
 const FormRegister: FC = () => {
   const dispatch = useDispatch();
   const handleSubmit = async (values: UserRegister) => {
-    try {
-      axios.post("http://localhost:3001/auth/signup", values);
-      const { username, password } = values;
-      dispatch(login({ username, password }));
-    } catch (err) {
+    /* try { */
+    axios.post("http://localhost:3001/auth/signup", values);
+    const { username, password } = values;
+    dispatch(login({ username, password }));
+    /*     } catch (err) {
       console.log(err);
-    }
+    } */
   };
 
   return (
