@@ -10,7 +10,7 @@ module.exports = (sequelize) => {
     },
     nickname_user: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     name_user: {
       type: DataTypes.STRING,
@@ -34,7 +34,7 @@ module.exports = (sequelize) => {
     },
     password_user: {
       type: DataTypes.STRING(60),
-      allowNull: false,
+      allowNull: true,
     },
     is_admin: {
       type: DataTypes.BOOLEAN,
@@ -44,5 +44,9 @@ module.exports = (sequelize) => {
       type: DataTypes.BOOLEAN,
       defaultValue: true,
     },
+    is_guest: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    }
   });
 };
