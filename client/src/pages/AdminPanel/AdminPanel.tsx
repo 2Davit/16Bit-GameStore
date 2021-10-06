@@ -84,7 +84,7 @@ const AdminPanel: FC = () => {
 
         <Panel handleInfo={handleInfo} />
         {info.setHome? <AdminHome /> : info.setProducts?
-          <ProductContent totalProducts={totalProducts}/> : info.setSales? <SalesContent/> : info.setUsers?<UserContent/>: 'Oops Something Went Wrong...'}
+          <ProductContent totalProducts={totalProducts}/> : info.setSales? <SalesContent/> : info.setUsers?<UserContent/>: 'Oops Something Went Wrong..'}
 
       </div>
     </div>
