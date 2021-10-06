@@ -1,4 +1,3 @@
-
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const { User } = require("../db.js");
@@ -41,14 +40,12 @@ const logIn = async (req, res) => {
   });
 
   res.status(200).send({
-    accessToken: token,
+    token: token,
     username: user.nickname_user,
     email: user.email_user,
-    adress: user.adress_user,
     name: user.name_user,
     lastname: user.lastname_user,
-    isAdmin: user.is_admin,
-    isActive: user.is_active,
+    adress: user.adress_user,
   });
 };
 
