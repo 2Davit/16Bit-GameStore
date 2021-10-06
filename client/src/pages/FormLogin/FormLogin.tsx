@@ -1,6 +1,6 @@
 import { Field, Form, Formik } from "formik";
 import { UserLogin } from "../../interfaces/index";
-import { login } from "../../redux/actions/auth_actions";
+import { getRole, login } from "../../redux/actions/auth_actions";
 import React, { FC } from "react";
 import { useDispatch } from "react-redux";
 
@@ -13,6 +13,7 @@ const FormLogin: FC = () => {
       onSubmit={async (values: UserLogin) => {
         try {
           dispatch(login(values));
+          dispatch(getRole);
         } catch (err) {
           console.log(err);
         }

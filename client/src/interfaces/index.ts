@@ -130,6 +130,10 @@ export interface User {
   /* avatar: string; */
 }
 
+export interface Role {
+  admin: boolean;
+}
 export interface UserState {
   user: User;
+  role: Role;
 }

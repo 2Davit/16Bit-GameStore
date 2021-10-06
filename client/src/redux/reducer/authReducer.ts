@@ -1,5 +1,5 @@
 import { UserState } from "../../interfaces/index";
-import { LOGIN } from "../types";
+import { LOGIN, USER_ROLE } from "../types";
 
 const initialState: UserState = {
   user: {
@@ -11,6 +11,9 @@ const initialState: UserState = {
     address: "",
     /* avatar: "", */
   },
+  role: {
+    admin: false,
+  },
 };
 
 export function authReducer(state: UserState = initialState, action: any) {
@@ -20,6 +23,11 @@ export function authReducer(state: UserState = initialState, action: any) {
       return {
         ...state,
         user: payload,
+      };
+    case USER_ROLE:
+      return {
+        ...state,
+        role: payload,
       };
     default:
       return state;

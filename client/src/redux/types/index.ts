@@ -16,3 +16,4 @@ export const CLEAR_CART: string = "CLEAR_CART";
 export const GET_ALL_GENRES: string = "GET_ALL_GENRES";
 export const GET_ALL_PLATFORMS: string = "GET_ALL_PLATFORMS";
 export const LOGIN: string = "LOGIN";
+export const USER_ROLE: string = "USER_ROLE";

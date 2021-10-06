@@ -49,7 +49,17 @@ const logIn = async (req, res) => {
   });
 };
 
+const getRole = async (req, res) => {
+  const user = await User.findByPk(req.userId);
+  if (user && user.is_admin) {
+    return res.status(200).send({ admin: true });
+  } else {
+    return res.status(403).send("Require administrator permissions");
+  }
+};
+
 module.exports = {
   logIn,
   signUp,
+  getRole,
 };
