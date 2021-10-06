@@ -5,6 +5,7 @@ import {
   getNameProduct,
   getNameProductBar,
 } from "../../redux/actions/products_action";
+
 import { FormSearchBar } from "./StyledSearchBar";
 import loupe from "../../assets/img/svg/loupe.svg";
 import SearchCard from "../ProductCard/SearchCard";
