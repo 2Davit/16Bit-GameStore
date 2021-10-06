@@ -20,6 +20,12 @@ const Filter: FC<Props> = ({ setPage }) => {
   const renderingProducts = useSelector(
     (state: Store) => state.productsReducer.renderingProducts
   );
+  const totalGenres = useSelector(
+    (state: Store) => state.productsReducer.genres
+  );
+  const totalPlatforms = useSelector(
+    (state: Store) => state.productsReducer.platforms
+  );
 
   const [show, setShow] = useState(true);
   const dispatch = useDispatch();
@@ -61,29 +67,22 @@ const Filter: FC<Props> = ({ setPage }) => {
         <h5>By platform</h5>
         <SelectStyled id="filterPlatform" onChange={handleFilter}>
           <option value="">All</option>
-          <option value="gba">GBA</option>
-          <option value="nes">NES</option>
-          <option value="arcade">Arcade</option>
-          <option value="sega">Sega</option>
-          <option value="snes">SNES</option>
-          <option value="a2600">A2600</option>
+          {totalPlatforms.map((index: any) => (
+            <option value={index} key={index}>
+              {index}
+            </option>
+          ))}
         </SelectStyled>
       </section>
       <section>
         <h5>By genre</h5>
         <SelectStyled id="filterGenre" onChange={handleFilter}>
           <option value="">All</option>
-          <option value="action">Action</option>
-          <option value="shooter">Shooter</option>
-          <option value="racing">Racing</option>
-          <option value="fighting">Fighting</option>
-          <option value="sports">Sports</option>
-          <option value="arcade">Arcade</option>
-          <option value="adventure">Adventure</option>
-          <option value="platform">Platform</option>
-          <option value="puzzle">Puzzle</option>
-          <option value="strategy">Strategy</option>
-          <option value="rpg">RPG</option>
+          {totalGenres.map((index: any) => (
+            <option value={index} key={index}>
+              {index}
+            </option>
+          ))}
         </SelectStyled>
       </section>
       <section>
@@ -100,13 +99,12 @@ const Filter: FC<Props> = ({ setPage }) => {
         )}
       </section>
       <section>
-      <h5>Remove Filters</h5>
+        <h5>Remove Filters</h5>
         <button className="nes-btn is-primary" onClick={handleReset}>
           Remove
         </button>
       </section>
     </StyledFilter>
-
   );
 };
 

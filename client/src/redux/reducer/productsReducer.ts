@@ -6,18 +6,20 @@ import {
   GET_PRODUCT_ON_SALE,
   CREATE_NEW_PRODUCT,
   CREATE_NEW_GENRE,
-  CREATE_NEW_PLATFORM
+  CREATE_NEW_PLATFORM,
+  GET_ALL_GENRES,
+  GET_ALL_PLATFORMS,
 } from "../types";
 import { ProductsState } from "../../interfaces";
-
 
 const initialState: ProductsState = {
   totalProducts: [],
   renderingProducts: [],
   detailProduct: {},
-  onSaleProducts: []
+  onSaleProducts: [],
+  genres: [],
+  platforms: [],
 };
-
 
 export function productsReducer(
   state: ProductsState = initialState,
@@ -31,6 +33,16 @@ export function productsReducer(
         totalProducts: payload,
         renderingProducts: payload,
       };
+    case GET_ALL_GENRES:
+      return {
+        ...state,
+        genres: payload,
+      };
+    case GET_ALL_PLATFORMS:
+      return {
+        ...state,
+        platforms: payload,
+      };
 
     case GET_PRODUCT_DETAIL:
       return {
@@ -39,33 +51,31 @@ export function productsReducer(
       };
 
     case GET_NAME_PRODUCT:
-      
-      
       return {
         ...state,
         totalProducts: payload,
       };
-        case CREATE_NEW_PRODUCT: 
-        return{
-            ...state
-        };
-        case CREATE_NEW_GENRE:
-          return {
-            ...state
-          }
-          case CREATE_NEW_PLATFORM:
-            return {
-              ...state
-            }
+    case CREATE_NEW_PRODUCT:
+      return {
+        ...state,
+      };
+    case CREATE_NEW_GENRE:
+      return {
+        ...state,
+      };
+    case CREATE_NEW_PLATFORM:
+      return {
+        ...state,
+      };
 
     case DOUBLE_FILTER:
       let allProductsByFilter = payload.renderingProducts;
-            let productFilteredA =
+      let productFilteredA =
         action.payload.valuePlatform === ""
           ? allProductsByFilter
-          : allProductsByFilter.filter((index: any) =>          
+          : allProductsByFilter.filter((index: any) =>
               index.name_platform.includes(action.payload.valuePlatform)
-            );        
+            );
       let productFilteredB =
         action.payload.valueGenre === ""
           ? productFilteredA
@@ -77,29 +87,20 @@ export function productsReducer(
         totalProducts: productFilteredB,
       };
 
-      case GET_PRODUCT_ON_SALE:
-        
-        if (payload.place === 'carousel') {
-          return {
-            ...state,
-            onSaleProducts: payload.data,
-          };
-        }
-        else {
-          return {
-            ...state,
-            totalProducts: payload.data,
-          };
-        }
-        
-
+    case GET_PRODUCT_ON_SALE:
+      if (payload.place === "carousel") {
+        return {
+          ...state,
+          onSaleProducts: payload.data,
+        };
+      } else {
+        return {
+          ...state,
+          totalProducts: payload.data,
+        };
+      }
 
     default:
       return state;
   }
 }
-
-
-
-
-

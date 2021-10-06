@@ -75,6 +75,8 @@ export interface ProductsState {
     renderingProducts: Array<Product> | Array<any>;
     detailProduct: Product | unknown;
     onSaleProducts: Array<Product> | Array<any>;
+    genres: Array<Genre>;
+    platforms: Array<Platform>;
 }
 
 export interface CartState{

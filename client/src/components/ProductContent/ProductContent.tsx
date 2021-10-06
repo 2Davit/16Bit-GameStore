@@ -6,9 +6,11 @@ import { Link } from "react-router-dom";
 
 interface Props {
   totalProducts: any;
+  totalGenres: any;
+  totalPlatforms: any;
 }
 
-const MainContent: FC<Props> = ({ totalProducts }) => {
+const ProductContent: FC<Props> = ({ totalProducts, totalGenres, totalPlatforms }) => {
   return (
 
     <div className={styles.mainContainer}>
@@ -47,4 +49,6 @@ const MainContent: FC<Props> = ({ totalProducts }) => {
   );
 };
 
-export default MainContent;
+export default ProductContent;
+
+

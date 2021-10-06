@@ -7,6 +7,8 @@ const initialState: ProductsState = {
   renderingProducts: [],
   detailProduct: {},
   onSaleProducts: [],
+  genres: [],
+  platforms: [],
 };
 
 export function adminReducer(state: ProductsState = initialState, action: any) {

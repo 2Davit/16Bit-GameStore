@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  getAllGenres,
+  getAllPlatforms,
   getAllProducts,
   onSaleFilter,
 } from "../../redux/actions/products_action";
@@ -22,6 +24,8 @@ const Home = ({ setPage, currentProducts, productsPerPage, pages }: any) => {
   useEffect(() => {
     dispatch(getAllProducts());
     dispatch(onSaleFilter("carousel"));
+    dispatch(getAllGenres());
+    dispatch(getAllPlatforms());
   }, [dispatch]);
 
   // function handleOnSaleFilter() {

@@ -1,9 +1,15 @@
 import React, { useEffect, FC, useState } from "react";
 import { Store } from "../../redux/reducer";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllProducts } from "../../redux/actions/products_action";
+import {
+  getAllGenres,
+  getAllPlatforms,
+  getAllProducts,
+} from "../../redux/actions/products_action";
 import styles from "./AdminPanel.module.css";
+
 import { AdminHome, Panel, ProductContent, UserContent, SalesContent } from '../../components'
+
 
 const AdminPanel: FC = () => {
   const dispatch = useDispatch();
@@ -63,18 +69,30 @@ const AdminPanel: FC = () => {
 
   useEffect(() => {
     dispatch(getAllProducts());
+    dispatch(getAllGenres());
+    dispatch(getAllPlatforms());
   }, [dispatch]);
 
   const totalProducts: any = useSelector(
     (state: Store) => state.productsReducer
   );
 
+  const totalGenres: any = useSelector(
+    (state: Store) => state.productsReducer.genres
+  );
+
+  const totalPlatforms: any = useSelector(
+    (state: Store) => state.productsReducer.platforms
+  );
+
   return (
     <div className={styles.mainContainer}>
       <div className={styles.infoContainer}>
+
         <Panel handleInfo={handleInfo} />
         {info.setHome? <AdminHome /> : info.setProducts?
-          <ProductContent totalProducts={totalProducts} /> : info.setSales? <SalesContent/> : info.setUsers?<UserContent/>: 'Oops Something Went Wrong...'}
+          <ProductContent totalProducts={totalProducts} totalGenres={totalGenres} totalPlatforms={totalPlatforms} /> : info.setSales? <SalesContent/> : info.setUsers?<UserContent/>: 'Oops Something Went Wrong...'}
+
       </div>
     </div>
   );
