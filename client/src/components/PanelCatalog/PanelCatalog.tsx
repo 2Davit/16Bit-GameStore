@@ -4,8 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Store } from "../../redux/reducer/";
 import { editProduct } from "../../redux/actions/admin_actions";
 import { EditProduct } from "../../interfaces";
-import style from "./PanelCatalog.module.css";
-import { ContainerPanelCata, CardContent, ImageContent, Image, H3, Paragraph, Info, EditInfoBtns, ContainerDiv, BtnEdit, InputLabel, Form, Input } from './PanelCatalog.style'
+import { ContainerPanelCata, CardContent, ImageContent, Image, H3, Paragraph, Info, EditInfoBtns, EditInfoBtns2, ContainerDiv, BtnEdit, InputLabel, Form, Input, BtnOpt } from './PanelCatalog.style'
 
 interface Props {
   image: Array<string> | any;
@@ -73,7 +72,7 @@ const PanelCatalog: FC<Props> = ({
       [e.currentTarget.name]: e.currentTarget.value,
     });
   }
-  function handleChangeDescription(e: React.FormEvent<HTMLInputElement>) {
+  function handleChangeDescription(e: React.FormEvent<HTMLTextAreaElement>) {
     setInput({
       ...input,
       [e.currentTarget.name]: e.currentTarget.value,
@@ -126,35 +125,35 @@ const PanelCatalog: FC<Props> = ({
 
   return cond === false ? (
     <ContainerPanelCata>
-        <ImageContent>
-          <Link to={`/game/${id}`}>
-            <Image src={image} alt={name} />
-          </Link>
-        </ImageContent>
-        <CardContent >
-          <H3 >
-            {name.length > 33 ? name.substring(0, 30) + "..." : name}
-          </H3>
-          <Paragraph>$ {price}</Paragraph>
-          <Paragraph>Quantity: {stock}</Paragraph>
-          <Paragraph>{description}</Paragraph>
-          <ContainerDiv>
-            <Info>
-                <Paragraph>Release Year: {released}</Paragraph>
-                <Paragraph>Genres: {genre}</Paragraph>
-                <Paragraph>Platform: {platform}</Paragraph>
-            </Info>
-            <EditInfoBtns>
-                <BtnEdit onClick={handleEdit}>EDIT INFO</BtnEdit>
-                {/* <button
+      <ImageContent>
+        <Link to={`/game/${id}`}>
+          <Image src={image} alt={name} />
+        </Link>
+      </ImageContent>
+      <CardContent >
+        <H3 >
+          {name.length > 33 ? name.substring(0, 30) + "..." : name}
+        </H3>
+        <Paragraph>Product Price: ${price}</Paragraph>
+        <Paragraph>Quantity: {stock}</Paragraph>
+        <Paragraph>{description}</Paragraph>
+        <ContainerDiv>
+          <Info>
+            <Paragraph>Release Year: {released}</Paragraph>
+            <Paragraph>Genres: {genre}</Paragraph>
+            <Paragraph>Platform: {platform}</Paragraph>
+          </Info>
+          <EditInfoBtns>
+            <BtnEdit onClick={handleEdit}>EDIT INFO</BtnEdit>
+            {/* <button
                   onClick={handleEdit}
                   style={{ pointerEvents: "none", color: "gray" }}
                 >
                   SAVE
                 </button> */}
-            </EditInfoBtns>
-            </ContainerDiv>
-        </CardContent>
+          </EditInfoBtns>
+        </ContainerDiv>
+      </CardContent>
     </ContainerPanelCata>
   ) : (
     /* A PARTIR DE ACÁ SE COMIENZA A EDITAR */
@@ -166,7 +165,7 @@ const PanelCatalog: FC<Props> = ({
       </ImageContent>
       <CardContent>
         <Form>
-          <InputLabel style={{ display: "flex", flexDirection: "row" }}>
+          <InputLabel>
             {/* <H3>Product Name</ H3> */}
             <Input
               className="card__title"
@@ -175,9 +174,10 @@ const PanelCatalog: FC<Props> = ({
               value={input.name}
             />
           </InputLabel>
-          <InputLabel style={{ display: "flex", flexDirection: "row" }}>
+          <InputLabel>
             <label>Product Price</label>
             <input
+            style={{backgroundColor: 'transparent', border:"none", outline:"1px solid #c3630f", color:"#EEEEEE", marginLeft:"10px"}}
               name="price"
               type="number"
               value={input.price}
@@ -186,21 +186,20 @@ const PanelCatalog: FC<Props> = ({
           </InputLabel>
           <InputLabel>
             <label>Quantity</label>
-            <input type="number" min="0"></input>
+            <input style={{backgroundColor: 'transparent', border:"none", outline:"1px solid #c3630f", color:"#EEEEEE", marginLeft:"10px"}} type="number" min="0"></input>
           </InputLabel>
           <InputLabel>
-            <label>Description:</label>
-            <input
-              type="text"
+            <textarea
+
               name="description"
               value={input.description}
               onChange={handleChangeDescription}
-            ></input>
+            ></textarea>
           </InputLabel>
-          
+
           <InputLabel>
             <label>Release Year</label>
-            <select name="release_year" onChange={(e) => handleChangeYear(e)}>
+            <select style={{backgroundColor: 'transparent', border:"none", outline:"1px solid #c3630f", color:"#EEEEEE", marginLeft:"10px"}} name="release_year" onChange={(e) => handleChangeYear(e)}>
               {years?.map((year) => (
                 <option key={year} value={year}>
                   {year}
@@ -210,67 +209,70 @@ const PanelCatalog: FC<Props> = ({
           </InputLabel>
           <InputLabel>
             <label>Genres:</label>
-            <select name="genre" onChange={(e: any) => handleAddGenre(e)}>
+            <select style={{backgroundColor: 'transparent', border:"none", outline:"1px solid #c3630f", color:"#EEEEEE", marginLeft:"10px"}} name="genre" onChange={(e: any) => handleAddGenre(e)}>
               {totalGenres.map((index: any) => (
                 <option value={index} key={index}>
                   {index}
                 </option>
               ))}
             </select>
-            </InputLabel>
-            <InputLabel>
-              {input.genre.length > 0 ? (
-                input.genre.map((index: any) => (
-                  <div key={index} style={{ margin: "0 0.5vw 0 0.5vw" }}>
-                    <button
-                      type="button"
-                      onClick={() => handleGenreDelete(index)}
-                      >
-                      x
-                    </button>
-                    <p>{index}</p>
-                  </div>
-                ))
-              ) : (
-                <div>No Genre</div>
-              )}
-            </InputLabel>
-          
-                              
+
+            {input.genre.length > 0 ? (
+              input.genre.map((index: any) => (
+                <BtnOpt key={index}>
+                  <button
+                    type="button"
+                    onClick={() => handleGenreDelete(index)}
+                  >
+                    x
+                  </button>
+                  <p>{index}</p>
+                </BtnOpt>
+              ))
+            ) : (
+              <div>No Genre</div>
+            )}
+          </InputLabel>
+
+              
           <InputLabel>
             <label>Platforms:</label>
-            <select name="platform" onChange={(e: any) => handleAddPlatform(e)}>
+            <select style={{backgroundColor: 'transparent', border:"none", outline:"1px solid #c3630f", color:"#EEEEEE", marginLeft:"10px"}} name="platform" onChange={(e: any) => handleAddPlatform(e)}>
               {totalPlatforms.map((index: any) => (
                 <option value={index} key={index}>
                   {index}
                 </option>
               ))}
             </select>
-            </InputLabel>
-            <ContainerDiv> 
-            <Info>
-            <InputLabel>
+            <div style={{display: "flex"}}>
             {input.platform.length > 0 ? (
               input.platform.map((index: any) => (
-                <div key={index} style={{ margin: "0 0.5vw 0 0.5vw" }}>
+                <BtnOpt key={index} >
                   <button
                     type="button"
                     onClick={() => handlePlatformDelete(index)}
-                    >
+                  >
                     x
                   </button>
                   <p>{index}</p>
-                </div>
+                </BtnOpt>
               ))
             ) : (
               <div>No Platform</div>
             )}
-                    </InputLabel>
-          </Info>
-          <EditInfoBtns>
-            <BtnEdit onClick={handleEdit}>EDIT INFO</BtnEdit>
-            <BtnEdit onClick={(e: any) => handleSave(e)}>SAVE</BtnEdit>
-          </EditInfoBtns>
+            </div>
+          </InputLabel>
+
+          <ContainerDiv>
+
+            <EditInfoBtns>
+
+            </EditInfoBtns>
+
+            <EditInfoBtns2>
+              <BtnEdit onClick={handleEdit}>EDIT INFO</BtnEdit>
+              <BtnEdit onClick={(e: any) => handleSave(e)}>SAVE</BtnEdit>
+            </EditInfoBtns2>
           </ContainerDiv>
         </Form>
       </CardContent>
