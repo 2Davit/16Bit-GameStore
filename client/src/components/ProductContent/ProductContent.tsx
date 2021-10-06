@@ -6,11 +6,9 @@ import { Link } from "react-router-dom";
 
 interface Props {
   totalProducts: any;
-  totalGenres: any;
-  totalPlatforms: any;
 }
 
-const ProductContent: FC<Props> = ({ totalProducts, totalGenres, totalPlatforms }) => {
+const ProductContent: FC<Props> = ({ totalProducts}) => {
   return (
 
     <div className={styles.mainContainer}>

@@ -77,13 +77,6 @@ const AdminPanel: FC = () => {
     (state: Store) => state.productsReducer
   );
 
-  const totalGenres: any = useSelector(
-    (state: Store) => state.productsReducer.genres
-  );
-
-  const totalPlatforms: any = useSelector(
-    (state: Store) => state.productsReducer.platforms
-  );
 
   return (
     <div className={styles.mainContainer}>
@@ -91,7 +84,7 @@ const AdminPanel: FC = () => {
 
         <Panel handleInfo={handleInfo} />
         {info.setHome? <AdminHome /> : info.setProducts?
-          <ProductContent totalProducts={totalProducts} totalGenres={totalGenres} totalPlatforms={totalPlatforms} /> : info.setSales? <SalesContent/> : info.setUsers?<UserContent/>: 'Oops Something Went Wrong...'}
+          <ProductContent totalProducts={totalProducts}/> : info.setSales? <SalesContent/> : info.setUsers?<UserContent/>: 'Oops Something Went Wrong...'}
 
       </div>
     </div>
