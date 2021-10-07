@@ -1,5 +1,9 @@
 import styled from 'styled-components'
+import { Container } from '../../GlobalStyles/GlobalStyles'
 
+export const ContainerFormG = styled(Container)`
+    font-family: ${p => p.theme.fontAdmin};
+`
 export const Title = styled.h1`
 color: #EEEEEE;
 margin: 2rem auto;

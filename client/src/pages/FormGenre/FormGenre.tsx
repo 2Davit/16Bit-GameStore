@@ -4,7 +4,7 @@ import { CreateGenre } from "../../interfaces";
 import { createNewGenre } from "../../redux/actions/products_action";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { Title, FormContainer, FormLabel, FormInput, BtnSubmit, BtnBack, FormErrors, Fields } from './FormGenre.style'
+import { Title, FormContainer, FormLabel, FormInput, BtnSubmit, BtnBack, FormErrors, Fields, ContainerFormG } from './FormGenre.style'
 
 interface GenreValidate {
     genre: string;
@@ -66,7 +66,7 @@ const FormGenre: FC = () => {
     let disabledBtn = !(input.genre?.length > 0 && error.genres.length === 0);
 
     return (
-        <div>
+        <ContainerFormG>
             <Link to="/admin">
                 <BtnBack>Back</BtnBack>
             </Link>
@@ -86,7 +86,7 @@ const FormGenre: FC = () => {
                 <BtnSubmit type="submit" disabled={disabledBtn}>Create</BtnSubmit>
             </FormContainer>
 
-        </div>
+        </ContainerFormG>
     )
 }
 

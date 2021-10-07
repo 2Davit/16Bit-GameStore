@@ -3,7 +3,7 @@ import { ProductCreate, ProductValidate } from "../../interfaces";
 import { useDispatch } from "react-redux";
 import { createVideogame } from "../../redux/actions/products_action";
 import { Link } from "react-router-dom";
-import { FormContainer, Fields, FormLabel, FormInput, FormErrors, FormSelect, FormTextarea, FormInputImg, FormOpt, BtnAdd, BtnSubmit, Title, BtnBack } from './FormProduct.style'
+import { FormContainer, Fields, FormLabel, FormInput, FormErrors, FormSelect, FormTextarea, FormInputImg, FormOpt, BtnAdd, BtnSubmit, Title, BtnBack, ContainerFormP } from './FormProduct.style'
 
 interface Info {
   url: string;
@@ -254,7 +254,7 @@ const FormProduct: FC = () => {
   }
 
   return (
-    <div>
+    <ContainerFormP>
 
       <Link to="/admin" style={{ textDecoration: "none", color: "#EEEEEE" }}>
         <BtnBack>Back</BtnBack>
@@ -408,7 +408,7 @@ const FormProduct: FC = () => {
 
         <BtnSubmit type="submit">Submit</BtnSubmit>
       </FormContainer>
-    </div>
+    </ContainerFormP>
   );
 };
 
