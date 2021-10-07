@@ -3,6 +3,7 @@ import { CreatePlatform } from "../../interfaces";
 import { createNewPlatform } from "../../redux/actions/products_action";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { Title, FormContainer, FormLabel, FormInput, BtnSubmit, BtnBack, FormErrors, Fields } from './FormPlatform.style'
 
 interface PlatformValidate {
     platform: string;
@@ -64,22 +65,25 @@ const FormPlatform: FC = () => {
     return (
         <div>
             <Link to="/admin">
-                <button>Back</button>
+                <BtnBack>Back</BtnBack>
             </Link>
 
-            <h1>Create a new platform</h1>
-            <form style={{ display: 'flex', flexDirection: 'column', width: '50%', margin: '0 auto' }} onSubmit={(e) => handleSubmit(e)}>
-                <label htmlFor="name_product">Platform's name</label>
-                <input
+            <Title>Create a new platform</Title>
+            <FormContainer onSubmit={(e) => handleSubmit(e)}>
+                {error.platform && (<FormErrors>{error.platform}</FormErrors>)}
+                <Fields>
+                <FormLabel htmlFor="name_product">Platform's name</FormLabel>
+                <FormInput
                     onChange={(e) => handleChange(e)}
                     name="platform"
                     placeholder="Introduce a name for your new Platform..."
                 />
+                </Fields> 
+                
 
-                {error.platform && (<div style={{color: 'red'}}>{error.platform}</div>)}
 
-                <button type="submit" disabled={disabledBtn}>Create</button>
-            </form>
+                <BtnSubmit type="submit" disabled={disabledBtn}>Create</BtnSubmit>
+            </FormContainer>
 
         </div>
     )
