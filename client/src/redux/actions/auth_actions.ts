@@ -29,7 +29,7 @@ export const login = (values: any) => {
 export const getRole = () => {
   return async (dispatch: Dispatch<any>): Promise<any> => {
     const userData = JSON.parse(localStorage.getItem("userData") as string);
-    const token = userData.token;
+    const token = userData?.token;
     try {
       const role = await axios.get("http://localhost:3001/auth/getRole", {
         headers: { "x-access-token": token },
