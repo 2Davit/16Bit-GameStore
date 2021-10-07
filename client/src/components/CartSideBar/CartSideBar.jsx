@@ -46,7 +46,7 @@ const CartSideBar /*: FC<CartSideBarProps>*/ = ({ closeCallback, show }) => {
   }, [cartList]);
 
 
-    let isRegister = true ? 'order' : 'userCreate'
+    let isRegister = true ? 'order' : 'register'
 
   return ReactDOM.createPortal(
     <StyledCartSideBar>
