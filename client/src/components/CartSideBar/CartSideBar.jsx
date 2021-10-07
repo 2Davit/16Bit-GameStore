@@ -17,9 +17,13 @@ import { Slide } from "react-reveal";
 
 const CartSideBar /*: FC<CartSideBarProps>*/ = ({ closeCallback, show }) => {
   const dispatch = useDispatch();
-  const cartList /*:ProductInCart*/ = useSelector(
-    (state /*: Store*/) => state.cartReducer.cart.list
-  );
+  const cartList /* :ProductInCart  */= useSelector(
+    (state/* : Store */) => state.cartReducer.cart.list
+  ); 
+
+  
+
+  /* const cartStorage = JSON.parse(localStorage.getItem("cart")); */
 
   const [subtotal, setSubtotal] = useState(0.0);
 
@@ -46,7 +50,10 @@ const CartSideBar /*: FC<CartSideBarProps>*/ = ({ closeCallback, show }) => {
   }, [cartList]);
 
 
-    let isRegister = true ? 'order' : 'register'
+    /* let userInStorage = JSON.parse(localStorage.getItem("user")); */
+    
+
+    let isRegister = true ? '/order' : '/register'
 
   return ReactDOM.createPortal(
     <StyledCartSideBar>

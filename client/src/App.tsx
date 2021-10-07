@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   Home,
@@ -25,6 +25,9 @@ import "react-toastify/dist/ReactToastify.css";
 import { Store } from "./redux/reducer";
 import { Product } from "./interfaces";
 import { toggleCart } from "./redux/actions/global_actions";
+import { getCart } from "../src/redux/actions/cart_actions";
+
+
 
 const App: FC = () => {
   const dispatch = useDispatch();
@@ -51,6 +54,10 @@ const App: FC = () => {
     dispatch(toggleCart());
   };
   // <-
+
+  useEffect(() => {
+    dispatch(getCart());
+  }, [dispatch]);
 
   return (
     <Theme /* none="none" */>

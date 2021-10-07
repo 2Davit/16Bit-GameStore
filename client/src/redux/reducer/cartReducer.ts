@@ -3,6 +3,7 @@ import {
   REMOVE_ITEM_CART,
   REST_ITEM_CART,
   CLEAR_CART,
+  GET_CART
 } from "../types";
 import { ProductInCart } from "../../interfaces";
 import { CartState } from "../../interfaces";
@@ -71,6 +72,15 @@ export const cartReducer = (state: CartState = initialState, action: any) => {
         cart: {
           ...state.cart,
           list: [],
+        },
+      };
+
+    case GET_CART:
+      return {
+        ...state,
+        cart: {
+          ...state.cart,
+          list: action.payload,
         },
       };
 
