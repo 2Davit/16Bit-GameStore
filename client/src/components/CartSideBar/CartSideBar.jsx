@@ -45,6 +45,9 @@ const CartSideBar /*: FC<CartSideBarProps>*/ = ({ closeCallback, show }) => {
     }
   }, [cartList]);
 
+
+    let isRegister = true ? 'order' : 'userCreate'
+
   return ReactDOM.createPortal(
     <StyledCartSideBar>
       <div
@@ -71,10 +74,10 @@ const CartSideBar /*: FC<CartSideBarProps>*/ = ({ closeCallback, show }) => {
             <p>Subtotal:</p>
             <p>${subtotal}</p>
           </div>
-          <div className="modal__buttons">
-            <Link to="/order">
-              <Btn className="btn btn-card">Checkout</Btn>
-            </Link>
+          <div  id="modal__buttons" className="modal__buttons">
+             <Link to= {isRegister}> 
+              <Btn className="btn btn-card" /* id="btn btn-card"  */ /* onClick={() => handlePayment()} */> Checkout</Btn>
+             </Link> 
             <Btn className="btn btn-sec" onClick={() => dispatch(clearCart())}>
               Clear Cart
             </Btn>

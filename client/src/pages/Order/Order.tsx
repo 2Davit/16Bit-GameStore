@@ -4,7 +4,7 @@ import { createNewGenre } from "../../redux/actions/products_action";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import axios from 'axios';
-import { Store } from '../../redux/reducer/';
+import { Store } from '../../redux/reducer';
 import { ProductInCart } from "../../interfaces";
 
 interface UserGuess {
@@ -14,21 +14,21 @@ interface UserGuess {
   adress: string;
 }
 const OrderUser = () => {
-  
+
   const cart: any = useSelector(
     (state: Store) => state.cartReducer.cart.list
   );
-  
+
   const [subtotal, setSubtotal] = useState(0.00);
 
-useEffect(() => {
-		if (cart) {
-			setSubtotal(cart.reduce((acc: number, product: ProductInCart) => {
-				acc = acc + (product.price_product! * product.quantity!)
-				return acc;
-			}, 0.00))
-		}
-	}, [cart])
+  useEffect(() => {
+    if (cart) {
+      setSubtotal(cart.reduce((acc: number, product: ProductInCart) => {
+        acc = acc + (product.price_product! * product.quantity!)
+        return acc;
+      }, 0.00))
+    }
+  }, [cart])
 
   const dispatch = useDispatch();
   const [input, setInput] = useState<UserGuess>({
@@ -58,23 +58,79 @@ useEffect(() => {
   }
 
 
-  const postOrder = {
-        name_user: input.name,
-        lastname_user: input.lastname,
-        email_user: input.email,
-        status_order: 'pending',
-        amount_order: subtotal,
-        address: input.adress,
-        cart: cart.map((c:ProductInCart) => ( {id_product: c.id_product, 
-                                                price_product: c.price_product,
-                                                quantity: c.quantity} ))
+  /*   const postOrder = {
+      name_user: input.name,
+      lastname_user: input.lastname,
+      email_user: input.email,
+      status_order: 'pending',
+      amount_order: subtotal,
+      address: input.adress,
+      cart: cart.map((c: ProductInCart) => (
+        {
+          id_product: c.id_product,
+          price_product: c.price_product,
+          quantity: c.quantity
+        }))
+    } */
+
+
+  const order = {
+    id_user: 3,
+    status_order: "pending",
+    amount_order: subtotal,
+    cart: cart.map((c: ProductInCart) => (
+      {
+        id_product: c.id_product,
+        price_product: c.price_product,
+        quantity: c.quantity
+      })),
+    address_order: input.adress
   }
 
+  async function handlePayment() {
+    try {
+      const preference = await (
+        await fetch("http://localhost:3001/order", {
+          method: "post",
+          body: JSON.stringify(order),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+      ).json();
+
+      var script = document.createElement("script");
+
+      // The source domain must be completed according to the site for which you are integrating.
+      // For example: for Argentina ".com.ar" or for Brazil ".com.br".
+      script.src =
+        "https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js";
+      script.type = "text/javascript";
+      script.dataset.preferenceId = preference.preferenceId;
+
+      script.setAttribute("data-button-label", "Pagar con Mercado Pago");
+
+      const element: HTMLElement = document.getElementById('mercado') as HTMLElement
+      element.innerHTML = '';
+
+      const elementTwo: HTMLElement = document.querySelector<HTMLDivElement>("#mercado") as HTMLElement
+
+       
+
+      elementTwo.appendChild(script);
+
+      
+
+    } catch {
+      alert("Sin stock");
+    }
+
+  }
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    console.log('ACAAA: ', postOrder);
-    axios.post('http://localhost:3001/order', postOrder)
+    console.log('ACAAA: ', order);
+    handlePayment()
   }
 
   const validate = (input: UserGuess) => {
@@ -103,11 +159,11 @@ useEffect(() => {
     }
     /*------------------------ EMAIL VALIDATION -------------------------- */
     function validEmail(email: string) {
-        const re =
+      const re =
         /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       return re.test(String(input.email).toLowerCase());
     }
-    
+
     if (!input.email) {
       error.email = "email is required";
     } else if (!validEmail(input.email)) {
@@ -123,10 +179,10 @@ useEffect(() => {
     return error;
   };
 
-//   let disabledBtn = !(inp.name?.length > 0 && error.genres.length === 0);
+  //   let disabledBtn = !(inp.name?.length > 0 && error.genres.length === 0);
 
   return (
-    <div>
+    <div id="mercado" className="mercado">
       <h1>Please complete the form</h1>
       <form
         style={{
