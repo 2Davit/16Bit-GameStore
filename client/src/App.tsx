@@ -14,7 +14,7 @@ import {
   Terms,
   Privacy,
   Legal,
-  Order
+  Order,
 } from "./pages/";
 import { NavBar, Footer, About, CartSideBar } from "./components";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -56,7 +56,7 @@ const App: FC = () => {
     <Theme /* none="none" */>
       <GlobalStyle />
       <Router>
-        <NavBar setPage={setCurrentPage} toggleModal={toggleModal} /> 
+        <NavBar setPage={setCurrentPage} toggleModal={toggleModal} />
         <CartSideBar closeCallback={toggleModal} show={showCart} />
         <Switch>
           <Route exact path="/" component={Landing} />
@@ -73,7 +73,7 @@ const App: FC = () => {
           <Route exact path="/form" component={FormProduct} />
           <Route exact path="/admin" component={AdminPanel} />
           <Route exact path="/login" component={FormLogin} />
-          <Route exact path="/register" component={FormRegister} />
+          <Route exact path="/signup" component={FormRegister} />
           <Route exact path="/createGenre" component={FormGenre} />
           <Route exact path="/createPlatform" component={FormPlatform} />
           <Route exact path="/terms" component={Terms} />

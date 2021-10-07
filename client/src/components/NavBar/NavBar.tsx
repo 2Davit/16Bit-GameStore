@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { SearchBar } from "../index";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProducts } from "../../redux/actions/products_action";
-import { StyledSVG } from "../../GlobalStyles/GlobalStyles";
+import { Dropdown, StyledSVG } from "../../GlobalStyles/GlobalStyles";
 import { Title } from "../index";
 import { Store } from "../../redux/reducer";
 import { ProductInCart } from "../../interfaces";
@@ -48,19 +48,24 @@ const NavBar: FC<Props> = ({ setPage, toggleModal }: any) => {
           </div>
           <SearchBar setPage={setPage} />
           <ul className="navbar__options">
-            <li>
-              <Link to="/login">
-                <StyledSVG src={userPic} />
-                <span>Login</span>
-              </Link>
-            </li>
-
-            <li>
-              <Link to="/user">
-                <StyledSVG src={userPic} />
-                <span>User</span>
-              </Link>
-            </li>
+            <Dropdown>
+              <StyledSVG src={userPic} />
+              <span>User</span>
+              <ul>
+                <>
+                  <li>
+                    <Link to="/login" className="dropdown__button">
+                      Login
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/signup" className="dropdown__button">
+                      Signup
+                    </Link>
+                  </li>
+                </>
+              </ul>
+            </Dropdown>
 
             <li>
               <button onClick={toggleModal}>

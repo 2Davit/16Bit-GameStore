@@ -51,6 +51,12 @@ const StyledFooter = styled.footer`
       left: 35%;
     }
   }
+  .navbar__bottom_logo {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    left: 2em;
+  }
 
   @media (max-width: 1000px) {
     padding: 3em;
