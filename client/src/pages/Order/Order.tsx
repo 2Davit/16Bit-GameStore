@@ -15,10 +15,12 @@ interface UserGuess {
 }
 const OrderUser = () => {
 
-  const cart: any = useSelector(
+  /* const cart: any = useSelector(
     (state: Store) => state.cartReducer.cart.list
-  );
+  ); */
 
+  const cart : any = JSON.parse(localStorage.getItem("cart")!);
+  
   const [subtotal, setSubtotal] = useState(0.00);
 
   useEffect(() => {

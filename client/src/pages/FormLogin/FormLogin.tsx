@@ -31,7 +31,7 @@ const FormLogin: FC = () => {
           placeholder="Password"
         />
 
-        <Link to="/register">Create account</Link>
+        <Link to="/signup">Create account</Link>
 
         <button type="submit">Login</button>
       </Form>

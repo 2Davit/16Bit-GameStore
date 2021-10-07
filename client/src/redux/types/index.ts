@@ -10,6 +10,7 @@ export const CREATE_NEW_GENRE: string = "CREATE_NEW_PRODUCT";
 export const CREATE_NEW_PLATFORM: string = "CREATE_NEW_PRODUCT";
 export const REMOVE_ITEM_CART: string = "REMOVE_ITEM_CART";
 export const REST_ITEM_CART: string = "REST_ITEM_CART";
+export const GET_CART: string = "GET_CART";
 export const EDIT_PRODUCT: string = "EDIT_PRODUCT";
 export const CLEAR_CART: string = "CLEAR_CART";
 export const GET_ALL_GENRES: string = "GET_ALL_GENRES";

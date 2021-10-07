@@ -1,15 +1,22 @@
 import styled from "styled-components";
 
 
-export const GameStore = styled.button`
-background: none;
-border: 2px solid ${p => p.theme.bgSub} ;
-border-radius: 2rem;
-color: white;
-letter-spacing: .25rem;
+export const StyledTitle = styled.div`
+background: url('https://www.ppt-backgrounds.net/thumbs/pixel-art-by-wupto-on-deviantart-design-keynote.png');
+background-position: top center;
+background-size: cover;
+display:flex;
+align-items: center;
+border-radius: 999px;
+letter-spacing: 3px;
 font-weight: bold;
+margin:0 3em;
+padding: 1em;
 &:hover{
-    border: 2px solid white;
-    color: #51A5FE;
+      color: #108d;
+    }
+
+    .gamestore{
+color: #108d;
     }
 `

@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   Home,
@@ -14,7 +14,7 @@ import {
   Terms,
   Privacy,
   Legal,
-  Order
+  Order,
 } from "./pages/";
 import { NavBar, Footer, About, CartSideBar } from "./components";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -25,6 +25,9 @@ import "react-toastify/dist/ReactToastify.css";
 import { Store } from "./redux/reducer";
 import { Product } from "./interfaces";
 import { toggleCart } from "./redux/actions/global_actions";
+import { getCart } from "../src/redux/actions/cart_actions";
+
+
 
 const App: FC = () => {
   const dispatch = useDispatch();
@@ -57,11 +60,17 @@ const App: FC = () => {
   };
   // <-
 
+  useEffect(() => {
+    dispatch(getCart());
+  }, [dispatch]);
+
   return (
     <Theme /* none="none" */>
       <GlobalStyle />
       <Router>
+
       {deleteNav && <NavBar setPage={setCurrentPage} toggleModal={toggleModal} /> }
+
         <CartSideBar closeCallback={toggleModal} show={showCart} />
         <Switch>
           <Route exact path="/" component={Landing} />
@@ -78,7 +87,7 @@ const App: FC = () => {
           <Route exact path="/form" component={FormProduct} />
           <Route exact path="/admin" component={AdminPanel} />
           <Route exact path="/login" component={FormLogin} />
-          <Route exact path="/register" component={FormRegister} />
+          <Route exact path="/signup" component={FormRegister} />
           <Route exact path="/createGenre" component={FormGenre} />
           <Route exact path="/createPlatform" component={FormPlatform} />
           <Route exact path="/terms" component={Terms} />

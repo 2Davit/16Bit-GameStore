@@ -39,18 +39,16 @@ export const StyledNavBar = styled.nav`
       list-style: none;
       display: flex;
       align-items: center;
-      flex-basis: 300px;
-      justify-content: space-between;
+       flex-basis: 300px;
+     
 
-      & > li {
+      & >li {
         position: relative;
-        display: flex;
-      }
+         }
 
       li:hover {
         color: #51a5fe;
-      
-      }
+            }
 
       .cart__number {
         font-size: 0.8em;

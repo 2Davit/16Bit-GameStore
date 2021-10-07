@@ -58,19 +58,12 @@ module.exports = (sequelize) => {
       }
     },
     in_stock: {
-      type: DataTypes.BOOLEAN,
-      allownull: false, // ---------->
-      // validate: {
-      //   min: 0,
-      //   isInt: true
-      // }
+      type: DataTypes.INTEGER,
+      allownull: false, 
       validate: {
-        isBoolean(value) {
-          if (typeof value !== 'boolean') {
-            throw new Error('Value must be a boolean')
-          }
-        }
-      }
+         min: 0,
+         isInt: true
+       }
     },
     on_sale: {
       type: DataTypes.BOOLEAN,

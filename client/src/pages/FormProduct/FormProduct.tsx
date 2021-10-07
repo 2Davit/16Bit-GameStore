@@ -32,7 +32,7 @@ const FormProduct: FC = () => {
     description_product: "",
     image_product: images,
     thumbnail_product: "",
-    in_stock: false,
+    in_stock: 0,
     on_sale: false,
     release_year: 0,
     genres: [],
@@ -162,18 +162,11 @@ const FormProduct: FC = () => {
       });
     }
   }
-  function handleStock(e: React.FormEvent<HTMLSelectElement>) {
-    if (e.currentTarget.value === "true") {
-      setInput({
+  function handleStock(e: React.FormEvent<HTMLInputElement>) {
+    setInput({
         ...input,
-        in_stock: true,
+        in_stock: parseInt(e.currentTarget.value),
       });
-    } else {
-      setInput({
-        ...input,
-        in_stock: false,
-      });
-    }
   }
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -191,7 +184,7 @@ const FormProduct: FC = () => {
         description_product: "",
         image_product: images,
         thumbnail_product: "",
-        in_stock: false,
+        in_stock: 0,
         on_sale: false,
         release_year: 0,
         genres: [],
@@ -328,7 +321,12 @@ const FormProduct: FC = () => {
 
         <Fields>
           <FormLabel htmlFor="in_stock">Stock</FormLabel>
-          <FormSelect
+          <FormInput
+            onChange={(e) => handleStock(e)}
+            name="in_stock"
+            placeholder="Introduce a quantity"
+          />
+          {/* <FormSelect
             onChange={(e) => handleStock(e)}
             name="in_stock"
             placeholder="Select an Option"
@@ -336,7 +334,7 @@ const FormProduct: FC = () => {
             <option>Select an Option</option>
             <option value="true">In Stock</option>
             <option value="false">Out of Stock</option>
-          </FormSelect>
+          </FormSelect> */}
         </Fields>
         <Fields>
           <FormLabel htmlFor="on_sale">Sale Discount</FormLabel>
@@ -345,6 +343,7 @@ const FormProduct: FC = () => {
             <option value="true">On sale</option>
             <option value="false">No Discounts</option>
           </FormSelect>
+          
         </Fields>
 
         {error.release_year && (<FormErrors>{error.release_year}</FormErrors>)}

@@ -13,7 +13,7 @@ interface Props {
   description: string;
   price: number;
   id: number | undefined;
-  stock: boolean;
+  stock: number;
   genre?: string[];
   platform: any;
   thumbnail: string;
