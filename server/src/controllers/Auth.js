@@ -5,14 +5,39 @@ const { User } = require("../db.js");
 const { SECRET } = process.env;
 
 const signUp = async (req, res) => {
-  const { username, password, email, name, lastname, adress } = req.body;
+  const { username, password, email, name, lastname, address } = req.body;
+
+  // Checking for existing user / email
+
+  const existingUser = await User.findOne({
+    where: {
+      nickname_user: username,
+    },
+  });
+
+  const existingMail = await User.findOne({
+    where: {
+      email_user: email,
+    },
+  });
+
+  if (existingUser) {
+    return res.status(400).send("Failed! Username already in use!");
+  }
+
+  if (existingMail) {
+    return res.status(400).send("Failed! email already in use");
+  }
+
+  // User create
+
   await User.create({
     nickname_user: username,
     password_user: bcrypt.hashSync(password, 8),
     email_user: email,
     name_user: name,
     lastname_user: lastname,
-    address_user: adress,
+    address_user: address,
   });
 
   return res.status(200).send("User successfully registered!");
@@ -45,7 +70,7 @@ const logIn = async (req, res) => {
     email: user.email_user,
     name: user.name_user,
     lastname: user.lastname_user,
-    adress: user.adress_user,
+    address: user.address_user,
   });
 };
 
@@ -54,7 +79,7 @@ const getRole = async (req, res) => {
   if (user && user.is_admin) {
     return res.status(200).send({ admin: true });
   } else {
-    return res.status(403).send("Require administrator permissions");
+    return res.status(200).send({ admin: false });
   }
 };
 

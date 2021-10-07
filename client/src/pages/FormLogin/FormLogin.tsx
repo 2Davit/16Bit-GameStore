@@ -7,21 +7,20 @@ import { useDispatch } from "react-redux";
 const FormLogin: FC = () => {
   const dispatch = useDispatch();
 
+  const handleSubmit = (values: UserLogin) => {
+    dispatch(login(values));
+    dispatch(getRole());
+  };
+
   return (
     <Formik
       initialValues={{ username: "", password: "" }}
-      onSubmit={async (values: UserLogin) => {
-        try {
-          dispatch(login(values));
-          dispatch(getRole);
-        } catch (err) {
-          console.log(err);
-        }
-      }}
+      onSubmit={handleSubmit}
     >
       <Form>
         <label htmlFor="username">Username</label>
         <Field id="username" name="username" placeholder="Username" />
+
         <label htmlFor="password">Password</label>
         <Field
           id="password"
@@ -29,6 +28,7 @@ const FormLogin: FC = () => {
           type="password"
           placeholder="Password"
         />
+
         <button type="submit">Login</button>
       </Form>
     </Formik>

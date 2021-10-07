@@ -1,3 +1,5 @@
+const { User } = require("../db.js");
+
 const reqAdmin = async (req, res, next) => {
   const user = await User.findByPk(req.userId);
   if (user && user.is_admin) {
