@@ -6,10 +6,10 @@ import {
   getAllProducts,
   onSaleFilter,
 } from "../../redux/actions/products_action";
+import { getRole } from "../../redux/actions/auth_actions";
 import { Paginate, Filter, Catalog, Carousel } from "../../components";
 import { Store } from "../../redux/reducer/";
 import { ContainerHome } from "./Home.style";
-import { getRole } from "../../redux/actions/auth_actions";
 
 const Home = ({ setPage, currentProducts, productsPerPage, pages }: any) => {
   const dispatch = useDispatch();

@@ -1,7 +1,7 @@
 // Dependencias
 import React, { FC } from "react";
 import axios from "axios";
-import { Field, Form, Formik, FormikHelpers } from "formik";
+import { Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 
@@ -12,7 +12,7 @@ import { login } from "../../redux/actions/auth_actions";
 const initialValues: UserRegister = {
   username: "",
   password: "",
-  passwordConfirm: "",
+  confirmPassword: "",
   email: "",
   name: "",
   lastname: "",
@@ -34,7 +34,7 @@ const SignupSchema = Yup.object().shape({
   password: Yup.string()
     .min(5, "At least 5 characters long!")
     .required("Required!"),
-  passwordConfirm: Yup.string()
+  confirmPassword: Yup.string()
     .oneOf([Yup.ref("password")], "Password must be the same!")
     .required("Required!"),
   email: Yup.string().email("Must be a valid email!").required("Required!"),
@@ -49,14 +49,16 @@ const SignupSchema = Yup.object().shape({
 
 const FormRegister: FC = () => {
   const dispatch = useDispatch();
-  const handleSubmit = async (values: UserRegister) => {
-    /* try { */
-    axios.post("http://localhost:3001/auth/signup", values);
-    const { username, password } = values;
-    dispatch(login({ username, password }));
-    /*     } catch (err) {
-      console.log(err);
-    } */
+  const handleSubmit = (values: UserRegister) => {
+    axios
+      .post("http://localhost:3001/auth/signup", values)
+      .then((res) => {
+        const { username, password } = values;
+        dispatch(login({ username, password }));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -64,7 +66,7 @@ const FormRegister: FC = () => {
       <Formik
         initialValues={initialValues}
         onSubmit={handleSubmit}
-        validationSchema={SignupSchema}
+        /* validationSchema={SignupSchema} */
       >
         {({ dirty, isValid }) => {
           return (
@@ -74,7 +76,7 @@ const FormRegister: FC = () => {
                 id="username"
                 name="username"
                 placeholder="Username"
-                required
+                /* required */
               />
 
               <label htmlFor="password">Password</label>
@@ -83,7 +85,7 @@ const FormRegister: FC = () => {
                 name="password"
                 type="password"
                 placeholder="Password"
-                required
+                /* required */
               />
 
               <label htmlFor="confirmPassword">Confirm password</label>
@@ -92,7 +94,7 @@ const FormRegister: FC = () => {
                 name="confirmPassword"
                 type="password"
                 placeholder="Confirm password"
-                required
+                /* required */
               />
 
               <label htmlFor="email">Email</label>
@@ -100,18 +102,18 @@ const FormRegister: FC = () => {
                 id="email"
                 name="email"
                 placeholder="example@example.com"
-                required
+                /* required */
               />
 
               <label htmlFor="name">Name</label>
-              <Field id="name" name="name" placeholder="Name" required />
+              <Field id="name" name="name" placeholder="Name" /* required */ />
 
               <label htmlFor="lastname">Lastname</label>
               <Field
                 id="lastname"
                 name="lastname"
                 placeholder="Lastname"
-                required
+                /* required */
               />
 
               <label htmlFor="address">Address</label>
@@ -119,10 +121,10 @@ const FormRegister: FC = () => {
                 id="address"
                 name="address"
                 placeholder="Address"
-                required
+                /* required */
               />
 
-              <button type="submit" disabled={!dirty || !!isValid}>
+              <button type="submit" /* disabled={!dirty || !!isValid} */>
                 Register
               </button>
             </Form>

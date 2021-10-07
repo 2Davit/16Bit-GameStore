@@ -110,7 +110,7 @@ export interface EditProduct {
 export interface UserRegister {
   username: string;
   password: string;
-  passwordConfirm: string;
+  confirmPassword: string;
   email: string;
   name: string;
   lastname: string;

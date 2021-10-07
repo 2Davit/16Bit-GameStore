@@ -8,11 +8,7 @@ const FormLogin: FC = () => {
   const dispatch = useDispatch();
 
   const handleSubmit = (values: UserLogin) => {
-    try {
-      dispatch(login(values));
-    } catch (err) {
-      console.log(err);
-    }
+    dispatch(login(values));
     dispatch(getRole());
   };
 
