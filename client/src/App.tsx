@@ -56,7 +56,7 @@ const App: FC = () => {
     <Theme /* none="none" */>
       <GlobalStyle />
       <Router>
-        { false ? <NavBar setPage={setCurrentPage} toggleModal={toggleModal} /> : ""}
+        <NavBar setPage={setCurrentPage} toggleModal={toggleModal} />
         <CartSideBar closeCallback={toggleModal} show={showCart} />
         <Switch>
           <Route exact path="/" component={Landing} />
@@ -84,7 +84,7 @@ const App: FC = () => {
 
           <Route path="*" component={NotFound} />
         </Switch>
-        { false ? <Footer />: ''}
+        <Footer />
       </Router>
       <ToastContainer />
       <GlobalStyle />
