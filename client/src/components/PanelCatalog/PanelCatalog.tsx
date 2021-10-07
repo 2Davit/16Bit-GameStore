@@ -126,7 +126,7 @@ const PanelCatalog: FC<Props> = ({
   }
 
   return cond === false ? (
-    <ContainerPanelCata>
+    <ContainerPanelCata >
       <ImageContent>
         <Link to={`/game/${id}`}>
           <Image src={image} alt={name} />
@@ -142,8 +142,8 @@ const PanelCatalog: FC<Props> = ({
         <ContainerDiv>
           <Info>
             <Paragraph>Release Year: {released}</Paragraph>
-            <Paragraph>Genres: {genre?genre.map((g) => 
-              <li>{g}</li>
+            <Paragraph>Genres: {genre?genre.map((g, i) => 
+              <li key={i}>{g}</li>
             ): 'no hay generos'}</Paragraph>
             <Paragraph>Platform: {platform}</Paragraph>
           </Info>
@@ -274,7 +274,7 @@ const PanelCatalog: FC<Props> = ({
             </EditInfoBtns>
 
             <EditInfoBtns2>
-              <BtnEdit onClick={handleEdit}>EDIT INFO</BtnEdit>
+              <BtnEdit onClick={handleEdit}>BACK</BtnEdit>
               <BtnEdit onClick={(e: any) => handleSave(e)}>SAVE</BtnEdit>
             </EditInfoBtns2>
           </ContainerDiv>

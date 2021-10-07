@@ -1,10 +1,11 @@
 import React, {FC} from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { CreateGenre } from "../../interfaces";
 import { createNewGenre } from "../../redux/actions/products_action";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { Title, FormContainer, FormLabel, FormInput, BtnSubmit, BtnBack, FormErrors, Fields, ContainerFormG } from './FormGenre.style'
+import { deleteNavbar } from "../../redux/actions/admin_actions";
 
 interface GenreValidate {
     genre: string;
@@ -17,6 +18,10 @@ const FormGenre: FC = () => {
     const [error, setError] = useState<any>({
         genre: ''
     })
+
+    useEffect(()=>{
+        dispatch(deleteNavbar())
+    },[])
 
     function handleChange(e: React.FormEvent<HTMLInputElement>) {
         setInput({

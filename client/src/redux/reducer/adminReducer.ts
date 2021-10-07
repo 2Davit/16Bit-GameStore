@@ -1,5 +1,4 @@
-import { StatHelpText } from "@chakra-ui/stat";
-import { EDIT_PRODUCT } from "../types";
+import { EDIT_PRODUCT, EDIT_NAVBAR, CREATE_NAVBAR} from "../types";
 import { ProductsState } from "../../interfaces";
 
 const initialState: ProductsState = {
@@ -9,6 +8,7 @@ const initialState: ProductsState = {
   onSaleProducts: [],
   genres: [],
   platforms: [],
+  navbar: true
 };
 
 export function adminReducer(state: ProductsState = initialState, action: any) {
@@ -17,6 +17,16 @@ export function adminReducer(state: ProductsState = initialState, action: any) {
     case EDIT_PRODUCT:
       return {
         ...state,
+      };
+    case EDIT_NAVBAR:
+      return {
+        ...state,
+            navbar: payload
+      };
+    case CREATE_NAVBAR:
+      return {
+        ...state,
+            navbar: payload
       };
     default:
       return state;

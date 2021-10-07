@@ -19,6 +19,7 @@ const initialState: ProductsState = {
   onSaleProducts: [],
   genres: [],
   platforms: [],
+  navbar: true,
 };
 
 export function productsReducer(

@@ -1,8 +1,17 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { deleteNavbar } from "../../redux/actions/admin_actions";
 import { StyledLanding } from "./StyledLanding";
 
 const Landing: FC = () => {
+
+  const dispatch = useDispatch();
+  //quitar la navbar
+  useEffect(() => {
+    dispatch(deleteNavbar())
+  },[])
+
   return (
     <StyledLanding>
       <Link to="/home">

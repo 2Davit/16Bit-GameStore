@@ -6,6 +6,7 @@ import {
   getAllPlatforms,
   getAllProducts,
 } from "../../redux/actions/products_action";
+import { deleteNavbar } from '../../redux/actions/admin_actions'
 import {
   AdminHome,
   Panel,
@@ -65,6 +66,7 @@ const AdminPanel: FC = () => {
     dispatch(getAllProducts());
     dispatch(getAllGenres());
     dispatch(getAllPlatforms());
+    dispatch(deleteNavbar());
   }, [dispatch]);
   const totalProducts: any = useSelector(
     (state: Store) => state.productsReducer

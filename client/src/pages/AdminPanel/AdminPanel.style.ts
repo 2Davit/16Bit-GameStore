@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { Container } from '../../GlobalStyles/GlobalStyles'
 
 export const ContainerAdmin = styled(Container)`
-    background: red;
+    
     display: flex;
     font-family: ${p => p.theme.fontAdmin};
 `

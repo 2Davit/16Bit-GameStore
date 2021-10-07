@@ -31,6 +31,11 @@ const App: FC = () => {
   const totalProducts: any = useSelector(
     (state: Store) => state.productsReducer.totalProducts
   );
+  const deleteNav: any = useSelector(
+    (state: Store) => state.adminReducer.navbar
+  );
+
+  
 
   //Paginate
   // const [order, setOrder] = useState<string>("");
@@ -56,7 +61,7 @@ const App: FC = () => {
     <Theme /* none="none" */>
       <GlobalStyle />
       <Router>
-        <NavBar setPage={setCurrentPage} toggleModal={toggleModal} /> 
+      {deleteNav && <NavBar setPage={setCurrentPage} toggleModal={toggleModal} /> }
         <CartSideBar closeCallback={toggleModal} show={showCart} />
         <Switch>
           <Route exact path="/" component={Landing} />
@@ -84,7 +89,7 @@ const App: FC = () => {
 
           <Route path="*" component={NotFound} />
         </Switch>
-        <Footer />
+        {deleteNav && <Footer />}
       </Router>
       <ToastContainer />
       <GlobalStyle />
