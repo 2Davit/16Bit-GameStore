@@ -28,59 +28,10 @@ export const FormInput = styled.input`
 width: 68%;
 height: 90%;
 `
-export const FormInputImg = styled.input`
-width: 60%;
-height: 100%;
-`
-export const BtnAdd = styled.button`
-    border: none;
-    width: 8%;
-    height: 80%;
-    border-top-right-radius: 6px;
-    border-bottom-right-radius: 6px;
-
-    background: #c3630f;
-    color: #ffffff;
-    font-weight: bold;
-
-    &:hover{
-        background: #B55400;
-    }
-`
-
 export const FormErrors = styled.div`
 color: red;
 width: 100%;
 text-align: center;
-`
-export const FormSelect = styled.select`
-width: 68%;
-height: 90%;
-`
-
-export const FormTextarea = styled.textarea`
-width: 68%;
-height:100%;
-`
-export const FormOpt = styled.div`
-   margin: 2px 5px;
-   display: flex;
-   background: #393e46;
-   width: 100px;
-   align-items: center;
-   button{
-        background: #c3630f;
-        border: none;
-        height: 100%;
-        color: #eeeeee;
-
-        &:hover{
-            background: red;
-        }
-   }
-   p{
-       margin: auto;
-   }
 `
 
 export const BtnSubmit = styled.button`
@@ -98,6 +49,7 @@ export const BtnSubmit = styled.button`
         background: #B55400;
     }
 `
+
 export const BtnBack = styled.button`
     border: none;
     width: 10%;

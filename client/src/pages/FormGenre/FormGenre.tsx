@@ -4,6 +4,7 @@ import { CreateGenre } from "../../interfaces";
 import { createNewGenre } from "../../redux/actions/products_action";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { Title, FormContainer, FormLabel, FormInput, BtnSubmit, BtnBack, FormErrors, Fields } from './FormGenre.style'
 
 interface GenreValidate {
     genre: string;
@@ -67,21 +68,23 @@ const FormGenre: FC = () => {
     return (
         <div>
             <Link to="/admin">
-                <button>Back</button>
+                <BtnBack>Back</BtnBack>
             </Link>
-            <h1>Create a new genre</h1>
-            <form style={{ display: 'flex', flexDirection: 'column', width: '50%', margin: '0 auto' }} onSubmit={(e) => handleSubmit(e)}>
-                <label htmlFor="name_product">Genre's name</label>
-                <input
+            <Title>Create a new genre</Title>
+            <FormContainer onSubmit={(e) => handleSubmit(e)}>
+                {error.genres && (<FormErrors>{error.genres}</FormErrors>)}
+                <Fields>
+                <FormLabel htmlFor="name_product">Genre's name</FormLabel>
+                <FormInput
                     onChange={(e) => handleChange(e)}
                     name="genre"
                     placeholder="Introduce a name for your new genre..."
                 />
+                </Fields>
 
-                {error.genres && (<div style={{color: 'red'}}>{error.genres}</div>)}
 
-                <button type="submit" disabled={disabledBtn}>Create</button>
-            </form>
+                <BtnSubmit type="submit" disabled={disabledBtn}>Create</BtnSubmit>
+            </FormContainer>
 
         </div>
     )

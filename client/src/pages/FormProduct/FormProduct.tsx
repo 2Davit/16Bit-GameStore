@@ -3,7 +3,7 @@ import { ProductCreate, ProductValidate } from "../../interfaces";
 import { useDispatch } from "react-redux";
 import { createVideogame } from "../../redux/actions/products_action";
 import { Link } from "react-router-dom";
-import { FormContainer, Fields, FormLabel, FormInput, FormErrors } from './FormProduct.style'
+import { FormContainer, Fields, FormLabel, FormInput, FormErrors, FormSelect, FormTextarea, FormInputImg, FormOpt, BtnAdd, BtnSubmit, Title, BtnBack } from './FormProduct.style'
 
 interface Info {
   url: string;
@@ -256,13 +256,13 @@ const FormProduct: FC = () => {
   return (
     <div>
 
-      <Link to="/admin">
-        <button>Back</button>
+      <Link to="/admin" style={{ textDecoration: "none", color: "#EEEEEE" }}>
+        <BtnBack>Back</BtnBack>
       </Link>
 
-
-      <h1>Create a new product</h1>
+      <Title>Create a new product</Title>
       <FormContainer onSubmit={(e) => handleSubmit(e)}>
+        {error.name_product && (<FormErrors>{error.name_product}</FormErrors>)}
         <Fields>
           <FormLabel htmlFor="name_product">Name</FormLabel>
           <FormInput
@@ -272,7 +272,8 @@ const FormProduct: FC = () => {
           />
 
         </Fields>
-        {error.name_product && (<FormErrors>{error.name_product}</FormErrors>)}
+
+        {error.price_product && (<FormErrors>{error.price_product}</FormErrors>)}
         <Fields>
           <FormLabel htmlFor="price_product">Price</FormLabel>
           <FormInput
@@ -282,32 +283,34 @@ const FormProduct: FC = () => {
             placeholder="Introduce a Price..."
           />
         </Fields>
-        {error.price_product && (<FormErrors>{error.price_product}</FormErrors>)}
+
+        {error.description_product && (<FormErrors>{error.description_product}</FormErrors>)}
         <Fields>
           <FormLabel htmlFor="description_product">Description</FormLabel>
-          <textarea
+          <FormTextarea
             onChange={(e) => handleTextArea(e)}
             name="description_product"
             placeholder="Introduce a description..."
           />
         </Fields>
-        {error.description_product && (<FormErrors>{error.description_product}</FormErrors>)}
+
+        {error.image_product && (<FormErrors>{error.image_product}</FormErrors>)}
         <Fields>
           <FormLabel htmlFor="image_product">Images</FormLabel>
-          <FormInput
+          <FormInputImg
             value={info.url}
             onChange={(e) => handleInfoChange(e)}
             name="image_product"
             placeholder="Add Images..."
           />
-          <button type="button" onClick={() => handleImage()}>Add</button>
-          {error.image_product && (<FormErrors>{error.image_product}</FormErrors>)}
+          <BtnAdd type="button" onClick={() => handleImage()}>Add</BtnAdd>
         </Fields>
         {input.image_product && input.image_product.map((img) => (<div key={img}>
           <img src={img} style={{ width: '70px', height: '70px' }} />
           <span style={{ cursor: 'pointer' }} onClick={() => handleImageDelete(img)}>x</span>
         </div>))}
 
+        {error.thumbnail_product && (<FormErrors>{error.thumbnail_product}</FormErrors>)}
         <Fields>
           <FormLabel htmlFor="thumbnail_product">Thumbnail</FormLabel>
           <FormInput
@@ -316,11 +319,10 @@ const FormProduct: FC = () => {
             placeholder="Introduce a Thumbnail url"
           />
         </Fields>
-        {error.thumbnail_product && (<FormErrors>{error.thumbnail_product}</FormErrors>)}
 
         <Fields>
           <FormLabel htmlFor="in_stock">Stock</FormLabel>
-          <select
+          <FormSelect
             onChange={(e) => handleStock(e)}
             name="in_stock"
             placeholder="Select an Option"
@@ -328,32 +330,34 @@ const FormProduct: FC = () => {
             <option>Select an Option</option>
             <option value="true">In Stock</option>
             <option value="false">Out of Stock</option>
-          </select>
+          </FormSelect>
         </Fields>
         <Fields>
           <FormLabel htmlFor="on_sale">Sale Discount</FormLabel>
-          <select onChange={(e) => handleSale(e)} name="on_sale">
+          <FormSelect onChange={(e) => handleSale(e)} name="on_sale">
             <option>Select an Option</option>
             <option value="true">On sale</option>
             <option value="false">No Discounts</option>
-          </select>
+          </FormSelect>
         </Fields>
+
+        {error.release_year && (<FormErrors>{error.release_year}</FormErrors>)}
         <Fields>
           <FormLabel htmlFor="release_year">Release Year</FormLabel>
-          <select name="release_year" onChange={(e) => handleSelectYear(e)}>
+          <FormSelect name="release_year" onChange={(e) => handleSelectYear(e)}>
             {years?.map((year) => (
               <option key={year} value={year}>
                 {year}
               </option>
             ))}
-          </select>
+          </FormSelect>
         </Fields>
 
-        {error.release_year && (<FormErrors>{error.release_year}</FormErrors>)}
 
+        {error.genres && (<FormErrors>{error.genres}</FormErrors>)}
         <Fields>
           <FormLabel htmlFor="firstName">Genres</FormLabel>
-          <select name="genres" onChange={(e) => handleSelectGenre(e)}>
+          <FormSelect name="genres" onChange={(e) => handleSelectGenre(e)}>
             <option>Select an Option</option>
             <option value="action">Action</option>
             <option value="shooter">Shooter</option>
@@ -366,22 +370,22 @@ const FormProduct: FC = () => {
             <option value="puzzle">Puzzle</option>
             <option value="strategy">Strategy</option>
             <option value="rpg">RPG</option>
-          </select>
-          </Fields>
-          <div style={{ backgroundColor: 'gray', width: '100px', margin: '20px' }}>
-            {input.genres?.map((g) => (
-              <div key={g}>
-                <button type="button" onClick={() => handleGenreDelete(g)}>x</button>
-                <p>{g}</p>
-              </div>
-            ))}
-          </div>
-        
-        {error.genres && (<FormErrors>{error.genres}</FormErrors>)}
+          </FormSelect>
+        </Fields>
+        <div style={{ display: 'flex', marginBottom: "2rem" }}>
+          {input.genres?.map((g) => (
+            <FormOpt key={g}>
+              <button type="button" onClick={() => handleGenreDelete(g)}>x</button>
+              <p>{g}</p>
+            </FormOpt>
+          ))}
+        </div>
 
+
+        {error.platforms && (<FormErrors>{error.platforms}</FormErrors>)}
         <Fields>
           <FormLabel htmlFor="platforms">Platforms</FormLabel>
-          <select name="platforms" onChange={(e) => handleSelectPlatform(e)}>
+          <FormSelect name="platforms" onChange={(e) => handleSelectPlatform(e)}>
             <option>Select an Option</option>
             <option value="nes">nes</option>
             <option value="arcade">arcade</option>
@@ -389,21 +393,20 @@ const FormProduct: FC = () => {
             <option value="snes">snes</option>
             <option value="gba">gba</option>
             <option value="a2600">a2600</option>
-          </select>
-          </Fields>
-          <div style={{ backgroundColor: 'gray', width: '100px', margin: '20px' }}>
-            {input.platforms?.map((p) => (
-              <div key={p}>
-                <button type="button" onClick={() => handlePlatformDelete(p)}>x</button>
-                <p>{p}</p>
-              </div>
-            ))}
-          </div>
-     
-        {error.platforms && (<FormErrors>{error.platforms}</FormErrors>)}
+          </FormSelect>
+        </Fields>
+        <div style={{ display: 'flex', marginBottom: "2rem" }}>
+          {input.platforms?.map((p) => (
+            <FormOpt key={p}>
+              <button type="button" onClick={() => handlePlatformDelete(p)}>x</button>
+              <p>{p}</p>
+            </FormOpt>
+          ))}
+        </div>
 
 
-        <button type="submit">Submit</button>
+
+        <BtnSubmit type="submit">Submit</BtnSubmit>
       </FormContainer>
     </div>
   );
