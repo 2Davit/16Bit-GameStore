@@ -78,7 +78,8 @@ const FormPlatform: FC = () => {
                     name="platform"
                     placeholder="Introduce a name for your new Platform..."
                 />
-                </Fields>
+                </Fields> 
+                
 
 
                 <BtnSubmit type="submit" disabled={disabledBtn}>Create</BtnSubmit>
