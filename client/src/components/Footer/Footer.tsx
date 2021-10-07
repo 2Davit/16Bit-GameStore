@@ -11,7 +11,9 @@ const Footer = () => {
 
   return (
     <StyledFooter>
+      <div className='navbar__bottom_logo'>
       <Title />
+      </div>
       <nav className="navbar__bottom">
         <ul>
           <li>

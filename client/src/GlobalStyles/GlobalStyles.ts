@@ -10,6 +10,7 @@ interface DefaultTheme {
 export const GlobalStyle = createGlobalStyle<{theme: DefaultTheme }>`
 
 
+
     body {
         margin: 0;
         padding: 0;
@@ -124,6 +125,63 @@ export const Hr = styled.hr`
 	background: #CCC;
 `
 
+export const Dropdown = styled.li`
+	position: relative;
+	display:flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	top: -1px;
+
+	&:hover > ul {
+		display:block;
+		list-style: none;
+	}
+
+	& > ul {
+		display: none;
+			position: absolute;
+		left: 50%;
+		top: 120%;
+		transform: translateX(-50%);
+		padding-top: 1em;
+		font-size: 0.9em;
+		color: #1b1a1f;
+		background-color: #fff;
+		box-shadow: 0 0 20px rgba(0,0,0);
+		border-radius: .4em;
+		z-index: 10;
+
+		&::before {
+			content: '';
+			width: 0px;
+			height: 0px;
+			position: absolute;
+			top: -19px;
+			left: 50%;
+			transform: translateX(-50%);
+			border: 10px solid transparent;
+			border-bottom-color: #fff;
+				}
+
+		
+
+		a, .dropdown__button {
+			text-align: center;
+			display: block;
+			width: 100%;
+			padding: 1em 2em;
+			text-decoration: none;
+			color: currentColor;
+			&:hover {
+				background-color: #0b53d7;
+				color: #fff ;
+			}
+		}
+					
+	}
+
+`
 
 export const StyledSVG = styled(SVG)`
 `
