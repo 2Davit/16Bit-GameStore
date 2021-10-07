@@ -60,11 +60,12 @@ const Detail: FC = () => {
     );
     setQuantity(1);
   };
-
+  console.log(detailProduct);
   return (
     <>
       <GameDetail>
         <div className="game__img">
+
         {detailProduct.image_product?.map((e: string, i: number) => (
             <img
               key={i}
@@ -72,6 +73,7 @@ const Detail: FC = () => {
               alt={detailProduct.name_product}
             />
           ))}
+
         </div>
         <div className="game__info">
           <h1 className="game__title">

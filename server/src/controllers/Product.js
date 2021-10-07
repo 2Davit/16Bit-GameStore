@@ -294,12 +294,13 @@ async function listProductOnSale(req, res){
           });
           productCreated.addGenre(genreDB);
           productCreated.addPlatform(platformDB);
-        } catch {
-          res.status(404).send("Error");
+          res.status(200).send("Product succesfully added");
+        } catch(err) {
+          console.log(err);
+          res.status(404).send(err);
         }
       }
     });
-    res.status(200).send("Product succesfully added");
   };
 
 

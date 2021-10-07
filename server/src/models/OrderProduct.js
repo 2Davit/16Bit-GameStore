@@ -8,16 +8,8 @@ module.exports = (sequelize) => {
       primaryKey: true,
       allowNull: false,
     },
-    id_order: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    id_product: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
     price_orderProduct: {
-      type: DataTypes.FLOAT,
+      type: DataTypes.INTEGER,
     },
     quantity_orderProduct: {
       type: DataTypes.INTEGER,

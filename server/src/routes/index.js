@@ -7,6 +7,7 @@ const GenreRoutes = require("./Genre");
 const PlatformRoutes = require("./Platform");
 const ProductRoutes = require("./Product");
 const UserRoutes = require("./User");
+const OrderRoutes = require("./Order");
 
 const router = Router();
 
@@ -19,6 +20,7 @@ router.use('/genres',  GenreRoutes);
 router.use('/platforms', PlatformRoutes);
 router.use('/videogames', ProductRoutes);
 router.use('/user', UserRoutes);
+router.use('/order', OrderRoutes);
 
 
 module.exports = router;
