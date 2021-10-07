@@ -14,10 +14,11 @@ interface Props {
   price: number;
   id: number | undefined;
   stock: boolean;
-  genre: any;
+  genre?: string[];
   platform: any;
   thumbnail: string;
 }
+
 
 const PanelCatalog: FC<Props> = ({
   name,
@@ -37,8 +38,9 @@ const PanelCatalog: FC<Props> = ({
     1962, 1963, 1964, 1965, 1966, 1967, 1968, 1969, 1970, 1971, 1972, 1973,
     1974, 1975, 1976, 1977, 1978, 1979, 1980, 1981, 1982, 1983, 1984, 1985,
     1986, 1987, 1988, 1989, 1990, 1991, 1992, 1993, 1994, 1995, 1996, 1997,
-    1998, 1999, 2000,
+    1998, 1999, 2000,2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010
   ];
+
   const [input, setInput] = useState<EditProduct>({
     id,
     name,
@@ -140,7 +142,9 @@ const PanelCatalog: FC<Props> = ({
         <ContainerDiv>
           <Info>
             <Paragraph>Release Year: {released}</Paragraph>
-            <Paragraph>Genres: {genre}</Paragraph>
+            <Paragraph>Genres: {genre?genre.map((g) => 
+              <li>{g}</li>
+            ): 'no hay generos'}</Paragraph>
             <Paragraph>Platform: {platform}</Paragraph>
           </Info>
           <EditInfoBtns>

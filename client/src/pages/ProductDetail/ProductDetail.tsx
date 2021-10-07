@@ -65,10 +65,13 @@ const Detail: FC = () => {
     <>
       <GameDetail>
         <div className="game__img">
-          <img
-            src={detailProduct.image_product[0]}
-            alt={detailProduct.name_product}
-          />
+        {detailProduct.image_product?.map((e: string, i: number) => (
+            <img
+              key={i}
+              src={detailProduct.image_product[0]}
+              alt={detailProduct.name_product}
+            />
+          ))}
         </div>
         <div className="game__info">
           <h1 className="game__title">

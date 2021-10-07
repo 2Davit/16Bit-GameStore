@@ -104,7 +104,7 @@ export interface AdminProduct {
   in_stock: boolean;
   on_sale: boolean;
   release_year: number;
-  name_genre: Array<Genre>;
+  name_genre: Array<string>;
   name_platform: Array<Platform>;
 }
 export interface EditProduct {
