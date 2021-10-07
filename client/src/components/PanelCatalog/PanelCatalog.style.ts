@@ -51,6 +51,12 @@ export const EditInfoBtns = styled.div`
    justify-content: flex-end;
    width: 50%;
 `
+export const EditInfoBtns2 = styled.div`
+display: flex;
+align-items: flex-end;
+justify-content: flex-end;
+width: 50%;
+`
 
 export const BtnEdit = styled.button`
     border: none;
@@ -69,6 +75,15 @@ export const BtnEdit = styled.button`
 `
 export const InputLabel = styled.div`
    display: flex;
+   textarea{
+       width:100%;
+       height: 150px;
+       background: transparent;
+       color: #eeeeee;
+       border: none;
+       outline: none;
+       text-align: justify;
+   }
    
 `
 export const Form = styled.form`
@@ -81,9 +96,30 @@ export const Form = styled.form`
 export const Input = styled.input`
     font-size: 1.5rem;
     width: auto;
-    color: #ffffff;
+    color: #eeeeee;
     background: transparent;
     border: none;
     outline: none;
     font-weight: bold;
+`
+
+export const BtnOpt = styled.div`
+   margin: 2px 5px;
+   display: flex;
+   background: #393e46;
+   width: 100px;
+   align-items: center;
+   button{
+        background: #c3630f;
+        border: none;
+        height: 100%;
+        color: #eeeeee;
+
+        &:hover{
+            background: red;
+        }
+   }
+   p{
+       margin: auto;
+   }
 `

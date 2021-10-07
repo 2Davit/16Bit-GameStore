@@ -49,6 +49,13 @@ const NavBar: FC<Props> = ({ setPage, toggleModal }: any) => {
           <SearchBar setPage={setPage} />
           <ul className="navbar__options">
             <li>
+              <Link to="/login">
+                <StyledSVG src={userPic} />
+                <span>Login</span>
+              </Link>
+            </li>
+
+            <li>
               <Link to="/user">
                 <StyledSVG src={userPic} />
                 <span>User</span>

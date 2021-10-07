@@ -53,19 +53,6 @@ export interface ProductValidate {
   platforms: string;
 }
 
-export interface UserCreate {
-  username: string;
-  password: string;
-  email: string;
-  name: string;
-  lastname: string;
-  adress: string; // !
-}
-
-export interface UserLogin {
-  username: string;
-  password: string;
-}
 export interface ProductInCart extends Product {
   quantity?: number;
 }
@@ -77,7 +64,6 @@ export interface ProductsState {
   onSaleProducts: Array<Product> | Array<any>;
   genres: Array<Genre>;
   platforms: Array<Platform>;
-  totalProductsBar: Array<Product>;
 }
 
 export interface CartState {
@@ -104,7 +90,7 @@ export interface AdminProduct {
   in_stock: boolean;
   on_sale: boolean;
   release_year: number;
-  name_genre: Array<Genre>;
+  name_genre: Array<string>;
   name_platform: Array<Platform>;
 }
 export interface EditProduct {
@@ -118,6 +104,21 @@ export interface EditProduct {
   genre: any;
   platform: any;
   thumbnail: string;
+}
+
+export interface UserRegister {
+  username: string;
+  password: string;
+  confirmPassword: string;
+  email: string;
+  name: string;
+  lastname: string;
+  address: string;
+}
+
+export interface UserLogin {
+  username: string;
+  password: string;
 }
 
 export interface User {
