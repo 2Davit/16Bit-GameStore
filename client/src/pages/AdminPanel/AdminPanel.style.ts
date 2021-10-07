@@ -8,7 +8,7 @@ export const ContainerAdmin = styled(Container)`
 `
 
 export const InfoContainer = styled.div`
-    background: blue;
+    
     width: 15%;
     height: 100vh;
 `
