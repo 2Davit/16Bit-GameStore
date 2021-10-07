@@ -19,7 +19,7 @@ export interface Product {
   description_product: string;
   image_product: Array<string>;
   thumbnail_product: string;
-  in_stock: boolean;
+  in_stock: number;
   on_sale: boolean;
   release_year: number;
   genres: Array<Genre>;
@@ -33,7 +33,7 @@ export interface ProductCreate {
   description_product: string;
   image_product: Array<string>;
   thumbnail_product: string;
-  in_stock: boolean;
+  in_stock: number;
   on_sale: boolean;
   release_year: number;
   genres: Array<string>;
@@ -87,7 +87,7 @@ export interface AdminProduct {
   description_product: string;
   image_product: Array<string>;
   thumbnail_product: string;
-  in_stock: boolean;
+  in_stock: number;
   on_sale: boolean;
   release_year: number;
   name_genre: Array<string>;
@@ -99,7 +99,7 @@ export interface EditProduct {
   price: number;
   description: string;
   image: Array<string>;
-  stock: boolean;
+  stock: number;
   released: number;
   genre: any;
   platform: any;

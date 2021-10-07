@@ -116,7 +116,7 @@ const Detail: FC = () => {
               +
             </QuantityButton>
           </div>
-          <p className="game__stock">Stock: 25</p>
+          <p className="game__stock">stock: {detailProduct.in_stock}</p>
           <div className="game__purchase-container">
             <div className="game__buttons">
               <Btn className="btn-card btn-img">
