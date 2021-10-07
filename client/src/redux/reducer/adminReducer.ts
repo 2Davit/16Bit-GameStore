@@ -9,7 +9,6 @@ const initialState: ProductsState = {
   onSaleProducts: [],
   genres: [],
   platforms: [],
-  totalProductsBar: [],
 };
 
 export function adminReducer(state: ProductsState = initialState, action: any) {

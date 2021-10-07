@@ -148,16 +148,15 @@ const MyForm = withFormik<MyFormProps, UserCreate>({
   handleSubmit: (props) => {
     axios
       .post("http://localhost:3001/auth/signup", props)
+      .then((res) => console.log(res.data))
+      .then((res) => axios.post("http://localhost:3001/auth/login", props))
       .then((res) => console.log(res.data));
-    console.log(props);
   },
 })(InnerForm);
 
 // Use <MyForm /> wherevs
 const Basic: FC = () => (
   <div>
-    <h1>My App</h1>
-    <p>This can be anywhere in your application</p>
     <MyForm />
   </div>
 );

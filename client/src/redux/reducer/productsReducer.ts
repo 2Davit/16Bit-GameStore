@@ -9,7 +9,6 @@ import {
   CREATE_NEW_PLATFORM,
   GET_ALL_GENRES,
   GET_ALL_PLATFORMS,
-  GET_NAME_PRODUCT_BAR,
 } from "../types";
 import { ProductsState } from "../../interfaces";
 
@@ -20,7 +19,6 @@ const initialState: ProductsState = {
   onSaleProducts: [],
   genres: [],
   platforms: [],
-  totalProductsBar: [],
 };
 
 export function productsReducer(
@@ -56,11 +54,6 @@ export function productsReducer(
       return {
         ...state,
         totalProducts: payload,
-      };
-    case GET_NAME_PRODUCT_BAR:
-      return {
-        ...state,
-        totalProductsBar: payload,
       };
     case CREATE_NEW_PRODUCT:
       return {
