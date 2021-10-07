@@ -7,7 +7,7 @@ const router = Router();
 
 router.post("/signup", signUp);
 router.post("/login", logIn);
-router.post("/getRole", checkJwt, getRole);
+router.get("/getRole", checkJwt, getRole);
 router.post("/reqToken", checkJwt, (req, res) => {
   res.send("Token provided");
 });
