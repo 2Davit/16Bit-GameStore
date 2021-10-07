@@ -3,6 +3,7 @@ import { UserLogin } from "../../interfaces/index";
 import { getRole, login } from "../../redux/actions/auth_actions";
 import React, { FC } from "react";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 
 const FormLogin: FC = () => {
   const dispatch = useDispatch();
@@ -10,6 +11,7 @@ const FormLogin: FC = () => {
   const handleSubmit = (values: UserLogin) => {
     dispatch(login(values));
     dispatch(getRole());
+    alert("Dejá de romperte");
   };
 
   return (
@@ -28,6 +30,8 @@ const FormLogin: FC = () => {
           type="password"
           placeholder="Password"
         />
+
+        <Link to="/register">Create account</Link>
 
         <button type="submit">Login</button>
       </Form>

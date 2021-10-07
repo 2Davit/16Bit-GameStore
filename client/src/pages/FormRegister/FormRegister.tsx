@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 //
 import { UserRegister } from "../../interfaces/index";
 import { login } from "../../redux/actions/auth_actions";
+import { Link } from "react-router-dom";
 
 const initialValues: UserRegister = {
   username: "",
@@ -123,6 +124,8 @@ const FormRegister: FC = () => {
                 placeholder="Address"
                 /* required */
               />
+
+              <Link to="/login">Already have account?</Link>
 
               <button type="submit" /* disabled={!dirty || !!isValid} */>
                 Register
