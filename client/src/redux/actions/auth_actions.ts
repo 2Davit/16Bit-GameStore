@@ -2,7 +2,6 @@ import axios from "axios";
 import { User } from "../../interfaces";
 import { LOGIN, USER_ROLE } from "../types";
 import { Dispatch } from "react";
-import { METHODS } from "http";
 
 interface loginProps {
   type: string;
