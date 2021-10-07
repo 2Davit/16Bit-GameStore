@@ -44,9 +44,5 @@ module.exports = (sequelize) => {
       type: DataTypes.BOOLEAN,
       defaultValue: true,
     },
-    is_guest: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: false,
-    }
   });
 };
