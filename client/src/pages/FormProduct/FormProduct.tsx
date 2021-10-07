@@ -1,7 +1,8 @@
-import { useState, FC } from "react";
+import { useState, FC, useEffect } from "react";
 import { ProductCreate, ProductValidate } from "../../interfaces";
 import { useDispatch } from "react-redux";
 import { createVideogame } from "../../redux/actions/products_action";
+import { deleteNavbar } from "../../redux/actions/admin_actions"
 import { Link } from "react-router-dom";
 import { FormContainer, Fields, FormLabel, FormInput, FormErrors, FormSelect, FormTextarea, FormInputImg, FormOpt, BtnAdd, BtnSubmit, Title, BtnBack, ContainerFormP } from './FormProduct.style'
 
@@ -38,6 +39,11 @@ const FormProduct: FC = () => {
     platforms: [],
   });
   // console.log(input)
+
+  //quitamos Nav
+  useEffect(()=>{
+    dispatch(deleteNavbar())
+  },[])
 
   const handleImage = () => {
     setImages([...images, info.url]);

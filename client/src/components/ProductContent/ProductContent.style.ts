@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 export const ContainerMainContent = styled.div`
     height: 100%;
@@ -35,16 +36,25 @@ export const AddBtns = styled.div`
     justify-content: flex-end;
     align-items: center;
     
+    
 `
-export const AddBtn = styled.button`
+export const AddBtn = styled(Link)`
     height: 100%;
     width: 20%;
     background: transparent;
     border: none;
+    color: #eeeeee;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
     &:hover{
         border-bottom: 3px solid #B55400;
         border-top: 3px solid transparent;
         background: #393E46;
+        color: #eeeeee;
+        text-decoration: none;
     }
     &:focus{
         color: #B55400;

@@ -1,9 +1,10 @@
-import { useState, FC } from "react";
+import { useState, FC, useEffect } from "react";
 import { CreatePlatform } from "../../interfaces";
 import { createNewPlatform } from "../../redux/actions/products_action";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { Title, FormContainer, FormLabel, FormInput, BtnSubmit, BtnBack, FormErrors, Fields } from './FormPlatform.style'
+import { Title, FormContainer, FormLabel, FormInput, BtnSubmit, BtnBack, FormErrors, Fields, ContainerFormP } from './FormPlatform.style'
+import { deleteNavbar } from "../../redux/actions/admin_actions";
 
 interface PlatformValidate {
     platform: string;
@@ -16,6 +17,11 @@ const FormPlatform: FC = () => {
     const [error, setError] = useState<any>({
         Platform: ''
     })
+
+    //quitar navbar
+    useEffect(()=>{
+        dispatch(deleteNavbar())
+    },[])
 
     function handleChange(e: React.FormEvent<HTMLInputElement>) {
         setInput({
@@ -63,7 +69,7 @@ const FormPlatform: FC = () => {
     let disabledBtn = !(input.platform?.length > 0 && error.platform.length === 0);
 
     return (
-        <div>
+        <ContainerFormP>
             <Link to="/admin">
                 <BtnBack>Back</BtnBack>
             </Link>
@@ -85,7 +91,7 @@ const FormPlatform: FC = () => {
                 <BtnSubmit type="submit" disabled={disabledBtn}>Create</BtnSubmit>
             </FormContainer>
 
-        </div>
+        </ContainerFormP>
     )
 }
 

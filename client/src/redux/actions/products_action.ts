@@ -15,6 +15,7 @@ import {
   GET_PRODUCT_ON_SALE,
   GET_ALL_GENRES,
   GET_ALL_PLATFORMS,
+  
 } from "../types";
 
 import { Dispatch } from "redux";
@@ -140,3 +141,4 @@ export const getAllPlatforms = () => {
     });
   };
 };
+

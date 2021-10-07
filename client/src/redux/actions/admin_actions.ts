@@ -2,6 +2,7 @@ import axios from "axios";
 import { EditProduct } from "../../interfaces";
 // import { EDIT_PRODUCT } from "../types";
 import { Dispatch } from "redux";
+import { EDIT_NAVBAR, CREATE_NAVBAR } from "../types"
 
 interface Detail { 
     type: string;
@@ -13,3 +14,20 @@ export const editProduct = (payload: EditProduct) => {
         return data;
     }
 }
+
+export const deleteNavbar = () => {
+    return (dispatch: any) => {
+      return dispatch({
+        type: EDIT_NAVBAR,
+        payload: false,
+      });
+    };
+  };
+export const createNavbar = () => {
+    return (dispatch: any) => {
+      return dispatch({
+        type: CREATE_NAVBAR,
+        payload: true,
+      });
+    };
+  };

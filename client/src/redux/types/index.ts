@@ -17,3 +17,5 @@ export const GET_ALL_GENRES: string = "GET_ALL_GENRES";
 export const GET_ALL_PLATFORMS: string = "GET_ALL_PLATFORMS";
 export const LOGIN: string = "LOGIN";
 export const USER_ROLE: string = "USER_ROLE";
+export const EDIT_NAVBAR: string = "EDIT_NAVBAR";
+export const CREATE_NAVBAR: string = "CREATE_NAVBAR";

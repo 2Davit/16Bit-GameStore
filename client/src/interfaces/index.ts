@@ -64,6 +64,7 @@ export interface ProductsState {
   onSaleProducts: Array<Product> | Array<any>;
   genres: Array<Genre>;
   platforms: Array<Platform>;
+  navbar?: boolean;
 }
 
 export interface CartState {

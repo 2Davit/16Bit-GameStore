@@ -2,7 +2,6 @@ import { FC } from "react";
 
 import { AdminProduct } from "../../interfaces/index";
 import PanelCatalog from "../PanelCatalog/PanelCatalog";
-import { Link } from "react-router-dom";
 import { ContainerMainContent, ContainerNav, Searchbar, AddBtns, AddBtn, Search, ContainerCards } from "./ProductContent.style"
 
 interface Props {
@@ -17,9 +16,9 @@ const MainContent: FC<Props> = ({ totalProducts }) => {
           <Search placeholder='Search products...'/>
         </Searchbar>
         <AddBtns>
-          <AddBtn><Link style={{color: '#EEEEEE', textDecoration: 'none'}} to="/form">Add Product</Link></AddBtn>
-          <AddBtn><Link style={{color: '#EEEEEE', textDecoration: 'none'}} to="/creategenre">Add Genre</Link></AddBtn>
-          <AddBtn><Link style={{color: '#EEEEEE', textDecoration: 'none'}} to="/createplatform">Add Platform</Link></AddBtn>
+          <AddBtn to="/form">Add Product</AddBtn>
+          <AddBtn to="/createGenre">Add Genre</AddBtn>
+          <AddBtn to="/createPlatform">Add Platform</AddBtn>
         </AddBtns>
       </ContainerNav>
       <ContainerCards>

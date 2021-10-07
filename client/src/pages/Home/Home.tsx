@@ -11,6 +11,7 @@ import { getCart } from '../../redux/actions/cart_actions';
 import { Paginate, Filter, Catalog, Carousel } from "../../components";
 import { Store } from "../../redux/reducer/";
 import { ContainerHome } from "./Home.style";
+import { createNavbar } from "../../redux/actions/admin_actions";
 
 const Home = ({ setPage, currentProducts, productsPerPage, pages }: any) => {
   const dispatch = useDispatch();
@@ -29,6 +30,7 @@ const Home = ({ setPage, currentProducts, productsPerPage, pages }: any) => {
     dispatch(getAllGenres());
     dispatch(getAllPlatforms());
     dispatch(getRole());
+    dispatch(createNavbar())
   }, [dispatch]);
 
   // function handleOnSaleFilter() {

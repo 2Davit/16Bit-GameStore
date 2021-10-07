@@ -1,5 +1,4 @@
 import React, { FC } from "react";
-import styles from "./Panel.module.css";
 import { ContainerPanel, ContainerImageUser, NameImage, Image, BtnAdminPanel, IconHome, IconSales, IconProducts, IconUsers } from './Panel.style'
 import { Title } from '../index'
 
@@ -10,7 +9,7 @@ interface Props {
 const Panel: FC<Props> = ({handleInfo}) => {
   return (
     <ContainerPanel>
-        {/* <Title/> */}
+        <Title/>
         <ContainerImageUser>
           <Image 
             src="https://d500.epimg.net/cincodias/imagenes/2016/07/04/lifestyle/1467646262_522853_1467646344_noticia_normal.jpg"
@@ -18,16 +17,16 @@ const Panel: FC<Props> = ({handleInfo}) => {
           <NameImage>ARMAND GABO</NameImage>
         </ContainerImageUser>
         
-          <BtnAdminPanel value="home" onClick={handleInfo} className={styles.BtnAdminPanel}>
+          <BtnAdminPanel value="home" onClick={handleInfo} >
             <IconHome/> HOME
           </BtnAdminPanel>
-          <BtnAdminPanel value="sales" onClick={handleInfo} className={styles.BtnAdminPanel}>
+          <BtnAdminPanel value="sales" onClick={handleInfo} >
             <IconSales/>SALES
           </BtnAdminPanel>
-          <BtnAdminPanel value="products" onClick={handleInfo} className={styles.BtnAdminPanel}>
+          <BtnAdminPanel value="products" onClick={handleInfo} >
             <IconProducts/>PRODUCTS
           </BtnAdminPanel>
-          <BtnAdminPanel value="users" onClick={handleInfo} className={styles.BtnAdminPanel}>
+          <BtnAdminPanel value="users" onClick={handleInfo} >
             <IconUsers/>USERS
           </BtnAdminPanel>      
     </ContainerPanel>
