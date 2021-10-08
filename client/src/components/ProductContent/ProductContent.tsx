@@ -1,19 +1,53 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 
 import { AdminProduct } from "../../interfaces/index";
 import PanelCatalog from "../PanelCatalog/PanelCatalog";
-import { ContainerMainContent, ContainerNav, Searchbar, AddBtns, AddBtn, Search, ContainerCards } from "./ProductContent.style"
+import { ContainerMainContent, ContainerNav, Searchbar, AddBtns, AddBtn, Search, ContainerCards, IconNext, IconPrev, IconContainer, BtnPaged } from "./ProductContent.style"
 
 interface Props {
   totalProducts: any;
 }
 
 const MainContent: FC<Props> = ({ totalProducts }) => {
+  const [page, setPage] = useState<number>(0)//iria de 10 en 10 ejm : 0-10,20,30
+  const [page2, setPage2] = useState<number>(10)//19
+  const [btnNext, setBtnNext] = useState<boolean>(false)
+  const [btnPrev, setBtnPrev] = useState<boolean>(false)
+
+  console.log(!btnPrev)
+  console.log(page2)
+
+  let onViewProducts = totalProducts.renderingProducts.slice(page, page2)
+
+  const handleNextPage = () => {
+    if (totalProducts.renderingProducts.length === page2) {
+      setBtnNext(true)
+    } else {
+      setPage(page + 10);
+      setPage2(page2 + 10)
+      setBtnPrev(false)
+    }
+
+  }
+
+  const handlePreviousPage = () => {
+    if(page <= 0){
+      setBtnPrev(true)
+    } else {
+      setPage(page - 10);
+      setPage2(page2 - 10)
+      setBtnNext(false)
+    }
+
+  }
+
+
+
   return (
     <ContainerMainContent>
       <ContainerNav>
         <Searchbar>
-          <Search placeholder='Search products...'/>
+          <Search placeholder='Search products...' />
         </Searchbar>
         <AddBtns>
           <AddBtn to="/form">Add Product</AddBtn>
@@ -21,9 +55,14 @@ const MainContent: FC<Props> = ({ totalProducts }) => {
           <AddBtn to="/createPlatform">Add Platform</AddBtn>
         </AddBtns>
       </ContainerNav>
+
       <ContainerCards>
-        {totalProducts.renderingProducts?.length !== 0 &&
-          totalProducts.renderingProducts?.map((product: AdminProduct) => (
+      <IconContainer>
+      <BtnPaged disabled={btnPrev} onClick={handlePreviousPage}><IconPrev /></BtnPaged>
+      <BtnPaged  disabled={btnNext} onClick={handleNextPage}><IconNext  /></BtnPaged>
+      </IconContainer>
+        {onViewProducts?.length !== 0 &&
+          onViewProducts?.map((product: AdminProduct) => (
             <PanelCatalog
               key={product.id_product}
               image={product.image_product}

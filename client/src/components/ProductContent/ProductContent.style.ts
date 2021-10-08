@@ -1,5 +1,8 @@
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
+import  {GoArrowRight} from 'react-icons/go'
+import {GoArrowLeft} from 'react-icons/go'
+
 
 export const ContainerMainContent = styled.div`
     height: 100%;
@@ -71,4 +74,33 @@ export const AddBtn = styled(Link)`
         justify-content: flex-end;
         align-items: center;
         border-radius: 10px;
+    `
+    export const IconContainer = styled.div`
+    margin: 1rem auto 0 auto;
+    text-align: center;
+    `
+
+    export const IconNext = styled(GoArrowRight)` 
+    font-size: 1.5rem;
+            color: #B55400;
+
+    `
+    export const IconPrev = styled(GoArrowLeft)`
+        font-size: 1.5rem;
+        color: #B55400;
+
+    `
+
+    export const BtnPaged = styled.button`
+        background: #222831;
+        border:none;
+        margin: 0 .5rem;
+
+        &:hover{
+            background: #393E46;
+        }
+        &:focus{
+            background: #393E46;
+        }
+   
     `

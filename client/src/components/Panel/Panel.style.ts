@@ -32,7 +32,7 @@ export const  BtnAdminPanel = styled.button`
     width: 100%;
     border: none;
     background: transparent;
-    color: #ffffff;
+    color: #eeeeee;
     /* text-align: start; */
     display: flex;
     align-items: center;
