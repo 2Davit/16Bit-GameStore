@@ -2,7 +2,7 @@ import { FC, useState } from "react";
 
 import { AdminProduct } from "../../interfaces/index";
 import PanelCatalog from "../PanelCatalog/PanelCatalog";
-import { ContainerMainContent, ContainerNav, Searchbar, AddBtns, AddBtn, Search, ContainerCards, IconNext, IconPrev, IconContainer, BtnPaged } from "./ProductContent.style"
+import { ContainerMainContent, ContainerNav, Searchbar, AddBtns, AddBtn, Search, ContainerCards, IconNext, IconPrev, IconContainer, BtnPaged1, BtnPaged2, ContainerNotExist, H2 } from "./ProductContent.style"
 
 interface Props {
   totalProducts: any;
@@ -16,7 +16,7 @@ const MainContent: FC<Props> = ({ totalProducts }) => {
   const [btnPrev, setBtnPrev] = useState<boolean>(false)
   const [productSearch, setProductSearch] = useState(totalProducts.renderingProducts);
   let onViewProducts = productSearch.slice(page, page2)
-  console.log(productSearch.length)
+  console.log(onViewProducts)
 
 
 
@@ -64,7 +64,7 @@ const MainContent: FC<Props> = ({ totalProducts }) => {
     <ContainerMainContent>
       <ContainerNav>
         <Searchbar>
-          <Search  placeholder='Search products...' onChange={searchProduct}/>
+          <Search  placeholder=' Search products...' onChange={searchProduct}/>
         </Searchbar>
         <AddBtns>
           <AddBtn to="/form">Add Product</AddBtn>
@@ -75,25 +75,32 @@ const MainContent: FC<Props> = ({ totalProducts }) => {
 
       <ContainerCards>
       <IconContainer>
-      <BtnPaged disabled={btnPrev} onClick={handlePreviousPage}><IconPrev /></BtnPaged>
-      <BtnPaged  disabled={btnNext} onClick={handleNextPage}><IconNext  /></BtnPaged>
+      <BtnPaged1 byeBtn={btnPrev} disabled={btnPrev} onClick={handlePreviousPage}><IconPrev byeBtnI={btnPrev} /></BtnPaged1>
+      <BtnPaged2 byeBtn={btnNext} disabled={btnNext} onClick={handleNextPage}><IconNext  byeBtnI={btnNext} /></BtnPaged2>
       </IconContainer>
         {
+          onViewProducts.length !== 0 ?
           onViewProducts?.map((product: AdminProduct) => (
             <PanelCatalog
-              key={product.id_product}
-              image={product.image_product}
-              name={product.name_product}
-              released={product.release_year}
-              description={product.description_product}
-              price={product.price_product}
-              id={product.id_product}
-              stock={product.in_stock}
-              genre={product.name_genre}
-              platform={product.name_platform}
-              thumbnail={product.thumbnail_product}
+            key={product.id_product}
+            image={product.image_product}
+            name={product.name_product}
+            released={product.release_year}
+            description={product.description_product}
+            price={product.price_product}
+            id={product.id_product}
+            stock={product.in_stock}
+            genre={product.name_genre}
+            platform={product.name_platform}
+            thumbnail={product.thumbnail_product}
             />
-          ))}
+            )) : 
+            <ContainerNotExist>
+              <H2>Product Not Found</H2>
+              <h5>Try Looking for Another</h5>
+            </ContainerNotExist>
+
+          }
       </ContainerCards>
     </ContainerMainContent>
   );

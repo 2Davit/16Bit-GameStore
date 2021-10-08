@@ -74,7 +74,7 @@ const AdminPanel: FC = () => {
   return (
     <ContainerAdmin>
       <InfoContainer>
-        <Panel handleInfo={handleInfo} />
+        <Panel /*info={info}*/ handleInfo={handleInfo} />
       </InfoContainer>
       <MainContainer>
         {info.setHome ? (

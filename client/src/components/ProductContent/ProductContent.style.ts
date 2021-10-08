@@ -14,7 +14,7 @@ export const ContainerNav = styled.div`
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    background: #222831;
+    background: #000000;
 `
 export const ContainerCards = styled.div`
     height: 95%;
@@ -73,34 +73,73 @@ export const AddBtn = styled(Link)`
         display: flex;
         justify-content: flex-end;
         align-items: center;
-        border-radius: 10px;
+        border-radius: 1.5rem;
+        border: none;
+        outline: none;
+        margin-left: 5px;
+        padding: 0px 10px;
     `
     export const IconContainer = styled.div`
     margin: 1rem auto 0 auto;
     text-align: center;
     `
-
-    export const IconNext = styled(GoArrowRight)` 
-    font-size: 1.5rem;
-            color: #B55400;
-
-    `
-    export const IconPrev = styled(GoArrowLeft)`
+    interface BtnPropsIcon {
+        byeBtnI: boolean;
+    }
+    
+    export const IconNext = styled(GoArrowRight)<BtnPropsIcon>` 
         font-size: 1.5rem;
-        color: #B55400;
+        color: ${({byeBtnI}) => byeBtnI ? '#b4743d' : '#B55400'};
+    `
+    export const IconPrev = styled(GoArrowLeft)<BtnPropsIcon>`
+        font-size: 1.5rem;
+        color: ${({byeBtnI}) => byeBtnI ? '#b4743d' : '#B55400'};
 
     `
-
-    export const BtnPaged = styled.button`
-        background: #222831;
+    interface BtnProps {
+        byeBtn: boolean;
+    }
+    export const BtnPaged1 = styled.button<BtnProps>`
         border:none;
         margin: 0 .5rem;
-
+        border-radius: 3px;
+        background: ${({byeBtn}) => byeBtn ? '#515f75' : '#222831'};
         &:hover{
-            background: #393E46;
+            background: ${({byeBtn}) => byeBtn ? '#515f75' : '#393E46'};
         }
         &:focus{
-            background: #393E46;
+            outline: none;
+            background: ${({byeBtn}) => byeBtn ? '#515f75' : '#393E46'};
         }
-   
+    `
+    export const BtnPaged2 = styled.button<BtnProps>`
+        border:none;
+        margin: 0 .5rem;
+        border-radius: 3px;
+        background: ${({byeBtn}) => byeBtn ? '#515f75' : '#222831'};
+        &:hover{
+            background: ${({byeBtn}) => byeBtn ? '#515f75' : '#393E46'} ;
+        }
+        &:focus{
+            outline: none;
+            background: ${({byeBtn}) => byeBtn ? '#515f75' : '#393E46'};
+        }
+    `
+
+    export const ContainerNotExist = styled.div`
+        height: 70%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        h5{
+            color: #393E46;
+            font-size: 1rem;
+        }
+    `
+
+export const H2 = styled.h2`
+        color: #000;
+        font-size: 2rem;
     `
