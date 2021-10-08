@@ -9,15 +9,18 @@ interface Props {
 }
 
 const MainContent: FC<Props> = ({ totalProducts }) => {
+  
   const [page, setPage] = useState<number>(0)//iria de 10 en 10 ejm : 0-10,20,30
   const [page2, setPage2] = useState<number>(10)//19
   const [btnNext, setBtnNext] = useState<boolean>(false)
   const [btnPrev, setBtnPrev] = useState<boolean>(false)
+  const [productSearch, setProductSearch] = useState(totalProducts.renderingProducts);
+  let onViewProducts = productSearch.slice(page, page2)
 
-  console.log(!btnPrev)
+
+  console.log(totalProducts.renderingProducts.length)
   console.log(page2)
 
-  let onViewProducts = totalProducts.renderingProducts.slice(page, page2)
 
   const handleNextPage = () => {
     if (totalProducts.renderingProducts.length === page2) {
@@ -40,14 +43,26 @@ const MainContent: FC<Props> = ({ totalProducts }) => {
     }
 
   }
-
+  const searchProduct = (e: any) => {
+    let search = e.target.value.toLowerCase();
+    if (search === "") {
+      setProductSearch(totalProducts.renderingProducts);
+    } else {
+      
+      let newArray = totalProducts.totalProducts.filter((product: any) => {
+        return product.name_product.includes(search);
+      });
+      console.log("total:",newArray);
+      setProductSearch(newArray);
+    }
+  };
 
 
   return (
     <ContainerMainContent>
       <ContainerNav>
         <Searchbar>
-          <Search placeholder='Search products...' />
+          <Search  placeholder='Search products...' onChange={searchProduct}/>
         </Searchbar>
         <AddBtns>
           <AddBtn to="/form">Add Product</AddBtn>
@@ -61,7 +76,7 @@ const MainContent: FC<Props> = ({ totalProducts }) => {
       <BtnPaged disabled={btnPrev} onClick={handlePreviousPage}><IconPrev /></BtnPaged>
       <BtnPaged  disabled={btnNext} onClick={handleNextPage}><IconNext  /></BtnPaged>
       </IconContainer>
-        {onViewProducts?.length !== 0 &&
+        {
           onViewProducts?.map((product: AdminProduct) => (
             <PanelCatalog
               key={product.id_product}
