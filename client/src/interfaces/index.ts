@@ -68,7 +68,9 @@ export interface ProductsState {
 }
 
 export interface CartState {
-  cart: any;
+  cart: {
+    list: Array<ProductInCart>;
+  };
 }
 
 export interface GlobalState {
