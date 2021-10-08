@@ -16,7 +16,7 @@ import {
 } from "../../components";
 import { ContainerAdmin, InfoContainer, MainContainer } from './AdminPanel.style'
 
-const AdminPanel: FC = () => {
+const AdminPanel: FC = (props) => {  
   const dispatch = useDispatch();
   const [info, setInfo] = useState({
     setHome: true,
@@ -61,6 +61,15 @@ const AdminPanel: FC = () => {
         setSales: false,
       });
     }
+    // if(location.state){
+    //   setInfo({
+    //     ...info,
+    //     setHome: false,
+    //     setProducts: true,
+    //     setSales: false,
+    //     setUsers: false,
+    //   });
+    // }
   };
   useEffect(() => {
     dispatch(getAllProducts());

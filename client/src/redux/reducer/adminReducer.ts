@@ -1,4 +1,4 @@
-import { EDIT_PRODUCT, EDIT_NAVBAR, CREATE_NAVBAR} from "../types";
+import { EDIT_PRODUCT, EDIT_NAVBAR, CREATE_NAVBAR, DELETE_PRODUCT} from "../types";
 import { ProductsState } from "../../interfaces";
 
 const initialState: ProductsState = {
@@ -18,6 +18,10 @@ export function adminReducer(state: ProductsState = initialState, action: any) {
       return {
         ...state,
       };
+      case DELETE_PRODUCT:
+        return {
+          ...state,
+        }
     case EDIT_NAVBAR:
       return {
         ...state,
