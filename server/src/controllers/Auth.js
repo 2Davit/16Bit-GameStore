@@ -65,12 +65,15 @@ const logIn = async (req, res) => {
   });
 
   res.status(200).send({
-    token: token,
-    username: user.nickname_user,
-    email: user.email_user,
-    name: user.name_user,
-    lastname: user.lastname_user,
-    address: user.address_user,
+    data: {
+      token: token,
+      username: user.nickname_user,
+      email: user.email_user,
+      name: user.name_user,
+      lastname: user.lastname_user,
+      address: user.address_user,
+    },
+    id: user.id_user,
   });
 };
 

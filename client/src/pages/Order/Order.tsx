@@ -18,6 +18,9 @@ const OrderUser = () => {
   /* const cart: any = useSelector(
     (state: Store) => state.cartReducer.cart.list
   ); */
+  const idUser: any = useSelector(
+    (state: Store) => state.authReducer.id_user
+  );
 
   const cart : any = JSON.parse(localStorage.getItem("cart")!);
   
@@ -76,8 +79,16 @@ const OrderUser = () => {
     } */
 
 
+  
+  /* const tokenId: any = JSON.parse(localStorage.getItem("userData")!);
+  axios.get(`http://localhost:3001/auth/getID`, {headers: {"x-access-token": tokenId.token}}).then(res => {
+    const userId = res.data.id
+    return userId;
+  }) */  
+  /* const userId = getId(); */
+
   const order = {
-    id_user: 1,
+    id_user: parseInt(idUser),
     status_order: "pending",
     amount_order: subtotal,
     cart: cart?.map((c: ProductInCart) => (
@@ -131,7 +142,6 @@ const OrderUser = () => {
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    console.log('ACAAA: ', order);
     handlePayment()
   }
 

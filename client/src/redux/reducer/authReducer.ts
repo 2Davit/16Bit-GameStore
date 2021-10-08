@@ -14,6 +14,7 @@ const initialState: UserState = {
   role: {
     admin: false,
   },
+  id_user: "",
 };
 
 export function authReducer(state: UserState = initialState, action: any) {
@@ -22,7 +23,8 @@ export function authReducer(state: UserState = initialState, action: any) {
     case LOGIN:
       return {
         ...state,
-        user: payload,
+        user: payload.data,
+        id_user: payload.id,
       };
     case USER_ROLE:
       return {
