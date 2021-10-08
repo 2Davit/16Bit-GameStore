@@ -28,11 +28,11 @@ const NavBar: FC<Props> = ({ setPage, toggleModal }: any) => {
     dispatch(getAllProducts());
   };
 
-  /* const cartNumber: any = useSelector(
+  const cartNumber: any = useSelector(
     (state: Store) => state.cartReducer.cart.list
-  ); */
+  ); 
 
-  const cartNumber : any = JSON.parse(localStorage.getItem("cart")!);
+  /* const cartNumber : any = JSON.parse(localStorage.getItem("cart")!); */
 
   const number = cartNumber?.reduce((acc: number, prod: ProductInCart) => {
     acc = acc + prod.quantity!;
