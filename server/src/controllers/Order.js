@@ -104,7 +104,7 @@ server.get("/mercadoPagoRedirect", async (req, res) => {
 
 async function createPayment (req, res){
   
-    console.info("EN LA RUTA PAGOS ", req)
+    /* console.info("EN LA RUTA PAGOS ", req) */
     const payment_id= req.query.payment_id
     const payment_status= req.query.status
     const external_reference = req.query.external_reference
@@ -116,34 +116,9 @@ async function createPayment (req, res){
         { where: { id_order: parseInt(external_reference) } }
       )
 
-    const foundOrder = await Order.findOne({
+      const foundOrder = await Order.findOne({
         where: {
           id_order:  parseInt(external_reference),
-        },
-        include: [
-            {
-              model: OrderProduct,
-             /*  attributes: [""], */
-              through: { attributes: [] },
-            },
-        ]
-      })
-
-  
-
-    return res.redirect("http://localhost:3000/home")
-} catch(err) {
-    console.log(err)
-}
-}
-
-
-
-async function prueba (req, res){
-    try{
-    const foundOrder = await Order.findOne({
-        where: {
-          id_order:  10,
         }, 
         include: 
             [ {
@@ -157,7 +132,38 @@ async function prueba (req, res){
       })
 
       await foundOrder.orderProducts.forEach( e => {
-          console.log(e)
+         Product.decrement('in_stock', {
+             by: e.quantity_orderProduct, 
+             where:
+              { 
+                id_product: e.productIdProduct
+             } })
+      })
+
+
+    return res.redirect("http://localhost:3000/home")
+} catch(err) {
+    console.log(err)
+}
+}
+
+
+
+/* async function prueba (req, res){
+    try{
+    const foundOrder = await Order.findOne({
+        where: {
+          id_order:  parseInt(external_reference),
+        }, 
+        include: 
+            [ {
+              model: OrderProduct,
+              required: false
+            } ],
+        
+      })
+
+      await foundOrder.orderProducts.forEach( e => {
          Product.decrement('in_stock', {
              by: e.quantity_orderProduct, 
              where:
@@ -170,32 +176,11 @@ async function prueba (req, res){
 
 res.send(foundOrder)
 
-      
- /*    Order.findByPk(external_reference)
-    .then((order) => {
-      order.payment_id= payment_id
-      order.payment_status= payment_status
-      order.merchant_order_id = merchant_order_id
-      order.status = "created"
-      console.info('Salvando order')
-      order.save()
-      .then((_) => {
-        console.info('redirect success')
-        
-        return res.redirect("http://localhost:3000")
-      }).catch((err) =>{
-        console.error('error al salvar', err)
-        return res.redirect(`http://localhost:3000/?error=${err}&where=al+salvar`)
-      })
-    }).catch(err =>{
-      console.error('error al buscar', err)
-      return res.redirect(`http://localhost:3000/?error=${err}&where=al+buscar`)
-    })  */
     
 } catch(err) {
     console.log(err)
 }
-}
+} */
 
 
 
@@ -203,7 +188,6 @@ res.send(foundOrder)
 module.exports = {
     createOrder,
     createPayment,
-    prueba 
 }
 
 

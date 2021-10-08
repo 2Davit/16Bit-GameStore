@@ -83,7 +83,7 @@ const Detail: FC = () => {
   };
 
 let stockInLocal = JSON.parse(localStorage.getItem("cart")!)
-let game = stockInLocal.find((g:ProductInCart) => g.id_product === detailProduct.id_product)
+let game = stockInLocal?.find((g:ProductInCart) => g.id_product === detailProduct.id_product)
 
 let unavailable = quantity + game?.quantity === detailProduct.in_stock+ 1? true : false
 
