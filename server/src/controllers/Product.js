@@ -296,7 +296,6 @@ async function listProductOnSale(req, res){
           productCreated.addPlatform(platformDB);
           res.status(200).send("Product succesfully added");
         } catch(err) {
-          console.log(err);
           res.status(404).send(err);
         }
       }
