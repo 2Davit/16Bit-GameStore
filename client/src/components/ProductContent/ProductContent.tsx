@@ -1,5 +1,7 @@
 import { FC, useState } from "react";
-
+import {useDispatch} from 'react-redux'
+import {useHistory} from 'react-router-dom'
+import { deleteProduct } from "../../redux/actions/admin_actions";
 import { AdminProduct } from "../../interfaces/index";
 import PanelCatalog from "../PanelCatalog/PanelCatalog";
 import { ContainerMainContent, ContainerNav, Searchbar, AddBtns, AddBtn, Search, ContainerCards, IconNext, IconPrev, IconContainer, BtnPaged1, BtnPaged2, ContainerNotExist, H2 } from "./ProductContent.style"
@@ -9,7 +11,8 @@ interface Props {
 }
 
 const MainContent: FC<Props> = ({ totalProducts }) => {
-  
+  const dispatch = useDispatch();
+  const history = useHistory();
   const [page, setPage] = useState<number>(0)//iria de 10 en 10 ejm : 0-10,20,30
   const [page2, setPage2] = useState<number>(10)//19
   const [btnNext, setBtnNext] = useState<boolean>(false)
@@ -42,6 +45,12 @@ const MainContent: FC<Props> = ({ totalProducts }) => {
       setBtnNext(false)
     }
 
+  }
+
+  function handleDeleteProduct(e:React.MouseEvent<any>) {
+    dispatch(deleteProduct(e.currentTarget.value));
+    alert("Cambio realizado con éxito.");
+    history.push('/admin')
   }
   const searchProduct = (e: any) => {
     let search = e.target.value.toLowerCase();
@@ -81,6 +90,8 @@ const MainContent: FC<Props> = ({ totalProducts }) => {
         {
           onViewProducts.length !== 0 ?
           onViewProducts?.map((product: AdminProduct) => (
+            <div>
+              <button onClick={handleDeleteProduct} value={product.id_product}>Delete</button>
             <PanelCatalog
             key={product.id_product}
             image={product.image_product}
@@ -94,6 +105,7 @@ const MainContent: FC<Props> = ({ totalProducts }) => {
             platform={product.name_platform}
             thumbnail={product.thumbnail_product}
             />
+            </div>
             )) : 
             <ContainerNotExist>
               <H2>Product Not Found</H2>

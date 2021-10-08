@@ -41,9 +41,9 @@ const FormProduct: FC = () => {
   // console.log(input)
 
   //quitamos Nav
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(deleteNavbar())
-  },[])
+  }, [])
 
   const handleImage = () => {
     setImages([...images, info.url]);
@@ -164,9 +164,9 @@ const FormProduct: FC = () => {
   }
   function handleStock(e: React.FormEvent<HTMLInputElement>) {
     setInput({
-        ...input,
-        in_stock: parseInt(e.currentTarget.value),
-      });
+      ...input,
+      in_stock: parseInt(e.currentTarget.value),
+    });
   }
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -255,7 +255,10 @@ const FormProduct: FC = () => {
   return (
     <ContainerFormP>
 
-      <Link to="/admin" style={{ textDecoration: "none", color: "#EEEEEE" }}>
+      <Link to={{
+        pathname: "/admin",
+        state:true 
+      }} style={{ textDecoration: "none", color: "#EEEEEE" }}>
         <BtnBack>Back</BtnBack>
       </Link>
 
@@ -343,7 +346,7 @@ const FormProduct: FC = () => {
             <option value="true">On sale</option>
             <option value="false">No Discounts</option>
           </FormSelect>
-          
+
         </Fields>
 
         {error.release_year && (<FormErrors>{error.release_year}</FormErrors>)}
