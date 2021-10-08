@@ -16,14 +16,14 @@ const MainContent: FC<Props> = ({ totalProducts }) => {
   const [btnPrev, setBtnPrev] = useState<boolean>(false)
   const [productSearch, setProductSearch] = useState(totalProducts.renderingProducts);
   let onViewProducts = productSearch.slice(page, page2)
+  console.log(productSearch.length)
 
 
-  console.log(totalProducts.renderingProducts.length)
-  console.log(page2)
+
 
 
   const handleNextPage = () => {
-    if (totalProducts.renderingProducts.length === page2) {
+    if (productSearch.length < (page2 + 1) ) {
       setBtnNext(true)
     } else {
       setPage(page + 10);
@@ -47,12 +47,14 @@ const MainContent: FC<Props> = ({ totalProducts }) => {
     let search = e.target.value.toLowerCase();
     if (search === "") {
       setProductSearch(totalProducts.renderingProducts);
+      setBtnNext(false);
     } else {
       
-      let newArray = totalProducts.totalProducts.filter((product: any) => {
-        return product.name_product.includes(search);
+      let newArray = totalProducts.renderingProducts.filter((product: any) => {
+        return product.name_product.toLowerCase().includes(search);
       });
-      console.log("total:",newArray);
+      setPage(0);
+      setPage2(10);
       setProductSearch(newArray);
     }
   };
