@@ -140,4 +140,5 @@ export interface Role {
 export interface UserState {
   user: User;
   role: Role;
+  id_user: string;
 }
