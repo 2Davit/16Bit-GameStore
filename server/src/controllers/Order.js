@@ -1,6 +1,7 @@
 const { Order, OrderProduct, Product, User } = require('../db')
 const axios = require('axios');
 const mercadopago = require('mercadopago');
+const { Router } = require('express');
 
 mercadopago.configure({
     access_token: 'TEST-6385118257533578-100415-600a17d4305e1579d0854c301e57e6ef-102723698'
@@ -8,7 +9,6 @@ mercadopago.configure({
   
 
 async function createOrder(req, res, next) {
-
     const {
         id_user,
         status_order,
@@ -43,16 +43,14 @@ async function createOrder(req, res, next) {
                 {
                      unit_price: c.price_product,
                      quantity: c.quantity,
-                     id: c.id_product,
-                    /* price_product: c.price_product,
-                    quantity: c.quantity,
-                    id_product: c.id_product, */
+                     id: c.id_product, 
                 }
             )),
+            external_reference : `${order.id_order}`, 
             back_urls: {
-                success: "http://localhost:3000/home",
-                failure: "http://localhost:3000/home",
-                pending: "http://localhost:3000/home",
+                success: "http://localhost:3001/order/payment",
+                failure: "http://localhost:3001/order/payment",
+                pending: "http://localhost:3001/order/payment",
             },
             auto_return: "approved",
         };
@@ -64,7 +62,7 @@ async function createOrder(req, res, next) {
             payment_link: resp.body.init_point,
         }); */
 
-console.log(resp)
+
 
        /*  return res.json(resp.body.init_point); */
        res.send({preferenceId})
@@ -103,8 +101,109 @@ server.get("/mercadoPagoRedirect", async (req, res) => {
         console.log(err);
     }
 }); */
+
+async function createPayment (req, res){
+  
+    console.info("EN LA RUTA PAGOS ", req)
+    const payment_id= req.query.payment_id
+    const payment_status= req.query.status
+    const external_reference = req.query.external_reference
+    const merchant_order_id= req.query.merchant_order_id
+   /*  console.log("EXTERNAL REFERENCE ", external_reference) */
+    try{
+    await Order.update(
+        { status_order: 'fulfilled' },
+        { where: { id_order: parseInt(external_reference) } }
+      )
+
+    const foundOrder = await Order.findOne({
+        where: {
+          id_order:  parseInt(external_reference),
+        },
+        include: [
+            {
+              model: OrderProduct,
+             /*  attributes: [""], */
+              through: { attributes: [] },
+            },
+        ]
+      })
+
+  
+
+    return res.redirect("http://localhost:3000/home")
+} catch(err) {
+    console.log(err)
+}
+}
+
+
+
+async function prueba (req, res){
+    try{
+    const foundOrder = await Order.findOne({
+        where: {
+          id_order:  10,
+        }, 
+        include: 
+            [ {
+              model: OrderProduct,
+              
+               /* attributes: ['price_orderProduct'],  */
+              /* through: { attributes: [] }, */
+              required: false
+            } ],
+        
+      })
+
+      await foundOrder.orderProducts.forEach( e => {
+          console.log(e)
+         Product.decrement('in_stock', {
+             by: e.quantity_orderProduct, 
+             where:
+              { 
+                id_product: e.productIdProduct
+             } })
+      })
+
+    
+
+res.send(foundOrder)
+
+      
+ /*    Order.findByPk(external_reference)
+    .then((order) => {
+      order.payment_id= payment_id
+      order.payment_status= payment_status
+      order.merchant_order_id = merchant_order_id
+      order.status = "created"
+      console.info('Salvando order')
+      order.save()
+      .then((_) => {
+        console.info('redirect success')
+        
+        return res.redirect("http://localhost:3000")
+      }).catch((err) =>{
+        console.error('error al salvar', err)
+        return res.redirect(`http://localhost:3000/?error=${err}&where=al+salvar`)
+      })
+    }).catch(err =>{
+      console.error('error al buscar', err)
+      return res.redirect(`http://localhost:3000/?error=${err}&where=al+buscar`)
+    })  */
+    
+} catch(err) {
+    console.log(err)
+}
+}
+
+
+
+
 module.exports = {
-    createOrder
+    createOrder,
+    createPayment,
+    prueba 
 }
 
 
@@ -170,6 +269,4 @@ server.get('/detalle/:id', (req, res, next) => {
 
 module.exports = server;
  */
-
-
 
