@@ -17,7 +17,7 @@ const initialState: CartState = {
 export const cartReducer = (state: CartState = initialState, action: any) => {
   switch (action.type) {
     case ADD_ITEM_CART:
-      let found = state.cart.list.find(
+      let found = state.cart.list?.find(
         (game: any) => game.id_product === action.payload.id_product
       );
       if (found)
