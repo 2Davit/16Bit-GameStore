@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "nes.css/css/nes.min.css";
 import { useDispatch } from "react-redux";
@@ -15,26 +15,47 @@ interface Props {
 }
 
 const ProductCard: FC<Props> = ({ game }) => {
+  
+  const [message, setMessage] = useState<string>('');
+  
   const dispatch = useDispatch();
 
+
+  function handleEffect() {
+    let stockInLocal = JSON.parse(localStorage.getItem("cart")!)
+    let gameStorage = stockInLocal?.find((g:ProductInCart) => g.id_product === game.id_product)
+    let unavailable = gameStorage?.quantity >= game.in_stock? true : false
+    return unavailable;
+  }
+
+  let disabled = handleEffect();
+
+  useEffect(() => {
+      handleEffect()
+  }, [message]);
+
+  
   const handleOpenClick = (ev: any) => {
     animateScroll.scrollTo(250, { duration: 300 });
   };
 
   const handleClick = () => {
-    let gameToDispatch = { ...game };
-    gameToDispatch.quantity = 1;
-    dispatch(addItemCart(gameToDispatch));
-    toast.success(`${game.name_product} was added to your cart! 👾`, {
-      position: "bottom-left",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
-    });
+      setMessage(message + 'a')
+      //el message de arriba es esencial. Se agradece no tocar!!
+      let gameToDispatch = { ...game };
+      gameToDispatch.quantity = 1;
+      dispatch(addItemCart(gameToDispatch));
+      toast.success(`${game.name_product} was added to your cart! 👾`, {
+        position: "bottom-left",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+
   };
 
   return (
@@ -53,7 +74,7 @@ const ProductCard: FC<Props> = ({ game }) => {
             : game.name_product}
         </h3>
         <p className="card__price">$ {game.price_product}</p>
-        <Btn className="btn-card btn-img" onClick={handleClick}>
+        <Btn className="btn-card btn-img" onClick={handleClick} disabled={disabled} >
           Add to cart
           <StyledSVG src={cart} />
         </Btn>

@@ -30,7 +30,7 @@ const Mini: FC<Props> = ({ detail }: any) => {
   };
 
   let stockInLocal = JSON.parse(localStorage.getItem("cart")!)
-  let game = stockInLocal.find((g:ProductInCart) => g.id_product === detail.id_product)
+  let game = stockInLocal?.find((g:ProductInCart) => g.id_product === detail.id_product)
   
   let unavailable = detail.quantity + game?.quantity === detail.in_stock+ 1? true : false
   return (

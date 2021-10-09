@@ -18,9 +18,8 @@ const OrderUser = () => {
   /* const cart: any = useSelector(
     (state: Store) => state.cartReducer.cart.list
   ); */
-  const idUser: any = useSelector(
-    (state: Store) => state.authReducer.id_user
-  );
+  const user = JSON.parse(localStorage.getItem("userData")!);
+  
 
   const cart : any = JSON.parse(localStorage.getItem("cart")!);
   
@@ -88,7 +87,7 @@ const OrderUser = () => {
   /* const userId = getId(); */
 
   const order = {
-    id_user: parseInt(idUser),
+    id_user: user.id,
     status_order: "pending",
     amount_order: subtotal,
     cart: cart?.map((c: ProductInCart) => (
