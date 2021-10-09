@@ -10,6 +10,7 @@ export const StyledProductCard = styled.article`
 	position: relative;
 	transition: all 0.1s ease-in-out;
 	height: 400px;
+	background:#000 ;
 
 	&:hover
 	{ 
@@ -18,7 +19,7 @@ export const StyledProductCard = styled.article`
 	}
 
 	.card__link {
-		color: transparent;
+		color:transparent;
 		position: absolute;
 		top: 0;
 		bottom: 0;
@@ -88,7 +89,7 @@ export const StyledProductCard = styled.article`
 export const MiniCard = styled.article`
 	position: relative;
 	display: flex;
-	border: 2px solid #51A5FE;
+	border: 2px solid var(--clr-primary);
 	border-radius: 0.5em;
 	margin-bottom: 1em;
 	align-items: center;
@@ -100,12 +101,12 @@ export const MiniCard = styled.article`
 		text-decoration: none;
 
 		&:hover {
-			color: #51A5FE;
+			color: var(--clr-primary);
 		}
 	}
 
 	&:hover {
-		border: 2px solid #0B53D7;
+		border: 2px solid var(--clr-primary-2);
 	}
 
 	.article__img{
@@ -136,11 +137,11 @@ export const MiniCard = styled.article`
 		svg {
 			width: 25px;
 			height: 25px;
-			fill: #51A5FE;
+			fill: var(--clr-primary);
 			}
 
 		&:hover svg {
-			fill: #0B53D7;
+			fill: var(--clr-primary-2);
 		}
 
 		&:focus {

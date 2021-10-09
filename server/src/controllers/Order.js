@@ -1,77 +1,66 @@
-const { Order, OrderProduct, Product, User } = require('../db')
-const axios = require('axios');
-const mercadopago = require('mercadopago');
-const { Router } = require('express');
+const { Order, OrderProduct, Product, User } = require("../db");
+const axios = require("axios");
+const mercadopago = require("mercadopago");
+const { Router } = require("express");
 
 mercadopago.configure({
-    access_token: 'TEST-6385118257533578-100415-600a17d4305e1579d0854c301e57e6ef-102723698'
-  });
-  
+  access_token:
+    "TEST-6385118257533578-100415-600a17d4305e1579d0854c301e57e6ef-102723698",
+});
 
 async function createOrder(req, res, next) {
-    const {
-        id_user,
-        status_order,
-        amount_order,
-        cart,
-        address_order
-    } = req.body;
+  const { id_user, status_order, amount_order, cart, address_order } = req.body;
 
-    try {
-        var user = await User.findByPk(id_user);
-        const order = await Order.create({
-            status_order,
-            amount_order,
-            address_order,
-            date_order: new Date().toLocaleString()
-        });
+  try {
+    var user = await User.findByPk(id_user);
+    const order = await Order.create({
+      status_order,
+      amount_order,
+      address_order,
+      date_order: new Date().toLocaleString(),
+    });
 
-        await user.addOrder(order.id_order);
-        await order.setUser(user.id_user);
+    await user.addOrder(order.id_order);
+    await order.setUser(user.id_user);
 
-        cart.forEach(async (product) => {
-            const orderProducts = await OrderProduct.create({
-                quantity_orderProduct: product.quantity,
-                price_orderProduct: product.price_product
-            });
-            await orderProducts.setOrder(order.id_order);
-            await orderProducts.setProduct(product.id_product);
-        });
+    cart.forEach(async (product) => {
+      const orderProducts = await OrderProduct.create({
+        quantity_orderProduct: product.quantity,
+        price_orderProduct: product.price_product,
+      });
+      await orderProducts.setOrder(order.id_order);
+      await orderProducts.setProduct(product.id_product);
+    });
 
-        let preference = {
-            items: cart.map(c => (
-                {
-                     unit_price: c.price_product,
-                     quantity: c.quantity,
-                     id: c.id_product, 
-                }
-            )),
-            external_reference : `${order.id_order}`, 
-            back_urls: {
-                success: "http://localhost:3001/order/payment",
-                failure: "http://localhost:3001/order/payment",
-                pending: "http://localhost:3001/order/payment",
-            },
-            auto_return: "approved",
-        };
+    let preference = {
+      items: cart.map((c) => ({
+        unit_price: c.price_product,
+        quantity: c.quantity,
+        id: c.id_product,
+      })),
+      external_reference: `${order.id_order}`,
+      back_urls: {
+        success: "http://localhost:3001/order/payment",
+        failure: "http://localhost:3001/order/payment",
+        pending: "http://localhost:3001/order/payment",
+      },
+      auto_return: "approved",
+    };
 
-        const resp = await mercadopago.preferences.create(preference);
-        const preferenceId = resp.body.id
-        /* updatedOrder */ /* order.update({
+    const resp = await mercadopago.preferences.create(preference);
+    const preferenceId = resp.body.id;
+    /* updatedOrder */ /* order.update({
             mp_id: resp.response.id,
             payment_link: resp.body.init_point,
         }); */
 
-
-
-       /*  return res.json(resp.body.init_point); */
-       res.send({preferenceId})
-    } catch (err) {
-        next(err);
-        return res.status(409).send({ error: err.message });
-    }
-};
-
+    /*  return res.json(resp.body.init_point); */
+    res.send({ preferenceId });
+  } catch (err) {
+    next(err);
+    return res.status(409).send({ error: err.message });
+  }
+}
 
 /* async function createOrder(req, res, next)
 server.get("/mercadoPagoRedirect", async (req, res) => {
@@ -102,52 +91,48 @@ server.get("/mercadoPagoRedirect", async (req, res) => {
     }
 }); */
 
-async function createPayment (req, res){
-  
-    /* console.info("EN LA RUTA PAGOS ", req) */
-    const payment_id= req.query.payment_id
-    const payment_status= req.query.status
-    const external_reference = req.query.external_reference
-    const merchant_order_id= req.query.merchant_order_id
-   /*  console.log("EXTERNAL REFERENCE ", external_reference) */
-    try{
+async function createPayment(req, res) {
+  /* console.info("EN LA RUTA PAGOS ", req) */
+  const payment_id = req.query.payment_id;
+  const payment_status = req.query.status;
+  const external_reference = req.query.external_reference;
+  const merchant_order_id = req.query.merchant_order_id;
+  /*  console.log("EXTERNAL REFERENCE ", external_reference) */
+  try {
     await Order.update(
-        { status_order: 'fulfilled' },
-        { where: { id_order: parseInt(external_reference) } }
-      )
+      { status_order: "fulfilled" },
+      { where: { id_order: parseInt(external_reference) } }
+    );
 
-      const foundOrder = await Order.findOne({
+    const foundOrder = await Order.findOne({
+      where: {
+        id_order: parseInt(external_reference),
+      },
+      include: [
+        {
+          model: OrderProduct,
+
+          /* attributes: ['price_orderProduct'],  */
+          /* through: { attributes: [] }, */
+          required: false,
+        },
+      ],
+    });
+
+    await foundOrder.orderProducts.forEach((e) => {
+      Product.decrement("in_stock", {
+        by: e.quantity_orderProduct,
         where: {
-          id_order:  parseInt(external_reference),
-        }, 
-        include: 
-            [ {
-              model: OrderProduct,
-              
-               /* attributes: ['price_orderProduct'],  */
-              /* through: { attributes: [] }, */
-              required: false
-            } ],
-        
-      })
+          id_product: e.productIdProduct,
+        },
+      });
+    });
 
-      await foundOrder.orderProducts.forEach( e => {
-         Product.decrement('in_stock', {
-             by: e.quantity_orderProduct, 
-             where:
-              { 
-                id_product: e.productIdProduct
-             } })
-      })
-
-
-    return res.redirect("http://localhost:3000/home")
-} catch(err) {
-    console.log(err)
+    return res.redirect("http://localhost:3000/order/detail");
+  } catch (err) {
+    console.log(err);
+  }
 }
-}
-
-
 
 /* async function prueba (req, res){
     try{
@@ -182,14 +167,10 @@ res.send(foundOrder)
 }
 } */
 
-
-
-
 module.exports = {
-    createOrder,
-    createPayment,
-}
-
+  createOrder,
+  createPayment,
+};
 
 /*   const server = require('express').Router();
 const { Order , Order_detail, Product } = require('../db');
@@ -253,4 +234,3 @@ server.get('/detalle/:id', (req, res, next) => {
 
 module.exports = server;
  */
-

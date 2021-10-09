@@ -30,7 +30,6 @@ position:relative;
 
 export const CarouselSubContainer = styled.div`
     background: ${p => p.theme.bgSub};
-    /* background: #51A5FE; */
     height: 100%;
     width: 70%;
     padding: 1rem;

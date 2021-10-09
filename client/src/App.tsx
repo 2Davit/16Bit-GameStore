@@ -26,8 +26,11 @@ import { Store } from "./redux/reducer";
 import { Product } from "./interfaces";
 import { toggleCart } from "./redux/actions/global_actions";
 import { getCart } from "../src/redux/actions/cart_actions";
-
-
+import Step1 from "./pages/OrderDetail/Step1/Step1";
+import Step2 from "./pages/OrderDetail/Step2/Step2";
+import Step3 from "./pages/OrderDetail/Step3/Step3";
+import Confetti from "react-confetti";
+import { Fade } from "react-awesome-reveal";
 
 const App: FC = () => {
   const dispatch = useDispatch();
@@ -37,8 +40,6 @@ const App: FC = () => {
   const deleteNav: any = useSelector(
     (state: Store) => state.adminReducer.navbar
   );
-
-  
 
   //Paginate
   // const [order, setOrder] = useState<string>("");
@@ -68,22 +69,34 @@ const App: FC = () => {
     <Theme /* none="none" */>
       <GlobalStyle />
       <Router>
-
-      {deleteNav && <NavBar setPage={setCurrentPage} toggleModal={toggleModal} /> }
+        {deleteNav && (
+          <NavBar setPage={setCurrentPage} toggleModal={toggleModal} />
+        )}
 
         <CartSideBar closeCallback={toggleModal} show={showCart} />
         <Switch>
           <Route exact path="/" component={Landing} />
           <Route exact path="/home">
-            <Home
-              setPage={setCurrentPage}
-              currentProducts={currentProducts}
-              productsPerPage={productsPerPage}
-              pages={pages}
-            />
+            <Fade>
+              <Home
+                setPage={setCurrentPage}
+                currentProducts={currentProducts}
+                productsPerPage={productsPerPage}
+                pages={pages}
+              />
+            </Fade>
           </Route>
           <Route exact path="/cart" component={CartSideBar} />
           <Route exact path="/game/:id" component={ProductDetail} />
+          <Route exact path="/order">
+            <Step1 />
+          </Route>
+          <Route exact path="/order/payment">
+            <Step2 />
+          </Route>
+          <Route exact path="/order/detail">
+            <Step3 />
+          </Route>
           <Route exact path="/form" component={FormProduct} />
           <Route exact path="/admin" component={AdminPanel} />
           <Route exact path="/login" component={FormLogin} />
@@ -94,7 +107,7 @@ const App: FC = () => {
           <Route exact path="/privacy" component={Privacy} />
           <Route exact path="/legal" component={Legal} />
           <Route exact path="/about" component={About} />
-          <Route exact path="/order" component={Order} />
+          {/* <Route exact path="/order" component={Order} /> */}
 
           <Route path="*" component={NotFound} />
         </Switch>

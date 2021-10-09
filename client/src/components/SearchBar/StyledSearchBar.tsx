@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const FormSearchBar = styled.form`
-  background: #fff;
-  border: 2px solid #51a5fe;
+  background: var(--clr-white);
+  border: 2px solid var(--clr-primary);
   border-radius: 99em;
   min-width: 200px;
   max-width: 400px;

@@ -11,7 +11,7 @@ export const StyledAbout = styled.div`
     margin-bottom: 1em;
     text-transform: uppercase;
     font-size: 2em;
-    color: #51a5fe;
+    color: var(--clr-primary);
   }
 
   h3 {
@@ -41,7 +41,7 @@ export const StyledAbout = styled.div`
         height: 9em;
         border-radius: 99em;
         object-fit: cover;
-        border: 5px solid #51a5fe;
+        border: 5px solid var(--clr-primary);
         transition: filter 0.2s ease-in-out;
 
         &:hover {
@@ -56,16 +56,16 @@ export const StyledAbout = styled.div`
         width: 50%;
 
         i {
-          border: 4px solid #51a5fe;
+          border: 4px solid var(--clr-primary);
           padding: 0.15em;
           border-radius: 10px;
           text-decoration: none;
           font-size: 2em;
-          color: #fff;
+          color: var(--clr-white);
           transition: color 0.2s ease-in-out;
 
           &:hover {
-            color: #51a5fe;
+            color: var(--clr-primary-2);
           }
         }
       }
