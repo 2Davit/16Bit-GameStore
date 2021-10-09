@@ -1,5 +1,11 @@
 import styled from 'styled-components'
 
+interface Props {
+    backGProps: string;
+    backHover: string;
+}
+
+
 export const ContainerPanelCata = styled.div`
     width: 80%;
     margin: 40px 0 0 0;
@@ -58,21 +64,27 @@ justify-content: flex-end;
 width: 50%;
 `
 
-export const BtnEdit = styled.button`
+export const BtnEdit = styled.button<Props>`
+
     border: none;
     width: 50%;
     min-width: 95px;
     height: 30%;
     min-height: 40px;
     border-radius: 6px;
-    background: #c3630f;
+    background:${({backGProps}) => backGProps } ;
     color: #ffffff;
     font-weight: bold;
 
     &:hover{
-        background: #B55400;
+        background: ${({backHover}) => backHover };
     }
+    &:focus{
+        outline: none;
+    }
+
 `
+// "#c3630f" del background del button
 export const InputLabel = styled.div`
    display: flex;
    textarea{

@@ -1,10 +1,11 @@
-import React, { FC, useState } from "react";
-import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import React, { FC, useState, useEffect } from "react";
+import { Link, useHistory } from "react-router-dom";
+import { useDispatch, useSelector  } from "react-redux";
 import { Store } from "../../redux/reducer/";
 import { editProduct } from "../../redux/actions/admin_actions";
 import { EditProduct } from "../../interfaces";
 import { ContainerPanelCata, CardContent, ImageContent, Image, H3, Paragraph, Info, EditInfoBtns, EditInfoBtns2, ContainerDiv, BtnEdit, InputLabel, Form, Input, BtnOpt } from './PanelCatalog.style'
+import { deleteProduct } from "../../redux/actions/admin_actions";
 
 interface Props {
   image: Array<string> | any;
@@ -12,7 +13,7 @@ interface Props {
   released: number;
   description: string;
   price: number;
-  id: number | undefined;
+  id: any;
   stock: number;
   genre?: string[];
   platform: any;
@@ -40,6 +41,7 @@ const PanelCatalog: FC<Props> = ({
     1986, 1987, 1988, 1989, 1990, 1991, 1992, 1993, 1994, 1995, 1996, 1997,
     1998, 1999, 2000,2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010
   ];
+  const history = useHistory();
 
   const [input, setInput] = useState<EditProduct>({
     id,
@@ -60,6 +62,7 @@ const PanelCatalog: FC<Props> = ({
   const totalPlatforms = useSelector(
     (state: Store) => state.productsReducer.platforms
   );
+
 
   function handleEdit() {
     setCond(!cond);
@@ -124,6 +127,11 @@ const PanelCatalog: FC<Props> = ({
           : [],
     });
   }
+  function handleDeleteProduct(id:number):any {
+    dispatch(deleteProduct(id));
+    alert("Cambio realizado con éxito.");
+    history.push('/admin')
+  }
 
   return cond === false ? (
     <ContainerPanelCata >
@@ -148,7 +156,8 @@ const PanelCatalog: FC<Props> = ({
             <Paragraph>Platform: {platform}</Paragraph>
           </Info>
           <EditInfoBtns>
-            <BtnEdit onClick={handleEdit}>EDIT INFO</BtnEdit>
+          <BtnEdit backGProps="#911F27" backHover="#B3141C" onClick={() => handleDeleteProduct(id)}>DELETE</BtnEdit>
+            <BtnEdit backGProps="#c3630f" backHover="#B55400" onClick={handleEdit}>EDIT INFO</BtnEdit>
             {/* <button
                   onClick={handleEdit}
                   style={{ pointerEvents: "none", color: "gray" }}
@@ -274,8 +283,8 @@ const PanelCatalog: FC<Props> = ({
             </EditInfoBtns>
 
             <EditInfoBtns2>
-              <BtnEdit onClick={handleEdit}>BACK</BtnEdit>
-              <BtnEdit onClick={(e: any) => handleSave(e)}>SAVE</BtnEdit>
+              <BtnEdit backGProps="#c3630f" backHover="#B55400" onClick={handleEdit}>BACK</BtnEdit>
+              <BtnEdit backGProps="#45962F" backHover="#2C731D" onClick={(e: any) => handleSave(e)}>SAVE</BtnEdit> 
             </EditInfoBtns2>
           </ContainerDiv>
         </Form>
