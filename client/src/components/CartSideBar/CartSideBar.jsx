@@ -50,10 +50,10 @@ const CartSideBar /*: FC<CartSideBarProps>*/ = ({ closeCallback, show }) => {
   }, [cartList]);
 
 
-    /* let userInStorage = JSON.parse(localStorage.getItem("user")); */
+    let userInStorage = JSON.parse(localStorage.getItem("userData"));
     
 
-    let isRegister = true ? '/order' : '/register'
+    let isRegister = userInStorage ? '/order' : '/signup'
 
   return ReactDOM.createPortal(
     <StyledCartSideBar>
