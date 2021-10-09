@@ -7,7 +7,6 @@ import {
   onSaleFilter,
 } from "../../redux/actions/products_action";
 import { getRole } from "../../redux/actions/auth_actions";
-import { getCart } from '../../redux/actions/cart_actions';
 import { Paginate, Filter, Catalog, Carousel } from "../../components";
 import { Store } from "../../redux/reducer/";
 import { ContainerHome } from "./Home.style";
@@ -30,7 +29,7 @@ const Home = ({ setPage, currentProducts, productsPerPage, pages }: any) => {
     dispatch(getAllGenres());
     dispatch(getAllPlatforms());
     dispatch(getRole());
-    dispatch(createNavbar())
+    dispatch(createNavbar());
   }, [dispatch]);
 
   // function handleOnSaleFilter() {

@@ -15,9 +15,9 @@ const themes = {
   },
   retro: {
     bg: "#2c2f31",
-    bgSub: "#51A5FE",
-    bgBorder: "#51A5FE",
-    color: "#ffffff",
+    bgSub: "#9b5df7",
+    bgBorder: "#9b5df7",
+    color: "#F5F4F8",
     font: `'Press Start 2P', cursive`,
     fontAdmin: `'Raleway', cursive`,
   },

@@ -18,7 +18,7 @@ export const StyledFilter = styled.div`
 export const SelectStyled = styled.select`
   font-family: inherit;
   font-size: 0.7em;
-  border: 3px solid #51a5fe;
+  border: 3px solid var(--clr-primary);
   border-radius: 0.5em;
   width: 200px;
   padding: 0.5em 3em 0.5em 0.7em;
@@ -27,7 +27,7 @@ export const SelectStyled = styled.select`
   background: url(${arrow}) 95% center no-repeat;
   margin-left: 1em;
   text-transform: uppercase;
-  color: #51a5fe;
+  color: var(--clr-primary);
   cursor: inherit;
   &::-ms-expand {
     display: none;
@@ -36,13 +36,7 @@ export const SelectStyled = styled.select`
   &:hover,
   &:focus {
     outline: 0;
-    border-color: #0b53d7;
+    border-color: var(--clr-primary-2);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
-  }
-  &.select__order-admin {
-    width: 100%;
-    max-width: 200px;
-    margin: 0 auto;
-    font-size: 1em;
   }
 `;

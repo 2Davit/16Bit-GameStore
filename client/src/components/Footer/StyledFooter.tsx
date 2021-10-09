@@ -1,16 +1,16 @@
 import styled from "styled-components";
 
 const StyledFooter = styled.footer`
-  background-color: #1b1a1f;
+  background: linear-gradient(180deg, #000, #1f0156);
   padding: 3em 0;
   text-align: center;
 
   a {
-    color: #51a5fe;
+    color: var(--clr-primary);
     text-decoration: none;
 
     &:hover {
-      color: #0b53d7;
+      color: var(--clr-primary-2);
     }
   }
 
@@ -28,7 +28,7 @@ const StyledFooter = styled.footer`
       color: currentColor;
 
       &:hover {
-        color: #51a5fe;
+        color: var(--clr-primary);
       }
     }
   }
@@ -39,7 +39,7 @@ const StyledFooter = styled.footer`
     padding-top: 2em;
     font-size: 0.8em;
     line-height: 2;
-    color: #7e7e7e;
+    color: var(--clr-middle);
     position: relative;
 
     &::before {
@@ -55,7 +55,13 @@ const StyledFooter = styled.footer`
     position: relative;
     display: flex;
     justify-content: center;
-    left: 2em;
+    left: -1em;
+  }
+
+  .navbar__bottom {
+    position: relative;
+    left: -1.5em;
+    margin-top: 2em;
   }
 
   @media (max-width: 1000px) {

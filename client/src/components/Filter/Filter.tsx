@@ -1,7 +1,7 @@
 import React, { useState, FC } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { StyledFilter, SelectStyled } from "./StyledFilter";
-
+import { Btn } from "../../GlobalStyles/GlobalStyles";
 import {
   doubleFilter,
   onSaleFilter,
@@ -89,20 +89,20 @@ const Filter: FC<Props> = ({ setPage }) => {
         <h5>On sale</h5>
 
         {show ? (
-          <button className="nes-btn is-primary" onClick={handleOnSaleFilter}>
-            Get On Sale
-          </button>
+          <Btn className="btn-card" onClick={handleOnSaleFilter}>
+            On Sale
+          </Btn>
         ) : (
-          <button className="nes-btn is-primary" onClick={handleAll}>
-            Get All
-          </button>
+          <Btn className="btn-card" onClick={handleAll}>
+            All
+          </Btn>
         )}
       </section>
       <section>
         <h5>Remove Filters</h5>
-        <button className="nes-btn is-primary" onClick={handleReset}>
+        <Btn className="btn-sec" onClick={handleReset}>
           Remove
-        </button>
+        </Btn>
       </section>
     </StyledFilter>
   );

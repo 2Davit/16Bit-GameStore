@@ -9,7 +9,7 @@ export { default as FormPlatform } from './FormPlatform/FormPlatform';
 export { default as Terms } from './Terms/Terms';
 export { default as Privacy } from './Terms/Privacy/Privacy';
 export { default as Legal } from './Terms/Legal/Legal';
-export { default as Order } from './Order/Order';
+export { default as Order } from './OrderDetail/Step2/Step2';
 export { default as FormLogin } from './FormLogin/FormLogin';
 export { default as FormRegister } from './FormRegister/FormRegister';
 
