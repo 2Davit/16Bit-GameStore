@@ -44,11 +44,11 @@ const Carousel: FC<Props> = ({ products }) => {
             <Image src={products[index].thumbnail_product} alt={products[index].name_product} />
             <CarouselSubContainer>
                 <div style={{width:'100%', display: 'flex', justifyContent: 'space-between'}}>
-                <h1>{products[index].name_product}</h1>
+                <h1>{products[index].name_product.length < 10 ? products[index].name_product : products[index].name_product.slice(0, 10) + '...'}</h1>
                 <OnSale src={onSale} alt={products[index].name_product} />
                 </div>
                 <span>Price: ${products[index].price_product}</span>
-                <p>{products[index].description_product.slice(0, 120)}...</p>
+                <p>{products[index].description_product.slice(0, 100)}...</p>
                 
             </CarouselSubContainer>
         </CarouselContainer>

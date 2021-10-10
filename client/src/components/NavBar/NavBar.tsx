@@ -90,12 +90,12 @@ const NavBar: FC<Props> = ({ setPage, toggleModal }: any) => {
                 )}
               </button>
             </li>
-            <li>
+            {/* <li>
               <button>
                 <StyledSVG src={moon} />
                 <span>Theme</span>
               </button>
-            </li>
+            </li> */}
           </ul>
         </div>
         <div className="navbar__bottom">

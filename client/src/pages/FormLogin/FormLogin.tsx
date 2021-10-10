@@ -10,12 +10,17 @@ const FormLogin: FC = () => {
 
   const [isUser, setIsUser] = useState<boolean>(false);
 
+  const [userName, setUserName] = useState<string>('');
+
   const dispatch = useDispatch();
 
   const user = JSON.parse(localStorage.getItem("userData")!);
 
   useEffect(() => {
-      if (user) setIsUser(true);
+      if (user) {
+        setIsUser(true);
+        setUserName(user.data.username);
+      }
   }, [])
   
   const handleSubmit = (values: UserLogin) => {
@@ -54,7 +59,7 @@ const FormLogin: FC = () => {
     )
 
     : <>
-      <h1>Welcome, {user?.data.username} !</h1> 
+      <h1>Welcome, {userName} !</h1> 
       <Link to='/home'>HOME</Link>
       </>
     }

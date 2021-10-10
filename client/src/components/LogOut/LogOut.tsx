@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import axios from 'axios';
 import { ProductInCart } from '../../interfaces';
-
+import { useHistory } from 'react-router';
 
 const LogOut: FC = () => {
     
@@ -25,12 +25,14 @@ const LogOut: FC = () => {
           }))
       }
 
+    const history = useHistory();
 
     function handleClick() {
         if (order.amount_order > 0) {
             axios.post('http://localhost:3001/order/save', order);
         }
         localStorage.clear();
+        history.push('/home');
     }
 
 
