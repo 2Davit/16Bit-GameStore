@@ -2,7 +2,10 @@ import styled from "styled-components";
 import SVG from "react-inlinesvg";
 
 export const StyledNavBar = styled.nav`
-  background: #1b1a1f;
+  background: linear-gradient(180deg, #1f0156, #000);  
+  background-position: center center;
+  background-size: cover;
+   background-repeat: no-repeat;
   padding: 2em 0;
 
 
@@ -12,7 +15,7 @@ export const StyledNavBar = styled.nav`
     text-align: center;
 
     &:hover {
-      color: #51a5fe;
+      color: var(--clr-primary);
     }
   }
 
@@ -47,12 +50,12 @@ export const StyledNavBar = styled.nav`
          }
 
       li:hover {
-        color: #51a5fe;
+        color: var(--clr-primary);
             }
 
       .cart__number {
         font-size: 0.8em;
-        background: #51a5fe;
+        background: var(--clr-primary);
         line-height: 1;
         padding: 0.3em 0.5em;
         border-radius: 99em;
@@ -61,7 +64,7 @@ export const StyledNavBar = styled.nav`
         right: 0;
       }
       li:hover .cart__number {
-        color: #fff;
+        color: var(--clr-white);
       }
 
       button {
@@ -82,6 +85,8 @@ export const StyledNavBar = styled.nav`
       display: flex;
       justify-content: center;
       list-style: none;
+      position:relative;
+      left: 2.5em;
      
       & > li + li {
         margin-left: 3.5em;
@@ -112,10 +117,7 @@ export const StyledNavBar = styled.nav`
           margin-left: 1.5em;
         }
       }
-    }
-    .navbar__bottom {
-      display: none;
-    }
+    }    
   }
 `;
 

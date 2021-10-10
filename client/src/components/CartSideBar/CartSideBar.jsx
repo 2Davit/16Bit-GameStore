@@ -9,6 +9,7 @@ import { Mini } from "../index";
 import { useSelector, useDispatch } from "react-redux";
 import { clearCart } from "../../redux/actions/cart_actions";
 import { Slide } from "react-reveal";
+import { useHistory } from "react-router-dom";
 
 // interface CartSideBarProps {
 //   show: boolean;
@@ -17,12 +18,10 @@ import { Slide } from "react-reveal";
 
 const CartSideBar /*: FC<CartSideBarProps>*/ = ({ closeCallback, show }) => {
   const dispatch = useDispatch();
-  const cartList /* :ProductInCart  */= useSelector(
-    (state/* : Store */) => state.cartReducer.cart.list
-  ); 
-
-  
-
+  const cartList /* :ProductInCart  */ = useSelector(
+    (state /* : Store */) => state.cartReducer.cart.list
+  );
+  const history = useHistory();
   /* const cartStorage = JSON.parse(localStorage.getItem("cart")); */
 
   const [subtotal, setSubtotal] = useState(0.0);
@@ -48,12 +47,6 @@ const CartSideBar /*: FC<CartSideBarProps>*/ = ({ closeCallback, show }) => {
       );
     }
   }, [cartList]);
-
-
-    let userInStorage = JSON.parse(localStorage.getItem("userData"));
-    
-
-    let isRegister = userInStorage ? '/order' : '/signup'
 
   return ReactDOM.createPortal(
     <StyledCartSideBar>
@@ -81,10 +74,10 @@ const CartSideBar /*: FC<CartSideBarProps>*/ = ({ closeCallback, show }) => {
             <p>Subtotal:</p>
             <p>${subtotal}</p>
           </div>
-          <div  id="modal__buttons" className="modal__buttons">
-             <Link to= {isRegister}> 
-              <Btn className="btn btn-card" /* id="btn btn-card"  */ /* onClick={() => handlePayment()} */> Checkout</Btn>
-             </Link> 
+          <div id="modal__buttons" className="modal__buttons">
+            <Link to="/order">
+              <Btn className="btn btn-card"> Checkout</Btn>
+            </Link>
             <Btn className="btn btn-sec" onClick={() => dispatch(clearCart())}>
               Clear Cart
             </Btn>

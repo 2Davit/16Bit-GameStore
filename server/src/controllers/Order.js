@@ -1,14 +1,15 @@
-const { Order, OrderProduct, Product, User } = require('../db')
-const axios = require('axios');
-const mercadopago = require('mercadopago');
-const { Router } = require('express');
+const { Order, OrderProduct, Product, User } = require("../db");
+const axios = require("axios");
+const mercadopago = require("mercadopago");
+const { Router } = require("express");
 
 mercadopago.configure({
-    access_token: 'TEST-6385118257533578-100415-600a17d4305e1579d0854c301e57e6ef-102723698'
-  });
-  
+  access_token:
+    "TEST-6385118257533578-100415-600a17d4305e1579d0854c301e57e6ef-102723698",
+});
 
 async function createOrder(req, res, next) {
+
     const {
         id_user,
         status_order,
@@ -69,6 +70,8 @@ async function createOrder(req, res, next) {
 
 
 
+
+
 async function createPayment (req, res){
   
     
@@ -78,10 +81,12 @@ async function createPayment (req, res){
     const merchant_order_id= req.query.merchant_order_id
    
     try{
+
     await Order.update(
-        { status_order: 'fulfilled' },
-        { where: { id_order: parseInt(external_reference) } }
-      )
+      { status_order: "fulfilled" },
+      { where: { id_order: parseInt(external_reference) } }
+    );
+
 
       const foundOrder = await Order.findOne({
         where: {
@@ -105,11 +110,21 @@ async function createPayment (req, res){
       })
 
 
-    return res.redirect("http://localhost:3000/home")
-} catch(err) {
-    console.log(err)
+    await foundOrder.orderProducts.forEach((e) => {
+      Product.decrement("in_stock", {
+        by: e.quantity_orderProduct,
+        where: {
+          id_product: e.productIdProduct,
+        },
+      });
+    });
+
+    return res.redirect("http://localhost:3000/order/detail");
+  } catch (err) {
+    console.log(err);
+  }
 }
-}
+
 
 
 async function saveOrder(req, res, next) {
@@ -122,6 +137,7 @@ async function saveOrder(req, res, next) {
     } = req.body;
 
     if (status_order === 'cart') {
+
 
         try {
             var user = await User.findByPk(id_user);
@@ -163,14 +179,9 @@ async function saveOrder(req, res, next) {
 
 
 
-
-
-
 module.exports = {
+
     createOrder,
     createPayment,
     saveOrder
 }
-
-
-

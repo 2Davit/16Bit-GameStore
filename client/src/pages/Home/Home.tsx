@@ -7,11 +7,12 @@ import {
   onSaleFilter,
 } from "../../redux/actions/products_action";
 import { getRole } from "../../redux/actions/auth_actions";
-import { getCart } from '../../redux/actions/cart_actions';
 import { Paginate, Filter, Catalog, Carousel } from "../../components";
 import { Store } from "../../redux/reducer/";
 import { ContainerHome } from "./Home.style";
 import { createNavbar } from "../../redux/actions/admin_actions";
+import { getCart } from "../../redux/actions/cart_actions";
+
 
 const Home = ({ setPage, currentProducts, productsPerPage, pages }: any) => {
 
@@ -38,10 +39,7 @@ const Home = ({ setPage, currentProducts, productsPerPage, pages }: any) => {
     dispatch(getCart());
   }, [dispatch]);
 
-  // function handleOnSaleFilter() {
-  //   dispatch(onSaleFilter());
-  //   setCurrentPage(1);
-  // }
+
 
   return (
     <ContainerHome>

@@ -22,11 +22,11 @@ export const  StyledCartSideBar = styled.div`
 		padding: 4em 2em;
 		overflow: auto;
 		box-shadow: 0 0 50px rgba(0,0,0,0.7);
-		background:#2c2f31 ;
+		background: linear-gradient(180deg, #090029, #370276);
 
 
 		.modal__title{
-			color: #51A5FE;
+			color: var(--clr-primary);
 			margin: 1em 0;
 			text-align: center;
 		}
@@ -50,12 +50,12 @@ export const  StyledCartSideBar = styled.div`
 
 			&:hover {
 				svg{
-					fill: #1b1a1f;
+					fill: var(--clr-primary);
 				}
 			}
 			&:focus {
 				outline: none;
-				color: #1b1a1f;
+				color: var(--clr-dark);
 			}
 
 			&:active{
