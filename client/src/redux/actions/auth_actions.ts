@@ -16,6 +16,26 @@ export const login = (values: any) => {
         values
       );
       localStorage.setItem("userData", JSON.stringify(userData.data));
+      const localCart = JSON.parse(localStorage.getItem("cart")!);
+      if (!localCart?.length && userData.data.data.cart_orders.length) {
+        localStorage.setItem("cart", JSON.stringify(userData.data.data.cart_orders));
+      }
+      else if (localCart && userData.data.data.cart_orders.length) {
+        for (let i = 0; i < localCart.length; i++) {
+              for (let j = 0; j < userData.data.data.cart_orders.length; j++) {
+                  if (userData.data.data.cart_orders[j].id_product === localCart[i].id_product) {
+                        localCart[i].quantity += userData.data.data.cart_orders[j].quantity;
+                  }
+              }
+        }
+        var lastArray = [...localCart];
+        for (let i = 0; i < userData.data.data.cart_orders.length; i++) {
+          if (!localCart.find((a: any) => a.id_product === userData.data.data.cart_orders[i].id_product)) {
+              lastArray.push(userData.data.data.cart_orders[i])
+          }
+        }
+        localStorage.setItem("cart", JSON.stringify(lastArray));
+      }
       return dispatch({
         type: LOGIN,
         payload: userData.data,

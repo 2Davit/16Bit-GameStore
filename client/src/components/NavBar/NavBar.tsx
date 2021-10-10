@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import { StyledNavBar } from "./StyledNavBar";
 import { Link } from "react-router-dom";
 import { SearchBar } from "../index";
@@ -8,7 +8,7 @@ import { Dropdown, StyledSVG } from "../../GlobalStyles/GlobalStyles";
 import { Title } from "../index";
 import { Store } from "../../redux/reducer";
 import { ProductInCart } from "../../interfaces";
-
+import { LogOut } from "../index";
 //Logos
 import cart from "../../assets/img/svg/cart2.svg";
 import moon from "../../assets/img/svg/moon.svg";
@@ -22,6 +22,9 @@ interface Props {
 }
 
 const NavBar: FC<Props> = ({ setPage, toggleModal }: any) => {
+  
+  /* const [welcome, setWelcome] = useState<string>(''); */
+  
   const dispatch = useDispatch();
 
   const homeOnClick = () => {
@@ -38,6 +41,8 @@ const NavBar: FC<Props> = ({ setPage, toggleModal }: any) => {
     acc = acc + prod.quantity!;
     return acc;
   }, 0);
+
+  const user = JSON.parse(localStorage.getItem("userData")!);
 
   return (
     <StyledNavBar>
@@ -56,9 +61,14 @@ const NavBar: FC<Props> = ({ setPage, toggleModal }: any) => {
               <ul>
                 <>
                   <li>
+                    { !user ?
                     <Link to="/login" className="dropdown__button">
                       Login
-                    </Link>
+                    </Link> :
+                    <div className="dropdown__button">
+                      <LogOut />
+                    </div>
+                    }
                   </li>
                   <li>
                     <Link to="/signup" className="dropdown__button">

@@ -17,3 +17,4 @@ export { default as Panel } from "./Panel/Panel";
 export { default as AdminHome } from "./AdminHome/AdminHome";
 export { default as UserContent } from "./UserContent/UserContent";
 export { default as SalesContent } from "./SalesContent/SalesContent";
+export { default as LogOut } from "./LogOut/LogOut";

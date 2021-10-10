@@ -87,7 +87,7 @@ const OrderUser = () => {
   /* const userId = getId(); */
 
   const order = {
-    id_user: user.id,
+    id_user: user?.id,
     status_order: "pending",
     amount_order: subtotal,
     cart: cart?.map((c: ProductInCart) => (

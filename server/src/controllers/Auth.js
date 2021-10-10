@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
-const { User } = require("../db.js");
+const { User, Order, OrderProduct, Product } = require("../db.js");
 
 const { SECRET } = process.env;
 
@@ -45,11 +45,65 @@ const signUp = async (req, res) => {
 
 const logIn = async (req, res) => {
   const { username, password } = req.body;
+
   const user = await User.findOne({
     where: {
       nickname_user: username,
     },
+    include: [
+      {
+        model: Order,
+        where: { status_order: "cart" },
+        required: false,
+      },
+    ],
   });
+
+  
+
+  if (user && user.orders.length) {
+
+    const lastCartOrder = await Order.findOne({
+      where: {
+        id_order: user.orders[user.orders.length -1].dataValues.id_order,
+      },
+      include: [
+        {
+          model: OrderProduct,
+        },
+      ],
+    });
+  
+
+      
+    const cleanOrder = lastCartOrder.orderProducts.map((pro) => pro.dataValues);
+    
+    
+    const mapClean = cleanOrder.map((p) => ({
+      id_product: p.productIdProduct,
+      quantity: p.quantity_orderProduct
+    }));
+
+
+
+
+  const products = mapClean.map(async (p) => 
+      await Product.findByPk(p.id_product)
+  );
+  
+  const finalProducts = await Promise.all(products);
+  var final = finalProducts.map(e => e.dataValues)
+
+  for (let i = 0; i < final.length; i++) {
+    mapClean.forEach(e => {
+          if (final[i].id_product === e.id_product) {
+                final[i].quantity = e.quantity
+          }
+    })
+  } 
+
+  }
+
   if (!user) {
     return res.status(404).send("User not found");
   }
@@ -63,7 +117,7 @@ const logIn = async (req, res) => {
   const token = jwt.sign({ id: user.id_user }, SECRET, {
     expiresIn: 7200, // 2 hours
   });
-
+  
   res.status(200).send({
     data: {
       token: token,
@@ -72,6 +126,7 @@ const logIn = async (req, res) => {
       name: user.name_user,
       lastname: user.lastname_user,
       address: user.address_user,
+      cart_orders: final ? final : [],
     },
     id: user.id_user,
   });

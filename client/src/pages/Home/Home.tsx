@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getAllGenres,
@@ -14,6 +14,10 @@ import { ContainerHome } from "./Home.style";
 import { createNavbar } from "../../redux/actions/admin_actions";
 
 const Home = ({ setPage, currentProducts, productsPerPage, pages }: any) => {
+
+
+  
+
   const dispatch = useDispatch();
 
   const onSaleProducts: any = useSelector(
@@ -30,7 +34,8 @@ const Home = ({ setPage, currentProducts, productsPerPage, pages }: any) => {
     dispatch(getAllGenres());
     dispatch(getAllPlatforms());
     dispatch(getRole());
-    dispatch(createNavbar())
+    dispatch(createNavbar());
+    dispatch(getCart());
   }, [dispatch]);
 
   // function handleOnSaleFilter() {
