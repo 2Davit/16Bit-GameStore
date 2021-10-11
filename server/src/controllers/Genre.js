@@ -23,7 +23,7 @@ async function createNewGenre(req, res, next) {
     res.status(404).send('Error en: ', err)
   }
 };
-
+//
 async function getAllGenre(req, res, next) {
   try {
     const allGenres = await Genre.findAll()
