@@ -6,6 +6,7 @@ import {
   getAllPlatforms,
   getAllProducts,
 } from "../../redux/actions/products_action";
+import { getUsers } from "../../redux/actions/admin_actions";
 import { deleteNavbar } from '../../redux/actions/admin_actions'
 import {
   AdminHome,
@@ -76,10 +77,15 @@ const AdminPanel: FC = (props) => {
     dispatch(getAllGenres());
     dispatch(getAllPlatforms());
     dispatch(deleteNavbar());
+    dispatch(getUsers())
   }, [dispatch]);
   const totalProducts: any = useSelector(
     (state: Store) => state.productsReducer
   );
+  const totalUsers = useSelector(
+    (state: Store) => state.adminReducer.users
+  )
+
   return (
     <ContainerAdmin>
       <InfoContainer>
@@ -93,7 +99,7 @@ const AdminPanel: FC = (props) => {
         ) : info.setSales ? (
           <SalesContent />
         ) : info.setUsers ? (
-          <UserContent/>
+          <UserContent totalUser={totalUsers}/>
         ) : (
           "Oops Something Went Wrong..."
         )}
