@@ -93,7 +93,7 @@ const AdminPanel: FC = (props) => {
         ) : info.setSales ? (
           <SalesContent />
         ) : info.setUsers ? (
-          <UserContent />
+          <UserContent/>
         ) : (
           "Oops Something Went Wrong..."
         )}

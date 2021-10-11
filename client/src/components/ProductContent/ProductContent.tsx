@@ -1,6 +1,4 @@
 import { FC, useState, useEffect } from "react";
-
-
 import { AdminProduct } from "../../interfaces/index";
 import PanelCatalog from "../PanelCatalog/PanelCatalog";
 import { ContainerMainContent, ContainerNav, Searchbar, AddBtns, AddBtn, Search, ContainerCards, IconNext, IconPrev, IconContainer, BtnPaged1, BtnPaged2, ContainerNotExist, H2 } from "./ProductContent.style"

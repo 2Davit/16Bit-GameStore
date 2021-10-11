@@ -18,5 +18,8 @@ export const GET_ALL_GENRES: string = "GET_ALL_GENRES";
 export const GET_ALL_PLATFORMS: string = "GET_ALL_PLATFORMS";
 export const LOGIN: string = "LOGIN";
 export const USER_ROLE: string = "USER_ROLE";
+export const USERS_INFO: string = "USERS_INFO";
 export const EDIT_NAVBAR: string = "EDIT_NAVBAR";
 export const CREATE_NAVBAR: string = "CREATE_NAVBAR";
+export const GET_ORDERS: string = "GET_ORDERS";
+

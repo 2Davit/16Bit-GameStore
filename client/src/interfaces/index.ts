@@ -65,12 +65,22 @@ export interface ProductsState {
   genres: Array<Genre>;
   platforms: Array<Platform>;
   navbar?: boolean;
+  users?:Array<String>;
+  orders?:Array<String>;
 }
 
 export interface CartState {
   cart: {
     list: Array<ProductInCart>;
   };
+}
+
+export interface Order{
+  id_order?:number;
+  address: string;
+  amount: number;
+  date: string;
+  status:string;
 }
 
 export interface GlobalState {
@@ -125,6 +135,9 @@ export interface UserLogin {
 }
 
 export interface User {
+  active: boolean,
+  id_user?:number,
+  nickname?:string;
   token: string;
   username: string;
   email: string;

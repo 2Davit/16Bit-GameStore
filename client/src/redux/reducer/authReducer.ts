@@ -3,8 +3,10 @@ import { LOGIN, USER_ROLE } from "../types";
 
 const initialState: UserState = {
   user: {
+    active: true, 
     token: "",
     username: "",
+    nickname: "",
     email: "",
     name: "",
     lastname: "",
