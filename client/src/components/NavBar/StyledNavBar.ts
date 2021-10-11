@@ -18,6 +18,7 @@ export const StyledNavBar = styled.nav`
       color: var(--clr-primary);
     }
   }
+  
 
   svg {
     fill: currentColor;
@@ -41,14 +42,17 @@ export const StyledNavBar = styled.nav`
     .navbar__options {
       list-style: none;
       display: flex;
-      align-items: center;
-       flex-basis: 300px;
+      align-items: center;   
+       margin-right: 5vw;     
      
 
       & >li {
         position: relative;
-         }
-
+        display:flex;
+        width: 100px;
+        flex-wrap: wrap;
+      }     
+      
       li:hover {
         color: var(--clr-primary);
             }
