@@ -4,7 +4,7 @@ import { getOrders } from "../../redux/actions/admin_actions";
 import { Store } from "../../redux/reducer/";
 import { Order } from "../../interfaces";
 import { ContainerNav, ContainerMainContent, IconContainer, BtnPaged1, BtnPaged2, IconPrev, IconNext, Searchbar, Search } from '../ProductContent/ProductContent.style'
-import { OrderMainContainer, TitleContainer, OrderContainer, InfoOrder } from './SalesContent.style'
+import { OrderMainContainer, TitleContainer, OrderContainer, InfoOrder, TitleOrder } from './SalesContent.style'
 
 const SalesContent: FC = () => {
 
@@ -78,16 +78,16 @@ const SalesContent: FC = () => {
                 </IconContainer>
                 <TitleContainer >
 
-                    <InfoOrder>Order Id</InfoOrder>
-                    <InfoOrder>Status</InfoOrder>
-                    <InfoOrder>Buyer</InfoOrder>
-                    <InfoOrder>Address</InfoOrder>
-                    <InfoOrder>Amount</InfoOrder>
-                    <InfoOrder>Date</InfoOrder>
+                    <TitleOrder>Order Id</TitleOrder>
+                    <TitleOrder>Status</TitleOrder>
+                    <TitleOrder>Buyer</TitleOrder>
+                    <TitleOrder>Address</TitleOrder>
+                    <TitleOrder>Amount</TitleOrder>
+                    <TitleOrder>Date</TitleOrder>
 
                 </TitleContainer>
                 {totalOrders ? totalOrders.map((o: Order) => (
-                    <OrderContainer key={o.id_order} style={{ color: "black" }} >
+                    <OrderContainer backg={o.id_order ? o.id_order % 2 === 0 ? '#e1e1e1': '#eeeeee' : ""} key={o.id_order} style={{ color: "black" }} >
                         <InfoOrder>{o.id_order}</InfoOrder>
                         <InfoOrder>{o.status}</InfoOrder>
                         <InfoOrder>Comprador</InfoOrder>
