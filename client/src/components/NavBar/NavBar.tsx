@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { StyledNavBar } from "./StyledNavBar";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { SearchBar } from "../index";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProducts } from "../../redux/actions/products_action";
@@ -9,9 +9,9 @@ import { Title } from "../index";
 import { Store } from "../../redux/reducer";
 import { ProductInCart } from "../../interfaces";
 import { LogOut } from "../index";
+import { openLogin } from "../../redux/actions/global_actions";
 //Logos
 import cart from "../../assets/img/svg/cart2.svg";
-/* import moon from "../../assets/img/svg/moon.svg"; */
 import userPic from "../../assets/img/svg/user.svg";
 
 import "nes.css/css/nes.min.css";
@@ -23,9 +23,15 @@ interface Props {
 
 const NavBar: FC<Props> = ({ setPage, toggleModal }: any) => {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const homeOnClick = () => {
     dispatch(getAllProducts());
+  };
+
+  const openLoginModal = () => {
+    history.push("/login");
+    dispatch(openLogin(true));
   };
 
   const cartNumber: any = useSelector(
@@ -53,26 +59,36 @@ const NavBar: FC<Props> = ({ setPage, toggleModal }: any) => {
             <Dropdown>
               <StyledSVG src={userPic} />
               <span>User</span>
-              <ul>
-                <>
+              {!user ? (
+                <ul>
                   <li>
-                    {!user ? (
-                      <Link to="/login" className="dropdown__button">
-                        Login
-                      </Link>
-                    ) : (
-                      <div className="dropdown__button">
-                        <LogOut />
-                      </div>
-                    )}
+                    <button
+                      className="dropdown__button"
+                      onClick={openLoginModal}
+                    >
+                      Log In
+                    </button>
                   </li>
                   <li>
                     <Link to="/signup" className="dropdown__button">
                       Signup
                     </Link>
                   </li>
-                </>
-              </ul>
+                </ul>
+              ) : (
+                <ul>
+                  <li>
+                    <Link to="/me" className="dropdown__button">
+                      My Profile
+                    </Link>
+                  </li>
+                  <li>
+                    <div className="dropdown__button">
+                      <LogOut />
+                    </div>
+                  </li>
+                </ul>
+              )}
             </Dropdown>
 
             <li>
@@ -86,12 +102,6 @@ const NavBar: FC<Props> = ({ setPage, toggleModal }: any) => {
                 )}
               </button>
             </li>
-            {/* <li>
-              <button>
-                <StyledSVG src={moon} />
-                <span>Theme</span>
-              </button>
-            </li> */}
           </ul>
         </div>
         <div className="navbar__bottom">

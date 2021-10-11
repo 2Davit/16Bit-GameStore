@@ -85,6 +85,7 @@ export interface Order{
 
 export interface GlobalState {
   showCart: boolean;
+  loginIsOpen: boolean;
 }
 
 export interface State {

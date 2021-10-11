@@ -1,8 +1,9 @@
-import { TOGGLE_CART } from "../types";
+import { TOGGLE_CART, OPEN_LOGIN } from "../types";
 import {GlobalState} from "../../interfaces"
 
 const initialState:GlobalState = {
-    showCart: false
+    showCart: false,
+    loginIsOpen: false
   };
 
 export const globalReducer = (state:GlobalState = initialState, action:any) => {
@@ -12,6 +13,11 @@ export const globalReducer = (state:GlobalState = initialState, action:any) => {
         ...state,
         showCart: !state.showCart,
       };
+      case OPEN_LOGIN:
+			return {
+				...state,
+				loginIsOpen: action.payload
+			}
      default:
           return state;
   }

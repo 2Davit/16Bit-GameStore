@@ -22,4 +22,6 @@ export const USERS_INFO: string = "USERS_INFO";
 export const EDIT_NAVBAR: string = "EDIT_NAVBAR";
 export const CREATE_NAVBAR: string = "CREATE_NAVBAR";
 export const GET_ORDERS: string = "GET_ORDERS";
+export const OPEN_LOGIN: string = "OPEN_LOGIN";
+
 

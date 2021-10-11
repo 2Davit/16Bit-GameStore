@@ -1,9 +1,16 @@
 import styled from "styled-components";
 
-export const FormStyled = styled.form`
-  position: relative;
-  left: 2vw;
-
+export const FormStyled = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @media (max-width: 1000px) {
+    flex-direction: column;
+  }
+  form {
+    position: relative;
+    left: 2vw;
+  }
   .form__title {
     margin-top: 1.5em;
     position: relative;
