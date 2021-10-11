@@ -1,7 +1,6 @@
 import { Field, Form, Formik } from "formik";
 import { UserLogin } from "../../interfaces/index";
 import { getRole, login } from "../../redux/actions/auth_actions";
-import { getCart } from "../../redux/actions/cart_actions";
 import React, { FC, useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
@@ -21,7 +20,7 @@ const FormLogin: FC = () => {
         setIsUser(true);
         setUserName(user.data.username);
       }
-  }, [])
+  }, [user])
   
   const handleSubmit = (values: UserLogin) => {
     dispatch(login(values));

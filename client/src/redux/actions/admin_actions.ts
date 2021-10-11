@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig } from "axios";
+import axios, { /* AxiosRequestConfig */ } from "axios";
 import { EditProduct } from "../../interfaces";
 // import { EDIT_PRODUCT } from "../types";
 import { Dispatch } from "redux";

@@ -2,10 +2,8 @@
 import React, { FC } from "react";
 import axios from "axios";
 import { Field, Form, Formik } from "formik";
-import * as Yup from "yup";
+/* import * as Yup from "yup"; */
 import { useDispatch } from "react-redux";
-
-//
 import { UserRegister } from "../../interfaces/index";
 import { login } from "../../redux/actions/auth_actions";
 import { Link } from "react-router-dom";
@@ -30,7 +28,7 @@ const initialValues: UserRegister = {
 // const moderatedPassword = /(?=(.*[0-9]))((?=.*[A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z]))^.{8,}$/
 // (tiene que contener 1 mayúscula, 1 minúscula, 1 número, y mínimo 8 caracteres)
 
-const SignupSchema = Yup.object().shape({
+/* const SignupSchema = Yup.object().shape({
   username: Yup.string().min(5, "At least 5 characters!").required("Required!"),
   password: Yup.string()
     .min(5, "At least 5 characters long!")
@@ -46,7 +44,7 @@ const SignupSchema = Yup.object().shape({
     .min(5, "At least 5 characters long!")
     .required("Required!"),
   address: Yup.string().required("Required!"),
-});
+}); */
 
 const FormRegister: FC = () => {
   const dispatch = useDispatch();

@@ -43,7 +43,7 @@ const FormProduct: FC = () => {
   //quitamos Nav
   useEffect(() => {
     dispatch(deleteNavbar())
-  }, [])
+  }, [dispatch]);
 
   const handleImage = () => {
     setImages([...images, info.url]);
@@ -308,7 +308,7 @@ const FormProduct: FC = () => {
           <BtnAdd type="button" onClick={() => handleImage()}>Add</BtnAdd>
         </Fields>
         {input.image_product && input.image_product.map((img) => (<div key={img}>
-          <img src={img} style={{ width: '70px', height: '70px' }} />
+          <img src={img} style={{ width: '70px', height: '70px' }} alt={img} />
           <span style={{ cursor: 'pointer' }} onClick={() => handleImageDelete(img)}>x</span>
         </div>))}
 

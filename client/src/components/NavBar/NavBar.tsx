@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
 import { StyledNavBar } from "./StyledNavBar";
 import { Link } from "react-router-dom";
 import { SearchBar } from "../index";
@@ -11,7 +11,7 @@ import { ProductInCart } from "../../interfaces";
 import { LogOut } from "../index";
 //Logos
 import cart from "../../assets/img/svg/cart2.svg";
-import moon from "../../assets/img/svg/moon.svg";
+/* import moon from "../../assets/img/svg/moon.svg"; */
 import userPic from "../../assets/img/svg/user.svg";
 
 import "nes.css/css/nes.min.css";
@@ -23,7 +23,6 @@ interface Props {
 
 const NavBar: FC<Props> = ({ setPage, toggleModal }: any) => {
   
-  /* const [welcome, setWelcome] = useState<string>(''); */
   
   const dispatch = useDispatch();
 
@@ -35,7 +34,7 @@ const NavBar: FC<Props> = ({ setPage, toggleModal }: any) => {
     (state: Store) => state.cartReducer.cart.list
   ); 
 
-  /* const cartNumber : any = JSON.parse(localStorage.getItem("cart")!); */
+
 
   const number = cartNumber?.reduce((acc: number, prod: ProductInCart) => {
     acc = acc + prod.quantity!;

@@ -1,6 +1,5 @@
 import styled, { createGlobalStyle } from "styled-components";
 import SVG from "react-inlinesvg";
-import pixel from "../assets/img/pixel2.png";
 
 interface DefaultTheme {
   bg: any;
