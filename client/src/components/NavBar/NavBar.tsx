@@ -22,8 +22,6 @@ interface Props {
 }
 
 const NavBar: FC<Props> = ({ setPage, toggleModal }: any) => {
-  
-  
   const dispatch = useDispatch();
 
   const homeOnClick = () => {
@@ -32,9 +30,7 @@ const NavBar: FC<Props> = ({ setPage, toggleModal }: any) => {
 
   const cartNumber: any = useSelector(
     (state: Store) => state.cartReducer.cart.list
-  ); 
-
-
+  );
 
   const number = cartNumber?.reduce((acc: number, prod: ProductInCart) => {
     acc = acc + prod.quantity!;
@@ -60,14 +56,15 @@ const NavBar: FC<Props> = ({ setPage, toggleModal }: any) => {
               <ul>
                 <>
                   <li>
-                    { !user ?
-                    <Link to="/login" className="dropdown__button">
-                      Login
-                    </Link> :
-                    <div className="dropdown__button">
-                      <LogOut />
-                    </div>
-                    }
+                    {!user ? (
+                      <Link to="/login" className="dropdown__button">
+                        Login
+                      </Link>
+                    ) : (
+                      <div className="dropdown__button">
+                        <LogOut />
+                      </div>
+                    )}
                   </li>
                   <li>
                     <Link to="/signup" className="dropdown__button">
