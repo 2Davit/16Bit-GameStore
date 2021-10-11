@@ -24,32 +24,42 @@ const Detail: FC = () => {
 
   const history = useHistory();
 
-  useEffect(() => {
-    dispatch(getProductDetail(parseInt(id)));
-  }, [dispatch, id]);
 
   const detailProduct = useSelector(
     (state: Store) => state.productsReducer.detailProduct
   );
 
-  /* let stocknuevo = detailProduct.in_stock
-  const [stock, setStock] = useState<number>(stocknuevo) */
+  const getAll = () => {
+    let stockInLocal = JSON.parse(localStorage.getItem("cart")!);
+   let game = stockInLocal?.find(
+      (g: ProductInCart) => g.id_product === detailProduct.id_product
+    );
+    return game;
+  }
 
-  /* console.log(detailProduct.in_stock) */
+
+ let game:any = getAll() 
+
+
+  useEffect(() => {
+    dispatch(getProductDetail(parseInt(id)));
+    getAll()
+  }, [dispatch, id]);
+
 
   interface Genre {
     name_genre: string;
   }
 
-  const [quantity, setQuantity] = useState(1);
+
+  const [quantity, setQuantity] = useState<number>(1);
   function handleQuantityChange(amount: number) {
     const newValue = quantity + amount;
     if (newValue <= detailProduct.in_stock && newValue >= 1) {
       setQuantity((quantity) => quantity + amount);
     }
   }
-  /* console.log(stock) */
-
+ 
   const handleClick = () => {
     let productToDispatch = { ...detailProduct };
     productToDispatch.quantity = quantity;
@@ -77,11 +87,7 @@ const Detail: FC = () => {
     history.push("/order");
   };
 
-  let stockInLocal = JSON.parse(localStorage.getItem("cart")!);
-  let game = stockInLocal?.find(
-    (g: ProductInCart) => g.id_product === detailProduct.id_product
-  );
-
+ 
   let unavailable =
     quantity + game?.quantity === detailProduct.in_stock + 1 ? true : false;
 
@@ -139,19 +145,19 @@ const Detail: FC = () => {
               +
             </QuantityButton>
           </div>
-          {/*  <p className="game__stock">stock: {detailProduct.in_stock}</p> */}
-
           {quantity === detailProduct.in_stock ? <p>Limit stock</p> : null}
           <div className="game__purchase-container">
             <div className="game__buttons">
-              <Btn onClick={() => handleBuyNow()} className="btn-card btn-img">
+            
+              <Btn  onClick={() => handleBuyNow()}  disabled={unavailable} className={!unavailable? "btn-card btn-img" : "btn-card-disabled btn-img"}>
                 Buy now
                 <StyledSVG src={joystick} />
               </Btn>
+               
               {!unavailable ? (
                 <Btn
                   disabled={unavailable}
-                  /* style={unavailable? {display:"none"} : undefined} */ className="btn-sec btn-img"
+                  className="btn-sec btn-img"
                   onClick={handleClick}
                 >
                   Add to cart

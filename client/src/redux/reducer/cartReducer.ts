@@ -33,7 +33,7 @@ export const cartReducer = (state: CartState = initialState, action: any) => {
             }),
           },
         };
-        console.log('esto es:', state.cart.list)
+        
       return {
         ...state,
         cart: {

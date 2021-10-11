@@ -114,6 +114,8 @@ export const Btn = styled.button`
     border-color: var(--clr-primary);
     box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.15);
   }
+
+
   &.btn-card:hover {
     background-image: linear-gradient(
       45deg,
@@ -124,6 +126,7 @@ export const Btn = styled.button`
   &.btn-card:focus {
     outline: none;
   }
+
 
   &.btn-img {
     position: relative;
@@ -138,6 +141,12 @@ export const Btn = styled.button`
     width: 25px;
     height: 25px;
     fill: currentColor;
+  }
+  &.btn-card-disabled {
+    color: white;
+    background-color: grey;
+    border-color: var(--clr-primary);
+    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.15);
   }
 `;
 
