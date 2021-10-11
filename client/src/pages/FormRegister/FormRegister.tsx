@@ -8,7 +8,7 @@ import { UserRegister } from "../../interfaces/index";
 import { login } from "../../redux/actions/auth_actions";
 import { Link } from "react-router-dom";
 import { FormStyled } from "./StyledFormRegister";
-import { Flex, Btn } from "../../GlobalStyles/GlobalStyles";
+import { Btn } from "../../GlobalStyles/GlobalStyles";
 
 const initialValues: UserRegister = {
   username: "",
@@ -71,8 +71,8 @@ const FormRegister: FC = () => {
       >
         {({ dirty, isValid }) => {
           return (
-            <Flex>
-              <FormStyled>
+            <FormStyled>
+              <Form>
                 <h1 className="form__title">Sign up</h1>
                 <label htmlFor="username">
                   <span>Username</span>
@@ -120,8 +120,8 @@ const FormRegister: FC = () => {
                   Already have an account?
                   <Link to="/login"> LOG IN</Link>
                 </p>
-              </FormStyled>
-            </Flex>
+              </Form>
+            </FormStyled>
           );
         }}
       </Formik>
