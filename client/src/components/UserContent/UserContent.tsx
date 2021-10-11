@@ -23,11 +23,6 @@ const UserContent: FC = () => {
     const [userSearch, setUserSearch] = useState(totalUsers);
     let onViewUsers = userSearch.slice(page, page2)
 
-    console.log(totalUsers)
-
-
-
-    console.log(onViewUsers)
 
     const handleNextPage = () => {
         if (userSearch.length < (page2 + 1)) {
