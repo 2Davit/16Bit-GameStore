@@ -166,7 +166,7 @@ async function saveOrder(req, res, next) {
     
            res.status(200).send({ success: true })
            
-         } res.status(400).send({ error: 'invalid user' })
+         } else res.status(400).send({ error: 'invalid user' });
     
         } catch (err) {
             next(err);
