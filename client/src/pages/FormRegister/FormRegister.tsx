@@ -7,6 +7,8 @@ import { useDispatch } from "react-redux";
 import { UserRegister } from "../../interfaces/index";
 import { login } from "../../redux/actions/auth_actions";
 import { Link } from "react-router-dom";
+import { FormStyled } from "./StyledFormRegister";
+import { Btn } from "../../GlobalStyles/GlobalStyles";
 
 const initialValues: UserRegister = {
   username: "",
@@ -69,66 +71,57 @@ const FormRegister: FC = () => {
       >
         {({ dirty, isValid }) => {
           return (
-            <Form>
-              <label htmlFor="username">Username</label>
-              <Field
-                id="username"
-                name="username"
-                placeholder="Username"
-                /* required */
-              />
+            <FormStyled>
+              <Form>
+                <h1 className="form__title">Sign up</h1>
+                <label htmlFor="username">
+                  <span>Username</span>
+                  <Field id="username" name="username" />
+                </label>
 
-              <label htmlFor="password">Password</label>
-              <Field
-                id="password"
-                name="password"
-                type="password"
-                placeholder="Password"
-                /* required */
-              />
+                <label htmlFor="password">
+                  <span>Password</span>
+                  <Field id="password" name="password" type="password" />
+                </label>
 
-              <label htmlFor="confirmPassword">Confirm password</label>
-              <Field
-                id="confirmPassword"
-                name="confirmPassword"
-                type="password"
-                placeholder="Confirm password"
-                /* required */
-              />
+                <label htmlFor="confirmPassword">
+                  <span>Confirm password</span>
+                  <Field
+                    id="confirmPassword"
+                    name="confirmPassword"
+                    type="password"
+                  />
+                </label>
 
-              <label htmlFor="email">Email</label>
-              <Field
-                id="email"
-                name="email"
-                placeholder="example@example.com"
-                /* required */
-              />
+                <label htmlFor="email">
+                  <span>Email</span>
+                  <Field id="email" name="email" />
+                </label>
 
-              <label htmlFor="name">Name</label>
-              <Field id="name" name="name" placeholder="Name" /* required */ />
+                <label htmlFor="name">
+                  <span>Name</span>
+                  <Field id="name" name="name" />
+                </label>
 
-              <label htmlFor="lastname">Lastname</label>
-              <Field
-                id="lastname"
-                name="lastname"
-                placeholder="Lastname"
-                /* required */
-              />
+                <label htmlFor="lastname">
+                  <span>Lastname</span>
+                  <Field id="lastname" name="lastname" />
+                </label>
 
-              <label htmlFor="address">Address</label>
-              <Field
-                id="address"
-                name="address"
-                placeholder="Address"
-                /* required */
-              />
+                <label htmlFor="address">
+                  <span>Address</span>
+                  <Field id="address" name="address" />
+                </label>
 
-              <Link to="/login">Already have account?</Link>
-
-              <button type="submit" /* disabled={!dirty || !!isValid} */>
-                Register
-              </button>
-            </Form>
+                <Btn type="submit" className="btn-card">
+                  Register
+                </Btn>
+                <p>
+                  Already have an account?
+                  <Link to="/login"> LOG IN</Link>
+                </p>
+              </Form>
+            </FormStyled>
           );
         }}
       </Formik>

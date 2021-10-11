@@ -229,13 +229,4 @@ export const Dropdown = styled.li`
   }
 `;
 
-export const Flex = styled.div`
-	display: flex;
-	justify-content: 'center';
-	align-items: 'center';	
-	@media (max-width: 1000px) {
-		flex-direction: column;
-	}
-`
-
 export const StyledSVG = styled(SVG)``;

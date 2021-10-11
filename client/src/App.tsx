@@ -13,7 +13,7 @@ import {
   FormPlatform,
   Terms,
   Privacy,
-  Legal
+  Legal,
 } from "./pages/";
 import { NavBar, Footer, About, CartSideBar } from "./components";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";

@@ -13,12 +13,7 @@ import { ContainerHome } from "./Home.style";
 import { createNavbar } from "../../redux/actions/admin_actions";
 import { getCart } from "../../redux/actions/cart_actions";
 
-
 const Home = ({ setPage, currentProducts, productsPerPage, pages }: any) => {
-
-
-  
-
   const dispatch = useDispatch();
 
   const onSaleProducts: any = useSelector(
@@ -38,8 +33,6 @@ const Home = ({ setPage, currentProducts, productsPerPage, pages }: any) => {
     dispatch(createNavbar());
     dispatch(getCart());
   }, [dispatch]);
-
-
 
   return (
     <ContainerHome>

@@ -12,20 +12,31 @@ align-items: center;
 
 export const TitleContainer = styled.div`
 display: flex;
-background: lightgreen;
+background: #222831;
+color: #ffffff;
 min-width: 95%;
 margin-top: 2rem;
 `
+interface Props {
+    backg: string;
+}
 
-export const OrderContainer = styled.div`
+export const OrderContainer = styled.div<Props>`
 display: flex;
-background: cyan;
+background: ${({backg}) => backg}; 
 min-width: 95%;
 `
 
 export const InfoOrder = styled.span`
-color: black;
-border: 2px solid red;
+border: 1px solid #222831;
+color: #000000;
+width:16.666%;
+padding: 0.25rem;
+`
+
+export const TitleOrder = styled.span`
+color: #eeeeee;
+border: 1px solid #222831;
 width:16.666%;
 padding: 0.25rem;
 `
