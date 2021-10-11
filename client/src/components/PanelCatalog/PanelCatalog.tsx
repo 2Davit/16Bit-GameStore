@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect } from "react";
+import React, { FC, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector  } from "react-redux";
 import { Store } from "../../redux/reducer/";

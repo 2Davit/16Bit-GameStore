@@ -12,7 +12,6 @@ import fivestars from "../../assets/img/fivestars.png";
 import { addItemCart } from "../../redux/actions/cart_actions";
 import { toast } from "react-toastify";
 import { ProductInCart } from "../../interfaces";
-import { NONAME } from "dns";
 
 interface Props {
   id: string;

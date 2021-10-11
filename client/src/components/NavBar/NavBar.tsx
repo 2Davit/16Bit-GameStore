@@ -8,10 +8,10 @@ import { Dropdown, StyledSVG } from "../../GlobalStyles/GlobalStyles";
 import { Title } from "../index";
 import { Store } from "../../redux/reducer";
 import { ProductInCart } from "../../interfaces";
-
+import { LogOut } from "../index";
 //Logos
 import cart from "../../assets/img/svg/cart2.svg";
-import moon from "../../assets/img/svg/moon.svg";
+/* import moon from "../../assets/img/svg/moon.svg"; */
 import userPic from "../../assets/img/svg/user.svg";
 
 import "nes.css/css/nes.min.css";
@@ -22,6 +22,8 @@ interface Props {
 }
 
 const NavBar: FC<Props> = ({ setPage, toggleModal }: any) => {
+  
+  
   const dispatch = useDispatch();
 
   const homeOnClick = () => {
@@ -32,12 +34,14 @@ const NavBar: FC<Props> = ({ setPage, toggleModal }: any) => {
     (state: Store) => state.cartReducer.cart.list
   ); 
 
-  /* const cartNumber : any = JSON.parse(localStorage.getItem("cart")!); */
+
 
   const number = cartNumber?.reduce((acc: number, prod: ProductInCart) => {
     acc = acc + prod.quantity!;
     return acc;
   }, 0);
+
+  const user = JSON.parse(localStorage.getItem("userData")!);
 
   return (
     <StyledNavBar>
@@ -56,9 +60,14 @@ const NavBar: FC<Props> = ({ setPage, toggleModal }: any) => {
               <ul>
                 <>
                   <li>
+                    { !user ?
                     <Link to="/login" className="dropdown__button">
                       Login
-                    </Link>
+                    </Link> :
+                    <div className="dropdown__button">
+                      <LogOut />
+                    </div>
+                    }
                   </li>
                   <li>
                     <Link to="/signup" className="dropdown__button">
@@ -80,12 +89,12 @@ const NavBar: FC<Props> = ({ setPage, toggleModal }: any) => {
                 )}
               </button>
             </li>
-            <li>
+            {/* <li>
               <button>
                 <StyledSVG src={moon} />
                 <span>Theme</span>
               </button>
-            </li>
+            </li> */}
           </ul>
         </div>
         <div className="navbar__bottom">

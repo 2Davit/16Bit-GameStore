@@ -13,8 +13,7 @@ import {
   FormPlatform,
   Terms,
   Privacy,
-  Legal,
-  Order,
+  Legal
 } from "./pages/";
 import { NavBar, Footer, About, CartSideBar } from "./components";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -29,7 +28,6 @@ import { getCart } from "../src/redux/actions/cart_actions";
 import Step1 from "./pages/OrderDetail/Step1/Step1";
 import Step2 from "./pages/OrderDetail/Step2/Step2";
 import Step3 from "./pages/OrderDetail/Step3/Step3";
-import Confetti from "react-confetti";
 import { Fade } from "react-awesome-reveal";
 
 const App: FC = () => {

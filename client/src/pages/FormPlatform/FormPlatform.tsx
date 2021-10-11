@@ -21,7 +21,7 @@ const FormPlatform: FC = () => {
     //quitar navbar
     useEffect(()=>{
         dispatch(deleteNavbar())
-    },[])
+    },[dispatch])
 
     function handleChange(e: React.FormEvent<HTMLInputElement>) {
         setInput({

@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import StyledFooter from "./StyledFooter";
 import { animateScroll } from "react-scroll";
-import { Title } from "../index";
 
 const Footer = () => {
   const handleClick = (ev: any) => {

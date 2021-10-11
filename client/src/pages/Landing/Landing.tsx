@@ -10,7 +10,7 @@ const Landing: FC = () => {
   //quitar la navbar
   useEffect(() => {
     dispatch(deleteNavbar())
-  },[])
+  },[dispatch])
 
   return (
     <StyledLanding>

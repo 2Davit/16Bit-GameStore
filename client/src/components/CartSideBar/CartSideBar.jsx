@@ -9,7 +9,6 @@ import { Mini } from "../index";
 import { useSelector, useDispatch } from "react-redux";
 import { clearCart } from "../../redux/actions/cart_actions";
 import { Slide } from "react-reveal";
-import { useHistory } from "react-router-dom";
 
 // interface CartSideBarProps {
 //   show: boolean;
@@ -21,7 +20,7 @@ const CartSideBar /*: FC<CartSideBarProps>*/ = ({ closeCallback, show }) => {
   const cartList /* :ProductInCart  */ = useSelector(
     (state /* : Store */) => state.cartReducer.cart.list
   );
-  const history = useHistory();
+  
   /* const cartStorage = JSON.parse(localStorage.getItem("cart")); */
 
   const [subtotal, setSubtotal] = useState(0.0);

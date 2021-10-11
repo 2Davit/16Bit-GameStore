@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import Mini from "../../../components/ProductCard/Mini";
 import { Btn } from "../../../GlobalStyles/GlobalStyles";
 import { StyledSVG, StepOne } from "../StyledOrderDetail";
@@ -8,11 +8,9 @@ import PurchaseStep1 from "../../../assets/img/svg/purchase-steps-1.svg";
 import { Fade } from "react-awesome-reveal";
 import { ProductInCart } from "../../../interfaces";
 import { Store } from "../../../redux/reducer";
-import { toggleCart } from "../../../redux/actions/global_actions";
 
 const Step1 = () => {
   const history = useHistory();
-  const dispatch = useDispatch();
   const [total, setTotal] = useState(0.0);
   const [subtotal, setSubtotal] = useState(0.0);
 

@@ -11,8 +11,14 @@ import { Paginate, Filter, Catalog, Carousel } from "../../components";
 import { Store } from "../../redux/reducer/";
 import { ContainerHome } from "./Home.style";
 import { createNavbar } from "../../redux/actions/admin_actions";
+import { getCart } from "../../redux/actions/cart_actions";
+
 
 const Home = ({ setPage, currentProducts, productsPerPage, pages }: any) => {
+
+
+  
+
   const dispatch = useDispatch();
 
   const onSaleProducts: any = useSelector(
@@ -30,12 +36,10 @@ const Home = ({ setPage, currentProducts, productsPerPage, pages }: any) => {
     dispatch(getAllPlatforms());
     dispatch(getRole());
     dispatch(createNavbar());
+    dispatch(getCart());
   }, [dispatch]);
 
-  // function handleOnSaleFilter() {
-  //   dispatch(onSaleFilter());
-  //   setCurrentPage(1);
-  // }
+
 
   return (
     <ContainerHome>
