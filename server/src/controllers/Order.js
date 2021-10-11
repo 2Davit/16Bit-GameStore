@@ -164,7 +164,7 @@ async function createPayment (req, res){
   }
 }
 
-
+*/
 
 async function saveOrder(req, res, next) {
     
