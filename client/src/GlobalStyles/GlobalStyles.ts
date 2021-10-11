@@ -204,7 +204,6 @@ export const Dropdown = styled.li`
     border-radius: 0.4em;
     z-index: 10;  
    
-
     &::before {
       content: "";
       width: 25px;
