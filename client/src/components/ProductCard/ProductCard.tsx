@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useEffect, useState, useCallback } from "react";
 import { Link } from "react-router-dom";
 import "nes.css/css/nes.min.css";
 import { useDispatch } from "react-redux";
@@ -21,18 +21,19 @@ const ProductCard: FC<Props> = ({ game }) => {
   const dispatch = useDispatch();
 
 
-  function handleEffect() {
+  const handleEffect = useCallback(() =>  {
     let stockInLocal = JSON.parse(localStorage.getItem("cart")!)
     let gameStorage = stockInLocal?.find((g:ProductInCart) => g.id_product === game.id_product)
     let unavailable = gameStorage?.quantity >= game.in_stock? true : false
     return unavailable;
-  }
+  }, [game.id_product, game.in_stock]);
+
 
   let disabled = handleEffect();
 
   useEffect(() => {
       handleEffect()
-  }, [message]);
+  }, [message, handleEffect]);
 
   
   const handleOpenClick = (ev: any) => {
