@@ -94,32 +94,54 @@ async function createOrder(req, res, next) {
 async function createPayment (req, res){
   
     
-    const payment_id= req.query.payment_id
-    const payment_status= req.query.status
-    const external_reference = req.query.external_reference
-    const merchant_order_id= req.query.merchant_order_id
-   
-    try{
+  const payment_id= req.query.payment_id
+  const payment_status= req.query.status
+  const external_reference = req.query.external_reference
+  const merchant_order_id= req.query.merchant_order_id
+ 
+  try{
 
-    await Order.update(
-      { status_order: "fulfilled" },
-      { where: { id_order: parseInt(external_reference) } }
-    );
+  await Order.update(
+    { status_order: "fulfilled" },
+    { where: { id_order: parseInt(external_reference) } }
+  );
 
 
-    await foundOrder.orderProducts.forEach((e) => {
-      Product.decrement("in_stock", {
-        by: e.quantity_orderProduct,
-        where: {
-          id_product: e.productIdProduct,
-        },
-      });
+    const foundOrder = await Order.findOne({
+      where: {
+        id_order:  parseInt(external_reference),
+      }, 
+      include: 
+          [ {
+            model: OrderProduct,
+            required: false
+          } ],
+      
+    })
+
+    await foundOrder.orderProducts.forEach( e => {
+       Product.decrement('in_stock', {
+           by: e.quantity_orderProduct, 
+           where:
+            { 
+              id_product: e.productIdProduct
+           } })
+    })
+
+
+  await foundOrder.orderProducts.forEach((e) => {
+    Product.decrement("in_stock", {
+      by: e.quantity_orderProduct,
+      where: {
+        id_product: e.productIdProduct,
+      },
     });
+  });
 
-    return res.redirect("http://localhost:3000/order/detail");
-  } catch (err) {
-    console.log(err);
-  }
+  return res.redirect("http://localhost:3000/order/detail");
+} catch (err) {
+  console.log(err);
+}
 }
 
 
@@ -201,19 +223,19 @@ async function saveOrder(req, res, next) {
             });
     
             
-            
+          
     
            res.status(200).send({ success: true })
            
-         } res.status(400).send({ error: 'invalid user' })
+         } else res.status(400).send({ error: 'invalid user' })
     
         } catch (err) {
             next(err);
-            return res.status(409).send({ error: err.message });
+            return res.status(404).send({ error: err.message });
         }
     }
 
-    else return res.status(409).send({ error: 'invalid order status' });
+    else return res.status(404).send({ error: 'invalid order status' });
 };
 
 

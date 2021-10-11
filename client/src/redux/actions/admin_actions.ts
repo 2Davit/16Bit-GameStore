@@ -31,7 +31,7 @@ export const deleteProduct = (id:number) => {
 export const getUsers = () => {
   return async function (dispatch: Dispatch<Users>){
     const {data} = await axios.get(`http://localhost:3001/user`)
-    console.log(data)
+
     return dispatch({
       type: USERS_INFO,
       payload: data,
@@ -42,7 +42,7 @@ export const getUsers = () => {
 export const getOrders = () => {
   return async function (dispatch: Dispatch<Detail>){
     const {data} = await axios.get(`http://localhost:3001/order`)
-    console.log(data)
+
     return dispatch({
       type: GET_ORDERS,
       payload: data,

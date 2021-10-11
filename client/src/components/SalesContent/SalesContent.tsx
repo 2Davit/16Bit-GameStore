@@ -19,7 +19,6 @@ const SalesContent: FC = () => {
     const [btnPrev, setBtnPrev] = useState<boolean>(false)
     const [orderSearch, setOrderSearch] = useState(totalOrders);
     // let onViewOrders = orderSearch.slice(page, page2)
-    console.log(totalOrders)
     useEffect(() => {
         dispatch(getOrders())
     }, [dispatch]);
