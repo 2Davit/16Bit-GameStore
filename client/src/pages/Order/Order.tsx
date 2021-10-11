@@ -80,7 +80,7 @@ const OrderUser = () => {
   async function handlePayment() {
     try {
       const preference = await (
-        await fetch("http://localhost:3001/order", {
+        await fetch("/order", {
           method: "post",
           body: JSON.stringify(order),
           headers: {

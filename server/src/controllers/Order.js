@@ -68,9 +68,9 @@ async function createOrder(req, res, next) {
             )),
             external_reference : `${order.id_order}`, 
             back_urls: {
-                success: "http://localhost:3001/order/payment",
-                failure: "http://localhost:3001/order/payment",
-                pending: "http://localhost:3001/order/payment",
+                success: "/order/payment",
+                failure: "/order/payment",
+                pending: "/order/payment",
             },
             auto_return: "approved",
         };

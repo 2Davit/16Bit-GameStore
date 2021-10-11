@@ -17,20 +17,20 @@ interface Users {
 
 export const editProduct = (payload: EditProduct) => {
     return async function (dispatch: Dispatch<Detail>) {
-        const data = await axios.put("http://localhost:3001/videogames/OneGame", payload);
+        const data = await axios.put("/videogames/OneGame", payload);
         return data;
     }
 }
 export const deleteProduct = (id:number) => {
   return async function (dispatch: Dispatch<Detail>){
-    const data = await axios.delete(`http://localhost:3001/videogames/OneGame/${id}`)
+    const data = await axios.delete(`/videogames/OneGame/${id}`)
     return data;
   }
 }
 
 export const getUsers = () => {
   return async function (dispatch: Dispatch<Users>){
-    const {data} = await axios.get(`http://localhost:3001/user`)
+    const {data} = await axios.get(`/user`)
 
     return dispatch({
       type: USERS_INFO,
@@ -41,7 +41,7 @@ export const getUsers = () => {
 
 export const getOrders = () => {
   return async function (dispatch: Dispatch<Detail>){
-    const {data} = await axios.get(`http://localhost:3001/order`)
+    const {data} = await axios.get(`/order`)
 
     return dispatch({
       type: GET_ORDERS,

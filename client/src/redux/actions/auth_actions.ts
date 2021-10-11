@@ -12,7 +12,7 @@ export const login = (values: any) => {
   return async (dispatch: Dispatch<loginProps>): Promise<any> => {
     try {
       const userData = await axios.post(
-        "http://localhost:3001/auth/login",
+        "/auth/login",
         values
       );
       localStorage.setItem("userData", JSON.stringify(userData.data));
@@ -51,7 +51,7 @@ export const getRole = () => {
     const userData = JSON.parse(localStorage.getItem("userData") as string);
     const token = userData?.token;
     try {
-      const role = await axios.get("http://localhost:3001/auth/getRole", {
+      const role = await axios.get("/auth/getRole", {
         headers: { "x-access-token": token },
       });
       return dispatch({

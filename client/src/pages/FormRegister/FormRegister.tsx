@@ -52,7 +52,7 @@ const FormRegister: FC = () => {
   const dispatch = useDispatch();
   const handleSubmit = (values: UserRegister) => {
     axios
-      .post("http://localhost:3001/auth/signup", values)
+      .post("/auth/signup", values)
       .then((res) => {
         const { username, password } = values;
         dispatch(login({ username, password }));

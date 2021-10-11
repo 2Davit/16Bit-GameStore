@@ -26,7 +26,7 @@ const LogOut: FC = () => {
 
   function handleClick() {
     if (order.amount_order > 0) {
-      axios.post("http://localhost:3001/order/save", order);
+      axios.post("/order/save", order);
     }
     localStorage.clear();
     history.push("/home");

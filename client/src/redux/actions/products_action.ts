@@ -47,7 +47,7 @@ interface Name {
 
 export const getAllProducts = () => {
   return async (dispatch: Dispatch<AllProducts>): Promise<any> => {
-    const totalProducts = await axios.get("http://localhost:3001/videogames");
+    const totalProducts = await axios.get("/videogames");
     return dispatch({
       type: GET_ALL_PRODUCTS,
       payload: totalProducts.data,
@@ -57,7 +57,7 @@ export const getAllProducts = () => {
 
 export const getProductDetail = (id: number) => {
   return async (dispatch: Dispatch<Detail>): Promise<any> => {
-    var json = await axios.get(`http://localhost:3001/videogames/${id}`);
+    var json = await axios.get(`/videogames/${id}`);
     return dispatch({
       type: GET_PRODUCT_DETAIL,
       payload: json.data,
@@ -67,7 +67,7 @@ export const getProductDetail = (id: number) => {
 
 export const getNameProduct = (name: string) => {
   return async (dispatch: Dispatch<Name>): Promise<any> => {
-    let json = await axios.get(`http://localhost:3001/videogames?name=${name}`);
+    let json = await axios.get(`/videogames?name=${name}`);
 
     return dispatch({
       type: GET_NAME_PRODUCT,
@@ -85,7 +85,7 @@ export const doubleFilter = function (payload: any) {
 
 export const onSaleFilter = (place: string) => {
   return async (dispatch: Dispatch<Detail>): Promise<any> => {
-    var json = await axios.get(`http://localhost:3001/videogames/Onsale`);
+    var json = await axios.get(`/videogames/Onsale`);
     return dispatch({
       type: GET_PRODUCT_ON_SALE,
       payload: {
@@ -99,7 +99,7 @@ export const onSaleFilter = (place: string) => {
 export const createVideogame = (payload: ProductCreate) => {
   return async function (dispatch: Dispatch<Name>) {
     const data = await axios.post(
-      "http://localhost:3001/videogames/OneGame",
+      "/videogames/OneGame",
       payload
     );
     return data;
@@ -108,7 +108,7 @@ export const createVideogame = (payload: ProductCreate) => {
 export const createNewGenre = (payload: CreateGenre) => {
   return async function (dispatch: Dispatch<Name>) {
     const data = await axios.post(
-      "http://localhost:3001/genres/oneGenre",
+      "/genres/oneGenre",
       payload
     );
     return data;
@@ -117,7 +117,7 @@ export const createNewGenre = (payload: CreateGenre) => {
 export const createNewPlatform = (payload: CreatePlatform) => {
   return async function (dispatch: Dispatch<Name>) {
     const data = await axios.post(
-      "http://localhost:3001/platforms/onePlatform",
+      "/platforms/onePlatform",
       payload
     );
     return data;
@@ -125,7 +125,7 @@ export const createNewPlatform = (payload: CreatePlatform) => {
 };
 export const getAllGenres = () => {
   return async (dispatch: Dispatch<AllGenres>): Promise<any> => {
-    const json = await axios.get("http://localhost:3001/genres/");
+    const json = await axios.get("/genres/");
     return dispatch({
       type: GET_ALL_GENRES,
       payload: json.data,
@@ -134,7 +134,7 @@ export const getAllGenres = () => {
 };
 export const getAllPlatforms = () => {
   return async (dispatch: Dispatch<AllPlatforms>): Promise<any> => {
-    const json = await axios.get("http://localhost:3001/platforms/");
+    const json = await axios.get("/platforms/");
     return dispatch({
       type: GET_ALL_PLATFORMS,
       payload: json.data,
