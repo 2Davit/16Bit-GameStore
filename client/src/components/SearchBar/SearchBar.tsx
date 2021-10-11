@@ -5,7 +5,7 @@ import {
   getNameProduct,
 } from "../../redux/actions/products_action";
 
-import { FormSearchBar } from "./StyledSearchBar";
+import { FormSearchBar, SearchResults } from "./StyledSearchBar";
 import loupe from "../../assets/img/svg/loupe.svg";
 import SearchCard from "../ProductCard/SearchCard";
 
@@ -29,7 +29,7 @@ const SearchBar = ({ setPage }: any) => {
   };
   const handleChange = () => {
     let handle = searchProducts.filter((index: any) => index.name_product.toLowerCase().includes(inputText.toLowerCase()));
-    setAutocomplete(handle)
+    setAutocomplete(handle.slice(0, 4))
   };
 
   return (
@@ -43,20 +43,22 @@ const SearchBar = ({ setPage }: any) => {
           onBlur={() => {
             setTimeout(() => {
               setAutocomplete([])
-            }, 100)
+            },200)
           }}
         />
-        {autoComplete?.map((product: any) => {
+      <SearchResults>
+        {autoComplete.length !== 0 ? autoComplete.map((product: any) => {
           return (
-            <div>
+            
               <SearchCard
                 game={product}
                 key={product.id_product}
                 id={product.id_product}
               />
-            </div>
+           
           );
-        })}
+        }) : ""}
+         </SearchResults>
         <button type="submit">
           <img src={loupe} alt="" />
         </button>

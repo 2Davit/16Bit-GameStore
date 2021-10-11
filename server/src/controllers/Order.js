@@ -8,6 +8,25 @@ mercadopago.configure({
     "TEST-6385118257533578-100415-600a17d4305e1579d0854c301e57e6ef-102723698",
 });
 
+async function getOrders(req, res) {
+  try {
+    const orders = await Order.findAll()
+    const ordersData = orders.map(u => {
+      return {
+        id_order: u.id_order,
+        status: u.status_order,
+        amount: u.amount_order,
+        address: u.address_order,
+        date: u.date_order,
+      }
+    })
+    res.status(200).send(ordersData)
+  } 
+  catch(err){
+    res.status(404).send(err)
+  }
+}
+
 async function createOrder(req, res, next) {
   const { id_user, status_order, amount_order, cart, address_order } = req.body;
 
@@ -134,6 +153,8 @@ async function createPayment(req, res) {
   }
 }
 
+
+
 /* async function prueba (req, res){
     try{
     const foundOrder = await Order.findOne({
@@ -170,6 +191,7 @@ res.send(foundOrder)
 module.exports = {
   createOrder,
   createPayment,
+  getOrders,
 };
 
 /*   const server = require('express').Router();

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 
 export const CarouselContainer = styled(Link)`
+z-index: -90;
     height: 250px;
     display: flex;
     width: 80%;
