@@ -67,7 +67,7 @@ const Order = () => {
       await axios({
         method: 'post',
         url: '/order',
-        data:  order
+        data: JSON.stringify(order)
     }));
 
 
