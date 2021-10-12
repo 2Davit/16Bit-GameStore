@@ -9,6 +9,7 @@ import { login } from "../../redux/actions/auth_actions";
 import { Link } from "react-router-dom";
 import { FormStyled } from "./StyledFormRegister";
 import { Btn } from "../../GlobalStyles/GlobalStyles";
+import { useHistory } from "react-router";
 
 const initialValues: UserRegister = {
   username: "",
@@ -50,7 +51,10 @@ const initialValues: UserRegister = {
 
 const FormRegister: FC = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const handleSubmit = (values: UserRegister) => {
+    alert('Created account 😃');
+    history.push('/home');
     axios
       .post("/auth/signup", values)
       .then((res) => {

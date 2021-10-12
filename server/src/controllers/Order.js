@@ -119,7 +119,7 @@ async function createPayment(req, res) {
 
     return res.redirect("https://16-bit-game-store.vercel.app/order/detail");
   } catch (err) {
-    console.log(err);
+    console.log({error: err});
   }
 }
 

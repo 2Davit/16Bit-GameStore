@@ -1,11 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import PurchaseStep3 from "../../../assets/img/svg/purchase-steps-3.svg";
 import { StepThree, StyledSVG } from "../StyledOrderDetail";
 import { Btn } from "../../../GlobalStyles/GlobalStyles";
 import Confetti from "react-confetti";
+import { clearCart } from "../../../redux/actions/cart_actions";
 const Step3 = () => {
   const history = useHistory();
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+      dispatch(clearCart());
+  }, []);
 
   return (
     <StepThree>

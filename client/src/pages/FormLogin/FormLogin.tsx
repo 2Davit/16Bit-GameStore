@@ -67,8 +67,7 @@ const FormLogin: FC = () => {
     dispatch(login(values));
     dispatch(getRole());
     setIsUser(true);
-    alert("succeeded");
-    history.push("/home");
+    /* alert("succeeded"); */
   };
 
   return (
@@ -80,7 +79,9 @@ const FormLogin: FC = () => {
       portalClassName={"ReactModalPortal"}
       ariaHideApp={false}
     >
-      <StyledLogin>
+      
+        { !isUser ? (
+        <StyledLogin>
         <button className="button" onClick={closeModal}>
           <StyledSVG src={CloseButton} />
         </button>
@@ -109,10 +110,19 @@ const FormLogin: FC = () => {
               <Btn type="submit" className="btn-card login">
                 Log In
               </Btn>
-            </Form>
+            </Form>  
           </FormStyled>
         </Formik>
-      </StyledLogin>
+      </StyledLogin>)
+      : (
+        <StyledLogin>
+          <div className="link_container2">
+          <h1>Welcome...</h1> 
+          <Link className='shopping' to='/home'>Go shopping with your cart!</Link>
+          </div>
+        </StyledLogin>
+          )
+  }
     </Modal>
   );
 };

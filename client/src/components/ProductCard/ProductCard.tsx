@@ -85,7 +85,7 @@ const ProductCard: FC<Props> = ({ game }) => {
         className="card__link"
         onClick={handleOpenClick}
       >
-        Click to see the product
+        
       </Link>
     </StyledProductCard>
   );
