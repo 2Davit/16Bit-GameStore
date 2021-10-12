@@ -112,7 +112,7 @@ const logIn = async (req, res) => {
   }
 
   if (!user) {
-    return res.status(404).send("User not found");
+    return res.status(404).send({error: "User not found"});
   }
 
   const passwordIsValid = bcrypt.compareSync(password, user.password_user);
