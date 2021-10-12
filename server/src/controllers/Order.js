@@ -28,7 +28,6 @@ async function getOrders(req, res) {
 }
 
 async function createOrder(req, res, next) {
-
     const {
         id_user,
         status_order,
@@ -84,16 +83,9 @@ async function createOrder(req, res, next) {
         next(err);
         return res.status(409).send({ error: err.message });
     }
-};
-
-
-
-
-
+}
 
 async function createPayment (req, res){
-  
-    
   const payment_id= req.query.payment_id
   const payment_status= req.query.status
   const external_reference = req.query.external_reference
@@ -128,7 +120,6 @@ async function createPayment (req, res){
            } })
     })
 
-
   await foundOrder.orderProducts.forEach((e) => {
     Product.decrement("in_stock", {
       by: e.quantity_orderProduct,
@@ -143,50 +134,6 @@ async function createPayment (req, res){
   console.log(err);
 }
 }
-
-
-
-/* async function prueba (req, res){
-    try{
-    const foundOrder = await Order.findOne({
-
-        where: {
-          id_order:  parseInt(external_reference),
-        }, 
-        include: 
-            [ {
-              model: OrderProduct,
-              required: false
-            } ],
-        
-      })
-
-      await foundOrder.orderProducts.forEach( e => {
-         Product.decrement('in_stock', {
-             by: e.quantity_orderProduct, 
-             where:
-              { 
-                id_product: e.productIdProduct
-             } })
-      })
-
-
-    await foundOrder.orderProducts.forEach((e) => {
-      Product.decrement("in_stock", {
-        by: e.quantity_orderProduct,
-        where: {
-          id_product: e.productIdProduct,
-        },
-      });
-    });
-
-    return res.redirect("http://localhost:3000/order/detail");
-  } catch (err) {
-    console.log(err);
-  }
-}
-
-*/
 
 async function saveOrder(req, res, next) {
     
@@ -237,8 +184,6 @@ async function saveOrder(req, res, next) {
 
     else return res.status(404).send({ error: 'invalid order status' });
 };
-
-
 
 module.exports = {
     createOrder,

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { ProductInCart } from "../../../interfaces";
 import PurchaseStep2 from "../../../assets/img/svg/purchase-steps-2.svg";
 import { StyledSVG, Btn } from "../../../GlobalStyles/GlobalStyles";
+import axios from "axios";
 
 const Order = () => {
   const user = JSON.parse(localStorage.getItem("userData")!);
@@ -52,15 +53,23 @@ const Order = () => {
 
   async function handlePayment() {
     try {
-      const preference = await (
-        await fetch("/order", {
+      const preference:any = await (
+
+       /*  await axios.post("/order", {
           method: "post",
           body: JSON.stringify(order),
           headers: {
             "Content-Type": "application/json",
           },
         })
-      ).json();
+      ).json(); */
+
+      await axios({
+        method: 'post',
+        url: '/order',
+        data:  order
+    }));
+
 
       var script = document.createElement("script");
 
