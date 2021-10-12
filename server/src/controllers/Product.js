@@ -393,6 +393,10 @@ async function listProductOnSale(req, res){
     }
   };
 
+  async function addProductFavorite(req, res) {
+    
+  }
+
   
   module.exports = {
     listProductOnSale,

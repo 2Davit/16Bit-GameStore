@@ -83,6 +83,9 @@ const NavBar: FC<Props> = ({ setPage, toggleModal }: any) => {
                     </Link>
                   </li>
                   <li>
+                    <Link to="/favs">Favorites</Link>
+                  </li>
+                  <li>
                     <div className="dropdown__button">
                       <LogOut />
                     </div>

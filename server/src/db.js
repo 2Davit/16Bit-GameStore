@@ -68,6 +68,8 @@ OrderProduct.belongsTo(Product);
 //Role.belongsToMany(User, { through: "userRoles" });
 Genre.belongsToMany(Product, { through: "productGenre" });
 Product.belongsToMany(Genre, { through: "productGenre" });
+User.belongsToMany(Product, { through: "favorites" });
+Product.belongsToMany(User, { through: "favorites" });
 Platform.belongsToMany(Product, { through: "productPlatform" });
 Product.belongsToMany(Platform, { through: "productPlatform" });
 
