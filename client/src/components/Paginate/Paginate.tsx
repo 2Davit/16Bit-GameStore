@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { StyledPaginate } from "./StyledPaginate";
+import { StyledPaginate, StyledButton } from "./StyledPaginate";
 
 interface Props {
   amountPerPage: number;
@@ -19,9 +19,9 @@ const Paginate: FC<Props> = ({ amountPerPage, totalAmount, pageNumber }) => {
       {pageNumbers.length > 1 &&
         pageNumbers.map((num) => {
           return (
-            <button key={num} onClick={() => pageNumber(num)}>
+            <StyledButton key={num} onClick={() => pageNumber(num)}>
               {num}
-            </button>
+            </StyledButton>
           );
         })}
     </StyledPaginate>

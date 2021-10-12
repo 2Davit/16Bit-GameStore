@@ -39,7 +39,7 @@ const Mini: FC<Props> = ({ detail }: any) => {
         <img src={detail.thumbnail_product} alt={detail.name_product} />
       </div>
       <div className="article__info">
-        <Link to={`/products/${detail.id_product}`}>
+        <Link to={`/game/${detail.id_product}`}>
           <p className="article__name">{detail.name_product}</p>
         </Link>
         <p>${price}</p>
