@@ -67,9 +67,9 @@ async function createOrder(req, res, next) {
             )),
             external_reference : `${order.id_order}`, 
             back_urls: {
-                success: "/order/payment",
-                failure: "/order/payment",
-                pending: "/order/payment",
+                success: "https://videogame-store-16bit.herokuapp.com/order/payment",
+                failure: "https://videogame-store-16bit.herokuapp.com/order/payment",
+                pending: "https://videogame-store-16bit.herokuapp.com/order/payment",
             },
             auto_return: "approved",
         };

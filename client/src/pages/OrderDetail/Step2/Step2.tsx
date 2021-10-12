@@ -36,6 +36,7 @@ const Order = () => {
     address_order: inputAddress.address,
   };
 
+
   const validate = (address: any) => {
     let errors = {
       address: "",
@@ -52,29 +53,43 @@ const Order = () => {
   }
 
   async function handlePayment() {
-    try {
-      const preference:any = await (
 
-       /*  await axios.post("/order", {
+    try {
+      const preference:any = await( 
+         await fetch("https://videogame-store-16bit.herokuapp.com/order", {
           method: "post",
           body: JSON.stringify(order),
           headers: {
             "Content-Type": "application/json",
           },
-        })
-      ).json(); */
+        })).json();  
 
-      await axios({
+      /*   await axios({
         method: 'post',
-        url: '/order',
-        data: JSON.stringify(order)
-    }));
+        url: 'https://videogame-store-16bit.herokuapp.com/order',
+        data: order
+    }));  
 
+    /* await axios.post( '/order', order, {
+      headers: {
+        "Content-Type": "application/json",
+      }
+    }
+    ) *//* ) */;
+/*     const res = await axios.post('https://httpbin.org/post', { hello: 'world' }, {
+  headers: {
+    // 'application/json' is the modern content-type for JSON, but some
+    // older servers may use 'text/json'.
+    // See: http://bit.ly/text-json
+    'content-type': 'text/json'
+  }
+}); */
+ 
+  
+  /*   await axios.post("/order", JSON.stringify(order))); */
 
       var script = document.createElement("script");
 
-      // The source domain must be completed according to the site for which you are integrating.
-      // For example: for Argentina ".com.ar" or for Brazil ".com.br".
       script.src =
         "https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js";
       script.type = "text/javascript";
