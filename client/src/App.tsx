@@ -29,6 +29,7 @@ import Step1 from "./pages/OrderDetail/Step1/Step1";
 import Step2 from "./pages/OrderDetail/Step2/Step2";
 import Step3 from "./pages/OrderDetail/Step3/Step3";
 import { Fade } from "react-awesome-reveal";
+import Favorites from "./components/Favorites/Favorites";
 
 const App: FC = () => {
   const dispatch = useDispatch();
@@ -106,7 +107,7 @@ const App: FC = () => {
           <Route exact path="/legal" component={Legal} />
           <Route exact path="/about" component={About} />
           {/* <Route exact path="/order" component={Order} /> */}
-
+          <Route exact path="/favs" component={Favorites} />
           <Route path="*" component={NotFound} />
         </Switch>
         {deleteNav && <Footer />}
