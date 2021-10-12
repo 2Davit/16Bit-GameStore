@@ -62,10 +62,17 @@ const logIn = async (req, res) => {
   
 
   if (user && user.orders.length) {
-
+    
+    
+    user.orders.sort((a, b) => {
+      if (a.dataValues.id_order > b.dataValues.id_order) {return 1}
+      else if (b.dataValues.id_order > a.dataValues.id_order) {return -1}
+      else return 0;
+  })
+    
     const lastCartOrder = await Order.findOne({
       where: {
-        id_order: user.orders[user.orders.length -1].dataValues.id_order,
+        id_order: user.orders[user.orders.length-1].dataValues.id_order,
       },
       include: [
         {
