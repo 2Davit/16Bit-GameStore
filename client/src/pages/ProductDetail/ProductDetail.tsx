@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
-import { getProductDetail } from "../../redux/actions/products_action";
+import { getProductDetail, resetDetail } from "../../redux/actions/products_action";
 import { Store } from "../../redux/reducer/";
 import { GameDetail, StyledSVG } from "./StyledProductDetail";
 import { Btn, QuantityButton } from "../../GlobalStyles/GlobalStyles";
@@ -43,7 +43,10 @@ const Detail: FC = () => {
 
   useEffect(() => {
     dispatch(getProductDetail(parseInt(id)));
-    getAll()
+    getAll();
+    return function cleanup() {
+      dispatch(resetDetail())
+  }
   }, [dispatch, id]);
 
 

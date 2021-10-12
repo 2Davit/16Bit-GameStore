@@ -15,7 +15,7 @@ import {
   GET_PRODUCT_ON_SALE,
   GET_ALL_GENRES,
   GET_ALL_PLATFORMS,
-  
+  RESET_DETAIL
 } from "../types";
 
 import { Dispatch } from "redux";
@@ -140,5 +140,11 @@ export const getAllPlatforms = () => {
       payload: json.data,
     });
   };
+};
+
+export const resetDetail = () => {
+  return {
+      type: RESET_DETAIL,
+    };
 };
 

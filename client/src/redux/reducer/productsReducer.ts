@@ -9,6 +9,7 @@ import {
   CREATE_NEW_PLATFORM,
   GET_ALL_GENRES,
   GET_ALL_PLATFORMS,
+  RESET_DETAIL
 } from "../types";
 import { ProductsState } from "../../interfaces";
 
@@ -49,6 +50,12 @@ export function productsReducer(
       return {
         ...state,
         detailProduct: payload,
+      };
+
+    case RESET_DETAIL:
+      return {
+        ...state,
+        detailProduct: {},
       };
 
     case GET_NAME_PRODUCT:
