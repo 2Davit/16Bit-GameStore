@@ -219,7 +219,7 @@ async function listProductOnSale(req, res){
       genres,
       platforms,
     } = req.body;
-    let validation = (name_product.length > 0 &&  name_product.length <= 50 && price_product > 0 && typeof price_product === 'number' && description_product.length > 0 && description_product.length < 1200 && image_product.length>0 && image_product.length <10 && thumbnail_product.length > 0 && thumbnail_product.length < 1200 && typeof in_stock === 'boolean' && typeof on_sale === 'boolean' &&release_year > 1950 && release_year < 2010 && Number.isInteger(release_year) && genres.length > 0 && platforms.length > 0)
+    let validation = (name_product.length > 0 &&  name_product.length <= 50 && price_product > 0 && typeof price_product === 'number' && description_product.length > 0 && description_product.length < 1200 && image_product.length>0 && image_product.length <10 && thumbnail_product.length > 0 && thumbnail_product.length < 1200 && typeof in_stock === 'number' && typeof on_sale === 'boolean' &&release_year > 1950 && release_year < 2010 && Number.isInteger(release_year) && genres.length > 0 && platforms.length > 0)
     if(validation ) {
     try {
       let genreDB = await Genre.findAll({
