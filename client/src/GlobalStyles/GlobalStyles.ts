@@ -21,6 +21,8 @@ export const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
   --clr-dark: #1f0156;
   --clr-dark-1: #370276;
   --clr-dark-2: #090029;  
+  --clr-error: #D53051;
+  --clr-error-2: #972038;
 }
 
 /* width */
@@ -148,6 +150,17 @@ export const Btn = styled.button`
     border-color: var(--clr-primary);
     box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.15);
   }
+
+  &.btn-danger {
+		color: var(--clr-error);
+		border-color: var(--clr-error);
+		box-shadow: 2px 2px 0px rgba(0,0,0,.15);
+
+		&:hover {
+			color: var(--clr-white);
+			background-color: var(--clr-error);
+		}
+	}
 `;
 
 export const QuantityButton = styled.button`
