@@ -1,20 +1,25 @@
 import React, { FC } from "react";
-import { StyledNavBar } from "./StyledNavBar";
 import { Link, useHistory } from "react-router-dom";
+//Componentes
 import { SearchBar } from "../index";
-import { useDispatch, useSelector } from "react-redux";
-import { getAllProducts } from "../../redux/actions/products_action";
-import { Dropdown, StyledSVG } from "../../GlobalStyles/GlobalStyles";
-import { Title } from "../index";
-import { Store } from "../../redux/reducer";
-import { ProductInCart } from "../../interfaces";
 import { LogOut } from "../index";
+import { Title } from "../index";
+//Redux
+import { getAllProducts } from "../../redux/actions/products_action";
+import { Store } from "../../redux/reducer";
+import { useDispatch, useSelector } from "react-redux";
 import { openLogin } from "../../redux/actions/global_actions";
-//Logos
+//Interfaces
+import { ProductInCart } from "../../interfaces";
+import { User, UserState } from "../../interfaces/index";
+//Estilos
+import { StyledNavBar } from "./StyledNavBar";
+import { Dropdown, StyledSVG } from "../../GlobalStyles/GlobalStyles";
+//Assets
 import cart from "../../assets/img/svg/cart2.svg";
+import heart from "../../assets/img/svg/heart1.svg";
 import userPic from "../../assets/img/svg/user.svg";
-
-import "nes.css/css/nes.min.css";
+import defaultAvatar from "../../assets/img/avatars/Avatar_8.png";
 
 interface Props {
   setPage(num: number): void;
@@ -38,6 +43,11 @@ const NavBar: FC<Props> = ({ setPage, toggleModal }: any) => {
     (state: Store) => state.cartReducer.cart.list
   );
 
+  // ================Dejar comentado==================
+  // const user: User = useSelector((state: Store) => state.authReducer.user);
+  // const userIsAdmin: UserState = useSelector((state: Store) => state.authReducer.role.admin);
+  // ================Dejar comentado==================
+
   const number = cartNumber?.reduce((acc: number, prod: ProductInCart) => {
     acc = acc + prod.quantity!;
     return acc;
@@ -56,42 +66,61 @@ const NavBar: FC<Props> = ({ setPage, toggleModal }: any) => {
           </div>
           <SearchBar setPage={setPage} />
           <ul className="navbar__options">
+            {user?.data.name && (
+              <li>
+                <Link to="/favs">
+                  <StyledSVG src={heart} />
+                  <span>Favs</span>
+                </Link>
+              </li>
+            )}
             <Dropdown>
-              <StyledSVG src={userPic} />
-              <span>User</span>
-              {!user ? (
-                <ul>
-                  <li>
-                    <button
-                      className="dropdown__button"
-                      onClick={openLoginModal}
-                    >
-                      Log In
-                    </button>
-                  </li>
-                  <li>
-                    <Link to="/signup" className="dropdown__button">
-                      Signup
-                    </Link>
-                  </li>
-                </ul>
+              {user?.data.name ? (
+                <div className="navbar__profile-pic">
+                  <img src={defaultAvatar} alt="Imagen de perfil" />
+                </div>
               ) : (
-                <ul>
-                  <li>
-                    <Link to="/me" className="dropdown__button">
-                      My Profile
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/favs">Favorites</Link>
-                  </li>
-                  <li>
-                    <div className="dropdown__button">
-                      <LogOut />
-                    </div>
-                  </li>
-                </ul>
+                <StyledSVG src={userPic} />
               )}
+              <span>User</span>
+              <ul>
+                {user?.data.name ? (
+                  <>
+                    <li className="dropdown__first-name">
+                      <p>{user.data.name}</p>
+                    </li>
+                    <li>
+                      <Link to="/user">My Profile</Link>
+                    </li>
+                    {/* {userIsAdmin && (
+                        <li>
+                          <Link to="/admin">Admin</Link>
+                        </li>
+                      )} */}
+                    <li>
+                      <div className="dropdown__button">
+                        <LogOut />
+                      </div>
+                    </li>
+                  </>
+                ) : (
+                  <>
+                    <li>
+                      <button
+                        className="dropdown__button"
+                        onClick={openLoginModal}
+                      >
+                        Login
+                      </button>
+                    </li>
+                    <li>
+                      <Link to="/signup" className="dropdown__button">
+                        Signup
+                      </Link>
+                    </li>
+                  </>
+                )}
+              </ul>
             </Dropdown>
 
             <li>
