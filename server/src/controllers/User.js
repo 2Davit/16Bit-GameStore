@@ -3,6 +3,8 @@ const axios = require("axios");
 const jwt = require("jsonwebtoken");
 const { SECRET } = process.env;
 const nodemailer = require("nodemailer");
+const { google } = require('googleapis');
+
 
 async function postUser(req, res) {
   const {
@@ -62,34 +64,59 @@ async function sendUserMail (req, res){
 
   let {email} = req.body;
 
+  const CLIENT_ID = '629164237375-nd9vo40e7m7p82lr4s7bgecqebbn7i6v.apps.googleusercontent.com';
+  const CLIENT_SECRET = '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';
+  const REDIRECT_URI = 'https://developers.google.com/oauthplayground';
+  const REFRESH_TOKEN = '1//044c2jHqjFfgACgYIARAAGAQSNwF-L9Irv0YSqP8EJos551tZlxLetRQyLhatO8FnlGacYXpCR5rK1dnB0UnMJ11_roWPauDdmoM';
+
+  const oAuth2Client = new google.auth.OAuth2(
+        CLIENT_ID,
+        CLIENT_SECRET,
+        REDIRECT_URI
+  );
+
+  oAuth2Client.setCredentials({refresh_token: REFRESH_TOKEN});
+
+  
+  try {
+
+
+  const accessToken = await oAuth2Client.getAccessToken();
   let transporter = nodemailer.createTransport({
+    service: "gmail",
     host: 'imap.ethereal.email',
     post: 993,
     secure: false,
     auth: {
-        user: 'guido.gambin',
-        pass: 'sagbdfnDBBpnUtzdmZ'
+        type: "OAuth2",
+        user: 'guido.gambini@usal.edu.ar',
+        clientId: CLIENT_ID,
+        clientSecret: CLIENT_SECRET,
+        refreshToken: REFRESH_TOKEN,
+        accessToken: accessToken
     }
 })
-//diosquezfran@gmail.com
+
 
   let mailOptions = {
-    from: "Remitente",
+    from: "16BIT",
     to: email,
     subject: "Gracias por su compra",
     text: "Gracias por confiar en 16-bits"
-  } 
+  }
 
-  transporter.sendMail(mailOptions, (error, info) => {
-    if(error){
-      res.status(500).send(error.message)
-    }else {
-      console.log('email enviado');
-      res.status(200).send(req.body)
-    }
-  })
+  const result = await transporter.sendMail(mailOptions);
+  res.status(200).send(result);
 
+
+  } catch(err) {
+    console.log(err)
+  }
+  
+
+  
 }
+
 
 module.exports = {
   postUser,
