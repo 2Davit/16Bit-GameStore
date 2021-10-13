@@ -1,7 +1,7 @@
 import { FC,  useState,  } from "react";
 import { Order } from "../../interfaces";
-import { ContainerNav, ContainerMainContent, IconContainer, BtnPaged1, BtnPaged2, IconPrev, IconNext, Searchbar, Search } from '../ProductContent/ProductContent.style'
-import { OrderMainContainer, TitleContainer, OrderContainer, InfoOrder, TitleOrder } from './SalesContent.style'
+import { ContainerNav, ContainerMainContent, IconContainer, BtnPaged1, BtnPaged2, IconPrev, IconNext, Searchbar, Search, AddBtns, ContainerNotExist, H2} from '../ProductContent/ProductContent.style'
+import { OrderMainContainer, TitleContainer, OrderContainer, InfoOrder, TitleOrder, OrderSelect, NavBtn } from './SalesContent.style'
 
 interface Props { 
     totalOrders: Array<Order>;
@@ -9,12 +9,45 @@ interface Props {
 
 const SalesContent: FC<Props> = ({totalOrders}) => {
 
-    const [page, setPage] = useState<number>(0)//iria de 10 en 10 ejm : 0-10,20,30
+    const [page, setPage] = useState<number>(0)//iria de 10 en 10 ejm : 0-10,20,30  
     const [page2, setPage2] = useState<number>(10)//19
     const [btnNext, setBtnNext] = useState<boolean>(false)
     const [btnPrev, setBtnPrev] = useState<boolean>(false)
+
+    let orderOldest = totalOrders.sort(function (a, b) {
+        return a.id_order - b.id_order
+    })
+
     const [orderSearch, setOrderSearch] = useState(totalOrders);
+    const [btnStatus, setBtnStatus] = useState<boolean>(true)
     let onViewOrders = orderSearch.slice(page, page2)
+
+    const handleSelect = (e: any) => {
+        if(e.target.value === 'fulfilled'){
+            setOrderSearch(totalOrders.filter(orders => orders.status === 'fulfilled'))
+        }else if(e.target.value === 'pending'){
+            setOrderSearch(totalOrders.filter(orders => orders.status === 'pending'))
+        }else if(e.target.value === 'cancelled'){
+            setOrderSearch(totalOrders.filter(orders => orders.status === 'cancelled'))
+        }else if(e.target.value === 'cart'){
+            setOrderSearch(totalOrders.filter(orders => orders.status === 'cart'))
+        } else{
+            setOrderSearch(totalOrders)
+        }
+        
+    }
+    let orderLatest = totalOrders.sort(function (a, b) {
+        return b.id_order - a.id_order
+    })
+
+    const handleOldest = () => {
+        setOrderSearch(orderOldest)
+        setBtnStatus(false)
+    }
+    const handleLatest = () => {
+        setOrderSearch([...orderLatest])
+        setBtnStatus(true)
+    }
 
 
     const handleNextPage = () => {
@@ -38,30 +71,43 @@ const SalesContent: FC<Props> = ({totalOrders}) => {
         }
     }
 
-    // const searchOrder = (e: any) => {
-    //     let search = e.target.value.toLowerCase();
-    //     if (search === "") {
-    //         setOrderSearch(totalOrders);
-    //         setBtnNext(false);
-    //     } else {
+    //  const searchOrder = (e: any) => {
+    //      let search = e.target.value.toLowerCase();
+    //      if (search === "") {
+    //          setOrderSearch(totalOrders);
+    //          setBtnNext(false);
+    //      } else {
 
-    //         let newArray = totalOrders.filter((user: any) => {
-    //             return user.nickname.toLowerCase().includes(search);
+    //          let newArray = totalOrders.filter((user: any) => {
+    //              return user.nickname.toLowerCase().includes(search);
     //         });
-    //         setPage(0);
-    //         setPage2(10);
-    //         setOrderSearch(newArray);
+    //          setPage(0);
+    //          setPage2(10);
+    //        setOrderSearch(newArray);
     //     }
-    // };
+    //  };
 
     return (
         <ContainerMainContent>
             <ContainerNav>
             <Searchbar>
           <Search placeholder=' Search orders...' />
+          {/* onClick={searchOrder} */}
         </Searchbar>
+        <AddBtns >
+                   <OrderSelect onClick={(e) => handleSelect(e)}>
+                   <option value="">Order Status</option>
+                   <option value="fulfilled">Fulfilled</option>
+                   <option value="pending">Pending</option>
+                   <option value="cart">Cart</option>
+                   <option value="cancelled">Cancelled</option>
+                   </OrderSelect>
+                   {btnStatus ? <NavBtn onClick={() => handleOldest()}>Older Sales</NavBtn> : <NavBtn onClick={() => handleLatest()}>Latest Sales</NavBtn> }
+
+
+                </AddBtns>
             </ContainerNav>
-            {/* onChange={searchOrder} Search */}
+         
             
             <OrderMainContainer>
             <IconContainer>
@@ -89,7 +135,9 @@ const SalesContent: FC<Props> = ({totalOrders}) => {
 
 
                     </OrderContainer>
-                )) : "No Orders Found"}
+                )) :             <ContainerNotExist>
+                <H2>Oops, No Orders Found...</H2>
+              </ContainerNotExist>}
             </OrderMainContainer>
         </ContainerMainContent>
     )

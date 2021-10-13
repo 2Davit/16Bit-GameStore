@@ -7,6 +7,7 @@ import {GoArrowLeft} from 'react-icons/go'
 export const ContainerMainContent = styled.div`
     height: 100%;
     width: 100%;
+
 `
 export const ContainerNav = styled.div`
     height: 5%;
@@ -15,6 +16,7 @@ export const ContainerNav = styled.div`
     justify-content: space-evenly;
     align-items: center;
     background: #000000;
+    
 `
 export const ContainerCards = styled.div`
     height: 95%;
@@ -38,7 +40,7 @@ export const AddBtns = styled.div`
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    
+
     
 `
 export const AddBtn = styled(Link)`
