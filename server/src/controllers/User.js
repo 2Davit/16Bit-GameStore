@@ -57,7 +57,42 @@ async function getUsers(req, res) {
   }
 }
 
+async function deleteOneUser(req, res) {
+
+  const { id } = req.params;
+
+  
+  try {
+    await User.destroy({
+      where: { id_user: id }
+     })
+     res.status(200).send("User succesfully deleted");
+    } catch(err) {
+      res.status(404).send("Error");
+  }
+};
+
+
+async function banOneUser(req, res) {
+
+  const { id, status } = req.params;
+  
+  try {
+    await User.update(
+      { is_active: status },
+      { where: { id_user: id } }
+    );
+     res.status(200).send(`User ${status === 'true' ? 'unbanned' : 'banned'}`);
+    } catch(err) {
+      res.status(404).send("Error");
+  }
+};
+
+
+
 module.exports = {
   postUser,
-  getUsers
+  getUsers,
+  deleteOneUser,
+  banOneUser
 };

@@ -27,6 +27,18 @@ export const deleteProduct = (id:number) => {
     return data;
   }
 }
+export const deleteUser = (id:number | unknown) => {
+  return async function (dispatch: Dispatch<Detail>){
+    const data = await axios.delete(`/user/${id}`)
+    return data;
+  }
+}
+export const banUser = (id:number | unknown, status: boolean | string) => {
+  return async function (dispatch: Dispatch<Detail>){
+    const data = await axios.put(`/user/${id}/${status}`)
+    return data;
+  }
+}
 
 export const getUsers = () => {
   return async function (dispatch: Dispatch<Users>){
@@ -42,7 +54,7 @@ export const getUsers = () => {
 export const getOrders = () => {
   return async function (dispatch: Dispatch<Detail>){
     const {data} = await axios.get(`/order`)
-
+    // console.log('action creator;' , data)
     return dispatch({
       type: GET_ORDERS,
       payload: data,

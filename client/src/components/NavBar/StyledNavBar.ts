@@ -45,18 +45,35 @@ export const StyledNavBar = styled.nav`
       align-items: center;   
        margin-right: 5vw;     
      
-
       & >li {
         position: relative;
         display:flex;
         width: 100px;
         flex-wrap: wrap;
-      }     
+      }   
+      li svg {   
+        /* background:green;    */       
+            }  
+    
       
       li:hover {
         color: var(--clr-primary);
             }
 
+
+            .navbar__profile-pic {
+				width: 40px;
+				height: 40px;
+				border: 3px solid var(--clr-white);
+				border-radius: 50%;
+				overflow: hidden;
+
+				img {
+					width: 100%;
+					height: 100%;
+					object-fit: cover;
+				}
+			}
       .cart__number {
         font-size: 0.8em;
         background: var(--clr-primary);

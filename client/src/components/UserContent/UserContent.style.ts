@@ -1,5 +1,6 @@
 import styled from 'styled-components'
-import { AiFillDelete, AiFillEdit } from 'react-icons/ai'
+import { AiFillDelete } from 'react-icons/ai'
+import { GiHammerDrop, GiHealing } from 'react-icons/gi'
 
 
 export const UserMainContainer = styled.div`
@@ -10,6 +11,40 @@ flex-direction: column;
 
 align-items: center;
 `
+export const NavBtn = styled.button`
+height: 100%;
+    width: 20%;
+    background: transparent;
+    border: none;
+    color: #eeeeee;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    &:hover{
+        border-bottom: 3px solid #B55400;
+        border-top: 3px solid transparent;
+        background: #393E46;
+        color: #eeeeee;
+        text-decoration: none;
+    }
+    &:focus{
+        color: #B55400;
+        background: #393E46;
+        outline: none;
+        border-bottom: 3px solid #B55400;
+        border-top: 3px solid transparent;
+    }
+`
+// export const NavBtnContainer = styled.div`
+//     height: 100%;
+//     width: 50%;
+//     display: flex;
+//     align-items: center;
+
+    
+// `
 
 export const TitleContainer = styled.div`
 display: flex;
@@ -69,8 +104,12 @@ background: #222831;
 width: 12.5%;
 `
 
-export const IconUsersEdit = styled(AiFillEdit)`
+export const IconUsersBan = styled(GiHammerDrop)`
     color:  #c3630f;
+    font-size: 1.6rem;
+`
+export const IconUsersUnban = styled(GiHealing)`
+    color:  green;
     font-size: 1.6rem;
 `
 export const IconUsersDelete = styled(AiFillDelete)`
