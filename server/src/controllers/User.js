@@ -80,9 +80,28 @@ async function banOneUser(req, res) {
   }
 }
 
+async function updateOneUser(req, res) {
+  const { id, email, address, name, lastname } = req.body;
+  try {
+    await User.update(
+      {
+        email_user: email,
+        address_user: address,
+        name_user: name,
+        lastname_user: lastname,
+      },
+      { where: { id_user: id } }
+    );
+    res.status(200).send("User updated");
+  } catch (err) {
+    res.status(404).send("Error");
+  }
+}
+
 module.exports = {
   postUser,
   getUsers,
   deleteOneUser,
   banOneUser,
+  updateOneUser,
 };

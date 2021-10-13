@@ -25,6 +25,8 @@ export const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
   --clr-error-2: #972038;
 }
 
+
+
 /* width */
 ::-webkit-scrollbar {
   width: 14px;
