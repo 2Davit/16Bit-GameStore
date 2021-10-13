@@ -10,7 +10,6 @@ export function favoriteReducer(state: any = initialState, action: any): any {
 
   switch (type) {
     case GET_ALL_FAVORITES:
-      console.log("reducer", payload)
       return {
         ...state,
         favorites: payload,

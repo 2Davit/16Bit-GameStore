@@ -59,23 +59,31 @@ async function postFavorites(req, res, next) {
 }
 
 async function deleteFavorites(req, res, next) {
-  const { idProduct, idUser } = req.body;
-  console.log("acaaaaaaa", idProduct, idUser);
 
-  try {
-    const toDelete = await favorites.findOne({
-      where: {
-        [Op.and]: [{ userIdUser: idUser }, { productIdProduct: idProduct }],
-      },
-    });
-    if (toDelete) {
-      toDelete.destroy();
-      return res.json(idProduct);
-    } else {
-      return next({
-        status: 404,
-        message: "Product  not found",
-      });
+
+    const { idProduct, idUser } = req.body;
+    console.log('back', idProduct, idUser)
+
+    try {
+        const toDelete = await favorites.findOne({
+            where: {
+                [Op.and]: [{ userIdUser: idUser }, { productIdProduct: idProduct }]
+            }
+        });
+        if (toDelete) {
+            toDelete.destroy()
+            return res.json(idProduct);
+        } else {
+            return next({
+                status: 404,
+                message: 'Product  not found'
+            })
+        }
+
+    } catch (error) {
+        console.log(error);
+
+
     }
   } catch (error) {
     console.log(error);

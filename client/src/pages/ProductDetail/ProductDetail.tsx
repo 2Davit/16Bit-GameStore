@@ -31,7 +31,6 @@ const Detail: FC = () => {
   const detailProduct = useSelector(
     (state: Store) => state.productsReducer.detailProduct
   );
-
   const getAll = () => {
     let stockInLocal = JSON.parse(localStorage.getItem("cart")!);
     let game = stockInLocal?.find(
