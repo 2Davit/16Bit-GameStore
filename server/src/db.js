@@ -55,7 +55,7 @@ let capsEntries = entries.map((entry) => [
 ]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-const { Order, OrderProduct, Product, User, Genre, Platform, Role } =
+const { Order, OrderProduct, Product, User, Genre, Platform, Role, favorites } =
   sequelize.models;
 
 User.hasMany(Order);

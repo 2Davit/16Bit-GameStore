@@ -404,22 +404,39 @@ async function deleteOneProduct(req, res) {
   }
 }
 
-async function addProductFavorite(req, res) {
-  const { product_id, user_id } = req.body;
-  let productDB = Product.findByPk({
+/* async function addProductFavorite(req, res) {
+  try{
+   const { product_id, user_id } = req.body;
+  let productDB =  await Product.findByPk({
     where: {
       id_product: product_id,
     },
   });
   console.log(productDB)
-  let userDB = User.findByPk({
+  let userDB = await User.findByPk({
     where: {
       id_user: user_id,
     },
   });
   console.log(userDB)
   userDB.addUser(productDB);
+
+  res.status(200).send("Product succesfully added to favorite") 
+} catch(err){
+  res.status(404).send("errrrrrorrrrr");
 }
+} */
+
+/* try { 
+  Product.findAll({
+  include: { 
+      model: User,
+      as: 'favorite',
+      where: {
+        id_user: id_user
+      },
+      required: false
+  }}),  */
 
 module.exports = {
   listProductOnSale,
