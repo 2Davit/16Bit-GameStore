@@ -1,52 +1,57 @@
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
-const {Product, User, favorites} = require('../db.js');
+const { Product, User, favorites } = require('../db.js');
 
-async function getFavorites (req, res, next) {
+async function getFavorites(req, res, next) {
 
-    const {idUser} = req.body;
+    const { idUser } = req.params;
 
-
-    try {
-        const videogames = await favorites.findAll({
-            where: {
-                userIdUser: idUser
-            }})
-            
-        if (!videogames) {
-            throw {status: 404, message: 'User not found'}
-        } 
-        else {    
-            return res.json(videogames.map(e=>
-                e.productIdProduct
-                ))
-        }
-    } catch (error) {
-    console.log(error)
-    }
-};
-
-async function postFavorites (req, res, next) {
-    const {idProduct, idUser} = req.body;
     try {
         const user = await User.findOne({
             where: {
                 id_user: idUser
-        }});
-       
-        
+            },
+
+            include: [
+                { model: Product, required: true }
+            ]
+        })
+
+        if (!user) {
+            throw { status: 404, message: 'User not found' }
+        } else {
+
+        return res.send(user.products)
+
+        }
+    } catch (error) {
+        console.log(error)
+    }
+};
+
+async function postFavorites(req, res, next) {
+    const { idProduct, idUser } = req.body;
+    try {
+        const user = await User.findOne({
+            where: {
+                id_user: idUser
+            }
+        });
+
+
         const product = await Product.findOne({
             where: {
                 id_product: idProduct
-            } });
-           
-        if(!user || !product) throw {
+            }
+        });
+
+        if (!user || !product) throw {
             status: 400, message: 'User or productId does not exist'
         }
-        if (user&&product){
-            await user.addProduct(product);
-            return res.json(product) ;
-        }else{
+        if (user && product) {
+            await product.addUser(user);
+            return res.send(user);
+        } else {
             throw {
                 status: 400, message: 'User or productId does not exist'
             }
@@ -56,23 +61,27 @@ async function postFavorites (req, res, next) {
     }
 };
 
-async function deleteFavorites (req, res, next) {
-   
-    const {idProduct, idUser} = req.body;
-    try { 
+async function deleteFavorites(req, res, next) {
+
+    const { idProduct, idUser } = req.body;
+    console.log("acaaaaaaa", idProduct, idUser)
+
+    try {
         const toDelete = await favorites.findOne({
-            where:{
-                [Op.and]:[{userIdUser: idUser}, {productIdProduct:idProduct}]}});
+            where: {
+                [Op.and]: [{ userIdUser: idUser }, { productIdProduct: idProduct }]
+            }
+        });
         if (toDelete) {
             toDelete.destroy()
             return res.json(idProduct);
         } else {
             return next({
-                status: 404, 
+                status: 404,
                 message: 'Product  not found'
             })
         }
-        
+
     } catch (error) {
         console.log(error);
     }
