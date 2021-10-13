@@ -64,7 +64,7 @@ async function postFavorites(req, res, next) {
 async function deleteFavorites(req, res, next) {
 
     const { idProduct, idUser } = req.body;
-    console.log("acaaaaaaa", idProduct, idUser)
+    console.log('back', idProduct, idUser)
 
     try {
         const toDelete = await favorites.findOne({
