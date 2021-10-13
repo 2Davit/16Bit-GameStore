@@ -5,12 +5,11 @@ import { deleteNavbar } from "../../redux/actions/admin_actions";
 import { StyledLanding } from "./StyledLanding";
 
 const Landing: FC = () => {
-
   const dispatch = useDispatch();
   //quitar la navbar
   useEffect(() => {
-    dispatch(deleteNavbar())
-  },[dispatch])
+    dispatch(deleteNavbar());
+  }, [dispatch]);
 
   return (
     <StyledLanding>

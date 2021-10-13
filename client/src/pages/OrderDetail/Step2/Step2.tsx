@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { ProductInCart } from "../../../interfaces";
 import PurchaseStep2 from "../../../assets/img/svg/purchase-steps-2.svg";
 import { StyledSVG, Btn } from "../../../GlobalStyles/GlobalStyles";
-import axios from "axios";
 
 const Order = () => {
   const user = JSON.parse(localStorage.getItem("userData")!);
@@ -36,7 +35,6 @@ const Order = () => {
     address_order: inputAddress.address,
   };
 
-
   const validate = (address: any) => {
     let errors = {
       address: "",
@@ -53,40 +51,16 @@ const Order = () => {
   }
 
   async function handlePayment() {
-
     try {
-      const preference:any = await( 
-         await fetch("https://videogame-store-16bit.herokuapp.com/order", {
+      const preference: any = await (
+        await fetch("https://videogame-store-16bit.herokuapp.com/order", {
           method: "post",
           body: JSON.stringify(order),
           headers: {
             "Content-Type": "application/json",
           },
-        })).json();  
-
-      /*   await axios({
-        method: 'post',
-        url: 'https://videogame-store-16bit.herokuapp.com/order',
-        data: order
-    }));  
-
-    /* await axios.post( '/order', order, {
-      headers: {
-        "Content-Type": "application/json",
-      }
-    }
-    ) *//* ) */;
-/*     const res = await axios.post('https://httpbin.org/post', { hello: 'world' }, {
-  headers: {
-    // 'application/json' is the modern content-type for JSON, but some
-    // older servers may use 'text/json'.
-    // See: http://bit.ly/text-json
-    'content-type': 'text/json'
-  }
-}); */
- 
-  
-  /*   await axios.post("/order", JSON.stringify(order))); */
+        })
+      ).json();
 
       var script = document.createElement("script");
 

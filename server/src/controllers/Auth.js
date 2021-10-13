@@ -59,20 +59,18 @@ const logIn = async (req, res) => {
     ],
   });
 
-  
-
   if (user && user.orders.length) {
-    
-    
     user.orders.sort((a, b) => {
-      if (a.dataValues.id_order > b.dataValues.id_order) {return 1}
-      else if (b.dataValues.id_order > a.dataValues.id_order) {return -1}
-      else return 0;
-  })
-    
+      if (a.dataValues.id_order > b.dataValues.id_order) {
+        return 1;
+      } else if (b.dataValues.id_order > a.dataValues.id_order) {
+        return -1;
+      } else return 0;
+    });
+
     const lastCartOrder = await Order.findOne({
       where: {
-        id_order: user.orders[user.orders.length-1].dataValues.id_order,
+        id_order: user.orders[user.orders.length - 1].dataValues.id_order,
       },
       include: [
         {
@@ -80,39 +78,32 @@ const logIn = async (req, res) => {
         },
       ],
     });
-  
 
-      
     const cleanOrder = lastCartOrder.orderProducts.map((pro) => pro.dataValues);
-    
-    
+
     const mapClean = cleanOrder.map((p) => ({
       id_product: p.productIdProduct,
-      quantity: p.quantity_orderProduct
+      quantity: p.quantity_orderProduct,
     }));
 
+    const products = mapClean.map(
+      async (p) => await Product.findByPk(p.id_product)
+    );
 
+    const finalProducts = await Promise.all(products);
+    var final = finalProducts.map((e) => e.dataValues);
 
-
-  const products = mapClean.map(async (p) => 
-      await Product.findByPk(p.id_product)
-  );
-  
-  const finalProducts = await Promise.all(products);
-  var final = finalProducts.map(e => e.dataValues)
-
-  for (let i = 0; i < final.length; i++) {
-    mapClean.forEach(e => {
-          if (final[i].id_product === e.id_product) {
-                final[i].quantity = e.quantity
-          }
-    })
-  } 
-
+    for (let i = 0; i < final.length; i++) {
+      mapClean.forEach((e) => {
+        if (final[i].id_product === e.id_product) {
+          final[i].quantity = e.quantity;
+        }
+      });
+    }
   }
 
   if (!user) {
-    return res.status(404).send({error: "User not found"});
+    return res.status(404).send({ error: "User not found" });
   }
 
   const passwordIsValid = bcrypt.compareSync(password, user.password_user);
@@ -124,7 +115,7 @@ const logIn = async (req, res) => {
   const token = jwt.sign({ id: user.id_user }, SECRET, {
     expiresIn: 7200, // 2 hours
   });
-  
+
   res.status(200).send({
     data: {
       token: token,

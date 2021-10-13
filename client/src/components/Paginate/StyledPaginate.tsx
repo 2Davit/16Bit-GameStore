@@ -7,7 +7,6 @@ export const StyledPaginate = styled.div`
   margin: 3.2rem;
 `;
 
-
 export const StyledButton = styled.button`
   background-color: var(--clr-primary);
   border-color: var(--clr-primary);

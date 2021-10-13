@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./AdminHome.module.css";
-import { ContainerAdminHome } from './AdminHome.style'
+import { ContainerAdminHome } from "./AdminHome.style";
 
 const AdminHome = () => {
   return (

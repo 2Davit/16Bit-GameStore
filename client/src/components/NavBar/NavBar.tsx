@@ -11,7 +11,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { openLogin } from "../../redux/actions/global_actions";
 //Interfaces
 import { ProductInCart } from "../../interfaces";
-import { User, UserState } from "../../interfaces/index";
 //Estilos
 import { StyledNavBar } from "./StyledNavBar";
 import { Dropdown, StyledSVG } from "../../GlobalStyles/GlobalStyles";

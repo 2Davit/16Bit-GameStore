@@ -8,12 +8,11 @@ import Confetti from "react-confetti";
 import { clearCart } from "../../../redux/actions/cart_actions";
 const Step3 = () => {
   const history = useHistory();
-
   const dispatch = useDispatch();
 
   useEffect(() => {
-      dispatch(clearCart());
-  }, []);
+    dispatch(clearCart());
+  }, [dispatch]);
 
   return (
     <StepThree>
@@ -21,7 +20,10 @@ const Step3 = () => {
       <h2 className="mb-1">Order details</h2>
       <StyledSVG className="mb-2" src={PurchaseStep3} />
       <div className="step__info">
-        <img src="https://c.tenor.com/a_JvvZ_a5dAAAAAi/sonic-fox.gif" alt='not found' />
+        <img
+          src="https://c.tenor.com/a_JvvZ_a5dAAAAAi/sonic-fox.gif"
+          alt="not found"
+        />
         <p>Your purchase has been made successfully</p>
         <p>
           Your order number is <span>0000</span>

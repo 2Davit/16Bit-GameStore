@@ -117,7 +117,6 @@ export const Btn = styled.button`
     box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.15);
   }
 
-
   &.btn-card:hover {
     background-image: linear-gradient(
       45deg,
@@ -128,7 +127,6 @@ export const Btn = styled.button`
   &.btn-card:focus {
     outline: none;
   }
-
 
   &.btn-img {
     position: relative;
@@ -152,15 +150,15 @@ export const Btn = styled.button`
   }
 
   &.btn-danger {
-		color: var(--clr-error);
-		border-color: var(--clr-error);
-		box-shadow: 2px 2px 0px rgba(0,0,0,.15);
+    color: var(--clr-error);
+    border-color: var(--clr-error);
+    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.15);
 
-		&:hover {
-			color: var(--clr-white);
-			background-color: var(--clr-error);
-		}
-	}
+    &:hover {
+      color: var(--clr-white);
+      background-color: var(--clr-error);
+    }
+  }
 `;
 
 export const QuantityButton = styled.button`
@@ -201,32 +199,31 @@ export const Dropdown = styled.li`
   }
 
   & > ul {
-		display: none;
-		min-width: 150px;
-		position: absolute;
-		left: 50%;
-		top: 110%;
-		transform: translateX(-50%);
-		padding-top: 1em;
-		font-size: 0.9em;
-		color: var(--clr-dark);
-		background-color: var(--clr-white);
-		box-shadow: 0 0 20px rgba(0,0,0,.7);
-		border-radius: .4em;
-		z-index: 10;
-    
+    display: none;
+    min-width: 150px;
+    position: absolute;
+    left: 50%;
+    top: 110%;
+    transform: translateX(-50%);
+    padding-top: 1em;
+    font-size: 0.9em;
+    color: var(--clr-dark);
+    background-color: var(--clr-white);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+    border-radius: 0.4em;
+    z-index: 10;
 
-		&::before {
-			content: '';
-			width: 0px;
-			height: 0px;
-			position: absolute;
-			top: -19px;
-			left: 50%;
-			transform: translateX(-50%);
-			border: 10px solid transparent;
-			border-bottom-color: var(--clr-white);
-		}
+    &::before {
+      content: "";
+      width: 0px;
+      height: 0px;
+      position: absolute;
+      top: -19px;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 10px solid transparent;
+      border-bottom-color: var(--clr-white);
+    }
 
     a,
     .dropdown__button {
@@ -243,13 +240,12 @@ export const Dropdown = styled.li`
     }
 
     .dropdown__first-name {
-			color: var(--clr-primary);			
-			font-weight: 900;
-			border-bottom: 1px solid #CCC;		
-			text-align: center;
-		}
+      color: var(--clr-primary);
+      font-weight: 900;
+      border-bottom: 1px solid #ccc;
+      text-align: center;
+    }
   }
 `;
-
 
 export const StyledSVG = styled(SVG)``;
