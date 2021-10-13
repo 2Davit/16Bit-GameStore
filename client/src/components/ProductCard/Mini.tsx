@@ -7,9 +7,8 @@ import { useDispatch } from "react-redux";
 import { addItemCart, removeItemCart } from "../../redux/actions/cart_actions";
 import { ProductInCart } from "../../interfaces";
 
-
 interface Props {
-  detail: ProductInCart; 
+  detail: ProductInCart;
 }
 
 const Mini: FC<Props> = ({ detail }: any) => {
@@ -18,7 +17,7 @@ const Mini: FC<Props> = ({ detail }: any) => {
 
   const handleQuantityChange = (amount: number) => {
     const newValue = detail.quantity + amount;
-    if (newValue<=detail.in_stock && newValue >= 1 ) {
+    if (newValue <= detail.in_stock && newValue >= 1) {
       let gameToDispatch = { ...detail };
       gameToDispatch.quantity = amount;
       dispatch(addItemCart(gameToDispatch));
@@ -29,10 +28,13 @@ const Mini: FC<Props> = ({ detail }: any) => {
     dispatch(removeItemCart(detail.id_product));
   };
 
-  let stockInLocal = JSON.parse(localStorage.getItem("cart")!)
-  let game = stockInLocal?.find((g:ProductInCart) => g.id_product === detail.id_product)
-  
-  let unavailable = detail.quantity + game?.quantity === detail.in_stock+ 1? true : false
+  let stockInLocal = JSON.parse(localStorage.getItem("cart")!);
+  let game = stockInLocal?.find(
+    (g: ProductInCart) => g.id_product === detail.id_product
+  );
+
+  let unavailable =
+    detail.quantity + game?.quantity === detail.in_stock + 1 ? true : false;
   return (
     <MiniCard>
       <div className="article__img">
@@ -53,7 +55,7 @@ const Mini: FC<Props> = ({ detail }: any) => {
           <span className="quantitytext">{detail.quantity}</span>
           <span>Unit(s)</span>
           <QuantityButton
-          disabled = {unavailable}
+            disabled={unavailable}
             className="quantitybutton-small"
             onClick={() => handleQuantityChange(1)}
           >

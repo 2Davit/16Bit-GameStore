@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { ProductInCart } from "../../../interfaces";
 import PurchaseStep2 from "../../../assets/img/svg/purchase-steps-2.svg";
 import { StyledSVG, Btn } from "../../../GlobalStyles/GlobalStyles";
-import axios from "axios";
+import { StepTwo } from "../StyledOrderDetail";
 
 const Order = () => {
   const user = JSON.parse(localStorage.getItem("userData")!);
@@ -36,13 +36,12 @@ const Order = () => {
     address_order: inputAddress.address,
   };
 
-
   const validate = (address: any) => {
     let errors = {
       address: "",
     };
     if (address.address.length === 0) {
-      errors.address = "la direccion tiene que ser real";
+      errors.address = "Please insert a valid address";
     }
     return errors;
   };
@@ -53,40 +52,16 @@ const Order = () => {
   }
 
   async function handlePayment() {
-
     try {
-      const preference:any = await( 
-         await fetch("https://videogame-store-16bit.herokuapp.com/order", {
+      const preference: any = await (
+        await fetch("https://videogame-store-16bit.herokuapp.com/order", {
           method: "post",
           body: JSON.stringify(order),
           headers: {
             "Content-Type": "application/json",
           },
-        })).json();  
-
-      /*   await axios({
-        method: 'post',
-        url: 'https://videogame-store-16bit.herokuapp.com/order',
-        data: order
-    }));  
-
-    /* await axios.post( '/order', order, {
-      headers: {
-        "Content-Type": "application/json",
-      }
-    }
-    ) *//* ) */;
-/*     const res = await axios.post('https://httpbin.org/post', { hello: 'world' }, {
-  headers: {
-    // 'application/json' is the modern content-type for JSON, but some
-    // older servers may use 'text/json'.
-    // See: http://bit.ly/text-json
-    'content-type': 'text/json'
-  }
-}); */
- 
-  
-  /*   await axios.post("/order", JSON.stringify(order))); */
+        })
+      ).json();
 
       var script = document.createElement("script");
 
@@ -128,21 +103,25 @@ const Order = () => {
 
   return (
     <>
-      <h2>Your adress:</h2>
-      <StyledSVG src={PurchaseStep2} />
-      <form onSubmit={(e) => handleSubmit(e)}>
-        <label>
-          <h2>Please confirm your address</h2>
-          <input
-            name="address"
-            value={inputAddress.address}
-            onChange={(e) => handleAddressChange(e)}
-          />
-          <Btn type="submit">Confirmar 👾</Btn>
-        </label>
-      </form>
-      {error.address && <div>{error.address}</div>}
-      {inputAddress && <div id="mercado" className="mercado"></div>}
+      <StepTwo>
+        <h2>Your adress:</h2>
+        <StyledSVG src={PurchaseStep2} />
+        <form onSubmit={(e) => handleSubmit(e)}>
+          <label>
+            <p>Please confirm a valid address</p>
+            <input
+              name="address"
+              value={inputAddress.address}
+              onChange={(e) => handleAddressChange(e)}
+            />
+            {error.address && <p className="errorMsg">{error.address}</p>}
+            <Btn className="btn-card" type="submit">
+              Confirmar 👾
+            </Btn>
+          </label>
+        </form>
+        {inputAddress && <div id="mercado" className="mercado"></div>}
+      </StepTwo>
     </>
   );
 };

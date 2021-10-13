@@ -11,6 +11,7 @@ import { Store } from "../../../redux/reducer";
 
 const Step1 = () => {
   const history = useHistory();
+
   const [total, setTotal] = useState(0.0);
   const [subtotal, setSubtotal] = useState(0.0);
 

@@ -3,8 +3,8 @@ import { useState, useEffect } from "react";
 import { createNewGenre } from "../../redux/actions/products_action";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import axios from 'axios';
-import { Store } from '../../redux/reducer';
+import axios from "axios";
+import { Store } from "../../redux/reducer";
 import { ProductInCart } from "../../interfaces";
 
 interface UserGuess {
@@ -14,25 +14,23 @@ interface UserGuess {
   adress: string;
 }
 const OrderUser = () => {
-
   /* const cart: any = useSelector(
     (state: Store) => state.cartReducer.cart.list
   ); */
   const user = JSON.parse(localStorage.getItem("userData")!);
-  
-
-  const cart : any = JSON.parse(localStorage.getItem("cart")!);
-  
-  const [subtotal, setSubtotal] = useState(0.00);
+  const cart: any = JSON.parse(localStorage.getItem("cart")!);
+  const [subtotal, setSubtotal] = useState(0.0);
 
   useEffect(() => {
     if (cart) {
-      setSubtotal(cart.reduce((acc: number, product: ProductInCart) => {
-        acc = acc + (product.price_product! * product.quantity!)
-        return acc;
-      }, 0.00))
+      setSubtotal(
+        cart.reduce((acc: number, product: ProductInCart) => {
+          acc = acc + product.price_product! * product.quantity!;
+          return acc;
+        }, 0.0)
+      );
     }
-  }, [cart])
+  }, [cart]);
 
   const dispatch = useDispatch();
   const [input, setInput] = useState<UserGuess>({
@@ -61,21 +59,17 @@ const OrderUser = () => {
     );
   }
 
-
-  
-
   const order = {
     id_user: user?.id,
     status_order: "pending",
     amount_order: subtotal,
-    cart: cart?.map((c: ProductInCart) => (
-      {
-        id_product: c.id_product,
-        price_product: c.price_product,
-        quantity: c.quantity
-      })),
-    address_order: input.adress
-  }
+    cart: cart?.map((c: ProductInCart) => ({
+      id_product: c.id_product,
+      price_product: c.price_product,
+      quantity: c.quantity,
+    })),
+    address_order: input.adress,
+  };
 
   async function handlePayment() {
     try {
@@ -91,7 +85,6 @@ const OrderUser = () => {
 
       var script = document.createElement("script");
 
-      
       script.src =
         "https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js";
       script.type = "text/javascript";
@@ -99,26 +92,24 @@ const OrderUser = () => {
 
       script.setAttribute("data-button-label", "Pagar con Mercado Pago");
 
-      const element: HTMLElement = document.getElementById('mercado') as HTMLElement
-      element.innerHTML = '';
+      const element: HTMLElement = document.getElementById(
+        "mercado"
+      ) as HTMLElement;
+      element.innerHTML = "";
 
-      const elementTwo: HTMLElement = document.querySelector<HTMLDivElement>("#mercado") as HTMLElement
-
-       
+      const elementTwo: HTMLElement = document.querySelector<HTMLDivElement>(
+        "#mercado"
+      ) as HTMLElement;
 
       elementTwo.appendChild(script);
-
-      
-
     } catch {
       alert("Sin stock");
     }
-
   }
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    handlePayment()
+    handlePayment();
   }
 
   const validate = (input: UserGuess) => {
@@ -213,9 +204,7 @@ const OrderUser = () => {
         />
         {error.adress && <div style={{ color: "red" }}>{error.adress}</div>}
 
-        <button type="submit">
-          Create
-        </button>
+        <button type="submit">Create</button>
       </form>
     </div>
   );

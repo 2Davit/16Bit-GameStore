@@ -7,7 +7,7 @@ import {
   getAllProducts,
 } from "../../redux/actions/products_action";
 import { getUsers } from "../../redux/actions/admin_actions";
-import { deleteNavbar, getOrders } from '../../redux/actions/admin_actions'
+import { deleteNavbar, getOrders } from "../../redux/actions/admin_actions";
 import {
   AdminHome,
   Panel,
@@ -15,9 +15,13 @@ import {
   UserContent,
   SalesContent,
 } from "../../components";
-import { ContainerAdmin, InfoContainer, MainContainer } from './AdminPanel.style'
+import {
+  ContainerAdmin,
+  InfoContainer,
+  MainContainer,
+} from "./AdminPanel.style";
 
-const AdminPanel: FC = (props) => {  
+const AdminPanel: FC = (props) => {
   const dispatch = useDispatch();
   const [info, setInfo] = useState({
     setHome: true,
@@ -77,18 +81,14 @@ const AdminPanel: FC = (props) => {
     dispatch(getAllGenres());
     dispatch(getAllPlatforms());
     dispatch(deleteNavbar());
-    dispatch(getUsers())
-    dispatch(getOrders())
+    dispatch(getUsers());
+    dispatch(getOrders());
   }, [dispatch]);
   const totalProducts: any = useSelector(
     (state: Store) => state.productsReducer
   );
-  const totalUsers = useSelector(
-    (state: Store) => state.adminReducer.users
-  )
-  const totalOrders = useSelector(
-    (state: Store) => state.adminReducer.orders
-)
+  const totalUsers = useSelector((state: Store) => state.adminReducer.users);
+  const totalOrders = useSelector((state: Store) => state.adminReducer.orders);
 
   return (
     <ContainerAdmin>
@@ -103,7 +103,7 @@ const AdminPanel: FC = (props) => {
         ) : info.setSales ? (
           <SalesContent totalOrders={totalOrders} />
         ) : info.setUsers ? (
-          <UserContent totalUser={totalUsers}/>
+          <UserContent totalUser={totalUsers} />
         ) : (
           "Oops Something Went Wrong..."
         )}

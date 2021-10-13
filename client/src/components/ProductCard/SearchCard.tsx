@@ -11,7 +11,9 @@ interface Props {
 const SearchCard: FC<Props> = ({ game, key, id }: any) => {
   return (
     <Link to={`/game/${id}`}>
-      <div key={key} className={styles.container}>{game.name_product}</div>
+      <div key={key} className={styles.container}>
+        {game.name_product}
+      </div>
     </Link>
   );
 };
