@@ -76,7 +76,7 @@ export interface CartState {
 }
 
 export interface Order{
-  id_order?:number;
+  id_order?:number | any;
   address: string;
   amount: number;
   date: string;
@@ -137,8 +137,8 @@ export interface UserLogin {
 
 export interface User {
   active: boolean,
-  id_user?:number,
-  nickname?:string;
+  id_user?:number | any,
+  nickname?:string | any;
   token: string;
   username: string;
   email: string;

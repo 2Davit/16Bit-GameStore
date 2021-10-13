@@ -23,7 +23,7 @@ interface Props {
 
 export const OrderContainer = styled.div<Props>`
 display: flex;
-background: ${({backg}) => backg}; 
+background: ${({ backg }) => backg}; 
 min-width: 95%;
 `
 
@@ -39,4 +39,46 @@ color: #eeeeee;
 border: 1px solid #222831;
 width:16.666%;
 padding: 0.25rem;
+`
+
+export const OrderSelect = styled.select`
+    width: 20%;
+    margin-right: 1rem;
+background: transparent;
+font-weight: bold;
+border: none;
+    &:focus{
+    outline: none;
+    }
+color: #eeeeee;
+    option{
+        background: #222831;
+    }
+
+`
+export const NavBtn = styled.button`
+height: 100%;
+    width: 20%;
+    background: transparent;
+    border: none;
+    color: #eeeeee;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    &:hover{
+        border-bottom: 3px solid #B55400;
+        border-top: 3px solid transparent;
+        background: #393E46;
+        color: #eeeeee;
+        text-decoration: none;
+    }
+    &:focus{
+        color: #B55400;
+        background: #393E46;
+        outline: none;
+        border-bottom: 3px solid #B55400;
+        border-top: 3px solid transparent;
+    }
 `

@@ -5,31 +5,41 @@ import { useHistory } from 'react-router-dom'
 // import { Store } from "../../redux/reducer/";
 import { User } from "../../interfaces";
 import { deleteUser, banUser } from "../../redux/actions/admin_actions";
-import { ContainerNav, ContainerMainContent, IconContainer, BtnPaged1, BtnPaged2, IconPrev, IconNext, Searchbar, Search } from '../ProductContent/ProductContent.style'
-import { InfoUser, UserContainer, UserMainContainer, UserButtons, InfoUserMini, TitleBlankDiv, TitleContainer, TitleUserMini, TitleUser, IconUsersDelete, IconUsersBan, IconUsersUnban } from './UserContent.style'
+import { ContainerNav, ContainerMainContent, IconContainer, BtnPaged1, BtnPaged2, IconPrev, IconNext, Searchbar, Search, AddBtns, ContainerNotExist, H2 } from '../ProductContent/ProductContent.style'
+import { InfoUser, UserContainer, UserMainContainer, UserButtons, InfoUserMini, TitleBlankDiv, TitleContainer, TitleUserMini, TitleUser, IconUsersDelete, IconUsersBan, IconUsersUnban, NavBtn } from './UserContent.style'
 
 interface Props {
     totalUser: Array<User>;
 }
 
-const UserContent: FC<Props> = ({totalUser}) => {
+const UserContent: FC<Props> = ({ totalUser }) => {
     const dispatch = useDispatch();
     const history = useHistory()
-
-    // useEffect(() => {
-    //     dispatch(getUsers())
-    // }, [dispatch]);
-    // const totalUsers = useSelector(
-    //     (state: Store) => state.adminReducer.users
-    // )
-
     const [page, setPage] = useState<number>(0)//iria de 10 en 10 ejm : 0-10,20,30
     const [page2, setPage2] = useState<number>(10)//19
     const [btnNext, setBtnNext] = useState<boolean>(false)
     const [btnPrev, setBtnPrev] = useState<boolean>(false)
+
+    let orderId = totalUser.sort(function (a, b) {
+        return a.id_user - b.id_user
+    })
+
     const [userSearch, setUserSearch] = useState(totalUser);
+    const [btnStatus, setBtnStatus] = useState<boolean>(true)
+    const [btnAlphabet, setBtnAlphabet] = useState<boolean>(true)
     let onViewUsers = userSearch.slice(page, page2)
 
+
+    
+    let alphabet = totalUser.sort(function (a, b) {
+        if (a.nickname.toLowerCase() > b.nickname.toLowerCase()) {
+            return 1;
+        }
+        if (a.nickname.toLowerCase() < b.nickname.toLowerCase()) {
+            return -1;
+        }
+        return 0;
+    })  
 
     const handleNextPage = () => {
         if (userSearch.length < (page2 + 1)) {
@@ -71,19 +81,53 @@ const UserContent: FC<Props> = ({totalUser}) => {
     const handleDeleteUser = (id: number | unknown) => {
         dispatch(deleteUser(id))
         alert('se fue' + id)
-    } 
+        history.go(0)
+    }
     const banDeleteUser = (id: number | unknown, status: boolean | string) => {
         dispatch(banUser(id, status))
         alert('cambio status')
         history.go(0)
-    } 
+    }
+
+    const handleOrderByStatus = () => {
+        const actives = totalUser.filter(status => status.active === true)
+        const banneds = totalUser.filter(status => status.active !== true)
+        const filteredstatus = actives.concat(banneds)
+
+        setUserSearch([])
+        setUserSearch(filteredstatus)
+        setBtnStatus(!btnStatus)
+
+    }
+    const handleCleanseStatus = () => {
+
+        setUserSearch([])
+        setUserSearch(orderId)
+        setBtnStatus(true)
+        setBtnAlphabet(true)
+    }
+
+    const handleOrderByAlphabet = () => {
+
+        setUserSearch([])
+        setUserSearch([...alphabet])
+        setBtnAlphabet(!btnAlphabet)
+    }
+
+    console.log(alphabet)
 
     return (
         <ContainerMainContent >
             <ContainerNav>
-            <Searchbar>
-          <Search placeholder=' Search users...' onChange={searchUsers} />
-        </Searchbar>
+                <Searchbar>
+                    <Search placeholder=' Search users...' onChange={searchUsers} />
+                </Searchbar>
+                <AddBtns >
+                    {btnStatus ? <NavBtn onClick={handleOrderByStatus}>By Status</NavBtn> : <NavBtn onClick={handleCleanseStatus}>By Id</NavBtn>}
+                    {btnAlphabet ? <NavBtn onClick={handleOrderByAlphabet}>By Alphabet</NavBtn> : <NavBtn onClick={handleCleanseStatus}>By Id</NavBtn>}
+
+                </AddBtns>
+
             </ContainerNav>
             <UserMainContainer>
                 <IconContainer>
@@ -103,8 +147,8 @@ const UserContent: FC<Props> = ({totalUser}) => {
 
 
                 </TitleContainer>
-                {onViewUsers ? onViewUsers.map((u: User) => (
-                    <UserContainer backg={u.id_user ? u.id_user % 2 === 0 ? '#e1e1e1': '#eeeeee' : ""} key={u.id_user} >
+                {onViewUsers.length > 0 ? onViewUsers.map((u: User) => (
+                    <UserContainer backg={u.id_user ? u.id_user % 2 === 0 ? '#e1e1e1' : '#eeeeee' : ""} key={u.id_user} >
                         <InfoUserMini>{u.id_user}</InfoUserMini>
                         <InfoUser>{u.nickname}</InfoUser>
                         <InfoUser>{u.name}</InfoUser>
@@ -112,11 +156,13 @@ const UserContent: FC<Props> = ({totalUser}) => {
                         <InfoUserMini>{u.active ? "Active" : "Banned"}</InfoUserMini>
                         <InfoUser>{u.email}</InfoUser>
                         <InfoUser>{u.address}</InfoUser>
-                        <UserButtons onClick={() => handleDeleteUser(u.id_user)} backg={u.id_user ? u.id_user % 2 === 0 ? '#e1e1e1': '#eeeeee' : ""}><IconUsersDelete /></UserButtons>
-                        <UserButtons onClick={() => banDeleteUser(u.id_user, !u.active)} backg={u.id_user ? u.id_user % 2 === 0 ? '#e1e1e1': '#eeeeee' : ""}>{u.active ? <IconUsersBan/> : <IconUsersUnban/>}</UserButtons>
+                        <UserButtons onClick={() => handleDeleteUser(u.id_user)} backg={u.id_user ? u.id_user % 2 === 0 ? '#e1e1e1' : '#eeeeee' : ""}><IconUsersDelete /></UserButtons>
+                        <UserButtons onClick={() => banDeleteUser(u.id_user, !u.active)} backg={u.id_user ? u.id_user % 2 === 0 ? '#e1e1e1' : '#eeeeee' : ""}>{u.active ? <IconUsersBan /> : <IconUsersUnban />}</UserButtons>
 
                     </UserContainer>
-                )) : "No Users Found"}
+                )) :             <ContainerNotExist>
+                <H2>Oops, No Users Found...</H2>
+              </ContainerNotExist>}
             </UserMainContainer>
         </ContainerMainContent>
     )
