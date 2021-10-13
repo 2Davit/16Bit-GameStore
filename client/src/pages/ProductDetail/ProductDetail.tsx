@@ -12,6 +12,7 @@ import fivestars from "../../assets/img/fivestars.png";
 import { addItemCart } from "../../redux/actions/cart_actions";
 import { toast } from "react-toastify";
 import { ProductInCart } from "../../interfaces";
+import { addFavorites } from "../../redux/actions/favorite_actions";
 
 interface Props {
   id: string;
@@ -90,6 +91,17 @@ const Detail: FC = () => {
     history.push("/order");
   };
 
+  const handleAddFavorites = () => {
+    let idProduct = detailProduct.id_product;
+    let idUser = JSON.parse(localStorage.getItem("userData")!);
+    let ids = {
+      idProduct: idProduct,
+      idUser: idUser.id
+    }
+    dispatch(addFavorites(ids));
+   history.push("/favs")
+  }
+
  
   let unavailable =
     quantity + game?.quantity === detailProduct.in_stock + 1 ? true : false;
@@ -152,6 +164,10 @@ const Detail: FC = () => {
           <div className="game__purchase-container">
             <div className="game__buttons">
             
+              <Btn  onClick={handleAddFavorites}  disabled={unavailable} className={!unavailable? "btn-card btn-img" : "btn-card-disabled btn-img"}>
+                Add to Favs
+                <StyledSVG src={joystick} />
+              </Btn>
               <Btn  onClick={() => handleBuyNow()}  disabled={unavailable} className={!unavailable? "btn-card btn-img" : "btn-card-disabled btn-img"}>
                 Buy now
                 <StyledSVG src={joystick} />
