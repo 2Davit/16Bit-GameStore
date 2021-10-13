@@ -19,7 +19,7 @@ import { Dropdown, StyledSVG } from "../../GlobalStyles/GlobalStyles";
 import cart from "../../assets/img/svg/cart2.svg";
 import heart from "../../assets/img/svg/heart1.svg";
 import userPic from "../../assets/img/svg/user.svg";
-import defaultAvatar from "../../assets/img/avatars/Avatar_8.png";
+import defaultAvatar from "../../assets/img/avatars/Avatar_9.png";
 
 interface Props {
   setPage(num: number): void;
