@@ -1,50 +1,43 @@
-import { FC, useEffect, useState,  } from "react";
-import { useDispatch, useSelector } from "react-redux"
-import { getOrders } from "../../redux/actions/admin_actions";
-import { Store } from "../../redux/reducer/";
+import { FC,  useState,  } from "react";
 import { Order } from "../../interfaces";
 import { ContainerNav, ContainerMainContent, IconContainer, BtnPaged1, BtnPaged2, IconPrev, IconNext, Searchbar, Search } from '../ProductContent/ProductContent.style'
 import { OrderMainContainer, TitleContainer, OrderContainer, InfoOrder, TitleOrder } from './SalesContent.style'
 
-const SalesContent: FC = () => {
+interface Props { 
+    totalOrders: Array<Order>;
+}
 
-    const totalOrders = useSelector(
-        (state: Store) => state.adminReducer.orders
-    )
-    
-    const dispatch = useDispatch();
+const SalesContent: FC<Props> = ({totalOrders}) => {
+
     const [page, setPage] = useState<number>(0)//iria de 10 en 10 ejm : 0-10,20,30
     const [page2, setPage2] = useState<number>(10)//19
     const [btnNext, setBtnNext] = useState<boolean>(false)
     const [btnPrev, setBtnPrev] = useState<boolean>(false)
     const [orderSearch, setOrderSearch] = useState(totalOrders);
-    // let onViewOrders = orderSearch.slice(page, page2)
-    useEffect(() => {
-        dispatch(getOrders())
-    }, [dispatch]);
+    let onViewOrders = orderSearch.slice(page, page2)
 
 
+    const handleNextPage = () => {
+        if (orderSearch.length < (page2 + 1)) {
+            setBtnNext(true)
+        } else {
+            setPage(page + 10);
+            setPage2(page2 + 10)
+            setBtnPrev(false)
+        }
 
-    // const handleNextPage = () => {
-    //     if (orderSearch.length < (page2 + 1)) {
-    //         setBtnNext(true)
-    //     } else {
-    //         setPage(page + 10);
-    //         setPage2(page2 + 10)
-    //         setBtnPrev(false)
-    //     }
+    }
 
-    // }
+    const handlePreviousPage = () => {
+        if (page <= 0) {
+            setBtnPrev(true)
+        } else {
+            setPage(page - 10);
+            setPage2(page2 - 10)
+            setBtnNext(false)
+        }
+    }
 
-    // const handlePreviousPage = () => {
-    //     if (page <= 0) {
-    //         setBtnPrev(true)
-    //     } else {
-    //         setPage(page - 10);
-    //         setPage2(page2 - 10)
-    //         setBtnNext(false)
-    //     }
-    // }
     // const searchOrder = (e: any) => {
     //     let search = e.target.value.toLowerCase();
     //     if (search === "") {
@@ -65,16 +58,15 @@ const SalesContent: FC = () => {
         <ContainerMainContent>
             <ContainerNav>
             <Searchbar>
-          <Search placeholder=' Search orders...'  />
+          <Search placeholder=' Search orders...' />
         </Searchbar>
             </ContainerNav>
-            {/* onChange={searchOrder} linea 69
-            onClick={handlePreviousPage} linea 77
-            onClick={handleNextPage} linea 78 */}
+            {/* onChange={searchOrder} Search */}
+            
             <OrderMainContainer>
             <IconContainer>
-                    <BtnPaged1 byeBtn={btnPrev} disabled={btnPrev} ><IconPrev byeBtnI={btnPrev} /></BtnPaged1>
-                    <BtnPaged2 byeBtn={btnNext} disabled={btnNext} ><IconNext byeBtnI={btnNext} /></BtnPaged2>
+                    <BtnPaged1 byeBtn={btnPrev} disabled={btnPrev} onClick={handlePreviousPage} ><IconPrev byeBtnI={btnPrev} /></BtnPaged1>
+                    <BtnPaged2 byeBtn={btnNext} disabled={btnNext} onClick={handleNextPage} ><IconNext byeBtnI={btnNext} /></BtnPaged2>
                 </IconContainer>
                 <TitleContainer >
 
@@ -86,7 +78,7 @@ const SalesContent: FC = () => {
                     <TitleOrder>Date</TitleOrder>
 
                 </TitleContainer>
-                {totalOrders ? totalOrders.map((o: Order) => (
+                {onViewOrders.length !== 0 ? onViewOrders.map((o: Order) => (
                     <OrderContainer backg={o.id_order ? o.id_order % 2 === 0 ? '#e1e1e1': '#eeeeee' : ""} key={o.id_order} style={{ color: "black" }} >
                         <InfoOrder>{o.id_order}</InfoOrder>
                         <InfoOrder>{o.status}</InfoOrder>

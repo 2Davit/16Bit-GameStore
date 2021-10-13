@@ -1,17 +1,20 @@
-import { FC, useEffect, useState } from "react";
-// import { useDispatch, useSelector } from "react-redux"
+import { FC, useState } from "react";
+import { useDispatch } from "react-redux"
+import { useHistory } from 'react-router-dom'
 // import { getUsers } from "../../redux/actions/admin_actions";
 // import { Store } from "../../redux/reducer/";
 import { User } from "../../interfaces";
+import { deleteUser, banUser } from "../../redux/actions/admin_actions";
 import { ContainerNav, ContainerMainContent, IconContainer, BtnPaged1, BtnPaged2, IconPrev, IconNext, Searchbar, Search } from '../ProductContent/ProductContent.style'
-import { InfoUser, UserContainer, UserMainContainer, UserButtons, InfoUserMini, TitleBlankDiv, TitleContainer, TitleUserMini, TitleUser, IconUsersDelete, IconUsersEdit } from './UserContent.style'
+import { InfoUser, UserContainer, UserMainContainer, UserButtons, InfoUserMini, TitleBlankDiv, TitleContainer, TitleUserMini, TitleUser, IconUsersDelete, IconUsersBan, IconUsersUnban } from './UserContent.style'
 
 interface Props {
     totalUser: Array<User>;
 }
 
 const UserContent: FC<Props> = ({totalUser}) => {
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
+    const history = useHistory()
 
     // useEffect(() => {
     //     dispatch(getUsers())
@@ -65,6 +68,16 @@ const UserContent: FC<Props> = ({totalUser}) => {
         }
     };
 
+    const handleDeleteUser = (id: number | unknown) => {
+        dispatch(deleteUser(id))
+        alert('se fue' + id)
+    } 
+    const banDeleteUser = (id: number | unknown, status: boolean | string) => {
+        dispatch(banUser(id, status))
+        alert('cambio status')
+        history.go(0)
+    } 
+
     return (
         <ContainerMainContent >
             <ContainerNav>
@@ -96,11 +109,11 @@ const UserContent: FC<Props> = ({totalUser}) => {
                         <InfoUser>{u.nickname}</InfoUser>
                         <InfoUser>{u.name}</InfoUser>
                         <InfoUser>{u.lastname}</InfoUser>
-                        <InfoUserMini>{u.active ? "Active" : "Unactive"}</InfoUserMini>
+                        <InfoUserMini>{u.active ? "Active" : "Banned"}</InfoUserMini>
                         <InfoUser>{u.email}</InfoUser>
                         <InfoUser>{u.address}</InfoUser>
-                        <UserButtons backg={u.id_user ? u.id_user % 2 === 0 ? '#e1e1e1': '#eeeeee' : ""}><IconUsersDelete/></UserButtons>
-                        <UserButtons backg={u.id_user ? u.id_user % 2 === 0 ? '#e1e1e1': '#eeeeee' : ""}><IconUsersEdit/></UserButtons>
+                        <UserButtons onClick={() => handleDeleteUser(u.id_user)} backg={u.id_user ? u.id_user % 2 === 0 ? '#e1e1e1': '#eeeeee' : ""}><IconUsersDelete /></UserButtons>
+                        <UserButtons onClick={() => banDeleteUser(u.id_user, !u.active)} backg={u.id_user ? u.id_user % 2 === 0 ? '#e1e1e1': '#eeeeee' : ""}>{u.active ? <IconUsersBan/> : <IconUsersUnban/>}</UserButtons>
 
                     </UserContainer>
                 )) : "No Users Found"}

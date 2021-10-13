@@ -1,5 +1,6 @@
 import styled from 'styled-components'
-import { AiFillDelete, AiFillEdit } from 'react-icons/ai'
+import { AiFillDelete } from 'react-icons/ai'
+import { GiHammerDrop, GiHealing } from 'react-icons/gi'
 
 
 export const UserMainContainer = styled.div`
@@ -69,8 +70,12 @@ background: #222831;
 width: 12.5%;
 `
 
-export const IconUsersEdit = styled(AiFillEdit)`
+export const IconUsersBan = styled(GiHammerDrop)`
     color:  #c3630f;
+    font-size: 1.6rem;
+`
+export const IconUsersUnban = styled(GiHealing)`
+    color:  green;
     font-size: 1.6rem;
 `
 export const IconUsersDelete = styled(AiFillDelete)`
