@@ -42,8 +42,8 @@ async function postUser(req, res) {
 
 async function getUsers(req, res) {
   try {
-    const users = await User.findAll()
-    const userData = users.map(u => {
+    const users = await User.findAll();
+    const userData = users.map((u) => {
       return {
         id_user: u.id_user,
         nickname: u.nickname_user,
@@ -51,13 +51,54 @@ async function getUsers(req, res) {
         lastname: u.lastname_user,
         address: u.address_user,
         email: u.email_user,
-        active: u.is_active
-      }
-    })
-    res.status(200).send(userData)
-  } 
-  catch(err){
-    res.status(404).send(err)
+        active: u.is_active,
+      };
+    });
+    res.status(200).send(userData);
+  } catch (err) {
+    res.status(404).send(err);
+  }
+}
+
+async function deleteOneUser(req, res) {
+  const { id } = req.params;
+
+  try {
+    await User.destroy({
+      where: { id_user: id },
+    });
+    res.status(200).send("User succesfully deleted");
+  } catch (err) {
+    res.status(404).send("Error");
+  }
+}
+
+async function banOneUser(req, res) {
+  const { id, status } = req.params;
+
+  try {
+    await User.update({ is_active: status }, { where: { id_user: id } });
+    res.status(200).send(`User ${status === "true" ? "unbanned" : "banned"}`);
+  } catch (err) {
+    res.status(404).send("Error");
+  }
+}
+
+async function updateOneUser(req, res) {
+  const { id, email, address, name, lastname } = req.body;
+  try {
+    await User.update(
+      {
+        email_user: email,
+        address_user: address,
+        name_user: name,
+        lastname_user: lastname,
+      },
+      { where: { id_user: id } }
+    );
+    res.status(200).send("User updated");
+  } catch (err) {
+    res.status(404).send("Error");
   }
 }
 
@@ -119,5 +160,8 @@ async function sendUserMail (req, res){
 module.exports = {
   postUser,
   getUsers,
-  sendUserMail
+  sendUserMail,
+  deleteOneUser,
+  banOneUser,
+  updateOneUser,
 };

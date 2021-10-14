@@ -55,7 +55,7 @@ let capsEntries = entries.map((entry) => [
 ]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-const { Order, OrderProduct, Product, User, Genre, Platform, Role } =
+const { Order, OrderProduct, Product, User, Genre, Platform, Role, favorites } =
   sequelize.models;
 
 User.hasMany(Order);
@@ -68,6 +68,8 @@ OrderProduct.belongsTo(Product);
 //Role.belongsToMany(User, { through: "userRoles" });
 Genre.belongsToMany(Product, { through: "productGenre" });
 Product.belongsToMany(Genre, { through: "productGenre" });
+User.belongsToMany(Product, { through: "favorites" });
+Product.belongsToMany(User, { through: "favorites" });
 Platform.belongsToMany(Product, { through: "productPlatform" });
 Product.belongsToMany(Platform, { through: "productPlatform" });
 

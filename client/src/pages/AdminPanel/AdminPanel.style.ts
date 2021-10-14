@@ -1,20 +1,19 @@
-import styled from 'styled-components'
-import { Container } from '../../GlobalStyles/GlobalStyles'
+import styled from "styled-components";
+import { Container } from "../../GlobalStyles/GlobalStyles";
 
 export const ContainerAdmin = styled(Container)`
-    
-    display: flex;
-    font-family: ${p => p.theme.fontAdmin};
-`
+  display: flex;
+  font-family: ${(p) => p.theme.fontAdmin};
+`;
 
 export const InfoContainer = styled.div`
-    background: blue;
-    width: 15%;
-    height: 100vh;
-`
+  background: blue;
+  width: 15%;
+  height: 100vh;
+`;
 
 export const MainContainer = styled.div`
-    background: #EEEEEE;
-    width: 85%;
-    height: 100vh;
-`
+  background: #eeeeee;
+  width: 85%;
+  height: 100vh;
+`;

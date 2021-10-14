@@ -1,5 +1,7 @@
 import React, { FC, useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+//Componentes
 import {
   Home,
   NotFound,
@@ -14,20 +16,25 @@ import {
   Terms,
   Privacy,
   Legal,
+  UserPage,
+  EditProfile,
+  Step1,
+  Step2,
+  Step3,
 } from "./pages/";
 import { NavBar, Footer, About, CartSideBar } from "./components";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Favorites from "./components/Favorites/Favorites";
+//Redux
+import { Store } from "./redux/reducer";
+import { getCart } from "../src/redux/actions/cart_actions";
+import { toggleCart } from "./redux/actions/global_actions";
+//Interfaces
+import { Product } from "./interfaces";
+//Estilos
 import { GlobalStyle } from "./GlobalStyles/GlobalStyles";
 import { Theme } from "./Theme";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Store } from "./redux/reducer";
-import { Product } from "./interfaces";
-import { toggleCart } from "./redux/actions/global_actions";
-import { getCart } from "../src/redux/actions/cart_actions";
-import Step1 from "./pages/OrderDetail/Step1/Step1";
-import Step2 from "./pages/OrderDetail/Step2/Step2";
-import Step3 from "./pages/OrderDetail/Step3/Step3";
 import { Fade } from "react-awesome-reveal";
 
 const App: FC = () => {
@@ -105,8 +112,10 @@ const App: FC = () => {
           <Route exact path="/privacy" component={Privacy} />
           <Route exact path="/legal" component={Legal} />
           <Route exact path="/about" component={About} />
+          <Route exact path="/user" component={UserPage} />
+          <Route exact path="/edit" component={EditProfile} />
           {/* <Route exact path="/order" component={Order} /> */}
-
+          <Route exact path="/favs" component={Favorites} />
           <Route path="*" component={NotFound} />
         </Switch>
         {deleteNav && <Footer />}

@@ -1,4 +1,4 @@
-import React, { useEffect, FC, useState } from "react";
+import { useEffect, FC, useState } from "react";
 import { Store } from "../../redux/reducer";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -7,7 +7,7 @@ import {
   getAllProducts,
 } from "../../redux/actions/products_action";
 import { getUsers } from "../../redux/actions/admin_actions";
-import { deleteNavbar } from '../../redux/actions/admin_actions'
+import { deleteNavbar, getOrders } from "../../redux/actions/admin_actions";
 import {
   AdminHome,
   Panel,
@@ -15,9 +15,13 @@ import {
   UserContent,
   SalesContent,
 } from "../../components";
-import { ContainerAdmin, InfoContainer, MainContainer } from './AdminPanel.style'
+import {
+  ContainerAdmin,
+  InfoContainer,
+  MainContainer,
+} from "./AdminPanel.style";
 
-const AdminPanel: FC = (props) => {  
+const AdminPanel: FC = (props) => {
   const dispatch = useDispatch();
   const [info, setInfo] = useState({
     setHome: true,
@@ -77,14 +81,14 @@ const AdminPanel: FC = (props) => {
     dispatch(getAllGenres());
     dispatch(getAllPlatforms());
     dispatch(deleteNavbar());
-    dispatch(getUsers())
+    dispatch(getUsers());
+    dispatch(getOrders());
   }, [dispatch]);
   const totalProducts: any = useSelector(
     (state: Store) => state.productsReducer
   );
-  const totalUsers = useSelector(
-    (state: Store) => state.adminReducer.users
-  )
+  const totalUsers = useSelector((state: Store) => state.adminReducer.users);
+  const totalOrders = useSelector((state: Store) => state.adminReducer.orders);
 
   return (
     <ContainerAdmin>
@@ -97,9 +101,9 @@ const AdminPanel: FC = (props) => {
         ) : info.setProducts ? (
           <ProductContent totalProducts={totalProducts} />
         ) : info.setSales ? (
-          <SalesContent />
+          <SalesContent totalOrders={totalOrders} />
         ) : info.setUsers ? (
-          <UserContent totalUser={totalUsers}/>
+          <UserContent totalUser={totalUsers} />
         ) : (
           "Oops Something Went Wrong..."
         )}

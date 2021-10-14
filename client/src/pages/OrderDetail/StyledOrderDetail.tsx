@@ -103,7 +103,6 @@ export const StepOne = styled.div`
 `;
 
 
-
 export const StepTwo = styled.div`
   display: flex;
   flex-direction: column;
@@ -151,7 +150,6 @@ export const StepTwo = styled.div`
     text-align: center;
   }
 `;
-
 
 
 export const StepThree = styled.div`

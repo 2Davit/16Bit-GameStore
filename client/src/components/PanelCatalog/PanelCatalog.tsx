@@ -1,10 +1,26 @@
 import React, { FC, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { useDispatch, useSelector  } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Store } from "../../redux/reducer/";
 import { editProduct } from "../../redux/actions/admin_actions";
 import { EditProduct } from "../../interfaces";
-import { ContainerPanelCata, CardContent, ImageContent, Image, H3, Paragraph, Info, EditInfoBtns, EditInfoBtns2, ContainerDiv, BtnEdit, InputLabel, Form, Input, BtnOpt } from './PanelCatalog.style'
+import {
+  ContainerPanelCata,
+  CardContent,
+  ImageContent,
+  Image,
+  H3,
+  Paragraph,
+  Info,
+  EditInfoBtns,
+  EditInfoBtns2,
+  ContainerDiv,
+  BtnEdit,
+  InputLabel,
+  Form,
+  Input,
+  BtnOpt,
+} from "./PanelCatalog.style";
 import { deleteProduct } from "../../redux/actions/admin_actions";
 
 interface Props {
@@ -19,7 +35,6 @@ interface Props {
   platform: any;
   thumbnail: string;
 }
-
 
 const PanelCatalog: FC<Props> = ({
   name,
@@ -39,7 +54,8 @@ const PanelCatalog: FC<Props> = ({
     1962, 1963, 1964, 1965, 1966, 1967, 1968, 1969, 1970, 1971, 1972, 1973,
     1974, 1975, 1976, 1977, 1978, 1979, 1980, 1981, 1982, 1983, 1984, 1985,
     1986, 1987, 1988, 1989, 1990, 1991, 1992, 1993, 1994, 1995, 1996, 1997,
-    1998, 1999, 2000,2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010
+    1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009,
+    2010,
   ];
   const history = useHistory();
 
@@ -62,7 +78,6 @@ const PanelCatalog: FC<Props> = ({
   const totalPlatforms = useSelector(
     (state: Store) => state.productsReducer.platforms
   );
-
 
   function handleEdit() {
     setCond(!cond);
@@ -127,37 +142,50 @@ const PanelCatalog: FC<Props> = ({
           : [],
     });
   }
-  function handleDeleteProduct(id:number):any {
+  function handleDeleteProduct(id: number): any {
     dispatch(deleteProduct(id));
     alert("Cambio realizado con éxito.");
-    history.push('/admin')
+    history.push("/admin");
   }
 
   return cond === false ? (
-    <ContainerPanelCata >
+    <ContainerPanelCata>
       <ImageContent>
         <Link to={`/game/${id}`}>
           <Image src={image} alt={name} />
         </Link>
       </ImageContent>
-      <CardContent >
-        <H3 >
-          {name.length > 33 ? name.substring(0, 30) + "..." : name}
-        </H3>
+      <CardContent>
+        <H3>{name.length > 33 ? name.substring(0, 30) + "..." : name}</H3>
         <Paragraph>Product Price: ${price}</Paragraph>
         <Paragraph>Quantity: {stock}</Paragraph>
         <Paragraph>{description}</Paragraph>
         <ContainerDiv>
           <Info>
             <Paragraph>Release Year: {released}</Paragraph>
-            <Paragraph>Genres: {genre?genre.map((g, i) => 
-              <li key={i}>{g}</li>
-            ): 'no hay generos'}</Paragraph>
+            <Paragraph>
+              Genres:{" "}
+              {genre
+                ? genre.map((g, i) => <li key={i}>{g}</li>)
+                : "no hay generos"}
+            </Paragraph>
             <Paragraph>Platform: {platform}</Paragraph>
           </Info>
           <EditInfoBtns>
-          <BtnEdit backGProps="#911F27" backHover="#B3141C" onClick={() => handleDeleteProduct(id)}>DELETE</BtnEdit>
-            <BtnEdit backGProps="#c3630f" backHover="#B55400" onClick={handleEdit}>EDIT INFO</BtnEdit>
+            <BtnEdit
+              backGProps="#911F27"
+              backHover="#B3141C"
+              onClick={() => handleDeleteProduct(id)}
+            >
+              DELETE
+            </BtnEdit>
+            <BtnEdit
+              backGProps="#c3630f"
+              backHover="#B55400"
+              onClick={handleEdit}
+            >
+              EDIT INFO
+            </BtnEdit>
             {/* <button
                   onClick={handleEdit}
                   style={{ pointerEvents: "none", color: "gray" }}
@@ -172,7 +200,7 @@ const PanelCatalog: FC<Props> = ({
     /* A PARTIR DE ACÁ SE COMIENZA A EDITAR */
     <ContainerPanelCata>
       <ImageContent>
-        <Link to={`/game/${id}`} >
+        <Link to={`/game/${id}`}>
           <Image src={image} alt={name} />
         </Link>
       </ImageContent>
@@ -190,7 +218,13 @@ const PanelCatalog: FC<Props> = ({
           <InputLabel>
             <label>Product Price</label>
             <input
-            style={{backgroundColor: 'transparent', border:"none", outline:"1px solid #c3630f", color:"#EEEEEE", marginLeft:"10px"}}
+              style={{
+                backgroundColor: "transparent",
+                border: "none",
+                outline: "1px solid #c3630f",
+                color: "#EEEEEE",
+                marginLeft: "10px",
+              }}
               name="price"
               type="number"
               value={input.price}
@@ -199,11 +233,20 @@ const PanelCatalog: FC<Props> = ({
           </InputLabel>
           <InputLabel>
             <label>Quantity</label>
-            <input style={{backgroundColor: 'transparent', border:"none", outline:"1px solid #c3630f", color:"#EEEEEE", marginLeft:"10px"}} type="number" min="0"></input>
+            <input
+              style={{
+                backgroundColor: "transparent",
+                border: "none",
+                outline: "1px solid #c3630f",
+                color: "#EEEEEE",
+                marginLeft: "10px",
+              }}
+              type="number"
+              min="0"
+            ></input>
           </InputLabel>
           <InputLabel>
             <textarea
-
               name="description"
               value={input.description}
               onChange={handleChangeDescription}
@@ -212,7 +255,17 @@ const PanelCatalog: FC<Props> = ({
 
           <InputLabel>
             <label>Release Year</label>
-            <select style={{backgroundColor: 'transparent', border:"none", outline:"1px solid #c3630f", color:"#EEEEEE", marginLeft:"10px"}} name="release_year" onChange={(e) => handleChangeYear(e)}>
+            <select
+              style={{
+                backgroundColor: "transparent",
+                border: "none",
+                outline: "1px solid #c3630f",
+                color: "#EEEEEE",
+                marginLeft: "10px",
+              }}
+              name="release_year"
+              onChange={(e) => handleChangeYear(e)}
+            >
               {years?.map((year) => (
                 <option key={year} value={year}>
                   {year}
@@ -222,7 +275,17 @@ const PanelCatalog: FC<Props> = ({
           </InputLabel>
           <InputLabel>
             <label>Genres:</label>
-            <select style={{backgroundColor: 'transparent', border:"none", outline:"1px solid #c3630f", color:"#EEEEEE", marginLeft:"10px"}} name="genre" onChange={(e: any) => handleAddGenre(e)}>
+            <select
+              style={{
+                backgroundColor: "transparent",
+                border: "none",
+                outline: "1px solid #c3630f",
+                color: "#EEEEEE",
+                marginLeft: "10px",
+              }}
+              name="genre"
+              onChange={(e: any) => handleAddGenre(e)}
+            >
               {totalGenres.map((index: any) => (
                 <option value={index} key={index}>
                   {index}
@@ -247,44 +310,62 @@ const PanelCatalog: FC<Props> = ({
             )}
           </InputLabel>
 
-              
           <InputLabel>
             <label>Platforms:</label>
-            <select style={{backgroundColor: 'transparent', border:"none", outline:"1px solid #c3630f", color:"#EEEEEE", marginLeft:"10px"}} name="platform" onChange={(e: any) => handleAddPlatform(e)}>
+            <select
+              style={{
+                backgroundColor: "transparent",
+                border: "none",
+                outline: "1px solid #c3630f",
+                color: "#EEEEEE",
+                marginLeft: "10px",
+              }}
+              name="platform"
+              onChange={(e: any) => handleAddPlatform(e)}
+            >
               {totalPlatforms.map((index: any) => (
                 <option value={index} key={index}>
                   {index}
                 </option>
               ))}
             </select>
-            <div style={{display: "flex"}}>
-            {input.platform.length > 0 ? (
-              input.platform.map((index: any) => (
-                <BtnOpt key={index} >
-                  <button
-                    type="button"
-                    onClick={() => handlePlatformDelete(index)}
-                  >
-                    x
-                  </button>
-                  <p>{index}</p>
-                </BtnOpt>
-              ))
-            ) : (
-              <div>No Platform</div>
-            )}
+            <div style={{ display: "flex" }}>
+              {input.platform.length > 0 ? (
+                input.platform.map((index: any) => (
+                  <BtnOpt key={index}>
+                    <button
+                      type="button"
+                      onClick={() => handlePlatformDelete(index)}
+                    >
+                      x
+                    </button>
+                    <p>{index}</p>
+                  </BtnOpt>
+                ))
+              ) : (
+                <div>No Platform</div>
+              )}
             </div>
           </InputLabel>
 
           <ContainerDiv>
-
-            <EditInfoBtns>
-
-            </EditInfoBtns>
+            <EditInfoBtns></EditInfoBtns>
 
             <EditInfoBtns2>
-              <BtnEdit backGProps="#c3630f" backHover="#B55400" onClick={handleEdit}>BACK</BtnEdit>
-              <BtnEdit backGProps="#45962F" backHover="#2C731D" onClick={(e: any) => handleSave(e)}>SAVE</BtnEdit> 
+              <BtnEdit
+                backGProps="#c3630f"
+                backHover="#B55400"
+                onClick={handleEdit}
+              >
+                BACK
+              </BtnEdit>
+              <BtnEdit
+                backGProps="#45962F"
+                backHover="#2C731D"
+                onClick={(e: any) => handleSave(e)}
+              >
+                SAVE
+              </BtnEdit>
             </EditInfoBtns2>
           </ContainerDiv>
         </Form>

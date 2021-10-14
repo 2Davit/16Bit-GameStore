@@ -2,12 +2,11 @@ import styled from "styled-components";
 import SVG from "react-inlinesvg";
 
 export const StyledNavBar = styled.nav`
-  background: linear-gradient(180deg, #1f0156, #000);  
+  background: linear-gradient(180deg, #1f0156, #000);
   background-position: center center;
   background-size: cover;
-   background-repeat: no-repeat;
+  background-repeat: no-repeat;
   padding: 2em 0;
-
 
   a {
     text-decoration: none;
@@ -18,7 +17,6 @@ export const StyledNavBar = styled.nav`
       color: var(--clr-primary);
     }
   }
-  
 
   svg {
     fill: currentColor;
@@ -31,7 +29,7 @@ export const StyledNavBar = styled.nav`
     margin: 1em;
 
     .navbar__logo {
-      flex-basis:300px;
+      flex-basis: 300px;
     }
 
     form {
@@ -42,21 +40,36 @@ export const StyledNavBar = styled.nav`
     .navbar__options {
       list-style: none;
       display: flex;
-      align-items: center;   
-       margin-right: 5vw;     
-     
+      align-items: center;
+      margin-right: 5vw;
 
-      & >li {
+      & > li {
         position: relative;
-        display:flex;
+        display: flex;
         width: 100px;
         flex-wrap: wrap;
-      }     
-      
+      }
+      li svg {
+        /* background:green;    */
+      }
+
       li:hover {
         color: var(--clr-primary);
-            }
+      }
 
+      .navbar__profile-pic {
+        width: 40px;
+        height: 40px;
+        border: 3px solid var(--clr-white);
+        border-radius: 50%;
+        overflow: hidden;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
       .cart__number {
         font-size: 0.8em;
         background: var(--clr-primary);
@@ -75,7 +88,7 @@ export const StyledNavBar = styled.nav`
         background: none;
         border: none;
         color: inherit;
-       
+
         &:focus {
           outline: none;
         }
@@ -89,9 +102,9 @@ export const StyledNavBar = styled.nav`
       display: flex;
       justify-content: center;
       list-style: none;
-      position:relative;
+      position: relative;
       left: 2.5em;
-     
+
       & > li + li {
         margin-left: 3.5em;
       }
@@ -121,9 +134,8 @@ export const StyledNavBar = styled.nav`
           margin-left: 1.5em;
         }
       }
-    }    
+    }
   }
 `;
 
-export const StyledSVG = styled(SVG)`
-`;
+export const StyledSVG = styled(SVG)``;

@@ -1,7 +1,10 @@
 import React, { FC, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
-import { getProductDetail } from "../../redux/actions/products_action";
+import {
+  getProductDetail,
+  resetDetail,
+} from "../../redux/actions/products_action";
 import { Store } from "../../redux/reducer/";
 import { GameDetail, StyledSVG } from "./StyledProductDetail";
 import { Btn, QuantityButton } from "../../GlobalStyles/GlobalStyles";
@@ -12,6 +15,7 @@ import fivestars from "../../assets/img/fivestars.png";
 import { addItemCart } from "../../redux/actions/cart_actions";
 import { toast } from "react-toastify";
 import { ProductInCart } from "../../interfaces";
+import { addFavorites } from "../../redux/actions/favorite_actions";
 
 interface Props {
   id: string;
@@ -24,33 +28,30 @@ const Detail: FC = () => {
 
   const history = useHistory();
 
-
   const detailProduct = useSelector(
     (state: Store) => state.productsReducer.detailProduct
   );
-
   const getAll = () => {
     let stockInLocal = JSON.parse(localStorage.getItem("cart")!);
-   let game = stockInLocal?.find(
+    let game = stockInLocal?.find(
       (g: ProductInCart) => g.id_product === detailProduct.id_product
     );
     return game;
-  }
+  };
 
-
- let game:any = getAll() 
-
+  let game: any = getAll();
 
   useEffect(() => {
     dispatch(getProductDetail(parseInt(id)));
-    getAll()
+    getAll();
+    return function cleanup() {
+      dispatch(resetDetail());
+    };
   }, [dispatch, id]);
-
 
   interface Genre {
     name_genre: string;
   }
-
 
   const [quantity, setQuantity] = useState<number>(1);
   function handleQuantityChange(amount: number) {
@@ -59,7 +60,7 @@ const Detail: FC = () => {
       setQuantity((quantity) => quantity + amount);
     }
   }
- 
+
   const handleClick = () => {
     let productToDispatch = { ...detailProduct };
     productToDispatch.quantity = quantity;
@@ -87,7 +88,17 @@ const Detail: FC = () => {
     history.push("/order");
   };
 
- 
+  const handleAddFavorites = () => {
+    let idProduct = detailProduct.id_product;
+    let idUser = JSON.parse(localStorage.getItem("userData")!);
+    let ids = {
+      idProduct: idProduct,
+      idUser: idUser.id,
+    };
+    dispatch(addFavorites(ids));
+    history.push("/favs");
+  };
+
   let unavailable =
     quantity + game?.quantity === detailProduct.in_stock + 1 ? true : false;
 
@@ -148,12 +159,31 @@ const Detail: FC = () => {
           {quantity === detailProduct.in_stock ? <p>Limit stock</p> : null}
           <div className="game__purchase-container">
             <div className="game__buttons">
-            
-              <Btn  onClick={() => handleBuyNow()}  disabled={unavailable} className={!unavailable? "btn-card btn-img" : "btn-card-disabled btn-img"}>
+              <Btn
+                onClick={handleAddFavorites}
+                disabled={unavailable}
+                className={
+                  !unavailable
+                    ? "btn-card btn-img"
+                    : "btn-card-disabled btn-img"
+                }
+              >
+                Add to Favs
+                <StyledSVG src={joystick} />
+              </Btn>
+              <Btn
+                onClick={() => handleBuyNow()}
+                disabled={unavailable}
+                className={
+                  !unavailable
+                    ? "btn-card btn-img"
+                    : "btn-card-disabled btn-img"
+                }
+              >
                 Buy now
                 <StyledSVG src={joystick} />
               </Btn>
-               
+
               {!unavailable ? (
                 <Btn
                   disabled={unavailable}

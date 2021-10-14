@@ -9,7 +9,8 @@ const initialState: ProductsState = {
   genres: [],
   platforms: [],
   navbar: true,
-  users: []
+  users: [],
+  orders: []
 };
 
 export function adminReducer(state: ProductsState = initialState, action: any) {

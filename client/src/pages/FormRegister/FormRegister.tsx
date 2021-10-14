@@ -53,8 +53,8 @@ const FormRegister: FC = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const handleSubmit = (values: UserRegister) => {
-    alert('Created account 😃');
-    history.push('/home');
+    alert("Created account 😃");
+    history.push("/home");
     axios
       .post("/auth/signup", values)
       .then((res) => {

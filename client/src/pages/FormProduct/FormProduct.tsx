@@ -2,9 +2,24 @@ import { useState, FC, useEffect } from "react";
 import { ProductCreate, ProductValidate } from "../../interfaces";
 import { useDispatch } from "react-redux";
 import { createVideogame } from "../../redux/actions/products_action";
-import { deleteNavbar } from "../../redux/actions/admin_actions"
+import { deleteNavbar } from "../../redux/actions/admin_actions";
 import { Link } from "react-router-dom";
-import { FormContainer, Fields, FormLabel, FormInput, FormErrors, FormSelect, FormTextarea, FormInputImg, FormOpt, BtnAdd, BtnSubmit, Title, BtnBack, ContainerFormP } from './FormProduct.style'
+import {
+  FormContainer,
+  Fields,
+  FormLabel,
+  FormInput,
+  FormErrors,
+  FormSelect,
+  FormTextarea,
+  FormInputImg,
+  FormOpt,
+  BtnAdd,
+  BtnSubmit,
+  Title,
+  BtnBack,
+  ContainerFormP,
+} from "./FormProduct.style";
 
 interface Info {
   url: string;
@@ -25,7 +40,7 @@ const FormProduct: FC = () => {
     release_year: "",
     genres: "",
     platforms: "",
-  })
+  });
   const [input, setInput] = useState<ProductCreate>({
     name_product: "",
     price_product: 0,
@@ -42,19 +57,18 @@ const FormProduct: FC = () => {
 
   //quitamos Nav
   useEffect(() => {
-    dispatch(deleteNavbar())
+    dispatch(deleteNavbar());
   }, [dispatch]);
 
   const handleImage = () => {
     setImages([...images, info.url]);
     setInput((prevState: any) => ({
       ...prevState,
-      image_product: [...images, info.url]
-    }))
+      image_product: [...images, info.url],
+    }));
     setInfo({ url: "" });
 
-    alert('has añadido una imagen')
-
+    alert("has añadido una imagen");
   };
 
   function handleInfoChange(e: React.FormEvent<HTMLInputElement>) {
@@ -62,7 +76,6 @@ const FormProduct: FC = () => {
       ...info,
       url: e.currentTarget.value,
     });
-
   }
 
   function handleImageDelete(img: string) {
@@ -92,41 +105,48 @@ const FormProduct: FC = () => {
       ...input,
       [e.currentTarget.name]: e.currentTarget.value,
     });
-    setError(validate({
-      ...input,
-      [e.currentTarget.name]: e.currentTarget.value,
-    }))
+    setError(
+      validate({
+        ...input,
+        [e.currentTarget.name]: e.currentTarget.value,
+      })
+    );
   }
   function handlePrice(e: React.FormEvent<HTMLInputElement>) {
     setInput({
       ...input,
       price_product: parseInt(e.currentTarget.value),
     });
-    setError(validate({
-      ...input,
-      price_product: parseInt(e.currentTarget.value),
-    }))
+    setError(
+      validate({
+        ...input,
+        price_product: parseInt(e.currentTarget.value),
+      })
+    );
   }
   function handleTextArea(e: React.FormEvent<HTMLTextAreaElement>) {
     setInput({
       ...input,
       [e.currentTarget.name]: e.currentTarget.value,
     });
-    setError(validate({
-      ...input,
-      [e.currentTarget.name]: e.currentTarget.value,
-    }))
+    setError(
+      validate({
+        ...input,
+        [e.currentTarget.name]: e.currentTarget.value,
+      })
+    );
   }
   function handleSelectYear(e: React.FormEvent<HTMLSelectElement>) {
     setInput({
       ...input,
       release_year: parseInt(e.currentTarget.value),
     });
-    setError(validate({
-      ...input,
-      release_year: parseInt(e.currentTarget.value),
-    }))
-
+    setError(
+      validate({
+        ...input,
+        release_year: parseInt(e.currentTarget.value),
+      })
+    );
   }
 
   function handleSelectPlatform(e: React.FormEvent<HTMLSelectElement>) {
@@ -134,20 +154,24 @@ const FormProduct: FC = () => {
       ...input,
       platforms: [...input.platforms, e.currentTarget.value],
     });
-    setError(validate({
-      ...input,
-      platforms: [...input.platforms, e.currentTarget.value],
-    }))
+    setError(
+      validate({
+        ...input,
+        platforms: [...input.platforms, e.currentTarget.value],
+      })
+    );
   }
   function handleSelectGenre(e: React.FormEvent<HTMLSelectElement>) {
     setInput({
       ...input,
       genres: [...input.genres, e.currentTarget.value],
     });
-    setError(validate({
-      ...input,
-      genres: [...input.genres, e.currentTarget.value],
-    }))
+    setError(
+      validate({
+        ...input,
+        genres: [...input.genres, e.currentTarget.value],
+      })
+    );
   }
   function handleSale(e: React.FormEvent<HTMLSelectElement>) {
     if (e.currentTarget.value === "true") {
@@ -172,9 +196,18 @@ const FormProduct: FC = () => {
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     // console.log(input)
-    if (input.name_product === "" || input.price_product === 0 || input.description_product === "" || images.length === 0 || input.thumbnail_product === "" || input.release_year === 0 || input.genres.length === 0 || input.platforms.length === 0) {
-      e.preventDefault()
-      alert("Please complete all required fields")
+    if (
+      input.name_product === "" ||
+      input.price_product === 0 ||
+      input.description_product === "" ||
+      images.length === 0 ||
+      input.thumbnail_product === "" ||
+      input.release_year === 0 ||
+      input.genres.length === 0 ||
+      input.platforms.length === 0
+    ) {
+      e.preventDefault();
+      alert("Please complete all required fields");
     } else {
       dispatch(createVideogame(input));
       alert("Videogame successfully created");
@@ -199,7 +232,8 @@ const FormProduct: FC = () => {
     1962, 1963, 1964, 1965, 1966, 1967, 1968, 1969, 1970, 1971, 1972, 1973,
     1974, 1975, 1976, 1977, 1978, 1979, 1980, 1981, 1982, 1983, 1984, 1985,
     1986, 1987, 1988, 1989, 1990, 1991, 1992, 1993, 1994, 1995, 1996, 1997,
-    1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010
+    1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009,
+    2010,
   ];
 
   const validate = (input: ProductCreate) => {
@@ -214,8 +248,7 @@ const FormProduct: FC = () => {
       release_year: "",
       genres: "",
       platforms: "",
-
-    }
+    };
 
     if (!input.name_product) {
       error.name_product = "Product name is required";
@@ -228,43 +261,44 @@ const FormProduct: FC = () => {
     }
 
     if (input.price_product < 1) {
-      error.price_product = "Price must be higher"
+      error.price_product = "Price must be higher";
     } else if (!Number.isInteger(input.price_product)) {
-      error.price_product = "Price must be Integer"
+      error.price_product = "Price must be Integer";
     }
     if (!input.description_product) {
-      error.description_product = "A description is required"
+      error.description_product = "A description is required";
     }
     if (!input.thumbnail_product) {
-      error.thumbnail_product = "A thumbnail image is required"
+      error.thumbnail_product = "A thumbnail image is required";
     }
     if (!input.release_year) {
-      error.release_year = "A release year is required"
+      error.release_year = "A release year is required";
     }
     if (input.genres.length === 0) {
-      error.genres = "At least one genre is required"
+      error.genres = "At least one genre is required";
     }
     if (input.platforms.length === 0) {
-      error.platforms = "At least one platform is required"
+      error.platforms = "At least one platform is required";
     }
 
-
     return error;
-  }
+  };
 
   return (
     <ContainerFormP>
-
-      <Link to={{
-        pathname: "/admin",
-        state:true 
-      }} style={{ textDecoration: "none", color: "#EEEEEE" }}>
+      <Link
+        to={{
+          pathname: "/admin",
+          state: true,
+        }}
+        style={{ textDecoration: "none", color: "#EEEEEE" }}
+      >
         <BtnBack>Back</BtnBack>
       </Link>
 
       <Title>Create a new product</Title>
       <FormContainer onSubmit={(e) => handleSubmit(e)}>
-        {error.name_product && (<FormErrors>{error.name_product}</FormErrors>)}
+        {error.name_product && <FormErrors>{error.name_product}</FormErrors>}
         <Fields>
           <FormLabel htmlFor="name_product">Name</FormLabel>
           <FormInput
@@ -272,10 +306,9 @@ const FormProduct: FC = () => {
             name="name_product"
             placeholder="Introduce a Name..."
           />
-
         </Fields>
 
-        {error.price_product && (<FormErrors>{error.price_product}</FormErrors>)}
+        {error.price_product && <FormErrors>{error.price_product}</FormErrors>}
         <Fields>
           <FormLabel htmlFor="price_product">Price</FormLabel>
           <FormInput
@@ -286,7 +319,9 @@ const FormProduct: FC = () => {
           />
         </Fields>
 
-        {error.description_product && (<FormErrors>{error.description_product}</FormErrors>)}
+        {error.description_product && (
+          <FormErrors>{error.description_product}</FormErrors>
+        )}
         <Fields>
           <FormLabel htmlFor="description_product">Description</FormLabel>
           <FormTextarea
@@ -296,7 +331,7 @@ const FormProduct: FC = () => {
           />
         </Fields>
 
-        {error.image_product && (<FormErrors>{error.image_product}</FormErrors>)}
+        {error.image_product && <FormErrors>{error.image_product}</FormErrors>}
         <Fields>
           <FormLabel htmlFor="image_product">Images</FormLabel>
           <FormInputImg
@@ -305,14 +340,30 @@ const FormProduct: FC = () => {
             name="image_product"
             placeholder="Add Images..."
           />
-          <BtnAdd type="button" onClick={() => handleImage()}>Add</BtnAdd>
+          <BtnAdd type="button" onClick={() => handleImage()}>
+            Add
+          </BtnAdd>
         </Fields>
-        {input.image_product && input.image_product.map((img) => (<div key={img}>
-          <img src={img} style={{ width: '70px', height: '70px' }} alt={img} />
-          <span style={{ cursor: 'pointer' }} onClick={() => handleImageDelete(img)}>x</span>
-        </div>))}
+        {input.image_product &&
+          input.image_product.map((img) => (
+            <div key={img}>
+              <img
+                src={img}
+                style={{ width: "70px", height: "70px" }}
+                alt={img}
+              />
+              <span
+                style={{ cursor: "pointer" }}
+                onClick={() => handleImageDelete(img)}
+              >
+                x
+              </span>
+            </div>
+          ))}
 
-        {error.thumbnail_product && (<FormErrors>{error.thumbnail_product}</FormErrors>)}
+        {error.thumbnail_product && (
+          <FormErrors>{error.thumbnail_product}</FormErrors>
+        )}
         <Fields>
           <FormLabel htmlFor="thumbnail_product">Thumbnail</FormLabel>
           <FormInput
@@ -346,10 +397,9 @@ const FormProduct: FC = () => {
             <option value="true">On sale</option>
             <option value="false">No Discounts</option>
           </FormSelect>
-
         </Fields>
 
-        {error.release_year && (<FormErrors>{error.release_year}</FormErrors>)}
+        {error.release_year && <FormErrors>{error.release_year}</FormErrors>}
         <Fields>
           <FormLabel htmlFor="release_year">Release Year</FormLabel>
           <FormSelect name="release_year" onChange={(e) => handleSelectYear(e)}>
@@ -361,8 +411,7 @@ const FormProduct: FC = () => {
           </FormSelect>
         </Fields>
 
-
-        {error.genres && (<FormErrors>{error.genres}</FormErrors>)}
+        {error.genres && <FormErrors>{error.genres}</FormErrors>}
         <Fields>
           <FormLabel htmlFor="firstName">Genres</FormLabel>
           <FormSelect name="genres" onChange={(e) => handleSelectGenre(e)}>
@@ -380,20 +429,24 @@ const FormProduct: FC = () => {
             <option value="rpg">RPG</option>
           </FormSelect>
         </Fields>
-        <div style={{ display: 'flex', marginBottom: "2rem" }}>
+        <div style={{ display: "flex", marginBottom: "2rem" }}>
           {input.genres?.map((g) => (
             <FormOpt key={g}>
-              <button type="button" onClick={() => handleGenreDelete(g)}>x</button>
+              <button type="button" onClick={() => handleGenreDelete(g)}>
+                x
+              </button>
               <p>{g}</p>
             </FormOpt>
           ))}
         </div>
 
-
-        {error.platforms && (<FormErrors>{error.platforms}</FormErrors>)}
+        {error.platforms && <FormErrors>{error.platforms}</FormErrors>}
         <Fields>
           <FormLabel htmlFor="platforms">Platforms</FormLabel>
-          <FormSelect name="platforms" onChange={(e) => handleSelectPlatform(e)}>
+          <FormSelect
+            name="platforms"
+            onChange={(e) => handleSelectPlatform(e)}
+          >
             <option>Select an Option</option>
             <option value="nes">nes</option>
             <option value="arcade">arcade</option>
@@ -403,16 +456,16 @@ const FormProduct: FC = () => {
             <option value="a2600">a2600</option>
           </FormSelect>
         </Fields>
-        <div style={{ display: 'flex', marginBottom: "2rem" }}>
+        <div style={{ display: "flex", marginBottom: "2rem" }}>
           {input.platforms?.map((p) => (
             <FormOpt key={p}>
-              <button type="button" onClick={() => handlePlatformDelete(p)}>x</button>
+              <button type="button" onClick={() => handlePlatformDelete(p)}>
+                x
+              </button>
               <p>{p}</p>
             </FormOpt>
           ))}
         </div>
-
-
 
         <BtnSubmit type="submit">Submit</BtnSubmit>
       </FormContainer>
