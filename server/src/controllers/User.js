@@ -51,7 +51,7 @@ async function getUsers(req, res) {
         lastname: u.lastname_user,
         address: u.address_user,
         email: u.email_user,
-        active: u.is_active,
+        active: u.is_active
       };
     });
     res.status(200).send(userData);
