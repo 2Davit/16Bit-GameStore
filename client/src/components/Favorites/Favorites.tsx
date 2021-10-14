@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getAllFavorites,
@@ -8,11 +8,12 @@ import { Store } from "../../redux/reducer/";
 import { Product } from "../../interfaces";
 import { StyledContainer } from "./StyledFavorites";
 import ProductFavorite from "../ProductFavorite/ProductFavorite";
+import { useHistory } from "react-router";
 
 const Favorites = () => {
   const dispatch = useDispatch();
-  const [favs, setFavs] = useState();
   let idUser = JSON.parse(localStorage.getItem("userData")!);
+  const history = useHistory();
 
   useEffect(() => {
     dispatch(getAllFavorites({ idUser: idUser.id }));
@@ -29,6 +30,7 @@ const Favorites = () => {
       idProduct: idProduct
     };
     dispatch(removeFavorites(ids));
+    history.go(0);
   }
   return (
     <StyledContainer>
