@@ -40,9 +40,10 @@ export const banUser = (id:number | unknown, status: boolean | string) => {
   }
 }
 
-export const sendMail = (mail: string) => {
+export const sendMail = (email: string) => {
+  
   return async function (dispatch: Dispatch<Detail>){
-    const data = await axios.post('/user/mail', { mail });
+    const data = await axios.post('/user/mail', { email });
     return data;
   }
 }

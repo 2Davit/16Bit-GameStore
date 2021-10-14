@@ -14,7 +14,7 @@ const Step3 = () => {
   const dispatch = useDispatch();
 
   const user = JSON.parse(localStorage.getItem("userData")!);
-
+  
   useEffect(() => {
       dispatch(clearCart());
       dispatch(sendMail(user.data.email));
