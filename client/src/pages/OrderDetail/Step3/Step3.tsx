@@ -6,12 +6,18 @@ import { StepThree, StyledSVG } from "../StyledOrderDetail";
 import { Btn } from "../../../GlobalStyles/GlobalStyles";
 import Confetti from "react-confetti";
 import { clearCart } from "../../../redux/actions/cart_actions";
+import { sendMail } from "../../../redux/actions/admin_actions";
+
 const Step3 = () => {
+  
   const history = useHistory();
   const dispatch = useDispatch();
 
+  const user = JSON.parse(localStorage.getItem("userData")!);
+
   useEffect(() => {
-    dispatch(clearCart());
+      dispatch(clearCart());
+      dispatch(sendMail(user.data.email));
   }, [dispatch]);
 
   return (
