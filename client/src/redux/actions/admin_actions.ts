@@ -28,6 +28,13 @@ export const deleteProduct = (id:number) => {
   }
 }
 
+export const sendMail = (mail: string) => {
+  return async function (dispatch: Dispatch<Detail>){
+    const data = await axios.post('/user/mail', { mail });
+    return data;
+  }
+}
+
 export const getUsers = () => {
   return async function (dispatch: Dispatch<Users>){
     const {data} = await axios.get(`/user`)

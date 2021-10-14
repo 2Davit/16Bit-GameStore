@@ -58,7 +58,7 @@ async function createOrder(req, res, next) {
       })),
       external_reference: `${order.id_order}`,
       back_urls: {
-        success: "https://videogame-store-16bit.herokuapp.com/order/payment",
+        success: "https://localhost:3001/order/payment",
         failure: "https://videogame-store-16bit.herokuapp.com/order/payment",
         pending: "https://videogame-store-16bit.herokuapp.com/order/payment",
       },
@@ -117,7 +117,7 @@ async function createPayment(req, res) {
       });
     });
 
-    return res.redirect("https://16-bit-game-store.vercel.app/order/detail");
+    return res.redirect("https://localhost:3000/order/detail");
   } catch (err) {
     console.log({error: err});
   }

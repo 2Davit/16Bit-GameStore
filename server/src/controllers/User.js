@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 const { SECRET } = process.env;
 const nodemailer = require("nodemailer");
 const { google } = require('googleapis');
+const { html } = require('./helper');
 
 
 async function postUser(req, res) {
@@ -62,7 +63,7 @@ async function getUsers(req, res) {
 
 async function sendUserMail (req, res){
 
-  let {email} = req.body;
+  let { email } = req.body;
 
   const CLIENT_ID = '629164237375-nd9vo40e7m7p82lr4s7bgecqebbn7i6v.apps.googleusercontent.com';
   const CLIENT_SECRET = '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';
@@ -99,10 +100,10 @@ async function sendUserMail (req, res){
 
 
   let mailOptions = {
-    from: "16BIT",
+    from: "16Bit-GameStore",
     to: email,
-    subject: "Gracias por su compra",
-    text: "Gracias por confiar en 16-bits"
+    subject: "The summary of your purchase",
+    html: html
   }
 
   const result = await transporter.sendMail(mailOptions);
@@ -112,9 +113,6 @@ async function sendUserMail (req, res){
   } catch(err) {
     console.log(err)
   }
-  
-
-  
 }
 
 
