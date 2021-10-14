@@ -54,7 +54,6 @@ const FormRegister: FC = () => {
   const history = useHistory();
   const handleSubmit = (values: UserRegister) => {
     alert("Created account 😃");
-    history.push("/home");
     axios
       .post("/auth/signup", values)
       .then((res) => {
@@ -64,6 +63,7 @@ const FormRegister: FC = () => {
       .catch((err) => {
         console.log(err);
       });
+      history.push("/home");
   };
 
   return (
