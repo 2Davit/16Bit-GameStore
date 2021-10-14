@@ -1,6 +1,7 @@
 import React, { FC, useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 //Componentes
 import {
   Home,
@@ -9,8 +10,6 @@ import {
   ProductDetail,
   AdminPanel,
   FormProduct,
-  FormRegister,
-  FormLogin,
   FormGenre,
   FormPlatform,
   Terms,
@@ -36,9 +35,11 @@ import { Theme } from "./Theme";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Fade } from "react-awesome-reveal";
+import { verifyUser } from "./redux/actions/auth_actions";
 
 const App: FC = () => {
   const dispatch = useDispatch();
+  const { getAccessTokenSilently } = useAuth0();
   const totalProducts: any = useSelector(
     (state: Store) => state.productsReducer.totalProducts
   );
@@ -104,8 +105,6 @@ const App: FC = () => {
           </Route>
           <Route exact path="/form" component={FormProduct} />
           <Route exact path="/admin" component={AdminPanel} />
-          <Route exact path="/login" component={FormLogin} />
-          <Route exact path="/signup" component={FormRegister} />
           <Route exact path="/createGenre" component={FormGenre} />
           <Route exact path="/createPlatform" component={FormPlatform} />
           <Route exact path="/terms" component={Terms} />

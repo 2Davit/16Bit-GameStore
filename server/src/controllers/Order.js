@@ -134,7 +134,7 @@ async function saveOrder(req, res, next) {
           status_order,
           amount_order,
           address_order: user.address_user,
-          date_order: new Date().toLocaleString(),
+          /* date_order: new Date().toLocaleString(), */
         });
 
         await user.addOrder(order.id_order);

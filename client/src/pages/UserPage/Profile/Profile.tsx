@@ -11,7 +11,7 @@ const Profile = () => {
     <ProfileStyled>
       <div>
         <div className="img-container">
-          <img src={defaultAvatar} alt="pic profile" />
+          <img src={user?.data.avatar} alt="pic profile" />
         </div>
       </div>
       <div>

@@ -5,7 +5,7 @@
   "main": "index.ts",
   "scripts": {
     "dev": "nodemon -L",
-    "start": "nodemon -L", 
+    "start": "nodemon -L",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -17,8 +17,10 @@
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "express-jwt": "^6.1.0",
     "googleapis": "^88.2.0",
     "jsonwebtoken": "^8.5.1",
+    "jwks-rsa": "^2.0.4",
     "mercadopago": "^1.5.8",
     "morgan": "^1.10.0",
     "nodemailer": "^6.7.0",

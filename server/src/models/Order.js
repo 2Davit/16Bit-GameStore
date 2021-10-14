@@ -18,11 +18,11 @@ module.exports = (sequelize) => {
     },
     address_order: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     date_order: {
       type: DataTypes.DATE,
-      allownull: false,
+      allownull: true,
     },
   });
 };

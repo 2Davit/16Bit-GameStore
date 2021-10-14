@@ -1,8 +1,9 @@
 import React, { FC } from "react";
 import { Link, useHistory } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
+import axios from "axios";
 //Componentes
 import { SearchBar } from "../index";
-import { LogOut } from "../index";
 import { Title } from "../index";
 //Redux
 import { getAllProducts } from "../../redux/actions/products_action";
@@ -15,10 +16,11 @@ import { ProductInCart } from "../../interfaces";
 import { StyledNavBar } from "./StyledNavBar";
 import { Dropdown, StyledSVG } from "../../GlobalStyles/GlobalStyles";
 //Assets
-import cart from "../../assets/img/svg/cart2.svg";
+import cartIco from "../../assets/img/svg/cart2.svg";
 import heart from "../../assets/img/svg/heart1.svg";
 import userPic from "../../assets/img/svg/user.svg";
 import defaultAvatar from "../../assets/img/avatars/Avatar_9.png";
+import { verifyUser } from "../../redux/actions/auth_actions";
 
 interface Props {
   setPage(num: number): void;
@@ -28,6 +30,26 @@ interface Props {
 const NavBar: FC<Props> = ({ setPage, toggleModal }: any) => {
   const dispatch = useDispatch();
   const history = useHistory();
+  const { isAuthenticated, getAccessTokenSilently, loginWithPopup, logout } =
+    useAuth0();
+
+  const user = JSON.parse(localStorage.getItem("userData")!);
+  const cart: any = JSON.parse(localStorage.getItem("cart")!);
+  const subtotal = cart?.reduce((acc: number, product: ProductInCart) => {
+    acc = acc + product.price_product! * product.quantity!;
+    return acc;
+  }, 0.0);
+
+  const order = {
+    id_user: user?.id,
+    status_order: "cart",
+    amount_order: subtotal,
+    cart: cart?.map((c: ProductInCart) => ({
+      id_product: c.id_product,
+      price_product: c.price_product,
+      quantity: c.quantity,
+    })),
+  };
 
   const homeOnClick = () => {
     dispatch(getAllProducts());
@@ -36,6 +58,20 @@ const NavBar: FC<Props> = ({ setPage, toggleModal }: any) => {
   const openLoginModal = () => {
     history.push("/login");
     dispatch(openLogin(true));
+  };
+
+  const handleLogin = async () => {
+    await loginWithPopup();
+    const token = await getAccessTokenSilently();
+    dispatch(verifyUser(token));
+  };
+
+  const handleLogout = async () => {
+    if (order.amount_order > 0) {
+      await axios.post("/order/save", order);
+    }
+    logout();
+    localStorage.clear();
   };
 
   const cartNumber: any = useSelector(
@@ -51,8 +87,6 @@ const NavBar: FC<Props> = ({ setPage, toggleModal }: any) => {
     acc = acc + prod.quantity!;
     return acc;
   }, 0);
-
-  const user = JSON.parse(localStorage.getItem("userData")!);
 
   return (
     <StyledNavBar>
@@ -76,7 +110,7 @@ const NavBar: FC<Props> = ({ setPage, toggleModal }: any) => {
             <Dropdown>
               {user?.data.name ? (
                 <div className="navbar__profile-pic">
-                  <img src={defaultAvatar} alt="Imagen de perfil" />
+                  <img src={user?.data.avatar} alt="Imagen de perfil" />
                 </div>
               ) : (
                 <StyledSVG src={userPic} />
@@ -98,7 +132,7 @@ const NavBar: FC<Props> = ({ setPage, toggleModal }: any) => {
                       )} */}
                     <li>
                       <div className="dropdown__button">
-                        <LogOut />
+                        <button onClick={handleLogout}>Logout</button>
                       </div>
                     </li>
                   </>
@@ -107,16 +141,16 @@ const NavBar: FC<Props> = ({ setPage, toggleModal }: any) => {
                     <li>
                       <button
                         className="dropdown__button"
-                        onClick={openLoginModal}
+                        onClick={handleLogin}
                       >
                         Login
                       </button>
                     </li>
-                    <li>
+                    {/*                     <li>
                       <Link to="/signup" className="dropdown__button">
                         Signup
                       </Link>
-                    </li>
+                    </li> */}
                   </>
                 )}
               </ul>
@@ -124,7 +158,7 @@ const NavBar: FC<Props> = ({ setPage, toggleModal }: any) => {
 
             <li>
               <button onClick={toggleModal}>
-                <StyledSVG src={cart} />
+                <StyledSVG src={cartIco} />
                 <span>Cart</span>
                 {!!number && (
                   <span className="cart__number">

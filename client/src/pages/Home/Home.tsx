@@ -6,7 +6,7 @@ import {
   getAllProducts,
   onSaleFilter,
 } from "../../redux/actions/products_action";
-import { getRole } from "../../redux/actions/auth_actions";
+/* import { getRole } from "../../redux/actions/auth_actions"; */
 import { Paginate, Filter, Catalog, Carousel } from "../../components";
 import { Store } from "../../redux/reducer/";
 import { ContainerHome } from "./Home.style";
@@ -29,7 +29,6 @@ const Home = ({ setPage, currentProducts, productsPerPage, pages }: any) => {
     dispatch(onSaleFilter("carousel"));
     dispatch(getAllGenres());
     dispatch(getAllPlatforms());
-    dispatch(getRole());
     dispatch(createNavbar());
     dispatch(getCart());
   }, [dispatch]);

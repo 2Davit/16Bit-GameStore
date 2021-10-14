@@ -26,7 +26,7 @@ module.exports = (sequelize) => {
     },
     address_user: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     email_user: {
       type: DataTypes.STRING,
