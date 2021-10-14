@@ -31,8 +31,7 @@ export const getAllFavorites = (user: any) => {
 
 export const removeFavorites = (payload: any) => {
   return async function (dispatch: Dispatch<Name>) {
-    console.log('action', payload)
-    const data = await axios.delete("/favorites", payload.ids);
+    const data = await axios.delete(`/favorites/${payload.idUser}?idProduct=${payload.idProduct}`);
     return data;
   };
 };
