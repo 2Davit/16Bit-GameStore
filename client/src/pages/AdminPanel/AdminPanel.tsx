@@ -86,6 +86,7 @@ const AdminPanel: FC = (props) => {
   }, [dispatch]);
   const totalProducts: any = useSelector(
     (state: Store) => state.productsReducer
+
   );
   const totalUsers = useSelector((state: Store) => state.adminReducer.users);
   const totalOrders = useSelector((state: Store) => state.adminReducer.orders);
@@ -97,7 +98,7 @@ const AdminPanel: FC = (props) => {
       </InfoContainer>
       <MainContainer>
         {info.setHome ? (
-          <AdminHome totalOrders={totalOrders} />
+          <AdminHome totalOrders={totalOrders} totalUsers={totalUsers} totalProducts={totalProducts.totalProducts} />
         ) : info.setProducts ? (
           <ProductContent totalProducts={totalProducts} />
         ) : info.setSales ? (

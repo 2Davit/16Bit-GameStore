@@ -145,6 +145,7 @@ export interface User {
   name: string;
   lastname: string;
   address: string;
+  created?: string | any;
   /* avatar: string; */
 }
 
