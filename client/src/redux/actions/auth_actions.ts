@@ -2,6 +2,9 @@ import axios from "axios";
 import { User } from "../../interfaces";
 import { LOGIN, USER_ROLE } from "../types";
 import { Dispatch } from "react";
+import Swal from 'sweetalert2';
+import { Redirect, useHistory } from "react-router";
+
 
 interface loginProps {
   type: string;
@@ -15,6 +18,7 @@ export const login = (values: any) => {
         "/auth/login",
         values
       );
+      
       localStorage.setItem("userData", JSON.stringify(userData.data));
       const localCart = JSON.parse(localStorage.getItem("cart")!);
       if (!localCart?.length && userData.data.data.cart_orders.length) {
@@ -41,11 +45,15 @@ export const login = (values: any) => {
         payload: userData.data,
       });
     } catch (err) {
-      console.log(err);
-    }
+      Swal.fire({
+        title: 'Error!',
+        text: 'Invalid username or password',
+        icon: 'error',
+        confirmButtonText: 'Ups!'
+      })
   };
 };
-
+}
 export const getRole = () => {
   return async (dispatch: Dispatch<any>): Promise<any> => {
     const userData = JSON.parse(localStorage.getItem("userData") as string);
@@ -60,6 +68,7 @@ export const getRole = () => {
       });
     } catch (err) {
       console.log(err);
+      
     }
   };
 };
