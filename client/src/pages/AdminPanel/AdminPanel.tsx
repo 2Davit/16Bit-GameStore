@@ -97,7 +97,7 @@ const AdminPanel: FC = (props) => {
       </InfoContainer>
       <MainContainer>
         {info.setHome ? (
-          <AdminHome />
+          <AdminHome totalOrders={totalOrders} />
         ) : info.setProducts ? (
           <ProductContent totalProducts={totalProducts} />
         ) : info.setSales ? (
