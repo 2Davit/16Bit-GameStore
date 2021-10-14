@@ -22,11 +22,23 @@ export const LogoLink = styled(Link)`
     display: flex;
     justify-content: center;
     align-items: center;
+    &:hover{
+    text-decoration: none;
+   } 
 `
 export const LogoAdmin = styled.img`
     width: 65%;
     height: 100%;
     object-fit: cover;
+    `
+export const H2 = styled.h2`
+   color: #fff;
+   font-size: 1.8em;
+   margin: 0;
+   &:hover{
+       color: #eeeeee;
+   }
+     
 `
 export const  ContainerImageUser = styled.div`
     width: 100%;

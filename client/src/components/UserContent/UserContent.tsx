@@ -81,7 +81,8 @@ const UserContent: FC<Props> = ({ totalUser }) => {
     const handleDeleteUser = (id: number | unknown) => {
         dispatch(deleteUser(id))
         alert('se fue' + id)
-        history.go(0)
+        const deleteArray = totalUser.filter( el => el.id_user !== id )
+        setUserSearch(deleteArray)
     }
     const banDeleteUser = (id: number | unknown, status: boolean | string) => {
         dispatch(banUser(id, status))
