@@ -4,6 +4,6 @@ const router= Router();
 
 router.get('/:idUser', getFavorites);
 router.post('/', postFavorites);
-router.delete('/', deleteFavorites);
+router.delete('/:idUser', deleteFavorites);
 
 module.exports = router
