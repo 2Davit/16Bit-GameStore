@@ -12,5 +12,12 @@ export { default as Legal } from './Terms/Legal/Legal';
 export { default as Order } from './OrderDetail/Step2/Step2';
 export { default as FormLogin } from './FormLogin/FormLogin';
 export { default as FormRegister } from './FormRegister/FormRegister';
+export { default as UserPage } from './UserPage/UserPage';
+export { default as EditProfile } from './UserPage/EditProfile/EditProfile';
+export { default as Step1 } from './OrderDetail/Step1/Step1';
+export { default as Step2 } from './OrderDetail/Step2/Step2';
+export { default as Step3 } from './OrderDetail/Step3/Step3';
+
+
 
 

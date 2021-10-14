@@ -7,7 +7,7 @@ const MarioLoading: FC = () => {
   return (
     <div
       style={{
-        background: "#7e7e7e",
+        background: 'var(--clr-primary)',
         borderRadius: "2rem",
         padding: "2rem",
         display: "flex",

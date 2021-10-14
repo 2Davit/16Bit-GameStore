@@ -2,6 +2,7 @@ import { FC } from "react";
 import { ContainerPanel, ContainerImageUser, NameImage, Image, BtnAdminPanel, IconHome, IconSales, IconProducts, IconUsers, LogoAdmin, LogoLink, H2 } from './Panel.style'
 // import gamestore from '../../assets/img/gamestore.png'
 
+
 // interface Info {
 //     setHome: boolean,
 //     setProducts: boolean,
@@ -14,7 +15,7 @@ interface Props {
   // info: Info;
 }
 
-const Panel: FC<Props> = ({handleInfo /*info*/}) => {
+const Panel: FC<Props> = ({ handleInfo /*info*/ }) => {
   // console.log(info)
   return (
     <ContainerPanel>
@@ -39,6 +40,7 @@ const Panel: FC<Props> = ({handleInfo /*info*/}) => {
           <BtnAdminPanel value="users" onClick={handleInfo} >
             <IconUsers/>USERS
           </BtnAdminPanel>      
+
     </ContainerPanel>
   );
 };

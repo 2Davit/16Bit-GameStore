@@ -1,21 +1,22 @@
-import styled from 'styled-components'
-import { AiFillHome } from 'react-icons/ai'
-import { FaMoneyBillWave } from 'react-icons/fa'
-import { BiJoystickAlt } from 'react-icons/bi'
-import { HiUsers } from 'react-icons/hi'
-import { Link } from 'react-router-dom'
+import styled from "styled-components";
+import { AiFillHome } from "react-icons/ai";
+import { FaMoneyBillWave } from "react-icons/fa";
+import { BiJoystickAlt } from "react-icons/bi";
+import { HiUsers } from "react-icons/hi";
+import { Link } from "react-router-dom";
 
 export const ContainerPanel = styled.div`
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    padding: 0;
-    background: #222831;
-`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0;
+  background: #222831;
+`;
 export const LogoLink = styled(Link)`
+
     width: 100%;
     height: 5%;
     background: #000000;
@@ -82,19 +83,20 @@ export const  BtnAdminPanel = styled.button`
     }
 `
 
+
 export const IconHome = styled(AiFillHome)`
-    font-size: 1.2rem;
-    margin: 0 5px 2px 0;
-`
+  font-size: 1.2rem;
+  margin: 0 5px 2px 0;
+`;
 export const IconSales = styled(FaMoneyBillWave)`
-    font-size: 1.2rem;
-    margin: 0 5px 2px 0;
-`
+  font-size: 1.2rem;
+  margin: 0 5px 2px 0;
+`;
 export const IconProducts = styled(BiJoystickAlt)`
-    font-size: 1.2rem;
-    margin: 0 5px 2px 0;
-`
+  font-size: 1.2rem;
+  margin: 0 5px 2px 0;
+`;
 export const IconUsers = styled(HiUsers)`
-    font-size: 1.2rem;
-    margin: 0 5px 2px 0;
-`
+  font-size: 1.2rem;
+  margin: 0 5px 2px 0;
+`;

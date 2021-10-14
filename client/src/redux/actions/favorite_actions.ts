@@ -19,25 +19,19 @@ export const addFavorites = (payload: any) => {
   };
 };
 
-
-
 export const getAllFavorites = (user: any) => {
   return async (dispatch: Dispatch<AllFavorites>): Promise<any> => {
     const json = await axios.get(`/favorites/${user.idUser}`, { params: user });
-    console.log(json.data)
-    return dispatch({ 
+    return dispatch({
       type: GET_ALL_FAVORITES,
       payload: json.data,
-    })
-  }
-}
+    });
+  };
+};
 
-/* export const removeFavorites = (payload: any) => {
-  console.log("ACAAAAAACAA", payload)
+export const removeFavorites = (payload: any) => {
   return async function (dispatch: Dispatch<Name>) {
-    const data = await axios.delete("/favorites", payload);
+    const data = await axios.delete(`/favorites/${payload.idUser}?idProduct=${payload.idProduct}`);
     return data;
   };
 };
- */
-

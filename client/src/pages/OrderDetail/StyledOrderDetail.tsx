@@ -102,6 +102,56 @@ export const StepOne = styled.div`
   }
 `;
 
+
+export const StepTwo = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 2em;
+
+  h2,
+  svg {
+    margin: 0 auto;
+  }
+
+  label {
+    display: block;
+    position: relative;
+    width: 500px;
+    margin: 2em auto;
+    @media (max-width: 600px) {
+      width: 80%;
+    }
+  }
+
+  input {
+    font: inherit;
+    background: #000;
+    color: var(--clr-white);
+    font-size: 0.8em;
+    padding: 1em;
+    border: 3px solid var(--clr-primary);
+    border-radius: 0.4em;
+    width: 100%;
+    outline: none;
+    margin: 1em auto;
+  }
+  button {
+    display: block;
+    margin: 1em auto;
+  }
+
+  .errorMsg {
+    color: var(--clr-error);
+    background: #000;
+  }
+
+  @media (max-width: 800px) {
+    flex-direction: column;
+    text-align: center;
+  }
+`;
+
+
 export const StepThree = styled.div`
   display: flex;
   flex-direction: column;

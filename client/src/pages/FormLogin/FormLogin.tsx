@@ -14,7 +14,6 @@ import CloseButton from "../../assets/img/svg/close-filled-purple.svg";
 
 const FormLogin: FC = () => {
   const [isUser, setIsUser] = useState<boolean>(false);
-  const [userName, setUserName] = useState<string>("");
   const loginIsOpen = useSelector(
     (state: Store) => state.globalReducer.loginIsOpen
   );
@@ -59,7 +58,6 @@ const FormLogin: FC = () => {
   useEffect(() => {
     if (user) {
       setIsUser(true);
-      setUserName(user.data.username);
     }
   }, [user]);
 
@@ -79,50 +77,50 @@ const FormLogin: FC = () => {
       portalClassName={"ReactModalPortal"}
       ariaHideApp={false}
     >
-      
-        { !isUser ? (
+      {!isUser ? (
         <StyledLogin>
-        <button className="button" onClick={closeModal}>
-          <StyledSVG src={CloseButton} />
-        </button>
-        <Formik
-          initialValues={{ username: "", password: "" }}
-          onSubmit={handleSubmit}
-        >
-          <FormStyled>
-            <Form>
-              <label htmlFor="username">
-                <span>Username</span>
-                <Field id="username" name="username" />
-              </label>
-              <label htmlFor="password">
-                <span>Password</span>
-                <Field id="password" name="password" type="password" />
-              </label>
-              <div className="link_container">
-                <Link to="/reset" onClick={closeModal}>
-                  I forgot my password
-                </Link>
-                <Link to="/signup" onClick={closeModal}>
-                  Create an Account
-                </Link>
-              </div>
-              <Btn type="submit" className="btn-card login">
-                Log In
-              </Btn>
-            </Form>  
-          </FormStyled>
-        </Formik>
-      </StyledLogin>)
-      : (
+          <button className="button" onClick={closeModal}>
+            <StyledSVG src={CloseButton} />
+          </button>
+          <Formik
+            initialValues={{ username: "", password: "" }}
+            onSubmit={handleSubmit}
+          >
+            <FormStyled>
+              <Form>
+                <label htmlFor="username">
+                  <span>Username</span>
+                  <Field id="username" name="username" />
+                </label>
+                <label htmlFor="password">
+                  <span>Password</span>
+                  <Field id="password" name="password" type="password" />
+                </label>
+                <div className="link_container">
+                  <Link to="/reset" onClick={closeModal}>
+                    I forgot my password
+                  </Link>
+                  <Link to="/signup" onClick={closeModal}>
+                    Create an Account
+                  </Link>
+                </div>
+                <Btn type="submit" className="btn-card login">
+                  Log In
+                </Btn>
+              </Form>
+            </FormStyled>
+          </Formik>
+        </StyledLogin>
+      ) : (
         <StyledLogin>
           <div className="link_container2">
-          <h1>Welcome...</h1> 
-          <Link className='shopping' to='/home'>Go shopping with your cart!</Link>
+            <h1>Welcome...</h1>
+            <Link className="shopping" to="/home">
+              Go shopping with your cart!
+            </Link>
           </div>
         </StyledLogin>
-          )
-  }
+      )}
     </Modal>
   );
 };
