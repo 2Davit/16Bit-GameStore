@@ -12,7 +12,7 @@ interface Props {
 
 const AdminHome: FC<Props> = ({totalOrders}) => {
 
-  const [month, setMonth] = useState(0)
+  // const [month, setMonth] = useState(0)
 
   // const lengthMonth = totalOrders.filter(el => el.date.slice(8, 10) === '14') funciona para día 
   const lengthMonth = totalOrders.filter(el => el.date.slice(5, 7) === '10')
