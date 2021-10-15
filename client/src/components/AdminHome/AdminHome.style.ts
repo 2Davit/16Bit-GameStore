@@ -30,8 +30,8 @@ export const Horizontal = styled.div`
     
     width: 100%;
     height: 50%;
-    display: flex;
-    justify-content: center;
+    /* display: flex; */
+    /* justify-content: center; */
     margin-top: 3rem;
     /* align-items: center; */
 `

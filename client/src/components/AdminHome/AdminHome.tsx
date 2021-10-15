@@ -19,15 +19,16 @@ import {
   VictoryArea,
   VictoryBar,
 } from "victory";
-import { Order, User, Product } from "../../interfaces";
+import { Order, User, Product, DetailData } from "../../interfaces";
 
 interface Props {
   totalOrders: Array<Order>;
   totalUsers: Array<User>;
   totalProducts: Array<Product>;
+  totalSalesData: Array<DetailData>
 }
 
-const AdminHome: FC<Props> = ({ totalOrders, totalUsers, totalProducts }) => {
+const AdminHome: FC<Props> = ({ totalOrders, totalUsers, totalProducts, totalSalesData }) => {
   const listUsers = totalUsers.filter(
     (user) => user.id_user > totalUsers.length - 10
   );
@@ -39,6 +40,35 @@ const AdminHome: FC<Props> = ({ totalOrders, totalUsers, totalProducts }) => {
   const monthAmount = lengthMonth.map((el) => el.amount);
   const total = monthAmount?.reduce((a, b) => a + b, 0);
   console.log("stock", listStock);
+  const prueba = totalSalesData;
+  // console.log(totalSalesData)
+
+
+    const datosOrder = prueba.filter(dato => ( dato.orderidOrder === prueba[0].id_order 
+      ))
+    // const datosProduct = datosOrder[0].productidProduct//id del producto
+    // const datosProductId = prueba.filter(name => name.id_product === datosProduct)//sacamos la id que cumplan esta condicion
+    // const datosProductName = datosProductId[0].name_product//sacamos el nombre del producto
+
+ 
+
+    // const datosUser = prueba.filter(dato => (dato.id_user === prueba[0].userId)) //id usuario para conseguir id usuario + username
+    // const datosUsername = datosUser[0].username; //nombre usuario
+    // const datosFecha = prueba[0].date.slice(0,10) // fecha de compra
+    // const datosEnvio = prueba[0].address//direccion envio
+    // const datosStatus = prueba[0].status//status de la orden
+    // const orderBill = prueba[0].amount //cuanto gastó
+    
+      const detail = `
+      Status de la orden:
+      // Usuario: 
+      Juego comprado:hola
+      Fecha de compra:
+      Direccion de envio:
+      Total Compra:
+      `
+    console.log(datosOrder)
+
 
   return (
     <ContainerAdminHome>
@@ -78,7 +108,14 @@ const AdminHome: FC<Props> = ({ totalOrders, totalUsers, totalProducts }) => {
             </GraLine>
           </Horizontal>
           <Horizontal>
-            <h2>nada</h2>
+            {/* {prueba? <div>{prueba.id_order}</div> : "nada"}
+            {prueba ? prueba.filter(dato =>  dato.orderidOrder === prueba[0].id_order 
+            ) : "nada"} */}
+
+            {/* prueba[0].map(el => (
+              <p style={{marginLeft:"2px", color:"black", backgroundColor:"blue"}}>{el.id_order}</p>
+
+            )) */}
         
           </Horizontal>
         </Vertical>
