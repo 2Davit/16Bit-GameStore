@@ -1,4 +1,4 @@
-const { Product, Genre, Platform, User, Order } = require("../db");
+const { Product, Genre, Platform, User, Review } = require("../db");
 const axios = require("axios");
 
 //filtra por on_sale
@@ -403,25 +403,94 @@ async function deleteOneProduct(req, res) {
     res.status(404).send("Error");
   }
 }
-
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
 async function addReview(req, res) {
   const { id_product, id_user } = req.params; //trae el usuario
   const { score, description } = req.body;
   try {
-    let product = await Product.findByPk(id_product);
-    let user = await User.findByPk(id_user);
-    let order = await Order.findAll({
+    let aux = await Review.findOne({
       where: {
+        productIdProduct: id_product,
         userIdUser: id_user,
       },
-      include: [
-        {
-          model: orderProduct,
-          /* attributes: ["name_platform"], */
-          through: { attributes: [] },
-        },
-      ],
-    });
+    })
+    console.log(aux)
+    if(!aux && (score>=1 && score<=5) ) {
+    let product = await Product.findByPk(parseInt(id_product));
+    let user = await User.findByPk(parseInt(id_user));
+    let review = await Review.create({
+      score,
+      description,
+    })
+    await product.addReview(review);
+    await review.setProduct(product);
+    await user.addReview(review);
+    await review.setUser(user);
+    res.status(200).send("Review created succesfully");
+    }
+    else res.status(200).send("Ya dejaste una review sobre este producto / valores incorrectos");
   }
   catch {
     res.status(404).send("Error");

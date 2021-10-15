@@ -8,7 +8,7 @@ module.exports = (sequelize) => {
       primaryKey: true,
       allowNull: false,
     },
-    punctuation: {
+    score: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },

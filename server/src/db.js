@@ -74,6 +74,9 @@ Platform.belongsToMany(Product, { through: "productPlatform" });
 Product.belongsToMany(Platform, { through: "productPlatform" });
 Product.hasMany(Review)
 Review.belongsTo(Product)
+User.hasMany(Review)
+Review.belongsTo(User)
+
 
 module.exports = {
   ...sequelize.models,
