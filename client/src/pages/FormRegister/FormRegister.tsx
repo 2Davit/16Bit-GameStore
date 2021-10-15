@@ -1,4 +1,3 @@
-
 import React, { FC, useState } from "react";
 import axios from "axios";
 import { FormStyled } from "./StyledFormRegister";
@@ -6,6 +5,7 @@ import { Btn } from "../../GlobalStyles/GlobalStyles";
 import { useHistory, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login } from "../../redux/actions/auth_actions";
+import Swal from "sweetalert2";
 
 // Shape of form values
 interface FormValues {
@@ -19,6 +19,7 @@ interface FormValues {
 }
 
 const FormRegister = () => {
+  const [isUser, setIsUser] = useState<boolean>(false);
   const [input, setInput] = useState<FormValues>({
     username: "",
     password: "",
@@ -64,6 +65,18 @@ const FormRegister = () => {
     if (input.password.length < 6 || input.password.length > 15)
       errors.password = "Must be between 6 and 15 characters in length";
 
+    /* -------- CONFIRM - PASSWORD ---------- */
+
+    if(!input.confirmPassword){
+      errors.confirmPassword = 'Please confirm your password'
+    } else if (input.confirmPassword !== input.password){
+      errors.confirmPassword = "Wrong password"
+    } else if (!/[0-9]/.test(input.confirmPassword) ) {
+      errors.confirmPassword = "Must contain a number" + " (0-9)";
+    } else if (input.password.length < 6 || input.password.length > 15) {
+      errors.confirmPassword = "Must be between 6 and 15 characters in length";
+    }
+    
     /* -------- EMAIL ---------- */
     if (!input.email) {
       errors.email = "Email is required";
@@ -118,18 +131,31 @@ const FormRegister = () => {
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    alert("Created account 😃");
-    history.push("/home");
     axios
       .post("/auth/signup", input)
       .then((res) => {
         const { username, password } = input;
         dispatch(login({ username, password }));
+        Swal.fire({
+          title: 'Success',
+          text: 'Account created',
+          icon: 'success',
+          confirmButtonText: '🚀'
+        }).then((isConfirm) => { if(isConfirm) history.push("/home"); })
       })
       .catch((err) => {
-        console.log(err);
+        Swal.fire({
+          title: 'Error!',
+          text: 'Username or email already exist! ',
+          icon: 'error',
+          confirmButtonText: '😓'
+        })
       });
+    setIsUser(true)
   };
+
+  let disabled = !(input.username && input.password && input.confirmPassword && input.email && input.address && input.lastname && !errors.username && !errors.password && !errors.confirmPassword && !errors.email && !errors.address && !errors.lastname)
+  
   return (
     <FormStyled>
       <form onSubmit={handleSubmit}>
@@ -150,7 +176,7 @@ const FormRegister = () => {
           <span>Confirm password</span>
           <input name="confirmPassword" type="password" onChange={handleChange}/>
         </label>
-        {errors.password && <span>{errors.password}</span>}
+        {errors.confirmPassword && <span>{errors.confirmPassword}</span>}
 
         <label htmlFor="email">
           <span>Email</span>
@@ -177,7 +203,7 @@ const FormRegister = () => {
         {errors.address && <span>{errors.address}</span>}
 
 
-        <Btn type="submit" className="btn-card">
+        <Btn type="submit" className="btn-card" disabled={disabled}>
           Register
         </Btn>
         <p>
