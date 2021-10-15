@@ -5,7 +5,7 @@
   "main": "index.ts",
   "scripts": {
     "dev": "nodemon -L",
-    "start": "nodemon -L", 
+    "start": "nodemon -L",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

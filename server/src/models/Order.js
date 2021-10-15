@@ -20,9 +20,9 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    date_order: {
+    /* date_order: {
       type: DataTypes.DATE,
       allownull: false,
-    },
+    }, */
   });
 };

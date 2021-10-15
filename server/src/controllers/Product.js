@@ -1,4 +1,4 @@
-const { Product, Genre, Platform } = require("../db");
+const { Product, Genre, Platform, User, Order } = require("../db");
 const axios = require("axios");
 
 //filtra por on_sale
@@ -404,6 +404,30 @@ async function deleteOneProduct(req, res) {
   }
 }
 
+async function addReview(req, res) {
+  const { id_product, id_user } = req.params; //trae el usuario
+  const { score, description } = req.body;
+  try {
+    let product = await Product.findByPk(id_product);
+    let user = await User.findByPk(id_user);
+    let order = await Order.findAll({
+      where: {
+        userIdUser: id_user,
+      },
+      include: [
+        {
+          model: orderProduct,
+          /* attributes: ["name_platform"], */
+          through: { attributes: [] },
+        },
+      ],
+    });
+  }
+  catch {
+    res.status(404).send("Error");
+  }
+}
+
 /* async function addProductFavorite(req, res) {
   try{
    const { product_id, user_id } = req.body;
@@ -448,4 +472,5 @@ module.exports = {
   getAllProduct,
   updateOneProduct,
   deleteOneProduct,
+  addReview,
 };
