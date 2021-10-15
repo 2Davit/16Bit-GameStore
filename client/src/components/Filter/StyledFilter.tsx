@@ -3,15 +3,23 @@ import arrow from "../../assets/img/svg/arrow-down.svg";
 
 export const StyledFilter = styled.div`
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  flex-direction: column;
   padding: 1rem;
+  width: 25%;
+  position: relative;
+  top: 5em;
+  background: #000;
 
   h5 {
-    text-align: center;
+    width: 100%;
+    margin-top: 1em;
   }
   button {
     width: 200px;
+    margin-top: 1em;
+  }
+  h2 {
+    color: var(--clr-primary);
   }
 `;
 

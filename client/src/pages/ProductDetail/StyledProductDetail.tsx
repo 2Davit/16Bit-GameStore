@@ -5,10 +5,56 @@ export const GameDetail = styled.section`
   display: flex;
   margin: 5rem 4rem;
 
+  .btn-fav {
+    background: black;
+    border: 1px solid transparent;
+    position: relative;
+    top: -0.5em;
+    left: 2em;
+    border: 3px solid white;
+    border-radius: 999px;
+    padding: 0.5em;
+    animation: attention 2s ease infinite;
+
+    svg {
+      fill: white;
+      height: 30px;
+      transition: all 0.2s ease-in-out;
+    }
+    &:hover {
+      svg {
+        fill: red;
+      }
+    }
+    &:focus {
+      outline: none;
+    }
+  }
+  @keyframes attention {
+    9% {
+      transform: none;
+    }
+    12% {
+      transform: scale(1.05);
+    }
+    16% {
+      transform: scale(0.95);
+    }
+    20% {
+      transform: scale(1.03);
+    }
+    24% {
+      transform: scale(1);
+    }
+  }
+
   @media (max-width: 1000px) {
     flex-direction: column;
   }
 
+  .game__title {
+    display: flex;
+  }
   .game__img {
     flex: 1;
     margin-right: 1.5em;

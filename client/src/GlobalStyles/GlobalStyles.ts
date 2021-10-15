@@ -102,6 +102,11 @@ export const Btn = styled.button`
   letter-spacing: 0.03em;
   height: fit-content;
 
+  &.btn-fav{
+    background:red ;  
+    width: 1em;
+    height: 3em;
+  }
   &.btn-sec {
     color: white;
     background-color: var(--clr-dark-1);

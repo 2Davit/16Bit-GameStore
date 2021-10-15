@@ -61,10 +61,15 @@ const Filter: FC<Props> = ({ setPage }) => {
     setPage(1);
   };
 
+  const filterPlatform: any = document.getElementById("filterPlatform");
+  const filterGenre: any = document.getElementById("filterGenre");
+  const btnSale: any = document.getElementById("btnSale");
+
   return (
     <StyledFilter>
+      <h2>Filter:</h2>
       <section>
-        <h5>By platform</h5>
+        <h5>by Platform</h5>
         <SelectStyled id="filterPlatform" onChange={handleFilter}>
           <option value="">All</option>
           {totalPlatforms.map((index: any) => (
@@ -75,7 +80,7 @@ const Filter: FC<Props> = ({ setPage }) => {
         </SelectStyled>
       </section>
       <section>
-        <h5>By genre</h5>
+        <h5>by Genre</h5>
         <SelectStyled id="filterGenre" onChange={handleFilter}>
           <option value="">All</option>
           {totalGenres.map((index: any) => (
@@ -86,10 +91,8 @@ const Filter: FC<Props> = ({ setPage }) => {
         </SelectStyled>
       </section>
       <section>
-        <h5>On sale</h5>
-
         {show ? (
-          <Btn className="btn-card" onClick={handleOnSaleFilter}>
+          <Btn id="btnSale" className="btn-card" onClick={handleOnSaleFilter}>
             On Sale
           </Btn>
         ) : (
@@ -99,10 +102,13 @@ const Filter: FC<Props> = ({ setPage }) => {
         )}
       </section>
       <section>
-        <h5>Remove Filters</h5>
-        <Btn className="btn-sec" onClick={handleReset}>
-          Remove
-        </Btn>
+        {!(filterPlatform?.value === "") ||
+        !(filterGenre?.value === "") ||
+        btnSale ? (
+          <Btn className="btn-sec" onClick={handleReset}>
+            Remove
+          </Btn>
+        ) : null}
       </section>
     </StyledFilter>
   );
