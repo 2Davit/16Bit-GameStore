@@ -215,8 +215,8 @@ const UserContent: FC<Props> = ({ totalUser }) => {
               <InfoUser>{u.name}</InfoUser>
               <InfoUser>{u.lastname}</InfoUser>
               <InfoUserMini>{u.active ? "Active" : "Banned"}</InfoUserMini>
-              <InfoUser>{u.email}</InfoUser>
-              <InfoUser>{u.address}</InfoUser>
+              <InfoUser style={{overflowX: "scroll"}}>{u.email}</InfoUser>
+              {u.address.length > 18 ? <InfoUser>{u.address.slice(0,17) + "..."}</InfoUser> : <InfoUser>{u.address}</InfoUser>}
               <UserButtons
                 onClick={() => handleDeleteUser(u.id_user)}
                 backg={
