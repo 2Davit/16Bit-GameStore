@@ -21,7 +21,7 @@ const CartSideBar /*: FC<CartSideBarProps>*/ = ({ closeCallback, show }) => {
     (state /* : Store */) => state.cartReducer.cart.list
   );
 
-  /* const cartStorage = JSON.parse(localStorage.getItem("cart")); */
+  const cartStorage = JSON.parse(localStorage.getItem("cart"));
 
   const [subtotal, setSubtotal] = useState(0.0);
 
@@ -65,7 +65,7 @@ const CartSideBar /*: FC<CartSideBarProps>*/ = ({ closeCallback, show }) => {
           </button>
 
           <h2 className="modal__title">Your Cart:</h2>
-          {cartList?.map((purchase /*: ProductInCart*/) => (
+          {cartStorage?.map((purchase /*: ProductInCart*/) => (
             <Mini detail={purchase} key={purchase.id_product} />
           ))}
           <Hr />
