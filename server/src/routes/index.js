@@ -8,6 +8,7 @@ const PlatformRoutes = require("./Platform");
 const ProductRoutes = require("./Product");
 const UserRoutes = require("./User");
 const OrderRoutes = require("./Order");
+const OPRoutes = require("./OrderProduct")
 const Favorite = require('./Favorite')
 
 const router = Router();
@@ -23,6 +24,7 @@ router.use('/videogames', ProductRoutes);
 router.use('/user', UserRoutes);
 router.use('/order', OrderRoutes);
 router.use('/favorites', Favorite)
+router.use('/orderproduct', OPRoutes);
 
 
 module.exports = router;

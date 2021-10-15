@@ -7,7 +7,7 @@ import {
   getAllProducts,
 } from "../../redux/actions/products_action";
 import { getUsers } from "../../redux/actions/admin_actions";
-import { deleteNavbar, getOrders } from "../../redux/actions/admin_actions";
+import { deleteNavbar, getOrders, getSalesData } from "../../redux/actions/admin_actions";
 import {
   AdminHome,
   Panel,
@@ -83,6 +83,7 @@ const AdminPanel: FC = (props) => {
     dispatch(deleteNavbar());
     dispatch(getUsers());
     dispatch(getOrders());
+    dispatch(getSalesData());
   }, [dispatch]);
   const totalProducts: any = useSelector(
     (state: Store) => state.productsReducer
@@ -90,6 +91,7 @@ const AdminPanel: FC = (props) => {
   );
   const totalUsers = useSelector((state: Store) => state.adminReducer.users);
   const totalOrders = useSelector((state: Store) => state.adminReducer.orders);
+  const totalSalesData = useSelector((state: Store) => state.adminReducer.sales);
 
   return (
     <ContainerAdmin>
@@ -98,7 +100,7 @@ const AdminPanel: FC = (props) => {
       </InfoContainer>
       <MainContainer>
         {info.setHome ? (
-          <AdminHome totalOrders={totalOrders} totalUsers={totalUsers} totalProducts={totalProducts.totalProducts} />
+          <AdminHome totalOrders={totalOrders} totalUsers={totalUsers} totalProducts={totalProducts.totalProducts} totalSalesData={totalSalesData} />
         ) : info.setProducts ? (
           <ProductContent totalProducts={totalProducts} />
         ) : info.setSales ? (
