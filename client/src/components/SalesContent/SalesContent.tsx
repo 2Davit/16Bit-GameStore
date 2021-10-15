@@ -172,7 +172,7 @@ const SalesContent: FC<Props> = ({ totalOrders }) => {
               <InfoOrder>Comprador</InfoOrder>
               <InfoOrder>{o.address}</InfoOrder>
               <InfoOrder>{o.amount}</InfoOrder>
-              <InfoOrder>{o.date}</InfoOrder>
+              <InfoOrder>{o.date.slice(0,10)}</InfoOrder>
             </OrderContainer>
           ))
         ) : (

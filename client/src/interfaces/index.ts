@@ -65,8 +65,9 @@ export interface ProductsState {
   genres: Array<Genre>;
   platforms: Array<Platform>;
   navbar?: boolean;
-  users?:Array<String>;
-  orders?:Array<String>;
+  users?: Array<String>;
+  orders?: Array<String>;
+  sales?: Array<DetailData>;
 }
 
 export interface CartState {
@@ -75,12 +76,12 @@ export interface CartState {
   };
 }
 
-export interface Order{
-  id_order?:number | any;
+export interface Order {
+  id_order?: number | any;
   address: string;
   amount: number;
   date: string;
-  status:string;
+  status: string;
 }
 
 export interface GlobalState {
@@ -137,14 +138,15 @@ export interface UserLogin {
 
 export interface User {
   active: boolean,
-  id_user?:number | any,
-  nickname?:string | any;
+  id_user?: number | any,
+  nickname?: string | any;
   token: string;
   username: string;
   email: string;
   name: string;
   lastname: string;
   address: string;
+  created?: string | any;
   /* avatar: string; */
 }
 
@@ -155,4 +157,22 @@ export interface UserState {
   user: User;
   role: Role;
   id_user: string;
+}
+
+export interface DetailData {
+  id_order?: number,
+  status?: string | any,
+  amount?: number | any,
+  address?: string,
+  date: string,
+  userId: number,
+  orderidOrder?: number,
+  productidProduct?: number,
+  id_OP?: number,
+  price_orderProduct: number,
+  quantity_orderProduct: number,
+  id_product: number,
+  name_product: string,
+  id_user: number,
+  username: string
 }

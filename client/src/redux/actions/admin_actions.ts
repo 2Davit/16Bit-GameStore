@@ -4,7 +4,7 @@ import { EditProduct, } from "../../interfaces";
 
 // import { EDIT_PRODUCT } from "../types";
 import { Dispatch } from "redux";
-import { EDIT_NAVBAR, CREATE_NAVBAR, USERS_INFO, GET_ORDERS } from "../types"
+import { EDIT_NAVBAR, CREATE_NAVBAR, USERS_INFO, GET_ORDERS, GET_SALES_DATA } from "../types"
 
 interface Detail { 
     type: string;
@@ -86,3 +86,14 @@ export const createNavbar = () => {
       });
     };
   };
+
+  export const getSalesData = () => {
+    return async function (dispatch: Dispatch<Detail>){
+      const {data} = await axios.get(`http://localhost:3001/orderproduct`)
+      console.log('dataaa',data)
+      return dispatch({
+        type: GET_SALES_DATA,
+        payload: data,
+      });
+    }
+  }

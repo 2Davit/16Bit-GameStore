@@ -86,7 +86,7 @@ const PanelCatalog: FC<Props> = ({
     dispatch(editProduct(input));
     alert("Cambio realizado con éxito.");
   }
-  function handleChangeName(e: React.FormEvent<HTMLInputElement>) {
+  function handleChange(e: React.FormEvent<HTMLInputElement>) {
     setInput({
       ...input,
       [e.currentTarget.name]: e.currentTarget.value,
@@ -105,12 +105,7 @@ const PanelCatalog: FC<Props> = ({
       released: parseInt(e.currentTarget.value),
     });
   }
-  function handleChangePrice(e: React.FormEvent<HTMLInputElement>) {
-    setInput({
-      ...input,
-      [e.currentTarget.name]: e.currentTarget.value,
-    });
-  }
+
   function handleAddGenre(e: React.FormEvent<HTMLInputElement>) {
     setInput({
       ...input,
@@ -145,7 +140,7 @@ const PanelCatalog: FC<Props> = ({
   function handleDeleteProduct(id: number): any {
     dispatch(deleteProduct(id));
     alert("Cambio realizado con éxito.");
-    history.push("/admin");
+    history.push("/admin"); 
   }
 
   return cond === false ? (
@@ -211,7 +206,7 @@ const PanelCatalog: FC<Props> = ({
             <Input
               className="card__title"
               name="name"
-              onChange={handleChangeName}
+              onChange={handleChange}
               value={input.name}
             />
           </InputLabel>
@@ -228,12 +223,13 @@ const PanelCatalog: FC<Props> = ({
               name="price"
               type="number"
               value={input.price}
-              onChange={handleChangePrice}
+              onChange={handleChange}
             ></input>
           </InputLabel>
           <InputLabel>
             <label>Quantity</label>
             <input
+            onChange={handleChange}
               style={{
                 backgroundColor: "transparent",
                 border: "none",
@@ -242,6 +238,7 @@ const PanelCatalog: FC<Props> = ({
                 marginLeft: "10px",
               }}
               type="number"
+              name="stock"
               min="0"
             ></input>
           </InputLabel>

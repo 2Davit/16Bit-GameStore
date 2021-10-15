@@ -151,8 +151,8 @@ const FormRegister = () => {
           confirmButtonText: '😓'
         })
       });
-    setIsUser(true)
-  };
+      setIsUser(true);
+      };
 
   let disabled = !(input.username && input.password && input.confirmPassword && input.email && input.address && input.lastname && !errors.username && !errors.password && !errors.confirmPassword && !errors.email && !errors.address && !errors.lastname)
   

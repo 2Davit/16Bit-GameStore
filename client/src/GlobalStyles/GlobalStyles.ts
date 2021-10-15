@@ -29,6 +29,7 @@ export const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
 
 /* width */
 ::-webkit-scrollbar {
+  display:none;
   width: 14px;
 }
 

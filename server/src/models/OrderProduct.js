@@ -14,6 +14,7 @@ module.exports = (sequelize) => {
     quantity_orderProduct: {
       type: DataTypes.INTEGER,
       allownull: false,
-    },
+    }
+
   });
 };

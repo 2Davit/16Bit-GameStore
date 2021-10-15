@@ -91,12 +91,13 @@ const Detail: FC = () => {
   const handleAddFavorites = () => {
     let idProduct = detailProduct.id_product;
     let idUser = JSON.parse(localStorage.getItem("userData")!);
+    if (idUser) {
     let ids = {
       idProduct: idProduct,
       idUser: idUser.id,
     };
     dispatch(addFavorites(ids));
-    history.push("/favs");
+  } else alert('Login please');
   };
 
   let unavailable =
