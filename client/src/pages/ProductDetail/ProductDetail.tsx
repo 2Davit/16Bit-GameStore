@@ -16,6 +16,7 @@ import { addItemCart } from "../../redux/actions/cart_actions";
 import { toast } from "react-toastify";
 import { ProductInCart } from "../../interfaces";
 import { addFavorites } from "../../redux/actions/favorite_actions";
+import heart from "../../assets/img/svg/heart1.svg";
 
 interface Props {
   id: string;
@@ -92,17 +93,31 @@ const Detail: FC = () => {
     let idProduct = detailProduct.id_product;
     let idUser = JSON.parse(localStorage.getItem("userData")!);
     if (idUser) {
-    let ids = {
-      idProduct: idProduct,
-      idUser: idUser.id,
-    };
-    dispatch(addFavorites(ids));
-  } else alert('Login please');
+      let ids = {
+        idProduct: idProduct,
+        idUser: idUser.id,
+      };
+      dispatch(addFavorites(ids));
+      toast.info(
+        `${detailProduct.name_product} was added to your favorites! 💜`,
+        {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        }
+      );
+    } else alert("Login please");
   };
 
   let unavailable =
     quantity + game?.quantity === detailProduct.in_stock + 1 ? true : false;
-
+  console.log(detailProduct.genres);
+  const user = JSON.parse(localStorage.getItem("userData")!);
   return (
     <>
       <GameDetail>
@@ -116,9 +131,20 @@ const Detail: FC = () => {
           ))}
         </div>
         <div className="game__info">
-          <h1 className="game__title">
-            {detailProduct.name_product} ({detailProduct.release_year})
-          </h1>
+          <div className="game__title">
+            <h1>
+              {detailProduct.name_product} ({detailProduct.release_year})
+            </h1>
+            {user ? (
+              <button
+                onClick={handleAddFavorites}
+                disabled={unavailable}
+                className="btn-fav"
+              >
+                <StyledSVG src={heart} />
+              </button>
+            ) : null}
+          </div>
           <ul className="game__categories">
             {detailProduct.genres?.map((e: Genre, i: number) => (
               <li key={i} className="game__category">
@@ -160,18 +186,6 @@ const Detail: FC = () => {
           {quantity === detailProduct.in_stock ? <p>Limit stock</p> : null}
           <div className="game__purchase-container">
             <div className="game__buttons">
-              <Btn
-                onClick={handleAddFavorites}
-                disabled={unavailable}
-                className={
-                  !unavailable
-                    ? "btn-card btn-img"
-                    : "btn-card-disabled btn-img"
-                }
-              >
-                Add to Favs
-                <StyledSVG src={joystick} />
-              </Btn>
               <Btn
                 onClick={() => handleBuyNow()}
                 disabled={unavailable}
