@@ -1,4 +1,4 @@
-import { Field, Form, Formik } from "formik";
+// import { input, Form, Formik } from "formik";
 import { UserLogin } from "../../interfaces/index";
 import { getRole, login } from "../../redux/actions/auth_actions";
 import React, { FC, useState, useEffect } from "react";
@@ -12,14 +12,26 @@ import { openLogin } from "../../redux/actions/global_actions";
 import { StyledSVG, Btn } from "../../GlobalStyles/GlobalStyles";
 import CloseButton from "../../assets/img/svg/close-filled-purple.svg";
 
+interface User {
+  username: string;
+  password: string
+}
 const FormLogin: FC = () => {
+
+  const user = JSON.parse(localStorage.getItem("userData")!);
   const [isUser, setIsUser] = useState<boolean>(false);
+  const [input, setInput] = useState<User>({
+    username: '',
+    password: ''
+  });
+
+
   const loginIsOpen = useSelector(
     (state: Store) => state.globalReducer.loginIsOpen
   );
   const dispatch = useDispatch();
   const history = useHistory();
-  const user = JSON.parse(localStorage.getItem("userData")!);
+  
 
   const customStyles = {
     overlay: {
@@ -48,6 +60,11 @@ const FormLogin: FC = () => {
       height: "70%",
     },
   };
+  const afterOpenModal = () => {
+		document.body.style.overflow = 'hidden';
+	}
+
+
 
   const closeModal = () => {
     dispatch(openLogin(false));
@@ -59,13 +76,24 @@ const FormLogin: FC = () => {
     if (user) {
       setIsUser(true);
     }
+    dispatch(openLogin(true));
   }, [user]);
 
-  const handleSubmit = (values: UserLogin) => {
-    dispatch(login(values));
+  let disabled = !(input.username && input.password)
+  
+  const handleInputChange = (e: React.FormEvent<HTMLInputElement>) => {
+    setInput({
+      ...input,
+      [e.currentTarget.name] :  e.currentTarget.value
+    })
+  }
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    dispatch(login(input));
     dispatch(getRole());
     setIsUser(true);
-    /* alert("succeeded"); */
+    closeModal()
   };
 
   return (
@@ -76,25 +104,22 @@ const FormLogin: FC = () => {
       contentLabel={"Login"}
       portalClassName={"ReactModalPortal"}
       ariaHideApp={false}
+      onAfterOpen={afterOpenModal}
     >
-      {!isUser ? (
+      {!user ? (
         <StyledLogin>
           <button className="button" onClick={closeModal}>
             <StyledSVG src={CloseButton} />
           </button>
-          <Formik
-            initialValues={{ username: "", password: "" }}
-            onSubmit={handleSubmit}
-          >
             <FormStyled>
-              <Form>
+              <form onSubmit={handleSubmit}>
                 <label htmlFor="username">
                   <span>Username</span>
-                  <Field id="username" name="username" />
+                  <input name="username" onChange={handleInputChange} />
                 </label>
                 <label htmlFor="password">
                   <span>Password</span>
-                  <Field id="password" name="password" type="password" />
+                  <input name="password" type="password" onChange={handleInputChange} />
                 </label>
                 <div className="link_container">
                   <Link to="/reset" onClick={closeModal}>
@@ -104,12 +129,11 @@ const FormLogin: FC = () => {
                     Create an Account
                   </Link>
                 </div>
-                <Btn type="submit" className="btn-card login">
+                <Btn type="submit" className={!disabled ? "btn-card login" : "btn-disabled"} disabled={disabled}>
                   Log In
                 </Btn>
-              </Form>
+              </form>
             </FormStyled>
-          </Formik>
         </StyledLogin>
       ) : (
         <StyledLogin>

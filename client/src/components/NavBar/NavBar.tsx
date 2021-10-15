@@ -20,6 +20,8 @@ import heart from "../../assets/img/svg/heart1.svg";
 import userPic from "../../assets/img/svg/user.svg";
 import defaultAvatar from "../../assets/img/avatars/Avatar_9.png";
 
+
+
 interface Props {
   setPage(num: number): void;
   toggleModal: any;
@@ -42,12 +44,14 @@ const NavBar: FC<Props> = ({ setPage, toggleModal }: any) => {
     (state: Store) => state.cartReducer.cart.list
   );
 
+  const cartStorage = JSON.parse(localStorage.getItem("cart")!);
+
   // ================Dejar comentado==================
   // const user: User = useSelector((state: Store) => state.authReducer.user);
   // const userIsAdmin: UserState = useSelector((state: Store) => state.authReducer.role.admin);
   // ================Dejar comentado==================
 
-  const number = cartNumber?.reduce((acc: number, prod: ProductInCart) => {
+  const number = cartStorage?.reduce((acc: number, prod: ProductInCart) => {
     acc = acc + prod.quantity!;
     return acc;
   }, 0);
@@ -126,7 +130,7 @@ const NavBar: FC<Props> = ({ setPage, toggleModal }: any) => {
               <button onClick={toggleModal}>
                 <StyledSVG src={cart} />
                 <span>Cart</span>
-                {!!number && (
+                {number > 0 && (
                   <span className="cart__number">
                     {number >= 100 ? "99+" : number}
                   </span>
