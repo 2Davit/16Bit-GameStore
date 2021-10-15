@@ -21,6 +21,8 @@ import {
   Step1,
   Step2,
   Step3,
+  UserOrders,
+  UserOrderDetail,
 } from "./pages/";
 import { NavBar, Footer, About, CartSideBar } from "./components";
 import Favorites from "./components/Favorites/Favorites";
@@ -112,6 +114,8 @@ const App: FC = () => {
           <Route exact path="/privacy" component={Privacy} />
           <Route exact path="/legal" component={Legal} />
           <Route exact path="/about" component={About} />
+          <Route exact path="/orders" component={UserOrders} />
+          <Route exact path="/orders/:id" component={UserOrderDetail} />
           <Route exact path="/user" component={UserPage} />
           <Route exact path="/edit" component={EditProfile} />
           {/* <Route exact path="/order" component={Order} /> */}

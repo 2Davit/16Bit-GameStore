@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
 export const StyledCatalog = styled.div`
+  position: relative;
+  top: -10em;
   display: flex;
   justify-content: center;
   align-items: center;
