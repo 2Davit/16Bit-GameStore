@@ -3,10 +3,11 @@ const {Router} = require('express')
 const router = Router();
 
 
-const { createOrder, createPayment, saveOrder, getOrders } = require('../controllers/Order')
+const { createOrder, createPayment, saveOrder, getOrders, getOrderDetail } = require('../controllers/Order')
 
 
 router.get('/', getOrders)
+router.get('/:idOrder', getOrderDetail)
 router.post("/", createOrder)
 router.get("/payment", createPayment)
 router.post("/save", saveOrder)

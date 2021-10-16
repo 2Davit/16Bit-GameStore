@@ -9,7 +9,26 @@ mercadopago.configure({
 });
 
 async function getOrders(req, res) {
-  try {
+  const { idUser } = req.query;
+  try{
+  if(idUser) {
+    const userOrders = await Order.findAll({
+      where: {
+        userIdUser: idUser,
+      }
+    })
+    const userOrdersData = userOrders.map((u) => {
+      return {
+        id_order: u.id_order,
+        status: u.status_order,
+        amount: u.amount_order,
+        address: u.address_order,
+        date: u.createdAt,
+      };
+    });
+    res.status(200).send(userOrdersData);
+  }
+  else  {
     const orders = await Order.findAll();
     const ordersData = orders.map((u) => {
       return {
@@ -17,18 +36,19 @@ async function getOrders(req, res) {
         status: u.status_order,
         amount: u.amount_order,
         address: u.address_order,
-        date: u.date_order,
+        date: u.createdAt,
       };
     });
     res.status(200).send(ordersData);
-  } catch (err) {
+  } 
+  }
+catch (err) {
     res.status(404).send(err);
   }
 }
 
 async function createOrder(req, res, next) {
   const { id_user, status_order, amount_order, cart, address_order } = req.body;
-
   try {
     var user = await User.findByPk(id_user);
     const order = await Order.create({
@@ -158,9 +178,54 @@ async function saveOrder(req, res, next) {
   } else return res.status(404).send({ error: "invalid order status" });
 }
 
+async function getOrderDetail(req, res) {
+  const { idOrder } = req.params;
+  try {
+    const order = await Order.findOne({
+      where: {
+        id_order: idOrder
+      },
+      include: [
+        {
+          model: OrderProduct,
+          required: false,
+        },
+      ]
+    })
+    const filterOrder = {
+        id_order: order.dataValues.id_order,
+        status_order: order.dataValues.status_order,
+        amount_order: order.dataValues.amount_order,
+        address_order: order.dataValues.address_order,
+        date: order.dataValues.createdAt,
+        orderProduct: order.dataValues.orderProducts.map( index => {
+          return {
+            product: index.dataValues.productIdProduct,
+            quantity:index.dataValues.quantity_orderProduct,
+          }
+        })
+      }
+    let filterOrderThree = filterOrder.orderProduct.map(async index => {
+      return await (Product.findByPk(index.product))
+    })
+    let filterOrderFour = await Promise.all(filterOrderThree)
+    filterOrder.orderProduct.forEach(index => {
+      filterOrderFour.map(i => {
+        if(i.dataValues.id_product === index.product) {return index.product= i.dataValues}
+      })
+    })
+    res.status(200).send(filterOrder);
+  }
+  catch (err) {
+    res.status(404).send(err);
+  }
+}
+
+
 module.exports = {
   createOrder,
   createPayment,
   saveOrder,
   getOrders,
+  getOrderDetail,
 };
