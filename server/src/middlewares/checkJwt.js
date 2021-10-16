@@ -6,7 +6,9 @@ const checkJwt = async (req, res, next) => {
   let token = req.headers["x-access-token"];
 
   if (!token) {
-    return res.status(403).send("No token provided");
+    return res
+      .status(403)
+      .send({ message: "Must be authenticated (provide an access token)" });
   }
 
   try {
@@ -14,7 +16,7 @@ const checkJwt = async (req, res, next) => {
     req.userId = decoded.id;
     next();
   } catch (err) {
-    return res.status(401).send("Token is not valid");
+    return res.status(401).send({ message: "Token is not valid" });
   }
 };
 

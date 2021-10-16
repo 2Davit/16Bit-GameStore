@@ -5,7 +5,7 @@ const reqAdmin = async (req, res, next) => {
   if (user && user.is_admin) {
     return next();
   } else {
-    return res.status(403).send("Require administrator permissions");
+    return res.status(403).send({ message: "Require admin privileges" });
   }
 };
 

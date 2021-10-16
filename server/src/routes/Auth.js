@@ -8,10 +8,14 @@ const router = Router();
 router.post("/signup", signUp);
 router.post("/login", logIn);
 router.get("/getRole", checkJwt, getRole);
+
+// Se sigue usando el getID? O era de prueba?
 router.get("/getID", checkJwt, (req, res) => {
   const id = req.userId;
   res.status(200).send({ id: id });
 });
+
+// Rutas de testeo, borrarlas más adelante
 router.post("/reqToken", checkJwt, (req, res) => {
   res.send("Token provided");
 });
