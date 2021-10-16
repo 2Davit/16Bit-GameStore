@@ -3,6 +3,7 @@ import { ProductCreate, ProductValidate } from "../../interfaces";
 import { useDispatch } from "react-redux";
 import { createVideogame } from "../../redux/actions/products_action";
 import { deleteNavbar } from "../../redux/actions/admin_actions";
+import axios from 'axios'
 import { Link } from "react-router-dom";
 import {
   FormContainer,
@@ -60,16 +61,16 @@ const FormProduct: FC = () => {
     dispatch(deleteNavbar());
   }, [dispatch]);
 
-  const handleImage = () => {
-    setImages([...images, info.url]);
-    setInput((prevState: any) => ({
-      ...prevState,
-      image_product: [...images, info.url],
-    }));
-    setInfo({ url: "" });
+  // const handleImage = () => {
+  //   setImages([...images, info.url]);
+  //   setInput((prevState: any) => ({
+  //     ...prevState,
+  //     image_product: [...images, info.url],
+  //   }));
+  //   setInfo({ url: "" });
 
-    alert("has añadido una imagen");
-  };
+  //   alert("has añadido una imagen");
+  // };
 
   function handleInfoChange(e: React.FormEvent<HTMLInputElement>) {
     setInfo({
@@ -284,7 +285,34 @@ const FormProduct: FC = () => {
     return error;
   };
 
+  const handleImage =  async (e:any) => {
+    const data = new FormData();
+    data.append("upload_preset", "product_image")
+    data.append("file", e.target.files[0])
+    const fileRequest = await axios.post('https://api.cloudinary.com/v1_1/gamestore-16bit/image/upload', data)
+    const result =  fileRequest?.data.secure_url
+    setImages([
+      ...images, result
+    ])
+    setInput((prevState: any) => ({
+           ...prevState,
+           image_product: [...images, result],
+         }));
+
+
+  }
+  console.log('por aca', input);
+
   return (
+    <>
+
+    <input onChange={(e) => handleImage(e)} type="file" />
+    {images? images.map(el => (
+      <img src={el}/>
+    )) : ""}
+
+
+
     <ContainerFormP>
       <Link
         to={{
@@ -340,7 +368,7 @@ const FormProduct: FC = () => {
             name="image_product"
             placeholder="Add Images..."
           />
-          <BtnAdd type="button" onClick={() => handleImage()}>
+         <BtnAdd type="button" > 
             Add
           </BtnAdd>
         </Fields>
@@ -470,6 +498,7 @@ const FormProduct: FC = () => {
         <BtnSubmit type="submit">Submit</BtnSubmit>
       </FormContainer>
     </ContainerFormP>
+    </>
   );
 };
 

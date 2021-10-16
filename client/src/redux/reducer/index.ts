@@ -5,6 +5,7 @@ import { globalReducer } from "./globalReducer";
 import { authReducer } from "./authReducer";
 import { adminReducer } from './adminReducer'
 import { favoriteReducer } from './favoriteReducer'
+import {ordersReducer} from './ordersReducer'
 
 export default combineReducers({
   productsReducer,
@@ -12,7 +13,8 @@ export default combineReducers({
   globalReducer,
   authReducer,
   adminReducer,
-  favoriteReducer
+  favoriteReducer,
+  ordersReducer
 });
 
 export type Store = ReturnType<any>;

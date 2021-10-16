@@ -1,6 +1,11 @@
 import React, { FC, useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 //Componentes
 import {
   Home,
@@ -62,6 +67,7 @@ const App: FC = () => {
   ///////////
 
   const showCart = useSelector((state: Store) => state.globalReducer.showCart);
+  const isAdmin = useSelector((state: Store) => state.authReducer.role.admin);
   //cart modal -
   const toggleModal: any = () => {
     dispatch(toggleCart());
@@ -105,11 +111,29 @@ const App: FC = () => {
             <Step3 />
           </Route>
           <Route exact path="/form" component={FormProduct} />
-          <Route exact path="/admin" component={AdminPanel} />
+          <Route
+            exact
+            path="/admin"
+            render={() => {
+              return isAdmin ? <AdminPanel /> : <Redirect to="/home" />;
+            }}
+          />
           <Route exact path="/login" component={FormLogin} />
           <Route exact path="/signup" component={FormRegister} />
-          <Route exact path="/createGenre" component={FormGenre} />
-          <Route exact path="/createPlatform" component={FormPlatform} />
+          <Route
+            exact
+            path="/createGenre"
+            render={() => {
+              return isAdmin ? <FormGenre /> : <Redirect to="/home" />;
+            }}
+          />
+          <Route
+            exact
+            path="/createPlatform"
+            render={() => {
+              return isAdmin ? <FormPlatform /> : <Redirect to="/home" />;
+            }}
+          />
           <Route exact path="/terms" component={Terms} />
           <Route exact path="/privacy" component={Privacy} />
           <Route exact path="/legal" component={Legal} />

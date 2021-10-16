@@ -20,8 +20,6 @@ import heart from "../../assets/img/svg/heart1.svg";
 import userPic from "../../assets/img/svg/user.svg";
 import defaultAvatar from "../../assets/img/avatars/Avatar_9.png";
 
-
-
 interface Props {
   setPage(num: number): void;
   toggleModal: any;
@@ -43,6 +41,8 @@ const NavBar: FC<Props> = ({ setPage, toggleModal }: any) => {
   const cartNumber: any = useSelector(
     (state: Store) => state.cartReducer.cart.list
   );
+
+  const isAdmin = useSelector((state: Store) => state.authReducer.role.admin);
 
   const cartStorage = JSON.parse(localStorage.getItem("cart")!);
 
@@ -95,11 +95,11 @@ const NavBar: FC<Props> = ({ setPage, toggleModal }: any) => {
                     <li>
                       <Link to="/user">My Profile</Link>
                     </li>
-                    {/* {userIsAdmin && (
-                        <li>
-                          <Link to="/admin">Admin</Link>
-                        </li>
-                      )} */}
+                    {isAdmin && (
+                      <li className="dropdown__button">
+                        <Link to="/admin">Admin Panel</Link>
+                      </li>
+                    )}
                     <li>
                       <div className="dropdown__button">
                         <LogOut />

@@ -4,6 +4,10 @@ const { User, Order, OrderProduct, Product } = require("../db.js");
 
 const { SECRET } = process.env;
 
+const capitalize = (string) => {
+  return string[0].toUpperCase() + string.slice(1).toLowerCase();
+};
+
 const signUp = async (req, res) => {
   const { username, password, email, name, lastname, address } = req.body;
 
@@ -11,33 +15,35 @@ const signUp = async (req, res) => {
 
   const existingUser = await User.findOne({
     where: {
-      nickname_user: username,
+      nickname_user: username.toLowerCase(),
     },
   });
 
   const existingMail = await User.findOne({
     where: {
-      email_user: email,
+      email_user: email.toLowerCase(),
     },
   });
 
   if (existingUser) {
-    return res.status(400).send("Failed! Username already in use!");
+    return res
+      .status(400)
+      .send({ message: "Failed! Username already in use!" });
   }
 
   if (existingMail) {
-    return res.status(400).send("Failed! email already in use");
+    return res.status(400).send({ message: "Failed! email already in use" });
   }
 
   // User create
 
   await User.create({
-    nickname_user: username,
+    nickname_user: username.toLowerCase(),
     password_user: bcrypt.hashSync(password, 8),
-    email_user: email,
-    name_user: name,
-    lastname_user: lastname,
-    address_user: address,
+    email_user: email.toLowerCase(),
+    name_user: capitalize(name),
+    lastname_user: capitalize(lastname),
+    address_user: capitalize(address),
   });
 
   return res.status(200).send("User successfully registered!");
@@ -48,7 +54,7 @@ const logIn = async (req, res) => {
 
   const user = await User.findOne({
     where: {
-      nickname_user: username,
+      nickname_user: username.toLowerCase(),
     },
     include: [
       {
@@ -103,17 +109,17 @@ const logIn = async (req, res) => {
   }
 
   if (!user) {
-    return res.status(404).send({ error: "User not found" });
+    return res.status(404).send({ message: "User not found" });
   }
 
   const passwordIsValid = bcrypt.compareSync(password, user.password_user);
 
   if (!passwordIsValid) {
-    return res.status(401).send("Wrong password");
+    return res.status(401).send({ message: "Wrong password" });
   }
 
   const token = jwt.sign({ id: user.id_user }, SECRET, {
-    expiresIn: 7200, // 2 hours
+    expiresIn: 86400, // 24 hours
   });
 
   res.status(200).send({
