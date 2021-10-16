@@ -139,7 +139,7 @@ const App: FC = () => {
           <Route exact path="/legal" component={Legal} />
           <Route exact path="/about" component={About} />
           <Route exact path="/orders" component={UserOrders} />
-          <Route exact path="/orders/:id" component={UserOrderDetail} />
+          <Route exact path="/userorderdetail/:idUser/:idOrder" component={UserOrderDetail} />
           <Route exact path="/user" component={UserPage} />
           <Route exact path="/edit" component={EditProfile} />
           {/* <Route exact path="/order" component={Order} /> */}

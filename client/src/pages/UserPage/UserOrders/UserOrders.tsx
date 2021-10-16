@@ -6,6 +6,7 @@ import { Btn } from "../../../GlobalStyles/GlobalStyles";
 import { Fade } from "react-awesome-reveal";
 import { Store } from "../../../redux/reducer";
 import { StyledOrders } from "../StyledUserPage";
+import { Link } from "react-router-dom";
 interface UserOrder {
   address: string;
   amount: number;
@@ -22,8 +23,7 @@ const UserOrders = () => {
   useEffect(() => {
     dispatch(getUserOrders(user.id));
   }, [dispatch]);
-
-  console.log("orders", orders);
+  
   return (
     <Fade>
       {orders.length > 0 ? (
@@ -41,6 +41,7 @@ const UserOrders = () => {
             </thead>
             <tbody>
               {orders.map((order: UserOrder) => {
+                console.log(order)
                 return (
                   <tr>
                     <td data-label="Date">{order.date}</td>
@@ -48,6 +49,9 @@ const UserOrders = () => {
                     <td data-label="Address">{order.address}</td>
                     <td data-label="Total">{order.amount}</td>
                     <td data-label="Status">{order.status}</td>
+                    <Link to={`/userorderdetail/${user.id}/${order.id_order}`}>
+                    <button>Order Detail</button>
+                    </Link>
                   </tr>
                 );
               })}
