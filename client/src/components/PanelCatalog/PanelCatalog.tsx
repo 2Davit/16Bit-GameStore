@@ -147,7 +147,7 @@ const PanelCatalog: FC<Props> = ({
     <ContainerPanelCata>
       <ImageContent>
         <Link to={`/game/${id}`}>
-          <Image src={image} alt={name} />
+          <Image src={image ? image[0] : ""} alt={name} />
         </Link>
       </ImageContent>
       <CardContent>
