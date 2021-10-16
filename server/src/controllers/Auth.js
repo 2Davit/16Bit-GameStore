@@ -113,7 +113,7 @@ const logIn = async (req, res) => {
   }
 
   const token = jwt.sign({ id: user.id_user }, SECRET, {
-    expiresIn: 7200, // 2 hours
+    expiresIn: 86400, // 24 hours
   });
 
   res.status(200).send({
