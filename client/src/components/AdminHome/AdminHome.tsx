@@ -18,6 +18,7 @@ import {
   Curve,
   VictoryArea,
   VictoryBar,
+  VictoryPolarAxis
 } from "victory";
 import { Order, User, Product, DetailData } from "../../interfaces";
 
@@ -34,46 +35,22 @@ const AdminHome: FC<Props> = ({ totalOrders, totalUsers, totalProducts, totalSal
   );
 
   const listStock = totalProducts.filter((product) => product.in_stock <= 5);
-
-  // const lengthMonth = totalOrders.filter(el => el.date.slice(8, 10) === '14') funciona para día
+      
   const lengthMonth = totalOrders.filter((el) => el.date.slice(5, 7) === "10");
   const monthAmount = lengthMonth.map((el) => el.amount);
   const total = monthAmount?.reduce((a, b) => a + b, 0);
-  console.log("stock", listStock);
-  const prueba = totalSalesData;
-  // console.log(totalSalesData)
+
+  const onSale = totalProducts.filter((p) => p.on_sale === true);
+  console.log(onSale);
 
 
-    const datosOrder = prueba.filter(dato => ( dato.orderidOrder === prueba[0].id_order 
-      ))
-    // const datosProduct = datosOrder[0].productidProduct//id del producto
-    // const datosProductId = prueba.filter(name => name.id_product === datosProduct)//sacamos la id que cumplan esta condicion
-    // const datosProductName = datosProductId[0].name_product//sacamos el nombre del producto
 
- 
-
-    // const datosUser = prueba.filter(dato => (dato.id_user === prueba[0].userId)) //id usuario para conseguir id usuario + username
-    // const datosUsername = datosUser[0].username; //nombre usuario
-    // const datosFecha = prueba[0].date.slice(0,10) // fecha de compra
-    // const datosEnvio = prueba[0].address//direccion envio
-    // const datosStatus = prueba[0].status//status de la orden
-    // const orderBill = prueba[0].amount //cuanto gastó
-    
-      const detail = `
-      Status de la orden:
-      // Usuario: 
-      Juego comprado:hola
-      Fecha de compra:
-      Direccion de envio:
-      Total Compra:
-      `
-    console.log(datosOrder)
 
 
   return (
     <ContainerAdminHome>
       <ContainerNav>
-        
+
       </ContainerNav>
       <ContainerStadistic>
         <Vertical>
@@ -105,18 +82,19 @@ const AdminHome: FC<Props> = ({ totalOrders, totalUsers, totalProducts, totalSal
                   ]}
                 />
               </VictoryChart>
+
             </GraLine>
           </Horizontal>
           <Horizontal>
-            {/* {prueba? <div>{prueba.id_order}</div> : "nada"}
-            {prueba ? prueba.filter(dato =>  dato.orderidOrder === prueba[0].id_order 
-            ) : "nada"} */}
+              { onSale ? onSale.map(product => (
+                <div style={{backgroundColor:"blue"}}>
+                  <div>{product.id_product}</div>
+                <img src={product.thumbnail_product} width="50px" height="50px" alt="img_product"/>
+                <div>{product.name_product}</div>
+                <div>{product.in_stock}</div>
+                </div>
 
-            {/* prueba[0].map(el => (
-              <p style={{marginLeft:"2px", color:"black", backgroundColor:"blue"}}>{el.id_order}</p>
-
-            )) */}
-        
+              )): ""}
           </Horizontal>
         </Vertical>
         <Vertical2>
