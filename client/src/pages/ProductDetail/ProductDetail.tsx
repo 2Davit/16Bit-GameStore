@@ -202,7 +202,7 @@ const Detail: FC = () => {
               {!unavailable ? (
                 <Btn
                   disabled={unavailable}
-                  className="btn-sec btn-img"
+                  className="btn-card btn-img"
                   onClick={handleClick}
                 >
                   Add to cart
