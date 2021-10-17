@@ -3,13 +3,13 @@ import arrow from "../../assets/img/svg/arrow-down.svg";
 
 export const StyledFilter = styled.div`
   display: flex;
+  position: absolute;
   flex-direction: column;
   padding: 1rem;
-  width: 25%;
-  position: relative;
-  top: 5em;
+  width: 20%;
+  top: 30vh;
   background: #000;
-
+  z-index: 555px;
   h5 {
     width: 100%;
     margin-top: 1em;
