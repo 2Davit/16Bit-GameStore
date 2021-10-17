@@ -138,7 +138,6 @@ export const getSalesData = () => {
     const { data } = await axios.get(`http://localhost:3001/orderproduct`, {
       headers: { "x-access-token": token },
     });
-    console.log("dataaa", data);
     return dispatch({
       type: GET_SALES_DATA,
       payload: data,
