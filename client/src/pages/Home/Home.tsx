@@ -37,8 +37,11 @@ const Home = ({ setPage, currentProducts, productsPerPage, pages }: any) => {
   return (
     <ContainerHome>
       {onSaleProducts.length !== 0 && <Carousel products={onSaleProducts} />}
-      <Filter setPage={setPage} />
-      <Catalog currentProducts={currentProducts} />
+      <div className="cont__filterCatalog">
+        <h1>Search Games:</h1>
+        <Filter setPage={setPage} />
+        <Catalog currentProducts={currentProducts} />
+      </div>
       <Paginate
         amountPerPage={productsPerPage}
         totalAmount={totalProducts?.length}

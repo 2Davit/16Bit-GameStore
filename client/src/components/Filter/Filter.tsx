@@ -104,7 +104,7 @@ const Filter: FC<Props> = ({ setPage }) => {
       <section>
         {!(filterPlatform?.value === "") ||
         !(filterGenre?.value === "") ||
-        btnSale ? (
+        !btnSale ? (
           <Btn className="btn-sec" onClick={handleReset}>
             Remove
           </Btn>
