@@ -16,4 +16,13 @@ export const ContainerHome = styled(Container)`
     grid-template-columns: 0.2fr 4fr 0.2fr;
     grid-template-areas: "filter catalog .";
   }
+
+  @media screen and (max-width: 700px) {
+      .cont__filterCatalog {
+          grid-template-rows: .5fr auto;
+          grid-template-columns: 100%;
+          grid-template-areas:  'filter'
+                                'catalog';
+      }
+  }
 `;

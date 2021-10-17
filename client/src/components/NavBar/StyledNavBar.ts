@@ -135,6 +135,16 @@ export const StyledNavBar = styled.nav`
         }
       }
     }
+    .navbar__bottom {
+    .navbar-bottom__menu {
+      top: 1em;
+      left: 0;
+
+      & > li + li {
+        margin-left: 2em;
+      }
+    }
+  }
   }
 `;
 

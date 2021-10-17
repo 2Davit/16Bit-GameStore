@@ -12,6 +12,12 @@ export const CarouselContainer = styled(Link)`
     &:hover{
         text-decoration: none;
     }
+
+    @media screen and (max-width: 1000px) {
+        flex-direction: column;
+        height: max-content;
+        width: 100vw;
+    }
 `
 
 export const Image = styled.img`
@@ -26,6 +32,16 @@ position:relative;
     &:hover{
 		filter: grayscale(100%);
 	}
+
+    @media screen and (max-width: 1000px) {
+        width: 100%;
+        height: 50vh;
+        margin: 0 auto;
+        border-radius: 2rem;
+        object-fit: cover;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+    }
 `
 
 export const CarouselSubContainer = styled.div`
@@ -44,6 +60,19 @@ export const CarouselSubContainer = styled.div`
     p{
         color: ${p => p.theme.color};
     };
+
+    @media screen and (max-width: 1000px) {
+     width: 100%;
+     border-radius: 2rem;
+     position: relative;
+     border-top-left-radius: 0;
+     border-top-right-radius: 0;
+
+     h1 {
+         text-overflow: ellipsis;
+         overflow: hidden;
+     }
+    }
 `
 
 
@@ -54,6 +83,15 @@ export const OnSale = styled.img`
     height: 120px;
     left: 2em;
     top: -3em;
+
+    @media screen and (max-width: 400px) {
+        width:50%;
+        height: 26%;
+        position: absolute;
+        right: -1em;
+        left: auto;
+        top: -.9em;
+    }
 `
 
 
@@ -79,12 +117,24 @@ export const Button = styled.button`
         outline: none;
         text-decoration: none;
     }
+
+    @media screen and (max-width: 1000px) {
+     display: none;
+    }
 `
 
 export const IconRight = styled(BiRightArrow)`
     color: ${p => p.theme.color};
+
+    @media screen and (max-width: 1000px) {
+     display: none;
+    }
 `
 
 export const IconLeft = styled(BiLeftArrow)`
     color: ${p => p.theme.color};
+
+    @media screen and (max-width: 1000px) {
+        display: none;
+    }
 `

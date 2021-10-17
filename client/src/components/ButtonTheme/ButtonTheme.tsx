@@ -1,7 +1,5 @@
 import { FC } from "react";
 import { ButtonTheme2 } from "./ButtonTheme.style";
-import { SiRetropie } from "react-icons/si";
-import { IoGameController } from "react-icons/io5";
 
 interface Props {
   updateTheme(): void;
@@ -12,9 +10,11 @@ interface Props {
 const ButtonTheme: FC<Props> = ({ updateTheme, none, theme }) => {
   return (
     <>
-      <ButtonTheme2 onClick={() => updateTheme()} none={none}>
-        {theme ? <SiRetropie /> : <IoGameController />}
-      </ButtonTheme2>
+      <ButtonTheme2
+        className="fa fa-power-off"
+        onClick={() => updateTheme()}
+        none={none}
+      ></ButtonTheme2>
     </>
   );
 };
