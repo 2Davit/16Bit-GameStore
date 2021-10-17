@@ -19,6 +19,18 @@ export const StyledFilter = styled.div`
   h2 {
     color: var(--clr-primary);
   }
+
+  @media screen and (max-width: 700px) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 2rem;
+
+    h2 {
+      width: 100%;
+      text-align: center;
+    }
+  }
 `;
 
 export const SelectStyled = styled.select`

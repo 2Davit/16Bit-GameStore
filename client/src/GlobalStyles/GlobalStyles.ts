@@ -9,6 +9,10 @@ interface DefaultTheme {
 
 export const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
 
+#root {
+  overflow-x: hidden;
+}
+
 :root {
   --clr-primary: #9b5df7;
   --clr-primary-2: #763fc7;
@@ -75,7 +79,7 @@ export const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
         color:white;
 		min-height: 100vh;
 		min-width: 100vw;
-		overflow-x: hidden ;
+		overflow-x: hidden;
     }
 
 	ul{
