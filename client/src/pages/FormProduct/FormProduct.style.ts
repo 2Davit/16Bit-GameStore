@@ -37,9 +37,9 @@ export const FormInputImg = styled.input`
   width: 60%;
   height: 100%;
 `;
-export const BtnAdd = styled.button`
+export const BtnAdd = styled.input`
   border: none;
-  width: 8%;
+  width: 50%;
   height: 80%;
   border-top-right-radius: 6px;
   border-bottom-right-radius: 6px;

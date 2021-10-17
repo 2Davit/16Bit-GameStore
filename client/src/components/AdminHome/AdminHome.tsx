@@ -41,7 +41,6 @@ const AdminHome: FC<Props> = ({ totalOrders, totalUsers, totalProducts, totalSal
   const total = monthAmount?.reduce((a, b) => a + b, 0);
 
   const onSale = totalProducts.filter((p) => p.on_sale === true);
-  console.log(onSale);
 
 
 

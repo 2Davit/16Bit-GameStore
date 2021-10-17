@@ -125,7 +125,7 @@ export const createNewPlatform = (payload: CreatePlatform) => {
 };
 export const getAllGenres = () => {
   return async (dispatch: Dispatch<AllGenres>): Promise<any> => {
-    const json = await axios.get("/genres/");
+    const json = await axios.get("/genres");
     return dispatch({
       type: GET_ALL_GENRES,
       payload: json.data,
@@ -134,7 +134,7 @@ export const getAllGenres = () => {
 };
 export const getAllPlatforms = () => {
   return async (dispatch: Dispatch<AllPlatforms>): Promise<any> => {
-    const json = await axios.get("/platforms/");
+    const json = await axios.get("/platforms");
     return dispatch({
       type: GET_ALL_PLATFORMS,
       payload: json.data,
