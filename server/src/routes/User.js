@@ -11,12 +11,14 @@ const {
   deleteOneUser,
   banOneUser,
   updateOneUser,
+  promoteToAdmin
 } = require("../controllers/User");
 
 router.post("/", postUser);
 router.post("/mail", sendUserMail);
 router.get("/", getUsers);
 router.delete("/:id", deleteOneUser);
-router.put("/:id/:status", checkJwt, reqAdmin, banOneUser);
+router.put("/:id/:status", banOneUser);
 router.put("/updateuser", updateOneUser);
+router.put("/admin/:admin/:id", promoteToAdmin )
 module.exports = router;

@@ -127,9 +127,9 @@ const UserContent: FC<Props> = ({ totalUser }) => {
     history.go(0);
   };
   const banDeleteUser = (id: number | unknown, status: boolean | string) => {
+
     dispatch(banUser(id, status));
     alert("cambio status");
-    history.go(0);
   };
 
   const handleOrderByStatus = () => {

@@ -16,17 +16,26 @@ interface Users {
 
 
 export const editProduct = (payload: EditProduct) => {
-    return async function (dispatch: Dispatch<Detail>) {
-        const data = await axios.put("/videogames/OneGame", payload);
-        return data;
-    }
-}
-export const deleteProduct = (id:number) => {
-  return async function (dispatch: Dispatch<Detail>){
-    const data = await axios.delete(`/videogames/OneGame/${id}`)
+  return async function (dispatch: Dispatch<Detail>) {
+    const userData = JSON.parse(localStorage.getItem("userData") as string);
+    const token = userData?.data.token;
+    const data = await axios.put("/videogames/OneGame", payload, {
+      headers: { "x-access-token": token },
+    });
     return data;
-  }
-}
+  };
+};
+
+export const deleteProduct = (id: number) => {
+  const userData = JSON.parse(localStorage.getItem("userData") as string);
+  const token = userData?.data.token;
+  return async function (dispatch: Dispatch<Detail>) {
+    const data = await axios.delete(`/videogames/OneGame/${id}`, {
+      headers: { "x-access-token": token },
+    });
+    return data;
+  };
+};
 export const deleteUser = (id:number | unknown) => {
   return async function (dispatch: Dispatch<Detail>){
     const data = await axios.delete(`/user/${id}`)
@@ -36,6 +45,12 @@ export const deleteUser = (id:number | unknown) => {
 export const banUser = (id:number | unknown, status: boolean | string) => {
   return async function (dispatch: Dispatch<Detail>){
     const data = await axios.put(`/user/${id}/${status}`)
+    return data;
+  }
+}
+export const promoteUser = (id:number | unknown, admin: boolean | string) => {
+  return async function (dispatch: Dispatch<Detail>){
+    const data = await axios.put(`/user/${admin}/${id}`)
     return data;
   }
 }
