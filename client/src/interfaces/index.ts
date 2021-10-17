@@ -176,3 +176,8 @@ export interface DetailData {
   id_user: number,
   username: string
 }
+
+export interface EmailAction {
+  cart: Array<ProductInCart>,
+  total: number
+}

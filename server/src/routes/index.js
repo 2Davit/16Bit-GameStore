@@ -8,8 +8,9 @@ const PlatformRoutes = require("./Platform");
 const ProductRoutes = require("./Product");
 const UserRoutes = require("./User");
 const OrderRoutes = require("./Order");
-const OPRoutes = require("./OrderProduct")
-const Favorite = require('./Favorite')
+const OPRoutes = require("./OrderProduct");
+const Favorite = require('./Favorite');
+const EmailRoutes = require('./Email');
 
 const router = Router();
 
@@ -25,6 +26,7 @@ router.use('/user', UserRoutes);
 router.use('/order', OrderRoutes);
 router.use('/favorites', Favorite)
 router.use('/orderproduct', OPRoutes);
+router.use('/email', EmailRoutes);
 
 
 module.exports = router;

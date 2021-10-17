@@ -1,4 +1,29 @@
-const html = `<!DOCTYPE html>
+const Sequelize = require("sequelize");
+const { Product, User, favorites } = require("../db.js");
+const nodemailer = require("nodemailer");
+const { google } = require("googleapis");
+
+async function sendUserMail(req, res) {
+  const { email, username, action, info } = req.body;
+  const { cart, total } = info;
+  let message;
+
+  switch (action) {
+    case "purchase":
+      message =
+        "We really appreciate your last visit. Hope you are enjoying your new videogame!";
+      break;
+
+    case "signup":
+      message =
+        "You are welcome to our 16Bit community. Get your cart and start shopping!";
+      break;
+
+    default:
+      message;
+  }
+
+  const html = `<!DOCTYPE html>
   <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:o="urn:schemas-microsoft-com:office:office">
   <head>
     <meta charset="UTF-8">
@@ -33,8 +58,8 @@ const html = `<!DOCTYPE html>
                 <table role="presentation" style="width:100%;border-collapse:collapse;border:0;border-spacing:0;">
                   <tr>
                     <td style="padding:0 0 36px 0;color:#153643;">
-                      <h1 style="font-size:24px;margin:0 0 20px 0;font-family:Arial,sans-serif;">Hello! We really appreciate your last visit. Hope you'll back soon!</h1>
-                      <p style="margin:0 0 12px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tempus adipiscing felis, sit amet blandit ipsum volutpat sed. Morbi porttitor, eget accumsan et dictum, nisi libero ultricies ipsum, posuere neque at erat.</p>
+                      <h1 style="font-size:24px;margin:0 0 20px 0;font-family:Arial,sans-serif;">Hello, ${username}! ${message}</h1>
+                      <p style="margin:0 0 12px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;">The total amount of your order is: $${total}</p>
                       <p style="margin:0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;"><a target="_blank" href="https://16-bit-game-store.vercel.app/home" style="color:#ee4c50;text-decoration:underline;">16-Bit</a></p>
                     </td>
                 </table>
@@ -70,9 +95,54 @@ const html = `<!DOCTYPE html>
       </tr>
     </table>
   </body>
-  </html>`
+  </html>`;
 
+  const CLIENT_ID =
+    "629164237375-nd9vo40e7m7p82lr4s7bgecqebbn7i6v.apps.googleusercontent.com";
+  const CLIENT_SECRET = "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";
+  const REDIRECT_URI = "https://developers.google.com/oauthplayground";
+  const REFRESH_TOKEN =
+    "1//044c2jHqjFfgACgYIARAAGAQSNwF-L9Irv0YSqP8EJos551tZlxLetRQyLhatO8FnlGacYXpCR5rK1dnB0UnMJ11_roWPauDdmoM";
 
-  module.exports = {
-    html
+  const oAuth2Client = new google.auth.OAuth2(
+    CLIENT_ID,
+    CLIENT_SECRET,
+    REDIRECT_URI
+  );
+
+  oAuth2Client.setCredentials({ refresh_token: REFRESH_TOKEN });
+
+  try {
+    const accessToken = await oAuth2Client.getAccessToken();
+    let transporter = nodemailer.createTransport({
+      service: "gmail",
+      host: "imap.ethereal.email",
+      post: 993,
+      secure: false,
+      auth: {
+        type: "OAuth2",
+        user: "guido.gambini@usal.edu.ar",
+        clientId: CLIENT_ID,
+        clientSecret: CLIENT_SECRET,
+        refreshToken: REFRESH_TOKEN,
+        accessToken: accessToken,
+      },
+    });
+
+    let mailOptions = {
+      from: "16Bit-GameStore",
+      to: email,
+      subject: action === 'purchase' ? "The summary of your purchase 🎉" : "Welcome to 16Bit 🚀",
+      html: html,
+    };
+
+    const result = await transporter.sendMail(mailOptions);
+    res.status(200).send(result);
+  } catch (err) {
+    console.log(err);
   }
+}
+
+module.exports = {
+  sendUserMail,
+};

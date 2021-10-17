@@ -1,6 +1,6 @@
 
 import axios from "axios";
-import { EditProduct, } from "../../interfaces";
+import { EditProduct, EmailAction } from "../../interfaces";
 
 // import { EDIT_PRODUCT } from "../types";
 import { Dispatch } from "redux";
@@ -40,10 +40,10 @@ export const banUser = (id:number | unknown, status: boolean | string) => {
   }
 }
 
-export const sendMail = (email: string) => {
+export const sendMail = (email: string, username: string, action: string, info?: EmailAction) => {
   
   return async function (dispatch: Dispatch<Detail>){
-    const data = await axios.post('/user/mail', { email });
+    const data = await axios.post('/email', { email, username, action, info });
     return data;
   }
 }

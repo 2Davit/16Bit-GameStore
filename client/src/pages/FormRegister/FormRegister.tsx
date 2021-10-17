@@ -6,6 +6,9 @@ import { useHistory, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login } from "../../redux/actions/auth_actions";
 import Swal from "sweetalert2";
+import { sendMail } from "../../redux/actions/admin_actions";
+
+
 
 // Shape of form values
 interface FormValues {
@@ -142,6 +145,7 @@ const FormRegister = () => {
           icon: 'success',
           confirmButtonText: '🚀'
         }).then((isConfirm) => { if(isConfirm) history.push("/home"); })
+        .then(res => { dispatch(sendMail(input.email, username, 'signup')); })
       })
       .catch((err) => {
         Swal.fire({
