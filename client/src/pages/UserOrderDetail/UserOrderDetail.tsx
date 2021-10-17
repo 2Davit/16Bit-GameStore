@@ -3,8 +3,8 @@ import { useParams, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { StyledOrderDetail } from "../StyledUserPage";
-import { Btn } from "../../../GlobalStyles/GlobalStyles";
+import { StyledOrderDetail } from "../UserPage/StyledUserPage";
+import { Btn } from "../../GlobalStyles/GlobalStyles";
 import { Fade } from "react-awesome-reveal";
 
 interface Props {

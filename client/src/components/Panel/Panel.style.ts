@@ -48,8 +48,9 @@ export const  ContainerImageUser = styled.div`
     align-items: center;
 `
 export const  NameImage = styled.h5`
-    font-size: .8rem;
-    margin: 10px 0 0 0;
+    font-size: 1.4rem;
+    margin: 10px 0 0 .5rem;
+    
 `
 export const  Image = styled.img`
     width: 50px;
