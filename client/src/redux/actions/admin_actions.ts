@@ -49,6 +49,15 @@ export const deleteUser = (id: number | unknown) => {
       headers: { "x-access-token": token },
     });
     return data;
+  }
+}
+export const promoteUser = (id:number | unknown, admin: boolean | string) => {
+  return async function (dispatch: Dispatch<Detail>){
+    const data = await axios.put(`/user/${admin}/${id}`)
+    return data;
+  }
+}
+
   };
 };
 
@@ -62,6 +71,7 @@ export const banUser = (id: number | unknown, status: boolean | string) => {
     return data;
   };
 };
+
 
 export const sendMail = (email: string) => {
   const userData = JSON.parse(localStorage.getItem("userData") as string);
