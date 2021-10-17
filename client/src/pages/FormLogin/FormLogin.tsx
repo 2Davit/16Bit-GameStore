@@ -11,27 +11,25 @@ import { Store } from "../../redux/reducer";
 import { openLogin } from "../../redux/actions/global_actions";
 import { StyledSVG, Btn } from "../../GlobalStyles/GlobalStyles";
 import CloseButton from "../../assets/img/svg/close-filled-purple.svg";
+import { animateScroll } from "react-scroll";
 
 interface User {
   username: string;
-  password: string
+  password: string;
 }
 const FormLogin: FC = () => {
-
   const user = JSON.parse(localStorage.getItem("userData")!);
   const [isUser, setIsUser] = useState<boolean>(false);
   const [input, setInput] = useState<User>({
-    username: '',
-    password: ''
+    username: "",
+    password: "",
   });
-
 
   const loginIsOpen = useSelector(
     (state: Store) => state.globalReducer.loginIsOpen
   );
   const dispatch = useDispatch();
   const history = useHistory();
-  
 
   const customStyles = {
     overlay: {
@@ -61,10 +59,8 @@ const FormLogin: FC = () => {
     },
   };
   const afterOpenModal = () => {
-		document.body.style.overflow = 'hidden';
-	}
-
-
+    document.body.style.overflow = "hidden";
+  };
 
   const closeModal = () => {
     dispatch(openLogin(false));
@@ -79,21 +75,22 @@ const FormLogin: FC = () => {
     dispatch(openLogin(true));
   }, [user]);
 
-  let disabled = !(input.username && input.password)
-  
+  let disabled = !(input.username && input.password);
+
   const handleInputChange = (e: React.FormEvent<HTMLInputElement>) => {
     setInput({
       ...input,
-      [e.currentTarget.name] :  e.currentTarget.value
-    })
-  }
+      [e.currentTarget.name]: e.currentTarget.value,
+    });
+  };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(login(input));
     dispatch(getRole());
     setIsUser(true);
-    closeModal()
+    closeModal();
+    animateScroll.scrollTo(0, { duration: 300 });
   };
 
   return (
@@ -111,29 +108,37 @@ const FormLogin: FC = () => {
           <button className="button" onClick={closeModal}>
             <StyledSVG src={CloseButton} />
           </button>
-            <FormStyled>
-              <form onSubmit={handleSubmit}>
-                <label htmlFor="username">
-                  <span>Username</span>
-                  <input name="username" onChange={handleInputChange} />
-                </label>
-                <label htmlFor="password">
-                  <span>Password</span>
-                  <input name="password" type="password" onChange={handleInputChange} />
-                </label>
-                <div className="link_container">
-                  <Link to="/reset" onClick={closeModal}>
-                    I forgot my password
-                  </Link>
-                  <Link to="/signup" onClick={closeModal}>
-                    Create an Account
-                  </Link>
-                </div>
-                <Btn type="submit" className={!disabled ? "btn-card login" : "btn-disabled"} disabled={disabled}>
-                  Log In
-                </Btn>
-              </form>
-            </FormStyled>
+          <FormStyled>
+            <form onSubmit={handleSubmit}>
+              <label htmlFor="username">
+                <span>Username</span>
+                <input name="username" onChange={handleInputChange} />
+              </label>
+              <label htmlFor="password">
+                <span>Password</span>
+                <input
+                  name="password"
+                  type="password"
+                  onChange={handleInputChange}
+                />
+              </label>
+              <div className="link_container">
+                <Link to="/reset" onClick={closeModal}>
+                  I forgot my password
+                </Link>
+                <Link to="/signup" onClick={closeModal}>
+                  Create an Account
+                </Link>
+              </div>
+              <Btn
+                type="submit"
+                className={!disabled ? "btn-card login" : "btn-disabled"}
+                disabled={disabled}
+              >
+                Log In
+              </Btn>
+            </form>
+          </FormStyled>
         </StyledLogin>
       ) : (
         <StyledLogin>
