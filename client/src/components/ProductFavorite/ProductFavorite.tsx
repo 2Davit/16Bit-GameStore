@@ -4,7 +4,7 @@ import "nes.css/css/nes.min.css";
 import { useDispatch } from "react-redux";
 import { addItemCart } from "../../redux/actions/cart_actions";
 import { StyledSVG, Btn } from "../../GlobalStyles/GlobalStyles";
-import { StyledProductCard } from "../ProductCard/StyledProductCard";
+import { StyledFavoriteCard } from "../ProductFavorite/ProductFavoriteStyle";
 import cart from "../../assets/img/svg/cart.svg";
 import { toast } from "react-toastify";
 import { animateScroll } from "react-scroll";
@@ -61,7 +61,7 @@ const ProductFavorite: FC<Props> = ({ game, onClose }) => {
   };
 
   return (
-    <StyledProductCard className="card">
+    <StyledFavoriteCard className="card">
       <div className="card__imgContainer">
         <img
           className="card__img"
@@ -92,7 +92,7 @@ const ProductFavorite: FC<Props> = ({ game, onClose }) => {
       >
         
       </Link>
-    </StyledProductCard>
+    </StyledFavoriteCard>
   );
 };
 

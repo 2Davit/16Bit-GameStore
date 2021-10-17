@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getAllFavorites,
@@ -9,6 +9,7 @@ import { Product } from "../../interfaces";
 import { StyledContainer } from "./StyledFavorites";
 import ProductFavorite from "../ProductFavorite/ProductFavorite";
 import { useHistory } from "react-router";
+import { Link } from "react-router-dom";
 
 const Favorites = () => {
   const dispatch = useDispatch();
@@ -27,14 +28,14 @@ const Favorites = () => {
     let idProduct = e;
     let ids = {
       idUser: idUser.id,
-      idProduct: idProduct
+      idProduct: idProduct,
     };
     dispatch(removeFavorites(ids));
     history.go(0);
   }
   return (
     <StyledContainer>
-      {favProducts &&
+      {favProducts.length > 0 ? (
         favProducts.map((game: Product) => {
           return (
             <ProductFavorite
@@ -43,7 +44,15 @@ const Favorites = () => {
               game={game}
             />
           );
-        })}
+        })
+      ) : (
+        <div>
+          <h5>No favorites games yet!</h5>
+          <Link to="/home">
+            <button>GO HOME</button>
+          </Link>
+        </div>
+      )}
     </StyledContainer>
   );
 };
