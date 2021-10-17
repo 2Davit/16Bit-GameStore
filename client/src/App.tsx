@@ -28,6 +28,7 @@ import {
   Step3,
   UserOrders,
   UserOrderDetail,
+  LeaveReview,
 } from "./pages/";
 import { NavBar, Footer, About, CartSideBar } from "./components";
 import Favorites from "./components/Favorites/Favorites";
@@ -139,11 +140,16 @@ const App: FC = () => {
           <Route exact path="/legal" component={Legal} />
           <Route exact path="/about" component={About} />
           <Route exact path="/orders" component={UserOrders} />
-          <Route exact path="/orders/:id" component={UserOrderDetail} />
+          <Route
+            exact
+            path="/orderdetail/:idUser/:idOrder"
+            component={UserOrderDetail}
+          />
           <Route exact path="/user" component={UserPage} />
           <Route exact path="/edit" component={EditProfile} />
           {/* <Route exact path="/order" component={Order} /> */}
           <Route exact path="/favs" component={Favorites} />
+          <Route exact path="/review/:iduser/:idgame" component={LeaveReview} />
           <Route path="*" component={NotFound} />
         </Switch>
         {deleteNav && <Footer />}

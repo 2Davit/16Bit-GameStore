@@ -125,7 +125,7 @@ const logIn = async (req, res) => {
   res.status(200).send({
     data: {
       token: token,
-      username: user.nickname_user,
+      username: capitalize(user.nickname_user),
       email: user.email_user,
       name: user.name_user,
       lastname: user.lastname_user,

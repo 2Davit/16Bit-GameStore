@@ -403,69 +403,6 @@ async function deleteOneProduct(req, res) {
     res.status(404).send("Error");
   }
 }
-/*  */
-/*  */
-/*  */
-/*  */
-/*  */
-/*  */
-/*  */
-/*  */
-/*  */
-/*  */
-/*  */
-/*  */
-/*  */
-/*  */
-/*  */
-/*  */
-/*  */
-/*  */
-/*  */
-/*  */
-/*  */
-/*  */
-/*  */
-/*  */
-/*  */
-/*  */
-/*  */
-/*  */
-/*  */
-/*  */
-/*  */
-/*  */
-/*  */
-/*  */
-/*  */
-/*  */
-/*  */
-/*  */
-/*  */
-/*  */
-/*  */
-/*  */
-/*  */
-/*  */
-/*  */
-/*  */
-/*  */
-/*  */
-/*  */
-/*  */
-/*  */
-/*  */
-/*  */
-/*  */
-/*  */
-/*  */
-/*  */
-/*  */
-/*  */
-/*  */
-/*  */
-/*  */
-/*  */
 async function addReview(req, res) {
   const { id_product, id_user } = req.params; //trae el usuario
   const { score, description } = req.body;
@@ -476,7 +413,6 @@ async function addReview(req, res) {
         userIdUser: id_user,
       },
     })
-    console.log(aux)
     if(!aux && (score>=1 && score<=5) ) {
     let product = await Product.findByPk(parseInt(id_product));
     let user = await User.findByPk(parseInt(id_user));
@@ -490,7 +426,7 @@ async function addReview(req, res) {
     await review.setUser(user);
     res.status(200).send("Review created succesfully");
     }
-    else res.status(200).send("Ya dejaste una review sobre este producto / valores incorrectos");
+    else res.status(400).send("Ya dejaste una review sobre este producto / valores incorrectos");
   }
   catch {
     res.status(404).send("Error");

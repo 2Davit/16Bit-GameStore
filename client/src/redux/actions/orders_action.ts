@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_USER_ORDERS, GET_ORDER_DETAIL } from "../types";
+import { GET_USER_ORDERS } from "../types";
 import { Dispatch } from "redux";
 
 interface Orders {
@@ -8,7 +8,6 @@ interface Orders {
 }
 
 export const getUserOrders = (payload: number) => {
-  console.log('payload action: ', payload);  
   return function (dispatch: Dispatch<Orders>) {
     return axios.get(`/order?=${payload}`).then((orders) => {
       dispatch({
@@ -18,3 +17,4 @@ export const getUserOrders = (payload: number) => {
     });
   };
 };
+
