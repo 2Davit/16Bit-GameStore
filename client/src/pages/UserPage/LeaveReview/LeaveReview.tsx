@@ -1,10 +1,12 @@
-import React, { FC, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import axios from 'axios';
-import Swal from 'sweetalert2/dist/sweetalert2.js'
-  ;
+import React, { FC, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import axios from "axios";
+import Swal from "sweetalert2/dist/sweetalert2.js";
 import StarRatings from "react-star-ratings";
-
+import { FormStyled } from "../../FormRegister/StyledFormRegister";
+import { Btn } from "../../../GlobalStyles/GlobalStyles";
+import { StyledLeaveReview } from "./StyledLeaveReview";
+import { toast } from "react-toastify";
 
 interface InputReview {
   score: number;
@@ -17,18 +19,12 @@ interface Params {
 }
 
 const LeaveReview: FC = () => {
-
-
-  const { iduser, idgame } = useParams<Params>()
-
-
+  const { iduser, idgame } = useParams<Params>();
 
   const [input, setInput] = useState<InputReview>({
     score: 0,
     description: "",
   });
-
-
 
   function handleChange(e: React.FormEvent<HTMLInputElement>) {
     setInput({
@@ -37,7 +33,7 @@ const LeaveReview: FC = () => {
     });
   }
 
-  console.log(input.score)
+  console.log(input.score);
 
   function handleScore(rating: number) {
     setInput({
@@ -46,51 +42,73 @@ const LeaveReview: FC = () => {
     });
   }
 
-
   async function handleReview(iduser: string, idgame: string) {
-
-    console.log("acaaaai",input)
     try {
-       await axios.post(`/videogames/review/${iduser}/${idgame}`, input);
+      await axios.post(`/videogames/review/${iduser}/${idgame}`, input);
       setInput({
         score: 1,
         description: "",
       });
-     
-      alert("Thanks for send your review");
+      toast.success("Your review was sent!", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
     } catch {
-      alert("Ya dejaste una review");
+      toast.error(
+        "An error occured while trying to send your review. Please try again.",
+        {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        }
+      );
     }
   }
 
-
-
-
   return (
-    <>
-      <form>
-        <label>YOUR OPINION</label>
-        <textarea
-          value={input.description}
-          name="description"
-          onChange={(e: any) => handleChange(e)}
-        ></textarea>
-        <label>YOUR SCORE</label>
-        <StarRatings
-          rating={input.score}
-          starRatedColor="blue"
-          changeRating={handleScore}
-          numberOfStars={5}
-          name='rating'
-        />
-      </form>
-      <button
-        onClick={() => handleReview(iduser, idgame)}
-      >
-        Send Review
-      </button>
-    </>
-  )
-}
+    <StyledLeaveReview>
+      <FormStyled>
+        <form>
+          <span className="span__score">Score:</span>
+          <StarRatings
+            rating={input.score}
+            starRatedColor="var(--clr-primary)"
+            changeRating={handleScore}
+            numberOfStars={5}
+            starHoverColor="var(--clr-primary)"
+            starDimension="3.5em"
+            starSpacing="0"
+            name="rating"
+          />
+          <label>
+            <span>Comment (optional):</span>
+            <textarea
+              value={input.description}
+              name="description"
+              onChange={(e: any) => handleChange(e)}
+            ></textarea>
+          </label>
+          <Btn
+            className="btn-card"
+            onClick={() => handleReview(iduser, idgame)}
+          >
+            Send Review
+          </Btn>
+        </form>
+      </FormStyled>
+    </StyledLeaveReview>
+  );
+};
 
-export default LeaveReview
+export default LeaveReview;

@@ -35,7 +35,8 @@ export const FormStyled = styled.div`
       font-size: 0.8em;
     }
 
-    input {
+    input,
+    textarea {
       font: inherit;
       background: #000;
       color: var(--clr-white);
@@ -45,6 +46,9 @@ export const FormStyled = styled.div`
       border-radius: 0.4em;
       width: 100%;
       outline: none;
+    }
+    & > textarea {
+      line-height: 1.6;
     }
 
     &::after {
