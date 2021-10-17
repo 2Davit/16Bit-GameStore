@@ -18,7 +18,9 @@ export { default as Step1 } from './OrderDetail/Step1/Step1';
 export { default as Step2 } from './OrderDetail/Step2/Step2';
 export { default as Step3 } from './OrderDetail/Step3/Step3';
 export { default as UserOrders } from './UserPage/UserOrders/UserOrders';
-export { default as UserOrderDetail } from './UserOrderDetail/UserOrderDetail';
+export { default as UserOrderDetail } from './UserPage/UserOrderDetail/UserOrderDetail';
+export { default as LeaveReview } from './UserPage/LeaveReview/LeaveReview';
+
 
 
 
