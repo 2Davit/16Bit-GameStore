@@ -47,23 +47,20 @@ const UserContent: FC<Props> = ({ totalUser }) => {
   const [btnNext, setBtnNext] = useState<boolean>(false);
   const [btnPrev, setBtnPrev] = useState<boolean>(false);
 
-
+  let orderId = totalUser.sort(function (a, b) {
+    return a.id_user - b.id_user;
+  });
 
   const [userSearch, setUserSearch] = useState(totalUser);
   const [btnStatus, setBtnStatus] = useState<boolean>(true);
   const [btnAlphabet, setBtnAlphabet] = useState<boolean>(true);
   let onViewUsers = userSearch.slice(page, page2);
-  
 
-  let orderId = totalUser.sort(function (a, b) {
-    return a.id_user - b.id_user;
-  });
   let alphabet = totalUser.sort(function (a, b) {
-    if (a.nickname.toLowerCase() > b.nickname.toLowerCase()){
-      return 1
-    } else {
-      return 0;
-    }});
+    if (a.nickname.toLowerCase() > b.nickname.toLowerCase()) {
+      return 1;
+    } else return 0;
+  });
 
   const handleNextPage = () => {
     if (userSearch.length < page2 + 1) {
@@ -105,9 +102,9 @@ const UserContent: FC<Props> = ({ totalUser }) => {
     history.go(0);
   };
   const banDeleteUser = (id: number | unknown, status: boolean | string) => {
-
     dispatch(banUser(id, status));
     alert("cambio status");
+    history.go(0);
   };
 
   const handleOrderByStatus = () => {
@@ -193,8 +190,12 @@ const UserContent: FC<Props> = ({ totalUser }) => {
               <InfoUser>{u.name}</InfoUser>
               <InfoUser>{u.lastname}</InfoUser>
               <InfoUserMini>{u.active ? "Active" : "Banned"}</InfoUserMini>
-              <InfoUser style={{overflowX: "scroll"}}>{u.email}</InfoUser>
-              {u.address.length > 18 ? <InfoUser>{u.address.slice(0,17) + "..."}</InfoUser> : <InfoUser>{u.address}</InfoUser>}
+              <InfoUser style={{ overflowX: "scroll" }}>{u.email}</InfoUser>
+              {u.address.length > 18 ? (
+                <InfoUser>{u.address.slice(0, 17) + "..."}</InfoUser>
+              ) : (
+                <InfoUser>{u.address}</InfoUser>
+              )}
               <UserButtons
                 onClick={() => handleDeleteUser(u.id_user)}
                 backg={
