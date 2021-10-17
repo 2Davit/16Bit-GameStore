@@ -15,6 +15,7 @@ const {
   updateOneProduct,
   deleteOneProduct,
   addReview,
+  getReviews
 } = require("../controllers/Product");
 
 router.get("/Onsale", listProductOnSale);
@@ -27,5 +28,7 @@ router.post("/", checkJwt, reqAdmin, postProduct);
 router.put("/OneGame", checkJwt, reqAdmin, updateOneProduct);
 router.delete("/OneGame/:id", checkJwt, reqAdmin, deleteOneProduct);
 router.post("/review/:iduser/:idgame", addReview);
+router.get("/review/:idProduct/:idUser", getReviews);
+
 
 module.exports = router;
