@@ -404,18 +404,22 @@ async function deleteOneProduct(req, res) {
   }
 }
 async function addReview(req, res) {
-  const { id_product, id_user } = req.params; //trae el usuario
+  const { iduser , idgame } = req.params; 
   const { score, description } = req.body;
+  
   try {
+    
     let aux = await Review.findOne({
       where: {
-        productIdProduct: id_product,
-        userIdUser: id_user,
+        productIdProduct:idgame,
+        userIdUser:iduser,
       },
     })
+    
     if(!aux && (score>=1 && score<=5) ) {
-    let product = await Product.findByPk(parseInt(id_product));
-    let user = await User.findByPk(parseInt(id_user));
+      
+    let product = await Product.findByPk(parseInt(idgame));
+    let user = await User.findByPk(parseInt(iduser));
     let review = await Review.create({
       score,
       description,
@@ -428,7 +432,8 @@ async function addReview(req, res) {
     }
     else res.status(400).send("Ya dejaste una review sobre este producto / valores incorrectos");
   }
-  catch {
+  catch(error){
+    console.log(error)
     res.status(404).send("Error");
   }
 }

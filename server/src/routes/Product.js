@@ -26,6 +26,6 @@ router.post("/OneGame", checkJwt, reqAdmin, postOneProduct);
 router.post("/", checkJwt, reqAdmin, postProduct);
 router.put("/OneGame", checkJwt, reqAdmin, updateOneProduct);
 router.delete("/OneGame/:id", checkJwt, reqAdmin, deleteOneProduct);
-router.post("/review/:id_user/:id_product", addReview);
+router.post("/review/:iduser/:idgame", addReview);
 
 module.exports = router;

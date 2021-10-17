@@ -111,6 +111,8 @@ function UserOrderDetail() {
               <tbody>
                 {orderDetail.orderProduct &&
                   orderDetail.orderProduct.map((index) => {
+
+                    console.log("MESSSSSSSI", index.product.id_product)
                     return (
                       <tr key={index.id}>
                         <td data-label="Name">{index.product.name_product}</td>
@@ -122,7 +124,7 @@ function UserOrderDetail() {
                           ${index.quantity * index.product.price_product}
                         </td>
                         <td>
-                          <Link to={`/review/${user.id}/${index.id}`}>
+                          <Link to={`/review/${user.id}/${index.product.id_product}`}>
                             <button className="btn__leaveReview">
                               Leave a review
                             </button>
