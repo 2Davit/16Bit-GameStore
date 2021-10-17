@@ -69,7 +69,6 @@ export const banUser = (id: number | unknown, status: boolean | string) => {
   };
 };
 
-
 export const sendMail = (email: string) => {
   const userData = JSON.parse(localStorage.getItem("userData") as string);
   const token = userData?.data.token;

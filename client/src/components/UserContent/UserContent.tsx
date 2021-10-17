@@ -47,45 +47,23 @@ const UserContent: FC<Props> = ({ totalUser }) => {
   const [btnNext, setBtnNext] = useState<boolean>(false);
   const [btnPrev, setBtnPrev] = useState<boolean>(false);
 
-  let orderId = totalUser.sort(function (a, b) {
-    return a.id_user - b.id_user;
-  });
+
 
   const [userSearch, setUserSearch] = useState(totalUser);
   const [btnStatus, setBtnStatus] = useState<boolean>(true);
   const [btnAlphabet, setBtnAlphabet] = useState<boolean>(true);
   let onViewUsers = userSearch.slice(page, page2);
+  
 
-  let alphabet = totalUser.sort(function (a, b) {
-    if (a.nickname.toLowerCase() > b.nickname.toLowerCase()) {
-      return 1;
-    }
-
-    const searchUsers = (e: any) => {
-        let search = e.target.value.toLowerCase();
-        if (search === "") {
-            setUserSearch(totalUser);
-            setBtnNext(false);
-        } else {
-
-            let newArray = totalUser.filter((user: any) => {
-                return user.nickname.toLowerCase().includes(search);
-            });
-            setPage(0);
-            setPage2(10);
-            setUserSearch(newArray);
-        }
-    };
-
-    const handleDeleteUser = (id: number | unknown) => {
-        dispatch(deleteUser(id))
-        alert('se fue' + id)
-        const deleteArray = totalUser.filter( el => el.id_user !== id )
-        setUserSearch(deleteArray)
-
-    }
-    return 0;
+  let orderId = totalUser.sort(function (a, b) {
+    return a.id_user - b.id_user;
   });
+  let alphabet = totalUser.sort(function (a, b) {
+    if (a.nickname.toLowerCase() > b.nickname.toLowerCase()){
+      return 1
+    } else {
+      return 0;
+    }});
 
   const handleNextPage = () => {
     if (userSearch.length < page2 + 1) {
