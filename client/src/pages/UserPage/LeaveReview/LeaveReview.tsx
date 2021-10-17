@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2/dist/sweetalert2.js";
@@ -21,11 +21,24 @@ interface Params {
 const LeaveReview: FC = () => {
   const { iduser, idgame } = useParams<Params>();
 
+  const [userReview, setUserReview] = useState<any>([]);
+
+  const user = JSON.parse(localStorage.getItem("userData")!);
+
+  useEffect(() => {
+    async function getUserReviews(iduser: string, idgame: string) {
+      let userReview = await axios.get(`/videogames/review/${idgame}/${iduser}`);
+      setUserReview(userReview.data)
+      return userReview.data;
+    }
+    getUserReviews(iduser, idgame);
+  }, [iduser, idgame])
+
   const [input, setInput] = useState<InputReview>({
     score: 0,
     description: "",
   });
-
+  
   function handleChange(e: React.FormEvent<HTMLInputElement>) {
     setInput({
       ...input,
@@ -33,7 +46,7 @@ const LeaveReview: FC = () => {
     });
   }
 
-  console.log(input.score);
+  
 
   function handleScore(rating: number) {
     setInput({
@@ -41,6 +54,7 @@ const LeaveReview: FC = () => {
       score: rating,
     });
   }
+
 
   async function handleReview(iduser: string, idgame: string) {
     try {
@@ -75,9 +89,10 @@ const LeaveReview: FC = () => {
       );
     }
   }
-
+  console.log(userReview)
   return (
     <StyledLeaveReview>
+      { !userReview.length ?
       <FormStyled>
         <form>
           <span className="span__score">Score:</span>
@@ -107,6 +122,24 @@ const LeaveReview: FC = () => {
           </Btn>
         </form>
       </FormStyled>
+      
+      : 
+      <>
+      <h2>Hi, {user.data.username}!</h2>
+      <p>Your opinion about this game has been uploaded on {userReview[0].createdAt.split("T")[0]}</p>
+      <h3>Your score:</h3>
+      <StarRatings
+            rating={userReview[0].score}
+            starRatedColor="var(--clr-primary)"
+            numberOfStars={5}
+            starHoverColor="var(--clr-primary)"
+            starDimension="3.5em"
+            starSpacing="0"
+          />
+        <h3>Your review:</h3>
+        <p>{userReview[0].description}</p>
+          </>
+        }
     </StyledLeaveReview>
   );
 };

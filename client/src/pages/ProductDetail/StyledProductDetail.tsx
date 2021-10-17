@@ -89,6 +89,10 @@ export const GameDetail = styled.section`
     text-decoration: none;
   }
 
+  .stars {
+    font-size: 2rem;
+  }
+
   .game__info {
     flex: 1;
     margin-left: 1.5em;

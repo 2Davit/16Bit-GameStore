@@ -17,6 +17,8 @@ import { toast } from "react-toastify";
 import { ProductInCart } from "../../interfaces";
 import { addFavorites } from "../../redux/actions/favorite_actions";
 import heart from "../../assets/img/svg/heart1.svg";
+import axios from 'axios';
+
 
 interface Props {
   id: string;
@@ -40,11 +42,27 @@ const Detail: FC = () => {
     return game;
   };
 
+  const [reviewsMean, setReviewsMean] = useState<number>(0);
+
   let game: any = getAll();
 
   useEffect(() => {
     dispatch(getProductDetail(parseInt(id)));
     getAll();
+    async function getUserReviews(idgame: string) {
+      let productReviews = await axios.get(`/videogames/review/${id}/0`);
+      if (productReviews.data) {
+        var total = productReviews.data.reduce((acc: number, review: any) => {
+          acc = acc + review.score;
+          return acc;
+        }, 0)
+        setReviewsMean(Math.ceil(total/productReviews.data.length));
+      } else {
+        return;
+      }
+      return;
+    }
+    getUserReviews(id);
     return function cleanup() {
       dispatch(resetDetail());
     };
@@ -53,7 +71,7 @@ const Detail: FC = () => {
   interface Genre {
     name_genre: string;
   }
-
+  
   const [quantity, setQuantity] = useState<number>(1);
   function handleQuantityChange(amount: number) {
     const newValue = quantity + amount;
@@ -61,7 +79,7 @@ const Detail: FC = () => {
       setQuantity((quantity) => quantity + amount);
     }
   }
-
+  
   const handleClick = () => {
     let productToDispatch = { ...detailProduct };
     productToDispatch.quantity = quantity;
@@ -116,7 +134,7 @@ const Detail: FC = () => {
 
   let unavailable =
     quantity + game?.quantity === detailProduct.in_stock + 1 ? true : false;
-  console.log(detailProduct.genres);
+  
   const user = JSON.parse(localStorage.getItem("userData")!);
   return (
     <>
@@ -155,11 +173,10 @@ const Detail: FC = () => {
           <div className="game__container-price-score">
             <p className="game__price">${detailProduct.price_product}</p>
             <span className="game__star-container">
-              <img
-                className="ratingStars"
-                src={fivestars}
-                alt="fivestars rating"
-              />
+            
+                <span className='stars'>{reviewsMean === 5 ? '⭐⭐⭐⭐⭐' : reviewsMean === 4 ? '⭐⭐⭐⭐' :
+                reviewsMean === 3 ? '⭐⭐⭐' : reviewsMean === 2 ? '⭐⭐' : reviewsMean === 1 ? '⭐' : null}</span>
+                
             </span>
           </div>
           <p className="game__description">

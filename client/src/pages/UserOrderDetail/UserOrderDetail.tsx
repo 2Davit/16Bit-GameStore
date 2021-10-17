@@ -9,6 +9,7 @@ import { Fade } from "react-awesome-reveal";
 
 interface Props {
   idOrder: string;
+  idUser: string;
 }
 interface OrderDetail {
   address_order: string;
@@ -26,7 +27,7 @@ interface InputReview {
 function UserOrderDetail() {
   const dispatch = useDispatch();
   const history = useHistory();
-  const { idOrder } = useParams<Props>();
+  const { idOrder, idUser } = useParams<Props>();
   const [orderDetail, setOrderDetail] = useState<OrderDetail>({
     id_order: 0,
     address_order: "",
@@ -35,14 +36,22 @@ function UserOrderDetail() {
     date: "",
     orderProduct: [],
   });
+
+  const [userReview, setUserReview] = useState<Array<any>>([]);
   const [input, setInput] = useState<InputReview>({
     score: 0,
     description: "",
   });
 
+  
   const user = JSON.parse(localStorage.getItem("userData")!);
-
   useEffect(() => {
+    async function getUserReviews(idUser: string) {
+      let userReviews = await axios.get(`/videogames/review/0/${idUser}`);
+      setUserReview(userReviews.data)
+      return userReviews.data;
+    }
+
     async function getOrderDetail(idOrder: string) {
       let detail = await axios.get(`/order/${idOrder}`);
       let detailOrder = detail.data;
@@ -50,8 +59,10 @@ function UserOrderDetail() {
       return detailOrder;
     }
     getOrderDetail(idOrder);
-  }, [idOrder]);
-
+    getUserReviews(idUser);
+  }, [idOrder, idUser])
+  
+  
   function handleChange(e: React.FormEvent<HTMLInputElement>) {
     setInput({
       ...input,
@@ -71,7 +82,7 @@ function UserOrderDetail() {
       alert("Ya dejaste una review");
     }
   }
-
+  console.log(userReview);
   return (
     <Fade>
       <StyledOrderDetail>
@@ -112,7 +123,7 @@ function UserOrderDetail() {
                 {orderDetail.orderProduct &&
                   orderDetail.orderProduct.map((index) => {
 
-                    console.log("MESSSSSSSI", index.product.id_product)
+                    
                     return (
                       <tr key={index.id}>
                         <td data-label="Name">{index.product.name_product}</td>
@@ -126,7 +137,7 @@ function UserOrderDetail() {
                         <td>
                           <Link to={`/review/${user.id}/${index.product.id_product}`}>
                             <button className="btn__leaveReview">
-                              Leave a review
+                            {!userReview.find((r: any) => r.productIdProduct === index.product.id_product) ? 'Leave a review 🖋' : 'Check your review 🔍'}
                             </button>
                           </Link>
                         </td>
