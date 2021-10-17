@@ -1,6 +1,10 @@
 const { Genre } = require("../db");
 const axios = require("axios");
 
+const capitalize = (string) => {
+  return string[0].toUpperCase() + string.slice(1).toLowerCase();
+};
+
 async function createBulkGenre(req, res, next) {
   try {
     await Genre.bulkCreate(req.body);
@@ -27,7 +31,7 @@ async function createNewGenre(req, res, next) {
 async function getAllGenre(req, res, next) {
   try {
     const allGenres = await Genre.findAll();
-    const cleanGenres = allGenres.map((el) => el.name_genre);
+    const cleanGenres = allGenres.map((el) => capitalize(el.name_genre));
 
     res.status(200).send(cleanGenres);
   } catch (err) {
