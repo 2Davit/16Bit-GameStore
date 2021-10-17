@@ -58,9 +58,6 @@ export const promoteUser = (id:number | unknown, admin: boolean | string) => {
   }
 }
 
-  };
-};
-
 export const banUser = (id: number | unknown, status: boolean | string) => {
   const userData = JSON.parse(localStorage.getItem("userData") as string);
   const token = userData?.data.token;
