@@ -1,7 +1,9 @@
 .container {
-    padding: 10px;
-    color: black;
-    background-color: azure;
-    border: solid 2px black;
-    border-radius: 10px;
+  position: relative;
+  padding: 7px;
+  color: var(--clr-white);
+  background-color: var(--clr-primary-2);
+  border: solid 2px black;
+  border-radius: 5px;
+  left: -0.5em;
 }

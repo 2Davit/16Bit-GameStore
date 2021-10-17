@@ -3,7 +3,8 @@ import SVG from "react-inlinesvg";
 
 export const GameDetail = styled.section`
   display: flex;
-  margin: 5rem 4rem;
+  width: 80%;
+  margin: 3em auto 3em;
 
   .btn-fav {
     background: black;
@@ -172,7 +173,7 @@ export const GameDetail = styled.section`
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      margin-right: 2rem;
+      margin-right: 1em;
 
       button {
         margin-bottom: 0.5em;
@@ -189,8 +190,9 @@ export const GameDetail = styled.section`
 
     .game__purchase-container {
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      margin-top: 8em;
+      /* background: red; */
 
       @media (max-width: 700px) {
         flex-direction: column;

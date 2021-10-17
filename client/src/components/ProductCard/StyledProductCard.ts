@@ -8,7 +8,7 @@ export const StyledProductCard = styled.article`
   overflow: hidden;
   box-shadow: 5px 5px 0px ${(p) => p.theme.bgBorder};
   position: relative;
-  transition: all 0.1s ease-in-out;
+  transition: all 0.25s ease-in-out;
   height: 400px;
   background: #000;
 

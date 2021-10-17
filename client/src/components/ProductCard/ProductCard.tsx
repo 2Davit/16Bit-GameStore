@@ -35,7 +35,7 @@ const ProductCard: FC<Props> = ({ game }) => {
   }, [message, handleEffect]);
 
   const handleOpenClick = (ev: any) => {
-    animateScroll.scrollTo(250, { duration: 300 });
+    animateScroll.scrollTo(230, { duration: 300 });
   };
 
   const handleClick = () => {
