@@ -7,6 +7,7 @@ export const StyledFilter = styled.div`
   padding: 1rem;
   background: #000;
   margin: 0 3em 0 1em;
+  height: min-content;
   h5 {
     width: 100%;
     margin-top: 1em;
