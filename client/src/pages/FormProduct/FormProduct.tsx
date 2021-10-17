@@ -1,9 +1,13 @@
 import { useState, FC, useEffect } from "react";
 import { ProductCreate, ProductValidate } from "../../interfaces";
 import { useDispatch, useSelector } from "react-redux";
-import { createVideogame, getAllPlatforms, getAllGenres } from "../../redux/actions/products_action";
+import {
+  createVideogame,
+  getAllPlatforms,
+  getAllGenres,
+} from "../../redux/actions/products_action";
 import { deleteNavbar } from "../../redux/actions/admin_actions";
-import axios from 'axios'
+import axios from "axios";
 import { Store } from "../../redux/reducer";
 import { Link } from "react-router-dom";
 import {
@@ -59,14 +63,12 @@ const FormProduct: FC = () => {
     dispatch(getAllGenres());
   }, [dispatch]);
 
-
   const genres = useSelector((state: Store) => state.adminReducer.genres);
 
-  const platforms = useSelector((state: Store) => state.adminReducer.platforms);  
-
+  const platforms = useSelector((state: Store) => state.adminReducer.platforms);
 
   function handleImageDelete(img: string) {
-    setImages(images.filter((image) => image !== img));  
+    setImages(images.filter((image) => image !== img));
     setInput({
       ...input,
       image_product: input.image_product.filter((image) => image !== img),
@@ -271,25 +273,23 @@ const FormProduct: FC = () => {
     return error;
   };
 
-  const handleImage =  async (e:any) => {
+  const handleImage = async (e: any) => {
     const data = new FormData();
-    data.append("upload_preset", "product_image")
-    data.append("file", e.target.files[0])
-    const fileRequest = await axios.post('https://api.cloudinary.com/v1_1/gamestore-16bit/image/upload', data)
-    const result =  fileRequest?.data.secure_url
-    setImages([
-      ...images, result
-    ])
+    data.append("upload_preset", "product_image");
+    data.append("file", e.target.files[0]);
+    const fileRequest = await axios.post(
+      "https://api.cloudinary.com/v1_1/gamestore-16bit/image/upload",
+      data
+    );
+    const result = fileRequest?.data.secure_url;
+    setImages([...images, result]);
     setInput((prevState: any) => ({
-           ...prevState,
-           image_product: [...images, result],
-         }));
-
-
-  }
+      ...prevState,
+      image_product: [...images, result],
+    }));
+  };
 
   return (
- 
     <ContainerFormP>
       <Link
         to={{
@@ -340,26 +340,38 @@ const FormProduct: FC = () => {
         <Fields>
           <FormLabel htmlFor="image_product">Images</FormLabel>
           <BtnAdd onChange={(e) => handleImage(e)} type="file" />
-
         </Fields>
-        <div style={{display: 'flex'}}>
-        {input.image_product &&
-          input.image_product.map((img) => (
-            <div style={{position:"relative", marginRight:"20px", marginBottom:"20px"}} key={img}>
-              <img
-                src={img}
-                style={{ width: "70px", height: "70px" }}
-                alt={img}
-              />
-              <span
-                style={{ cursor: "pointer", top: -5, left: 60, position: "absolute", color:"red" }}
-                onClick={() => handleImageDelete(img)}
+        <div style={{ display: "flex" }}>
+          {input.image_product &&
+            input.image_product.map((img) => (
+              <div
+                style={{
+                  position: "relative",
+                  marginRight: "20px",
+                  marginBottom: "20px",
+                }}
+                key={img}
               >
-                x
-              </span>
-            </div>
-          ))}
-          </div>
+                <img
+                  src={img}
+                  style={{ width: "70px", height: "70px" }}
+                  alt={img}
+                />
+                <span
+                  style={{
+                    cursor: "pointer",
+                    top: -5,
+                    left: 60,
+                    position: "absolute",
+                    color: "red",
+                  }}
+                  onClick={() => handleImageDelete(img)}
+                >
+                  x
+                </span>
+              </div>
+            ))}
+        </div>
 
         {error.thumbnail_product && (
           <FormErrors>{error.thumbnail_product}</FormErrors>
@@ -380,7 +392,6 @@ const FormProduct: FC = () => {
             name="in_stock"
             placeholder="Introduce a quantity"
           />
-         
         </Fields>
         <Fields>
           <FormLabel htmlFor="on_sale">Sale Discount</FormLabel>
@@ -408,9 +419,10 @@ const FormProduct: FC = () => {
           <FormLabel htmlFor="firstName">Genres</FormLabel>
           <FormSelect name="genres" onChange={(e) => handleSelectGenre(e)}>
             <option>Select an Option</option>
-            {genres && genres.map((genre:string) => (
-              <option value={genre}>{genre}</option>
-            ))}
+            {genres &&
+              genres.map((genre: string) => (
+                <option value={genre}>{genre}</option>
+              ))}
           </FormSelect>
         </Fields>
         <div style={{ display: "flex", marginBottom: "2rem" }}>
@@ -432,9 +444,10 @@ const FormProduct: FC = () => {
             onChange={(e) => handleSelectPlatform(e)}
           >
             <option>Select an Option</option>
-            {platforms && platforms.map((platform:string) => (
-              <option value={platform}>{platform}</option>
-            ))}
+            {platforms &&
+              platforms.map((platform: string) => (
+                <option value={platform}>{platform}</option>
+              ))}
           </FormSelect>
         </Fields>
         <div style={{ display: "flex", marginBottom: "2rem" }}>

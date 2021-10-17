@@ -15,7 +15,7 @@ import {
   GET_PRODUCT_ON_SALE,
   GET_ALL_GENRES,
   GET_ALL_PLATFORMS,
-  RESET_DETAIL
+  RESET_DETAIL,
 } from "../types";
 
 import { Dispatch } from "redux";
@@ -97,32 +97,44 @@ export const onSaleFilter = (place: string) => {
 };
 
 export const createVideogame = (payload: ProductCreate) => {
+  const userData = JSON.parse(localStorage.getItem("userData") as string);
+  const token = userData?.data.token;
   return async function (dispatch: Dispatch<Name>) {
-    const data = await axios.post(
-      "/videogames/OneGame",
-      payload
-    );
+    const data = await axios.post("/videogames/OneGame", payload, {
+      headers: {
+        "x-access-token": token,
+      },
+    });
     return data;
   };
 };
+
 export const createNewGenre = (payload: CreateGenre) => {
+  const userData = JSON.parse(localStorage.getItem("userData") as string);
+  const token = userData?.data.token;
   return async function (dispatch: Dispatch<Name>) {
-    const data = await axios.post(
-      "/genres/oneGenre",
-      payload
-    );
+    const data = await axios.post("/genres/oneGenre", payload, {
+      headers: {
+        "x-access-token": token,
+      },
+    });
     return data;
   };
 };
+
 export const createNewPlatform = (payload: CreatePlatform) => {
+  const userData = JSON.parse(localStorage.getItem("userData") as string);
+  const token = userData?.data.token;
   return async function (dispatch: Dispatch<Name>) {
-    const data = await axios.post(
-      "/platforms/onePlatform",
-      payload
-    );
+    const data = await axios.post("/platforms/onePlatform", payload, {
+      headers: {
+        "x-access-token": token,
+      },
+    });
     return data;
   };
 };
+
 export const getAllGenres = () => {
   return async (dispatch: Dispatch<AllGenres>): Promise<any> => {
     const json = await axios.get("/genres");
@@ -132,6 +144,7 @@ export const getAllGenres = () => {
     });
   };
 };
+
 export const getAllPlatforms = () => {
   return async (dispatch: Dispatch<AllPlatforms>): Promise<any> => {
     const json = await axios.get("/platforms");
@@ -144,7 +157,6 @@ export const getAllPlatforms = () => {
 
 export const resetDetail = () => {
   return {
-      type: RESET_DETAIL,
-    };
+    type: RESET_DETAIL,
+  };
 };
-
