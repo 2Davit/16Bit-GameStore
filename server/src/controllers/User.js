@@ -53,6 +53,7 @@ async function getUsers(req, res) {
         email: u.email_user,
         active: u.is_active,
         created: u.createdAt,
+        admin: u.is_admin
       };
     });
     res.status(200).send(userData);
