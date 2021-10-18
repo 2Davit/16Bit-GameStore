@@ -75,7 +75,9 @@ const CartSideBar /*: FC<CartSideBarProps>*/ = ({ closeCallback, show }) => {
           </div>
           <div id="modal__buttons" className="modal__buttons">
             <Link to="/order">
-              <Btn className="btn btn-card"> Checkout</Btn>
+              <Btn className="btn btn-card" onClick={closeCallback}>
+                Checkout
+              </Btn>
             </Link>
             <Btn className="btn btn-sec" onClick={() => dispatch(clearCart())}>
               Clear Cart
