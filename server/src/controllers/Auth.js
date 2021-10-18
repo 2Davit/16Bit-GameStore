@@ -54,7 +54,7 @@ const signInGoogle = async (req, res) => {
 
   const user = await User.findOrCreate({
     where: {
-      email_user: email.toLowerCase(),
+      email_user: email?.toLowerCase(),
     },
     defaults: {
       nickname_user: username.toLowerCase(),
@@ -120,7 +120,7 @@ const signInGoogle = async (req, res) => {
     }
   }
 
-  const token = jwt.sign({ id: user.id_user }, SECRET, {
+  const token = jwt.sign({ id: user[0].id_user }, SECRET, {
     expiresIn: 86400, // 24 hours
   });
 
