@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { AiFillDelete } from "react-icons/ai";
 import { GiHammerDrop, GiHealing } from "react-icons/gi";
+import { FaCrown } from "react-icons/fa";
 
 export const UserMainContainer = styled.div`
   width: 100%;
@@ -80,6 +81,9 @@ export const InfoUserMini = styled.span`
   border: 1px solid #222831;
   width: 7.812%;
   padding: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 export const TitleUser = styled.span`
@@ -113,4 +117,12 @@ export const IconUsersUnban = styled(GiHealing)`
 export const IconUsersDelete = styled(AiFillDelete)`
   color: #911f27;
   font-size: 1.6rem;
+`;
+export const IconUsersAdmin = styled(FaCrown)`
+  color: #2b9a1c;
+  font-size: 1.4rem;
+`;
+export const IconUsersAdmin2 = styled(FaCrown)`
+  color: #c1bcbc;
+  font-size: 1.4rem;
 `;

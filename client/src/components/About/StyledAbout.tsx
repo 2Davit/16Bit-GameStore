@@ -18,6 +18,7 @@ export const StyledAbout = styled.div`
     margin-bottom: 1em;
     text-transform: uppercase;
     text-align: center;
+    width: max-content;
   }
 
   .about_coders_container {

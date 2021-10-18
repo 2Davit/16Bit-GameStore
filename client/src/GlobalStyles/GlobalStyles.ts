@@ -9,6 +9,10 @@ interface DefaultTheme {
 
 export const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
 
+#root {
+  overflow-x: hidden;
+}
+
 :root {
   --clr-primary: #9b5df7;
   --clr-primary-2: #763fc7;
@@ -75,7 +79,7 @@ export const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
         color:white;
 		min-height: 100vh;
 		min-width: 100vw;
-		overflow-x: hidden ;
+		overflow-x: hidden;
     }
 
 	ul{
@@ -156,6 +160,20 @@ export const Btn = styled.button`
     border-color: var(--clr-primary);
     box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.15);
   }
+
+  &.btn-sinstock{
+   background: #000; 
+   border:3px solid transparent;
+   outline: 3px solid var(--clr-primary);
+   color:var(--clr-primary);
+  }
+  &.btn-sinstock:hover{
+    cursor:inherit;
+  }
+  &.btn-sinstock:focus{
+    outline: 3px solid var(--clr-primary);
+  }
+ 
 
   &.btn-danger {
     color: var(--clr-error);
@@ -255,5 +273,41 @@ export const Dropdown = styled.li`
     }
   }
 `;
+
+export const Badge = styled.span`
+	display: inline-block;
+	min-width: 175px;
+	margin-top: 1em;
+	padding: .7em 1.2em;
+	font-size: .75em;
+	font-weight: 900;
+	text-align: center;
+	color: var(--clr-white);
+	border-radius: 10em;
+
+	&.warning {
+		background-color: var(--clr-warning);
+	}
+	
+	&.error {
+		background-color: var(--clr-error);
+	}
+
+	&.success {
+		background-color: var(--clr-success);
+	}
+
+	&.secondary {
+		background-color: var(--clr-secondary);
+	}
+
+	&.dark {
+		background-color: var(--clr-dark);
+	}
+
+	&.small {
+		width: 50px;
+	}
+`
 
 export const StyledSVG = styled(SVG)``;

@@ -7,14 +7,17 @@ interface Orders {
   payload: any;
 }
 
-export const getUserOrders = (payload: number) => {
+export const getUserOrders = (payload: number | any) => {
   return function (dispatch: Dispatch<Orders>) {
     return axios.get(`/order?=${payload}`).then((orders) => {
       dispatch({
         type: GET_USER_ORDERS,
         payload: orders.data,
+        
       });
+      console.log(payload)
     });
   };
 };
+
 

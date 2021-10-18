@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 // import { getUsers } from "../../redux/actions/admin_actions";
 // import { Store } from "../../redux/reducer/";
 import { User } from "../../interfaces";
-import { deleteUser, banUser } from "../../redux/actions/admin_actions";
+import { deleteUser, banUser, promoteUser } from "../../redux/actions/admin_actions";
 import {
   ContainerNav,
   ContainerMainContent,
@@ -33,6 +33,8 @@ import {
   IconUsersBan,
   IconUsersUnban,
   NavBtn,
+  IconUsersAdmin,
+  IconUsersAdmin2,
 } from "./UserContent.style";
 
 interface Props {
@@ -54,7 +56,9 @@ const UserContent: FC<Props> = ({ totalUser }) => {
   const [userSearch, setUserSearch] = useState(totalUser);
   const [btnStatus, setBtnStatus] = useState<boolean>(true);
   const [btnAlphabet, setBtnAlphabet] = useState<boolean>(true);
+  
   let onViewUsers = userSearch.slice(page, page2);
+  console.log('asdnasnd', onViewUsers)
 
   let alphabet = totalUser.sort(function (a, b) {
     if (a.nickname.toLowerCase() > b.nickname.toLowerCase()) {
@@ -128,8 +132,21 @@ const UserContent: FC<Props> = ({ totalUser }) => {
     setUserSearch([...alphabet]);
     setBtnAlphabet(!btnAlphabet);
   };
+  const handleAdmin = ( status: boolean | string, id: number | unknown): any => {
+    dispatch(promoteUser( status, id ));
+    
+    alert("cambio a Admin");
 
-  console.log(alphabet);
+    // history.go(0);
+  };
+  const handleAdmin2 = ( status: boolean | string, id: number | unknown): any => {
+    dispatch(promoteUser( status, id ));
+    
+    alert("cambio a Admin");
+
+    // history.go(0);
+  };
+  
 
   return (
     <ContainerMainContent>
@@ -185,7 +202,7 @@ const UserContent: FC<Props> = ({ totalUser }) => {
               }
               key={u.id_user}
             >
-              <InfoUserMini>{u.id_user}</InfoUserMini>
+              <InfoUserMini>{u.id_user} {u.admin === true ? <button style={{border: 'none'}} onClick={() => handleAdmin(false, u.id_user)}><IconUsersAdmin /></button> : <button style={{border: 'none'}} onClick={() => handleAdmin2(true, u.id_user)}><IconUsersAdmin2 /></button>}</InfoUserMini>
               <InfoUser>{u.nickname}</InfoUser>
               <InfoUser>{u.name}</InfoUser>
               <InfoUser>{u.lastname}</InfoUser>

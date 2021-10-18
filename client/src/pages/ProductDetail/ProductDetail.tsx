@@ -17,8 +17,7 @@ import { toast } from "react-toastify";
 import { ProductInCart } from "../../interfaces";
 import { addFavorites } from "../../redux/actions/favorite_actions";
 import heart from "../../assets/img/svg/heart1.svg";
-import axios from 'axios';
-
+import axios from "axios";
 
 interface Props {
   id: string;
@@ -55,8 +54,8 @@ const Detail: FC = () => {
         var total = productReviews.data.reduce((acc: number, review: any) => {
           acc = acc + review.score;
           return acc;
-        }, 0)
-        setReviewsMean(Math.ceil(total/productReviews.data.length));
+        }, 0);
+        setReviewsMean(Math.ceil(total / productReviews.data.length));
       } else {
         return;
       }
@@ -71,7 +70,7 @@ const Detail: FC = () => {
   interface Genre {
     name_genre: string;
   }
-  
+
   const [quantity, setQuantity] = useState<number>(1);
   function handleQuantityChange(amount: number) {
     const newValue = quantity + amount;
@@ -79,7 +78,7 @@ const Detail: FC = () => {
       setQuantity((quantity) => quantity + amount);
     }
   }
-  
+
   const handleClick = () => {
     let productToDispatch = { ...detailProduct };
     productToDispatch.quantity = quantity;
@@ -134,7 +133,7 @@ const Detail: FC = () => {
 
   let unavailable =
     quantity + game?.quantity === detailProduct.in_stock + 1 ? true : false;
-  
+
   const user = JSON.parse(localStorage.getItem("userData")!);
   return (
     <>
@@ -173,10 +172,19 @@ const Detail: FC = () => {
           <div className="game__container-price-score">
             <p className="game__price">${detailProduct.price_product}</p>
             <span className="game__star-container">
-            
-                <span className='stars'>{reviewsMean === 5 ? '⭐⭐⭐⭐⭐' : reviewsMean === 4 ? '⭐⭐⭐⭐' :
-                reviewsMean === 3 ? '⭐⭐⭐' : reviewsMean === 2 ? '⭐⭐' : reviewsMean === 1 ? '⭐' : null}</span>
-                
+              <span className="stars">
+                {reviewsMean === 5
+                  ? "⭐⭐⭐⭐⭐"
+                  : reviewsMean === 4
+                  ? "⭐⭐⭐⭐"
+                  : reviewsMean === 3
+                  ? "⭐⭐⭐"
+                  : reviewsMean === 2
+                  ? "⭐⭐"
+                  : reviewsMean === 1
+                  ? "⭐"
+                  : null}
+              </span>
             </span>
           </div>
           <p className="game__description">
@@ -226,7 +234,7 @@ const Detail: FC = () => {
                   <StyledSVG src={cart} />
                 </Btn>
               ) : (
-                <h4>No more stock</h4>
+                <Btn className="btn-sinstock">Sin Stock</Btn>
               )}
             </div>
             <img
