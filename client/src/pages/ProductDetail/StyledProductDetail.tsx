@@ -196,14 +196,8 @@ export const GameDetail = styled.section`
     .game__purchase-container {
       display: flex;
       align-items: center;
-<<<<<<< HEAD
       margin-top: 1em;
-      /* background: red; */
-=======
-      margin-top: 8em;
       width: 100%;
->>>>>>> f1045cfc989c7e552bddd5a65c7ad1383590100c
-
       @media (max-width: 700px) {
         flex-direction: column;
         align-items: center;
