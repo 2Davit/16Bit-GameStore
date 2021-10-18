@@ -51,11 +51,15 @@ export const deleteUser = (id: number | unknown) => {
     return data;
   }
 }
-export const promoteUser = (id:number | unknown, admin: boolean | string) => {
-  return async function (dispatch: Dispatch<Detail>){
-    const data = await axios.put(`/user/${admin}/${id}`)
+export const promoteUser = ( admin: boolean | string, id:number | unknown ) => {
+  const userData = JSON.parse(localStorage.getItem("userData") as string);
+  const token = userData?.data.token;
+  return async function (dispatch: Dispatch<Detail>) {
+    const data = await axios.put(`/user/admin/${admin}/${id}`, {
+      headers: { "x-access-token": token },
+    });
     return data;
-  }
+  };
 }
 
 export const banUser = (id: number | unknown, status: boolean | string) => {

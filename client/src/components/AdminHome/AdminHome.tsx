@@ -7,9 +7,13 @@ import {
   Vertical,
   Vertical2,
   Horizontal,
+  Horizontal2,
   TableInfo,
   H2,
-  InfoDiv
+  H3,
+  InfoDiv,
+  OnSaleTable,
+  OnSaleDiv
 } from "./AdminHome.style";
 import {
   VictoryLine,
@@ -58,11 +62,11 @@ const AdminHome: FC<Props> = ({ totalOrders, totalUsers, totalProducts, totalSal
               <VictoryChart
                 theme={VictoryTheme.grayscale}
                 height={300}
-                width={700}
+                width={1500}
               >
                 <VictoryBar
                   style={{
-                    data: { fill: "#B55400", width: 25 },
+                    data: { fill: "#B55400", width: 45 },
                     parent: { border: "1px solid #ffffff" },
                   }}
                   data={[
@@ -84,21 +88,26 @@ const AdminHome: FC<Props> = ({ totalOrders, totalUsers, totalProducts, totalSal
 
             </GraLine>
           </Horizontal>
-          <Horizontal>
-              { onSale ? onSale.map(product => (
-                <div style={{backgroundColor:"blue"}}>
-                  <div>{product.id_product}</div>
-                <img src={product.thumbnail_product} width="50px" height="50px" alt="img_product"/>
-                <div>{product.name_product}</div>
-                <div>{product.in_stock}</div>
-                </div>
-
-              )): ""}
-          </Horizontal>
+          
         </Vertical>
         <Vertical2>
+        <Horizontal2>
+            <OnSaleTable>
+              <h2>On sale products</h2>
+              { onSale ? onSale.map(product => (
+                <OnSaleDiv>
+                  <h5>{product.id_product}</h5>
+                  <img src={product.thumbnail_product} width="50px" height="50px" alt="img_product"/>
+                  <h4>{product.name_product}</h4>
+                  <h5>{product.in_stock}</h5>
+                </OnSaleDiv>
+
+              )): <h2 style={{ textAlign: 'center' }}>No Products On Sale</h2>}
+             </OnSaleTable> 
+          </Horizontal2>
           <TableInfo >
             <H2>Latest Registered Users</H2>
+            <div style={{height: '80%', width: '100%'}}>
             {listUsers.length !== 0 ? (
               listUsers.map((user) => (
                 <InfoDiv>
@@ -106,9 +115,11 @@ const AdminHome: FC<Props> = ({ totalOrders, totalUsers, totalProducts, totalSal
                   <h5>{user.created.slice(0, 10)}</h5>
                 </InfoDiv>
               ))
-            ) : (
-              <h1 style={{ color: "red" }}>Sin usuarios</h1>
-            )}
+              ) : (
+                <h2 style={{ textAlign: 'center' }}>No Users Registered</h2>
+                )}
+            </div>
+            <H3>Total Users: {totalUsers.length}</H3>
           </TableInfo>
 
           <TableInfo >
@@ -121,7 +132,7 @@ const AdminHome: FC<Props> = ({ totalOrders, totalUsers, totalProducts, totalSal
                 </InfoDiv>
               ))
             ) : (
-              <h1 style={{ color: "red" }}>Sin products</h1>
+              <h2 style={{ textAlign: 'center' }}>All Seems Ok</h2>
             )}
           </TableInfo>
         </Vertical2>
