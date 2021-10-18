@@ -65,6 +65,10 @@ const logIn = async (req, res) => {
     ],
   });
 
+  if (user && user.is_active === false) {
+    return res.status(403).send({ message: "Suspended account" });
+  }
+
   if (user && user.orders.length) {
     user.orders.sort((a, b) => {
       if (a.dataValues.id_order > b.dataValues.id_order) {
