@@ -146,7 +146,6 @@ const UserContent: FC<Props> = ({ totalUser }) => {
 
     // history.go(0);
   };
-
   
 
   return (

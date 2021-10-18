@@ -14,17 +14,17 @@ export const ContainerStadistic = styled.div`
 export const Vertical = styled.div`
     
     width: 100%;
-    height: 35%;
+    height: 50%;
     display: flex;
     flex-direction: column;
+    margin: 0 auto;
 `
 export const Vertical2 = styled.div`
    
     width: 100%;
-    height: 65%;
+    height: 50%;
     display: flex;
-    /* justify-content: space-around; */
-    /* align-items: center; */
+
 `
 export const Horizontal = styled.div`
     
@@ -32,7 +32,7 @@ export const Horizontal = styled.div`
     height: 30%;
     display: flex;
     justify-content: center;
-    margin-top: 3rem;
+    margin-top: 2rem;
     /* align-items: center; */
 `
 export const Horizontal2 = styled.div`
@@ -56,7 +56,7 @@ export const GraLine = styled.div`
 export const TableInfo = styled.div`
     background: #222831;
     margin: 0 5% 0 0;
-    height: 80%;
+    height: 100%;
     width: 20%;
     /* min-width: 350px; */
     border-radius: 2.5rem;
@@ -96,7 +96,9 @@ export const InfoDiv = styled.div`
   align-items: center;
   justify-content: space-evenly;
   width: 100%;
-  height: 40px;
+  height: auto;
+  padding: 0;
+
 
   h4{
     /* background: red; */
@@ -107,10 +109,20 @@ export const InfoDiv = styled.div`
 
   }
 `
+
+export const ProductNameDiv = styled.div`
+font-weight: bold;
+width: 90%;
+margin-left: .5rem;
+`
+export const ProductStockDiv = styled.div`
+width: 10%;
+font-weight: bold;
+`
 export const OnSaleTable = styled.div`
   border: 2px solid #ffffff;
   width: 80%;
-  height: 600px;
+  height: 100%;
   display: flex;
   flex-direction: column;
   overflow: scroll;
