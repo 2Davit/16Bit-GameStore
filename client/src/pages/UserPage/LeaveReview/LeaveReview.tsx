@@ -5,8 +5,10 @@ import Swal from "sweetalert2/dist/sweetalert2.js";
 import StarRatings from "react-star-ratings";
 import { FormStyled } from "../../FormRegister/StyledFormRegister";
 import { Btn } from "../../../GlobalStyles/GlobalStyles";
-import { StyledLeaveReview } from "./StyledLeaveReview";
+import { StyledLeaveReview, StyledCheckReview, StyledParagraph } from "./StyledLeaveReview";
 import { toast } from "react-toastify";
+import { useHistory } from "react-router-dom";
+
 
 interface InputReview {
   score: number;
@@ -20,6 +22,8 @@ interface Params {
 
 const LeaveReview: FC = () => {
   const { iduser, idgame } = useParams<Params>();
+
+  const history = useHistory();
 
   const [userReview, setUserReview] = useState<any>([]);
 
@@ -89,10 +93,11 @@ const LeaveReview: FC = () => {
       );
     }
   }
-  console.log(userReview)
+  
   return (
+    <>
+    { !userReview.length ?
     <StyledLeaveReview>
-      { !userReview.length ?
       <FormStyled>
         <form>
           <span className="span__score">Score:</span>
@@ -122,25 +127,36 @@ const LeaveReview: FC = () => {
           </Btn>
         </form>
       </FormStyled>
-      
+      </StyledLeaveReview>
       : 
-      <>
-      <h2>Hi, {user.data.username}!</h2>
-      <p>Your opinion about this game has been uploaded on {userReview[0].createdAt.split("T")[0]}</p>
-      <h3>Your score:</h3>
+      <StyledCheckReview>
+      <div style={{display:'flex', flexDirection:'column', marginTop:'-17em'}}>
+      <h1>Hi, {user.data.username}!</h1>
+      <p>Your opinion about this game has been uploaded on {userReview[0].createdAt.split("T")[0]}.</p>
+      </div>
+      <div style={{display:'flex', flexDirection:'column', justifyContent:'space-between', padding: '2rem', marginLeft:'1rem', height:'100%'}}>
+      <div>
+      <h3>Score</h3>
       <StarRatings
             rating={userReview[0].score}
-            starRatedColor="var(--clr-primary)"
+            starRatedColor="black"
             numberOfStars={5}
             starHoverColor="var(--clr-primary)"
             starDimension="3.5em"
             starSpacing="0"
           />
-        <h3>Your review:</h3>
-        <p>{userReview[0].description}</p>
-          </>
+        </div>
+        <div>
+        <h3>Review</h3>
+        <StyledParagraph>{userReview[0].description}</StyledParagraph>
+        </div>
+        </div>
+        <Btn style={{marginTop:'-18rem'}} className="btn-card" onClick={() => history.goBack()}>
+            <i className="fas fa-caret-left"></i> Go back
+        </Btn>
+          </StyledCheckReview>
         }
-    </StyledLeaveReview>
+    </>
   );
 };
 
