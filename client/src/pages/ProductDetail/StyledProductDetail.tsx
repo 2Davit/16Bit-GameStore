@@ -178,9 +178,10 @@ export const GameDetail = styled.section`
       flex-direction: column;
       justify-content: space-between;
       margin-right: 1em;
-
+      position: relative;
+      top: -1em;
       button {
-        margin-bottom: 0.5em;
+        margin-top: 1em;
       }
 
       @media (max-width: 500px) {
@@ -196,7 +197,7 @@ export const GameDetail = styled.section`
       display: flex;
       align-items: center;
       margin-top: 8em;
-      /* background: red; */
+      width: 100%;
 
       @media (max-width: 700px) {
         flex-direction: column;

@@ -3,6 +3,8 @@ import { Product } from "../../interfaces";
 import { ProductCard } from "../index";
 import { StyledCatalog } from "./StyledCatalog";
 import { MarioLoading } from "../index";
+import { useSelector } from "react-redux";
+import { Store } from "../../redux/reducer";
 
 // interface NavBarProps {
 //     currentProducts: any;
