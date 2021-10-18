@@ -1,19 +1,18 @@
-import React, { FC, useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { PrevButton, NextButton } from "./Buttons";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 //Imgs
 import cart from "../../assets/img/svg/cart.svg";
 //Estilos
 import { StyledCarousel } from "./Carousel.style";
 import { Btn, StyledSVG } from "../../GlobalStyles/GlobalStyles";
 import { Fade } from "react-awesome-reveal";
-import { Product, ProductInCart } from "../../interfaces";
+import { ProductInCart } from "../../interfaces";
 //Embla
 import useEmblaCarousel from "embla-carousel-react";
 import { useRecursiveTimeout } from "./useRecursiveTimeout";
 import { addItemCart } from "../../redux/actions/cart_actions";
 import { toast } from "react-toastify";
-import { toggleCart } from "../../redux/actions/global_actions";
 import { Link, useHistory } from "react-router-dom";
 
 const AUTOPLAY_INTERVAL = 4500;
@@ -25,27 +24,11 @@ const Carousel: any = ({ products }: any) => {
 
   const [message, setMessage] = useState<string>("");
   const dispatch = useDispatch();
-
-  // const handleEffect = useCallback(() => {
-  //   let stockInLocal = JSON.parse(localStorage.getItem("cart")!);
-  //   let gameStorage = stockInLocal?.find(
-  //     (g: ProductInCart) => g.id_product === product!.id_product
-  //   );
-
-  //   let unavailable = gameStorage?.quantity >= product!.in_stock ? true : false;
-  //   return unavailable;
-  // }, [product!.id_product, product!.in_stock]);
-
-  // let disabled = handleEffect();
-
-  // useEffect(() => {
-  //   handleEffect();
-  // }, [message, handleEffect]);
-
   const history = useHistory();
 
   const scrollPrev = useCallback(() => embla && embla.scrollPrev(), [embla]);
   const scrollNext = useCallback(() => embla && embla.scrollNext(), [embla]);
+
   const onSelect = useCallback(() => {
     if (!embla) return;
     setPrevBtnEnabled(embla.canScrollPrev());
@@ -80,23 +63,23 @@ const Carousel: any = ({ products }: any) => {
     play();
   }, [play]);
 
-  // const handleClick = () => {
-  //   setMessage(message + "a");
-  //   //el message de arriba es esencial. Se agradece no tocar!!
-  //   let gameToDispatch = { ...product };
-  //   gameToDispatch.quantity = 1;
-  //   dispatch(addItemCart(gameToDispatch));
-  //   toast.success(`${product!.name_product} was added to your cart! 👾`, {
-  //     position: "bottom-left",
-  //     autoClose: 3000,
-  //     hideProgressBar: false,
-  //     closeOnClick: true,
-  //     pauseOnHover: true,
-  //     draggable: true,
-  //     progress: undefined,
-  //     theme: "dark",
-  //   });
-  // };
+  const handleClick = (prod: ProductInCart) => {
+    setMessage(message + "a");
+    //el message de arriba es esencial. Se agradece no tocar!!
+    let gameToDispatch = { ...prod };
+    gameToDispatch.quantity = 1;
+    dispatch(addItemCart(gameToDispatch));
+    toast.success(`${prod!.name_product} was added to your cart! 👾`, {
+      position: "bottom-left",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  };
 
   const handleSlideClick = (ev: any, id_product: number) => {
     let slide = ev.target;
@@ -149,7 +132,7 @@ const Carousel: any = ({ products }: any) => {
 
                           <Btn
                             className=" btn-card btn-img"
-                            // onClick={handleClick}
+                            onClick={() => handleClick(prod)}
                           >
                             Add to cart
                             <StyledSVG src={cart} />
