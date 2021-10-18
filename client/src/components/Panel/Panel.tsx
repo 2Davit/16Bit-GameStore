@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { ContainerPanel, ContainerImageUser, NameImage, Image, BtnAdminPanel, IconHome, IconSales, IconProducts, IconUsers, LogoAdmin, LogoLink, H2 } from './Panel.style'
+import { ContainerPanel, ContainerImageUser, NameImage, Image, BtnAdminPanel, IconHome, IconSales, IconProducts, IconUsers, LogoLink, H2 } from './Panel.style'
 // import gamestore from '../../assets/img/gamestore.png'
 import defaultAvatar from "../../assets/img/avatars/Avatar_9.png";
 

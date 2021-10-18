@@ -46,9 +46,12 @@ export const  ContainerImageUser = styled.div`
     height: 10%;
     display: flex;
     align-items: center;
+    background: #393E46;
+    border-left: 3px solid #B55400;
 `
 export const  NameImage = styled.h5`
-    font-size: 1.4rem;
+width: 100%;
+    font-size: 1.1vw;
     margin: 10px 0 0 .5rem;
     
 `
@@ -57,7 +60,7 @@ export const  Image = styled.img`
     height: 50px;
     border-radius: 50%;
     object-fit: cover;
-    margin: 0 10px 0 20px ;
+    margin: 0 10px 0 10px ;
 `
 export const  BtnAdminPanel = styled.button`
     height: 50px;
