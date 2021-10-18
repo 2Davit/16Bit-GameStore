@@ -79,6 +79,9 @@ export const StyledProductCard = styled.article`
       outline: none;
     }
   }
+
+ 
+  
 `;
 
 export const MiniCard = styled.article`

@@ -161,6 +161,20 @@ export const Btn = styled.button`
     box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.15);
   }
 
+  &.btn-sinstock{
+   background: #000; 
+   border:3px solid transparent;
+   outline: 3px solid var(--clr-primary);
+   color:var(--clr-primary);
+  }
+  &.btn-sinstock:hover{
+    cursor:inherit;
+  }
+  &.btn-sinstock:focus{
+    outline: 3px solid var(--clr-primary);
+  }
+ 
+
   &.btn-danger {
     color: var(--clr-error);
     border-color: var(--clr-error);
@@ -259,5 +273,41 @@ export const Dropdown = styled.li`
     }
   }
 `;
+
+export const Badge = styled.span`
+	display: inline-block;
+	min-width: 175px;
+	margin-top: 1em;
+	padding: .7em 1.2em;
+	font-size: .75em;
+	font-weight: 900;
+	text-align: center;
+	color: var(--clr-white);
+	border-radius: 10em;
+
+	&.warning {
+		background-color: var(--clr-warning);
+	}
+	
+	&.error {
+		background-color: var(--clr-error);
+	}
+
+	&.success {
+		background-color: var(--clr-success);
+	}
+
+	&.secondary {
+		background-color: var(--clr-secondary);
+	}
+
+	&.dark {
+		background-color: var(--clr-dark);
+	}
+
+	&.small {
+		width: 50px;
+	}
+`
 
 export const StyledSVG = styled(SVG)``;
