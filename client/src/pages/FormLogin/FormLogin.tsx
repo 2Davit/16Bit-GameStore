@@ -21,7 +21,7 @@ interface User {
 }
 const FormLogin: FC = () => {
   const userData = JSON.parse(localStorage.getItem("userData")!);
-  const { user, loginWithPopup } = useAuth0();
+  const { user, loginWithPopup, loginWithRedirect } = useAuth0();
   const [isUser, setIsUser] = useState<boolean>(false);
   const [input, setInput] = useState<User>({
     username: "",
@@ -96,20 +96,18 @@ const FormLogin: FC = () => {
     animateScroll.scrollTo(0, { duration: 300 });
   };
 
-  const handleGoogleLogin = () => {
-    loginWithPopup()
-      .then((res) =>
-        axios.post("/auth/google", {
-          username: user?.nickname,
-          name: user?.given_name,
-          lastname: user?.family_name,
-          email: user?.email,
-          picture: user?.picture,
-        })
-      )
-      .then((res) => localStorage.setItem("userData", JSON.stringify(res.data)))
-      .then((res) => history.push("/home"));
-  };
+  /*   const handleGoogleLogin = async () => {
+    await loginWithPopup();
+    const res = await axios.post("/auth/google", {
+      username: user?.nickname,
+      name: user?.given_name,
+      lastname: user?.family_name,
+      email: user?.email,
+      picture: user?.picture,
+    });
+    localStorage.setItem("userData", JSON.stringify(res.data));
+    history.push("/home");
+  }; */
 
   return (
     <Modal
@@ -156,7 +154,7 @@ const FormLogin: FC = () => {
                 Log In
               </Btn>
             </form>
-            <Btn className={"btn-card login"} onClick={handleGoogleLogin}>
+            <Btn className={"btn-card login"} onClick={loginWithRedirect}>
               Log In with Google
             </Btn>
           </FormStyled>
