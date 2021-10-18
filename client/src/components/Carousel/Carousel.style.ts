@@ -1,140 +1,204 @@
-import styled from 'styled-components';
-import { BiRightArrow, BiLeftArrow } from 'react-icons/bi';
-import { Link } from 'react-router-dom';
+import styled from "styled-components";
 
+export const StyledCarousel = styled.div`
 
-export const CarouselContainer = styled(Link)`
-    height: 250px;
-    display: flex;
-    width: 80%;
-    text-decoration: none;
-    margin: 1rem auto;
-    &:hover{
-        text-decoration: none;
-    }
-
-    @media screen and (max-width: 1000px) {
-        flex-direction: column;
-        height: max-content;
-        width: 100vw;
-    }
-`
-
-export const Image = styled.img`
-position:relative;
-    height: 100%;
-    width: 30%;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    border-top-left-radius: 2rem;
-    border-bottom-left-radius: 2rem;
-    &:hover{
-		filter: grayscale(100%);
-	}
-
-    @media screen and (max-width: 1000px) {
-        width: 100%;
-        height: 50vh;
-        margin: 0 auto;
-        border-radius: 2rem;
-        object-fit: cover;
-        border-bottom-left-radius: 0;
-        border-bottom-right-radius: 0;
-    }
-`
-
-export const CarouselSubContainer = styled.div`
-    background: ${p => p.theme.bgSub};
-    height: 100%;
-    width: 70%;
-    padding: 1rem;
-    border-top-right-radius: 2rem;
-    border-bottom-right-radius: 2rem;
-    h1{
-        color: ${p => p.theme.color};
-    };
-    span{
-        color: ${p => p.theme.color};
-    };
-    p{
-        color: ${p => p.theme.color};
-    };
-
-    @media screen and (max-width: 1000px) {
-     width: 100%;
-     border-radius: 2rem;
-     position: relative;
-     border-top-left-radius: 0;
-     border-top-right-radius: 0;
-
-     h1 {
-         text-overflow: ellipsis;
-         overflow: hidden;
-     }
-    }
-`
-
-
-export const OnSale = styled.img`
-    transform: rotate(-20deg);
+  .embla {
     position: relative;
-    width: 190px;
-    height: 120px;
-    left: 2em;
-    top: -3em;
+    margin-top: 2em;
+    height: 300px;
+    margin-bottom: 5em;
+  }
 
-    @media screen and (max-width: 400px) {
-        width:50%;
-        height: 26%;
-        position: absolute;
-        right: -1em;
-        left: auto;
-        top: -.9em;
-    }
-`
+  .embla__viewport {
+    overflow: hidden;
+    width: 100%;
+  }
 
+  .embla__viewport.is-draggable {
+    cursor: move;
+    cursor: grab;
+  }
 
-export const Button = styled.button`
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin: 0 1rem;
-    border: none;
-    outline: none;
-    text-decoration: none;
+  .embla__viewport.is-dragging {
+    cursor: grabbing;
+  }
+
+  .embla__container {
     display: flex;
+    user-select: none;
+    -webkit-touch-callout: none;
+    -khtml-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    margin-left: -30px;
+  }
+
+  .embla__slide {
+    position: relative;
+    min-width: 80%;
+    padding-left: 3em;
+  }
+
+  .embla__slide__inner {
+    position: relative;
+    overflow: hidden;
+    height: 60vh;
+    min-height: auto;
+    border-radius: 3em;
+    border: 5px solid var(--clr-primary);
+
+    @media (max-width: 1000px) {
+      min-height: auto;
+      height: 50vh;
+    }
+
+    .embla__slide__detail {
+      color: var(--clr-white);
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.5) 100%
+      );
+
+      .slide__details__top {
+        position: relative;
+        font-size: 2em;
+        margin: 0.5em auto;
+
+        a {
+          text-decoration: none;
+          color: var(--clr-white);
+          transition: color 0.2s ease-in-out;
+        }
+      }
+
+      .slide__details__bot {
+        position: relative;
+        width: 100%;
+        display: flex;
+        margin-top: 15%;
+        justify-content: space-between;
+		button{
+		  margin-right: 2em;
+		  }
+      }
+
+      @media (max-width: 1000px) {
+        font-size: 0.7em;
+        height: 100%;
+        flex-direction: column;
+        padding: 2em;
+
+        .slide__details__top {
+          text-align: center;
+          max-width: 100%;
+          width: 100%;
+        }
+
+        .slide__details__bot {
+          margin-top: 25%;
+
+		  
+        }
+		
+      }
+
+      .slide__title {
+        text-shadow: 5px 5px 0px var(--clr-primary-2),
+          0 0 20px rgba(0, 0, 0, 0.5);
+        transition: text-shadow 0.15s ease-in-out, transform 0.15s ease-in-out;
+
+        &:hover {
+          transform: translate(3px, 3px);
+          text-shadow: 2px 2px 0px var(--clr-secondary),
+            0 0 20px rgba(0, 0, 0, 0.5);
+        }
+      }
+
+      .container__priceDiscount {
+        text-align: center;
+        margin-left: 5em;
+      }
+
+      .slide__price {
+        font-size: 2.5em;
+        text-shadow: 5px 5px 0px var(--clr-primary-2),
+          0 0 20px rgba(0, 0, 0, 0.5);
+        margin: 0.5em 0.5em 0.5em 0em;
+      }
+
+      .slide__discount {
+        font-size: 1.5em;
+        background-color: var(--clr-secondary);
+        padding: 0.2em;
+        border-radius: 0.3em;
+        opacity: 0.9;
+        position: relative;
+        margin: 1em 0.5em;
+        width: max-content;
+      }
+    }
+  }
+
+  .embla__slide__img {
+    position: absolute;
+    display: block;
+    top: 50%;
+    left: 50%;
+    width: auto;
+    min-height: 100%;
+    min-width: 100%;
+    max-width: 100%;
+    transform: translate(-50%, -50%);
+  }
+
+  .embla__button {
+    outline: 0;
+    touch-action: manipulation;
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    border: 0;
+    border-radius: 2em;
+    background-color: var(--clr-primary);
+    opacity: 0.8;
+    box-shadow: 0 0.25em 0.5em 0 rgba(0, 0, 0, 0.5);
+    width: 40px;
+    height: 40px;
     justify-content: center;
     align-items: center;
-    background: ${p => p.theme.bgSub};
-    &:hover{
-        border: none;
-        outline: none;
-        text-decoration: none;
-    }
-    &:focus{
-        border: none;
-        outline: none;
-        text-decoration: none;
+    fill: var(--clr-white);
+    padding: 0;
+    transition: transform 0.4s ease;
+
+    &:active {
+      transform: scale(0.95) translateY(-50%);
     }
 
-    @media screen and (max-width: 1000px) {
-     display: none;
+    &:hover {
+      background-color: var(--clr-primary-2);
     }
-`
+  }
 
-export const IconRight = styled(BiRightArrow)`
-    color: ${p => p.theme.color};
+  .embla__button:disabled {
+    opacity: 0.3;
+  }
 
-    @media screen and (max-width: 1000px) {
-     display: none;
-    }
-`
+  .embla__button__svg {
+    width: 100%;
+    height: 100%;
+  }
 
-export const IconLeft = styled(BiLeftArrow)`
-    color: ${p => p.theme.color};
+  .embla__button--prev {
+    left: 15%;
+  }
 
-    @media screen and (max-width: 1000px) {
-        display: none;
-    }
-`
+  .embla__button--next {
+    right: 13%;
+  }
+`;

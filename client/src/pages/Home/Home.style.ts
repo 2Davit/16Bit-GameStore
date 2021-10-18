@@ -4,11 +4,11 @@ import { Container } from "../../GlobalStyles/GlobalStyles";
 export const ContainerHome = styled(Container)`
   display: flex;
   flex-direction: column;
-
+  
   .searchGames {
     background: #000;
     text-align: center;
-    margin-top: 2em;
+    margin-top: 3em;
   }
   .cont__filterCatalog {
     margin-top: 2em;
