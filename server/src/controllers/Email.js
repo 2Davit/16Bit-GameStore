@@ -17,6 +17,7 @@ async function sendUserMail(req, res) {
   }
   
 
+
   const dom = new JSDOM(`<!DOCTYPE html>
   <html lang="en">
   <head>
@@ -111,6 +112,7 @@ async function sendUserMail(req, res) {
     dom.window.document.getElementById("header").innerText = `Hi, ${username}! We really appreciate your last visit. Hope you are enjoying your products. Check your purchase summary:`
 
   }
+
 
   else {
 
@@ -209,8 +211,8 @@ async function sendUserMail(req, res) {
     res.status(200).send(result);
   } catch (err) {
     console.log(err);
-  }
-}
+  };
+};
 
 
 
