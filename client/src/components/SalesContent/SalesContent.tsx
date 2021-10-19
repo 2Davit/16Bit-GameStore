@@ -55,6 +55,10 @@ const SalesContent: FC<Props> = ({ totalOrders, totalUsers }) => {
       setOrderSearch(
         totalOrders.filter((orders) => orders.status === "pending")
       );
+    } else if (e.target.value === "delivered") {
+      setOrderSearch(
+        totalOrders.filter((orders) => orders.status === "delivered")
+      );
     } else if (e.target.value === "cancelled") {
       setOrderSearch(
         totalOrders.filter((orders) => orders.status === "cancelled")
@@ -135,6 +139,7 @@ const SalesContent: FC<Props> = ({ totalOrders, totalUsers }) => {
             <option value="pending">Pending</option>
             <option value="cart">Cart</option>
             <option value="cancelled">Cancelled</option>
+            <option value="delivered">Delivered</option>
           </OrderSelect>
           {btnStatus ? (
             <NavBtn onClick={() => handleOldest()}>Older Sales</NavBtn>

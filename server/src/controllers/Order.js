@@ -109,7 +109,6 @@ async function createOrder(req, res, next) {
 }
 
 async function createPayment(req, res) {
-  console.log('LLEGUE')
   const external_reference = req.query.external_reference;
   
   try {
@@ -117,7 +116,7 @@ async function createPayment(req, res) {
       { status_order: "fulfilled" },
       { where: { id_order: external_reference } }
     );
-
+    
     const foundOrder = await Order.findOne({
       where: {
         id_order: external_reference,
@@ -129,7 +128,7 @@ async function createPayment(req, res) {
         },
       ],
     });
-
+    
     await foundOrder.orderProducts.forEach((e) => {
       Product.decrement("in_stock", {
         by: e.quantity_orderProduct,
@@ -138,7 +137,7 @@ async function createPayment(req, res) {
         },
       });
     });
-
+    
     await foundOrder.orderProducts.forEach((e) => {
       Product.decrement("in_stock", {
         by: e.quantity_orderProduct,
@@ -147,9 +146,9 @@ async function createPayment(req, res) {
         },
       });
     });
-
+    
     return res.redirect("http://localhost:3000/order/detail");
-
+    
   } catch (err) {
     res.send(err);
   }
@@ -159,7 +158,7 @@ async function createPayment(req, res) {
 
 async function saveOrder(req, res, next) {
   const { id_user, status_order, amount_order, cart } = req.body;
-
+  
   if (status_order === "cart") {
     try {
       var user = await User.findByPk(id_user);
@@ -169,10 +168,10 @@ async function saveOrder(req, res, next) {
           amount_order,
           address_order: user.address_user,
         });
-
+        
         await user.addOrder(order.id_order);
         await order.setUser(user.id_user);
-
+        
         cart.forEach(async (product) => {
           const orderProducts = await OrderProduct.create({
             quantity_orderProduct: product.quantity,
@@ -181,7 +180,7 @@ async function saveOrder(req, res, next) {
           await orderProducts.setOrder(order.id_order);
           await orderProducts.setProduct(product.id_product);
         });
-
+        
         res.status(200).send({ success: true });
       } else res.status(400).send({ error: "invalid user" });
     } catch (err) {
@@ -206,18 +205,18 @@ async function getOrderDetail(req, res) {
       ]
     })
     const filterOrder = {
-        id_order: order.dataValues.id_order,
-        status_order: order.dataValues.status_order,
-        amount_order: order.dataValues.amount_order,
-        address_order: order.dataValues.address_order,
-        date: order.dataValues.createdAt,
-        orderProduct: order.dataValues.orderProducts.map( index => {
-          return {
-            product: index.dataValues.productIdProduct,
-            quantity:index.dataValues.quantity_orderProduct,
-          }
-        })
-      }
+      id_order: order.dataValues.id_order,
+      status_order: order.dataValues.status_order,
+      amount_order: order.dataValues.amount_order,
+      address_order: order.dataValues.address_order,
+      date: order.dataValues.createdAt,
+      orderProduct: order.dataValues.orderProducts.map( index => {
+        return {
+          product: index.dataValues.productIdProduct,
+          quantity:index.dataValues.quantity_orderProduct,
+        }
+      })
+    }
     let filterOrderThree = filterOrder.orderProduct.map(async index => {
       return await (Product.findByPk(index.product))
     })
@@ -233,6 +232,18 @@ async function getOrderDetail(req, res) {
     res.status(404).send(err);
   }
 }
+async function setStatusOrder(req, res) {
+  const { idOrder, newStatus } = req.params;
+  try {
+    await Order.update(
+      { status_order: newStatus },
+      { where: { id_order: idOrder } }
+    );
+    res.status(200).send("Order status updated.");
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 
 module.exports = {
@@ -241,4 +252,5 @@ module.exports = {
   saveOrder,
   getOrders,
   getOrderDetail,
+  setStatusOrder,
 };
