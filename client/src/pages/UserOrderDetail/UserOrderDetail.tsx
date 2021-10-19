@@ -120,7 +120,8 @@ function UserOrderDetail() {
                 </tr>
               </thead>
               <tbody>
-                {orderDetail.orderProduct &&
+              
+                {orderDetail?.status_order === 'fulfilled' ?
                   orderDetail.orderProduct.map((index) => {
 
                     
@@ -143,7 +144,25 @@ function UserOrderDetail() {
                         </td>
                       </tr>
                     );
-                  })}
+                  })
+                  :
+                  orderDetail.orderProduct.map((index) => {
+
+                    
+                    return (
+                      <tr key={index.id}>
+                        <td data-label="Name">{index.product.name_product}</td>
+                        <td data-label="Quantity">{index.quantity}</td>
+                        <td data-label="Unit Price">
+                          ${index.product.price_product}
+                        </td>
+                        <td data-label="Total Price">
+                          ${index.quantity * index.product.price_product}
+                        </td>
+                      </tr>
+                    );
+                  })
+                }
               </tbody>
               <tfoot>
                 <tr>

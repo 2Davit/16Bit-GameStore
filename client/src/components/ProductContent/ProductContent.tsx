@@ -17,7 +17,7 @@ const MainContent: FC<Props> = ({ totalProducts }) => {
   console.log(productSearch)
 
   useEffect(() => {
-    console.log('useEffect acaaaaaaa',productSearch)
+   /*  console.log('useEffect acaaaaaaa',productSearch) */
   },[productSearch])
 
 

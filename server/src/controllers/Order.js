@@ -37,8 +37,23 @@ async function getOrders(req, res) {
         amount: u.amount_order,
         address: u.address_order,
         date: u.createdAt,
+        nickname_user: u.userIdUser
       };
     });
+
+    const users = ordersData.map(e => {
+      return User.findByPk(e.nickname_user)
+    })
+
+const usersTwo = await Promise.all(users)
+
+
+ordersData.forEach(index => {
+  usersTwo.map(i => {
+    if(i.dataValues.id_user === index.nickname_user) {return index.nickname_user= i.dataValues.nickname_user}
+  })
+})
+
     res.status(200).send(ordersData);
   } 
   }

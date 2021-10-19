@@ -1,5 +1,5 @@
 import { FC, useState, useEffect } from "react";
-import {useDispatch} from "react-redux"
+import { useDispatch } from "react-redux"
 import { Order, User } from "../../interfaces";
 import { getUserOrders } from "../../redux/actions/orders_action";
 import {
@@ -98,35 +98,35 @@ const SalesContent: FC<Props> = ({ totalOrders, totalUsers }) => {
     }
   };
 
-  //  const searchOrder = (e: any) => {
-  //      let search = e.target.value.toLowerCase();
-  //      if (search === "") {
-  //          setOrderSearch(totalOrders);
-  //          setBtnNext(false);
-  //      } else {
+  const searchOrder = (e: any) => {
+    let search = e.target.value.toLowerCase();
+    
+    if (search === "") {
+      setOrderSearch(totalOrders);
+      setBtnNext(false);
+    } else {
 
-  //          let newArray = totalOrders.filter((user: any) => {
-  //              return user.nickname.toLowerCase().includes(search);
-  //         });
-  //          setPage(0);
-  //          setPage2(10);
-  //        setOrderSearch(newArray);
-  //     }
-  //  };
 
-  // const idUsers = totalUsers.map(user => user.id_user)
-  // console.log(idUsers);
-
-  // useEffect(() => {
-  //    dispatch(getUserOrders(idUsers));
-  // }, [dispatch]);
+      let newArray = totalOrders.filter((user: any) => {
+        return user.nickname_user.toLowerCase().includes(search);
+      });
+     
+      setPage(0);
+      setPage2(10);
+      setOrderSearch(newArray);
+    }
+  };
+ 
+  console.log(orderSearch)
+  
+  
 
   return (
     <ContainerMainContent>
       <ContainerNav>
-        <Searchbar>
-          <Search placeholder=" Search orders..." />
-          {/* onClick={searchOrder} */}
+        <Searchbar    >
+          <Search placeholder=" Search orders..."   onChange={searchOrder}  />
+           
         </Searchbar>
         <AddBtns>
           <OrderSelect onClick={(e) => handleSelect(e)}>
@@ -169,7 +169,7 @@ const SalesContent: FC<Props> = ({ totalOrders, totalUsers }) => {
           <TitleOrder>Amount</TitleOrder>
           <TitleOrder>Date</TitleOrder>
         </TitleContainer>
-        {onViewOrders.length !== 0 ? (
+        {onViewOrders.length > 0 ? (
           onViewOrders.map((o: Order) => (
             <OrderContainer
               backg={
@@ -180,10 +180,10 @@ const SalesContent: FC<Props> = ({ totalOrders, totalUsers }) => {
             >
               <InfoOrder>{o.id_order}</InfoOrder>
               <InfoOrder>{o.status}</InfoOrder>
-              <InfoOrder>Comprador</InfoOrder>
+              <InfoOrder>{o.nickname_user}</InfoOrder>
               <InfoOrder>{o.address}</InfoOrder>
               <InfoOrder>{o.amount}</InfoOrder>
-              <InfoOrder>{o.date.slice(0,10)}</InfoOrder>
+              <InfoOrder>{o.date.slice(0, 10)}</InfoOrder>
             </OrderContainer>
           ))
         ) : (

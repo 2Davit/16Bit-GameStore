@@ -82,6 +82,7 @@ export interface Order {
   amount: number;
   date: string;
   status: string;
+  nickname_user: string;
 }
 
 export interface GlobalState {
