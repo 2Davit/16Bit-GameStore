@@ -1,5 +1,4 @@
 const { Order, OrderProduct, Product, User } = require("../db");
-const axios = require("axios");
 const mercadopago = require("mercadopago");
 const { Router } = require("express");
 
@@ -70,7 +69,6 @@ async function createOrder(req, res, next) {
       status_order,
       amount_order,
       address_order,
-      /* date_order: new Date().toLocaleString(), */
     });
 
     await user.addOrder(order.id_order);
@@ -93,9 +91,9 @@ async function createOrder(req, res, next) {
       })),
       external_reference: `${order.id_order}`,
       back_urls: {
-        success: "https://videogame-store-16bit.herokuapp.com/order/payment",
-        failure: "https://videogame-store-16bit.herokuapp.com/order/payment",
-        pending: "https://videogame-store-16bit.herokuapp.com/order/payment",
+        success: "http://localhost:3001/order/prueba/payment",
+        failure: "http://localhost:3001/order/prueba/payment",
+        pending: "http://localhost:3001/order/prueba/payment",
       },
       auto_return: "approved",
     };
@@ -111,20 +109,18 @@ async function createOrder(req, res, next) {
 }
 
 async function createPayment(req, res) {
-  const payment_id = req.query.payment_id;
-  const payment_status = req.query.status;
+  console.log('LLEGUE')
   const external_reference = req.query.external_reference;
-  const merchant_order_id = req.query.merchant_order_id;
-
+  
   try {
     await Order.update(
       { status_order: "fulfilled" },
-      { where: { id_order: parseInt(external_reference) } }
+      { where: { id_order: external_reference } }
     );
 
     const foundOrder = await Order.findOne({
       where: {
-        id_order: parseInt(external_reference),
+        id_order: external_reference,
       },
       include: [
         {
@@ -152,11 +148,14 @@ async function createPayment(req, res) {
       });
     });
 
-    return res.redirect("https://16-bit-game-store.vercel.app/order/detail");
+    return res.redirect("http://localhost:3000/order/detail");
+
   } catch (err) {
-    console.log({ error: err });
+    res.send(err);
   }
 }
+
+
 
 async function saveOrder(req, res, next) {
   const { id_user, status_order, amount_order, cart } = req.body;
@@ -169,7 +168,6 @@ async function saveOrder(req, res, next) {
           status_order,
           amount_order,
           address_order: user.address_user,
-          /* date_order: new Date().toLocaleString(), */
         });
 
         await user.addOrder(order.id_order);

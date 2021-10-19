@@ -9,7 +9,7 @@ const { createOrder, createPayment, saveOrder, getOrders, getOrderDetail } = req
 router.get('/', getOrders)
 router.get('/:idOrder', getOrderDetail)
 router.post("/", createOrder)
-router.get("/payment", createPayment)
+router.get("/prueba/payment", createPayment)
 router.post("/save", saveOrder)
 
 

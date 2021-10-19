@@ -42,6 +42,7 @@ const Detail: FC = () => {
   };
 
   const [reviewsMean, setReviewsMean] = useState<number>(0);
+  const [reviews, setReviews] = useState<Array<any>>([]);
 
   let game: any = getAll();
 
@@ -51,6 +52,7 @@ const Detail: FC = () => {
     async function getUserReviews(idgame: string) {
       let productReviews = await axios.get(`/videogames/review/${id}/0`);
       if (productReviews.data) {
+        setReviews(productReviews.data);
         var total = productReviews.data.reduce((acc: number, review: any) => {
           acc = acc + review.score;
           return acc;
@@ -236,6 +238,14 @@ const Detail: FC = () => {
               ) : (
                 <Btn className="btn-sinstock">Sin Stock</Btn>
               )}
+              {reviews?.length ? (
+                <Btn
+                  className="btn-card btn-img"
+                  onClick={() => window.scrollTo(0, 435)}
+                >
+                  Reviews
+                </Btn>
+              ) : null}
             </div>
             <img
               className="game__payment-methods-icons"
@@ -245,6 +255,53 @@ const Detail: FC = () => {
           </div>
         </div>
       </GameDetail>
+      {reviews?.length ? (
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <div
+            style={{
+              backgroundColor: "#4424b9",
+              borderRadius: "2rem 0 0 2rem",
+              width: "70%",
+              height: "130px",
+              overflowY: "scroll",
+              display: "flex",
+              alignItems: "center",
+              flexDirection: "column",
+            }}
+          >
+            {reviews.map((r) => {
+              return (
+                <ol
+                  style={{
+                    listStyle: "none",
+                    display: "flex",
+                    alignItems: "center",
+                    padding: "1rem",
+                    borderBottom: "6px solid white",
+                  }}
+                >
+                  <li style={{ padding: "2rem" }}>{r.userIdUser}</li>
+                  <li style={{ padding: "2rem" }}>
+                    {r.score === 5
+                      ? "⭐⭐⭐⭐⭐"
+                      : r.score === 4
+                      ? "⭐⭐⭐⭐"
+                      : r.score === 3
+                      ? "⭐⭐⭐"
+                      : r.score === 2
+                      ? "⭐⭐"
+                      : "⭐"}
+                  </li>
+                  <li style={{ padding: "2rem" }}>{r.description}</li>
+                  <li style={{ padding: "2rem" }}>
+                    {r.createdAt.split("T")[0]}
+                  </li>
+                </ol>
+              );
+            })}
+          </div>
+        </div>
+      ) : null}
     </>
   );
 };

@@ -54,7 +54,7 @@ const Order = () => {
   async function handlePayment() {
     try {
       const preference: any = await (
-        await fetch("https://videogame-store-16bit.herokuapp.com/order", {
+        await fetch("http://localhost:3001/order", {
           method: "post",
           body: JSON.stringify(order),
           headers: {

@@ -9,6 +9,8 @@ import cart from "../../assets/img/svg/cart.svg";
 import { toast } from "react-toastify";
 import { animateScroll } from "react-scroll";
 import { ProductInCart } from "../../interfaces";
+import { FaTrash } from 'react-icons/fa';
+
 
 interface Props {
   game: ProductInCart;
@@ -82,7 +84,7 @@ const ProductFavorite: FC<Props> = ({ game, onClose }) => {
         </Btn>
         <Btn className="btn-card btn-img" onClick={() => onClose(game.id_product)} disabled={disabled} >
           Remove favorite
-          <StyledSVG src={cart} />
+          <FaTrash />
         </Btn>
       </div>
       <Link

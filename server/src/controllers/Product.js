@@ -455,6 +455,20 @@ async function getReviews(req, res) {
         }
       });
 
+
+      const users = allReviews.map(e => {
+        return User.findByPk(e.userIdUser)
+      })
+  
+      const usersTwo = await Promise.all(users)
+      
+  
+  allReviews.forEach(index => {
+    usersTwo.map(i => {
+      if(i.dataValues.id_user === index.userIdUser) {return index.userIdUser = i.dataValues.nickname_user}
+    })
+  })
+
       res.status(200).send(allReviews);
     }
 
