@@ -173,6 +173,14 @@ export const GameDetail = styled.section`
       font-weight: 900;
     }
 
+    .reviews {
+      width: 100%;
+      height: 20px;
+      overflow-y: scroll;
+      display: flex;
+      justify-content: center;
+    }
+
     .game__buttons {
       display: flex;
       flex-direction: column;
