@@ -159,6 +159,13 @@ function UserOrderDetail() {
                         <td data-label="Total Price">
                           ${index.quantity * index.product.price_product}
                         </td>
+                        <td>
+                          <Link to={`/game/${index.product.id_product}`}>
+                            <button className="btn__leaveReview">
+                                Product detail
+                            </button>
+                          </Link>
+                        </td>
                       </tr>
                     );
                   })

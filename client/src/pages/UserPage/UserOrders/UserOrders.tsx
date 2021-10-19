@@ -37,6 +37,7 @@ const UserOrders = () => {
                 <th scope="col">Address</th>
                 <th scope="col">Total</th>
                 <th scope="col">Status</th>
+                <th scope="col"></th>
               </tr>
             </thead>
             <tbody>

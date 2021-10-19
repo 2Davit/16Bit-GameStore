@@ -5,7 +5,7 @@ import React, { FC, useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { FormStyled } from "../FormRegister/StyledFormRegister";
-import { StyledLogin } from "./StyledLogin";
+import { StyledReset } from "./StyledReset";
 import Modal from "react-modal";
 import { Store } from "../../redux/reducer";
 import { openLogin } from "../../redux/actions/global_actions";
@@ -14,23 +14,21 @@ import CloseButton from "../../assets/img/svg/close-filled-purple.svg";
 import { animateScroll } from "react-scroll";
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
-import Swal from 'sweetalert2';
 
 
 interface User {
   username: string;
   password: string;
 }
-const FormLogin: FC = () => {
+const FormReset: FC = () => {
   const userData = JSON.parse(localStorage.getItem("userData")!);
-  const { user, loginWithPopup, loginWithRedirect } = useAuth0();
+  
   const [isUser, setIsUser] = useState<boolean>(false);
   const [input, setInput] = useState<User>({
     username: "",
     password: "",
   });
-  const [email, setEmail] = useState<string>('');
-  const [resetPass, setResetPass] = useState<boolean>(false);
+
   const loginIsOpen = useSelector(
     (state: Store) => state.globalReducer.loginIsOpen
   );
@@ -90,52 +88,16 @@ const FormLogin: FC = () => {
     });
   };
 
-  const handleMailChange = (e: React.FormEvent<HTMLInputElement>) => {
-    setEmail(e.currentTarget.value);
-  };
-
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(login(input));
-    dispatch(getRole());
+    
     setIsUser(true);
     closeModal();
     animateScroll.scrollTo(0, { duration: 300 });
   };
 
-  const handleReset = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    await axios.post('/email/reset', { email: email });
-    /* .then(() => Swal.fire({
-      title: 'Sent',
-      text: 'Go and check your email account',
-      icon: 'success',
-      confirmButtonText: '🚀'
-    })) */
-    alert('/home')
-    /* .catch(() => Swal.fire({
-      title: "Error!",
-      text: "That email account does not exist! ",
-      icon: "error",
-      confirmButtonText: "😓",
-    })) */
-    closeModal();
-    animateScroll.scrollTo(0, { duration: 300 });
-  };
-
-  /*   const handleGoogleLogin = async () => {
-    await loginWithPopup();
-    const res = await axios.post("/auth/google", {
-      username: user?.nickname,
-      name: user?.given_name,
-      lastname: user?.family_name,
-      email: user?.email,
-      picture: user?.picture,
-    });
-    localStorage.setItem("userData", JSON.stringify(res.data));
-    history.push("/home");
-  }; */
   
+
   return (
     <Modal
       isOpen={loginIsOpen}
@@ -146,69 +108,47 @@ const FormLogin: FC = () => {
       ariaHideApp={false}
       onAfterOpen={afterOpenModal}
     >
-      <StyledLogin>
+      {!userData ? (
+        <StyledReset>
           <button className="button" onClick={closeModal}>
             <StyledSVG src={CloseButton} />
           </button>
           <FormStyled>
-            { !resetPass ?
-            
-            <>
             <form onSubmit={handleSubmit}>
               <label htmlFor="username">
-                <span>Username</span>
+                <span>New password</span>
                 <input name="username" onChange={handleInputChange} />
               </label>
               <label htmlFor="password">
-                <span>Password</span>
+                <span>Confirm password</span>
                 <input
                   name="password"
                   type="password"
                   onChange={handleInputChange}
                 />
               </label>
-              <div className="link_container">
-                <span onClick={() => setResetPass(true)}>
-                  I forgot my password
-                </span>
-                <Link to="/signup" onClick={closeModal}>
-                  Create an Account
-                </Link>
-              </div>
               <Btn
                 type="submit"
                 className={!disabled ? "btn-card login" : "btn-disabled"}
                 disabled={disabled}
               >
-                Log In
+                Reset
               </Btn>
             </form>
-            <Btn className={"btn-card login"} onClick={loginWithRedirect}>
-              Log In with Google
-            </Btn>
-            </>
-            
-            : 
-            <form onSubmit={handleReset}>
-              <label htmlFor="username">
-                <span>Please enter your email</span>
-                <input onChange={handleMailChange} />
-              </label>
-              <Btn
-                onClick={closeModal}
-                type="submit"
-                className={email.length !== 0 ? "btn-card login" : "btn-disabled"}
-                disabled={email.length === 0 ? true : false}
-              >
-                Send email
-              </Btn>
-            </form>
-
-            }
           </FormStyled>
-        </StyledLogin>
+        </StyledReset>
+      ) : (
+        <StyledReset>
+          <div className="link_container2">
+            <h1>Welcome...</h1>
+            <Link className="shopping" to="/home">
+              Go shopping with your cart!
+            </Link>
+          </div>
+        </StyledReset>
+      )}
     </Modal>
   );
 };
 
-export default FormLogin;
+export default FormReset;

@@ -11,6 +11,7 @@ export { default as Privacy } from './Terms/Privacy/Privacy';
 export { default as Legal } from './Terms/Legal/Legal';
 export { default as Order } from './OrderDetail/Step2/Step2';
 export { default as FormLogin } from './FormLogin/FormLogin';
+export { default as FormReset } from './FormReset/FormReset';
 export { default as FormRegister } from './FormRegister/FormRegister';
 export { default as UserPage } from './UserPage/UserPage';
 export { default as EditProfile } from './UserPage/EditProfile/EditProfile';
