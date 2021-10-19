@@ -12,7 +12,7 @@ import { openLogin } from "../../redux/actions/global_actions";
 //Interfaces
 import { ProductInCart } from "../../interfaces";
 //Estilos
-import { StyledNavBar } from "./StyledNavBar";
+import { StyledNavBar, TotalNav } from "./StyledNavBar";
 import { Dropdown, StyledSVG } from "../../GlobalStyles/GlobalStyles";
 //Assets
 import cart from "../../assets/img/svg/cart2.svg";
@@ -59,33 +59,38 @@ const NavBar: FC<Props> = ({ setPage, toggleModal }: any) => {
   const user = JSON.parse(localStorage.getItem("userData")!);
 
   return (
+    <TotalNav>
     <StyledNavBar>
-      <div className="wrapper">
+      
         <div className="navbar__top">
           <div className="navbar__logo">
             <Link to="/home" onClick={homeOnClick}>
               <Title />
             </Link>
           </div>
-          <SearchBar setPage={setPage} />
+          <div className='search'>
+            <SearchBar setPage={setPage} />
+          </div>
           <ul className="navbar__options">
             {user?.data.name && (
               <li>
-                <Link to="/favs">
+                <Link to="/favs" style={{display: 'flex', flexDirection: 'column'}}>
                   <StyledSVG src={heart} />
                   <span>Favs</span>
                 </Link>
               </li>
             )}
             <Dropdown>
-              {user?.data.name ? (
-                <div className="navbar__profile-pic">
-                  <img src={defaultAvatar} alt="Imagen de perfil" />
-                </div>
-              ) : (
-                <StyledSVG src={userPic} />
-              )}
-              <span>User</span>
+              <div style={{width: '33%', height: '100%', display: "flex", flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+                {user?.data.name ? (
+                  <div className="navbar__profile-pic">
+                    <img src={defaultAvatar} alt="Imagen de perfil" />
+                  </div>
+                ) : (
+                  <StyledSVG src={userPic} />
+                  )}
+                  <span>User</span>
+              </div>
               <ul>
                 {user?.data.name ? (
                   <>
@@ -117,7 +122,7 @@ const NavBar: FC<Props> = ({ setPage, toggleModal }: any) => {
                       </button>
                     </li>
                     <li>
-                      <Link to="/signup" className="dropdown__button">
+                      <Link to="/signup" className="dropdown__button" >
                         Signup
                       </Link>
                     </li>
@@ -127,19 +132,20 @@ const NavBar: FC<Props> = ({ setPage, toggleModal }: any) => {
             </Dropdown>
 
             <li>
-              <button onClick={toggleModal}>
+              <button onClick={toggleModal} style={{display: 'flex', flexDirection: 'column'}}>
                 <StyledSVG src={cart} />
-                <span>Cart</span>
-                {number > 0 && (
-                  <span className="cart__number">
-                    {number >= 100 ? "99+" : number}
-                  </span>
-                )}
+                <span>Cart
+                  {number > 0 && (
+                    <span className="cart__number">
+                      {number >= 100 ? "99+" : number}
+                    </span>
+                  )}
+                </span>
               </button>
             </li>
           </ul>
         </div>
-        <div className="navbar__bottom">
+        {/* <div className="navbar__bottom">
           <ul className="navbar-bottom__menu">
             <li>
               <Link to="/about">About Us</Link>
@@ -148,9 +154,10 @@ const NavBar: FC<Props> = ({ setPage, toggleModal }: any) => {
               <Link to="/contact">Contact Us</Link>
             </li>
           </ul>
-        </div>
-      </div>
+        </div> */}
+      
     </StyledNavBar>
+    </TotalNav>
   );
 };
 

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const StyledFooter = styled.footer`
-  background: linear-gradient(180deg, #000, #1f0156);
+  background: linear-gradient(180deg, transparent, #0266c8);
   padding: 3em 0;
   text-align: center;
 

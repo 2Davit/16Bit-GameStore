@@ -63,7 +63,7 @@ const App: FC = () => {
     setCurrentPage(pageNum);
     animateScroll.scrollTo(500, { duration: 500 });
   };
-  const productsPerPage: number = 9;
+  const productsPerPage: number = 12;
   let lastIdx: number = currentPage * productsPerPage; // en la primera página, lastIdx = 1 * 9 = 9
   let firstIdx: number = lastIdx - productsPerPage; // en la primera página, firstIdx = 9 - 9 = 0
   let currentProducts: Array<Product> = totalProducts.slice(firstIdx, lastIdx); // en la primera página, currentCharacters = countries.slice(0,9)

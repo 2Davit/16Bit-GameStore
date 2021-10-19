@@ -9,7 +9,7 @@ import {
 import { getRole } from "../../redux/actions/auth_actions";
 import { Paginate, Filter, Catalog, Carousel } from "../../components";
 import { Store } from "../../redux/reducer/";
-import { ContainerHome } from "./Home.style";
+import { ContainerHome, ContainerCarrusel, ContainerCatalog, ContainerPaginate } from "./Home.style";
 import { createNavbar } from "../../redux/actions/admin_actions";
 import { getCart } from "../../redux/actions/cart_actions";
 
@@ -36,17 +36,20 @@ const Home = ({ setPage, currentProducts, productsPerPage, pages }: any) => {
 
   return (
     <ContainerHome>
-      {onSaleProducts.length !== 0 && <Carousel products={onSaleProducts} />}
-      <h2 className="searchGames">Search Games:</h2>
-      <div className="cont__filterCatalog">
+      <ContainerCarrusel>
+        {onSaleProducts.length !== 0 && <Carousel products={onSaleProducts} />}
+      </ContainerCarrusel>
+      <ContainerCatalog>
         <Filter setPage={setPage} />
         <Catalog currentProducts={currentProducts} />
-      </div>
-      <Paginate
-        amountPerPage={productsPerPage}
-        totalAmount={totalProducts?.length}
-        pageNumber={pages}
-      />
+      </ContainerCatalog>
+      <ContainerPaginate>
+        <Paginate
+          amountPerPage={productsPerPage}
+          totalAmount={totalProducts?.length}
+          pageNumber={pages}
+          />
+      </ContainerPaginate>
     </ContainerHome>
   );
 };

@@ -36,39 +36,59 @@ export const StyledCarousel = styled.div`
     position: relative;
     min-width: 80%;
     padding-left: 3em;
+
+    
+   
+    height: 60vh;
+    max-height: 400px;
+    min-height: auto;
+    @media (max-width: 1000px) {
+      min-height: auto;
+      height: 50vh;
+    }
   }
 
   .embla__slide__inner {
     position: relative;
     overflow: hidden;
-    height: 60vh;
-    min-height: auto;
+    width: 100%;
+    height: 100%;
     border-radius: 3em;
-    border: 5px solid var(--clr-primary);
+    /* border: 5px solid var(--clr-primary); */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-    @media (max-width: 1000px) {
-      min-height: auto;
-      height: 50vh;
-    }
+    
 
     .embla__slide__detail {
       color: var(--clr-white);
       position: relative;
-      width: 100%;
+      
+      width: 85%;
       height: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
-      background: linear-gradient(
+      justify-content: center;
+      /* background: linear-gradient(
         180deg,
         rgba(0, 0, 0, 0) 0%,
         rgba(0, 0, 0, 0.5) 100%
-      );
-
+      ); */
+      
       .slide__details__top {
-        position: relative;
-        font-size: 2em;
-        margin: 0.5em auto;
+        /* position: relative; */
+        font-size: 3vh;
+        text-overflow: ellipsis;
+        width: 100%;
+        height: 20%;
+        /* text-align: center; */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* margin-top: .5em; */
+        /* margin: 0.5em auto; */
 
         a {
           text-decoration: none;
@@ -77,14 +97,18 @@ export const StyledCarousel = styled.div`
         }
       }
 
+      .image{
+        width: 100%;
+        height: 50%;
+      }
+
       .slide__details__bot {
         position: relative;
         width: 100%;
+        height: 30%;
         display: flex;
-        margin-top: 15%;
-        justify-content: space-between;
 		button{
-		  margin-right: 2em;
+		  /* margin-right: 2em; */
 		  }
       }
 
@@ -122,7 +146,21 @@ export const StyledCarousel = styled.div`
 
       .container__priceDiscount {
         text-align: center;
-        margin-left: 5em;
+        padding-left: 4em;
+        display: flex;
+        align-items: center;
+        width: 50%;
+        height: 100%;
+      }
+      .container__priceDiscount2 {
+        text-align: center;
+        
+        padding-right: 4em;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        width: 50%;
+        height: 100%;
       }
 
       .slide__price {
@@ -199,6 +237,6 @@ export const StyledCarousel = styled.div`
   }
 
   .embla__button--next {
-    right: 13%;
+    right: 15%;
   }
 `;
