@@ -403,6 +403,8 @@ async function deleteOneProduct(req, res) {
     res.status(404).send("Error");
   }
 }
+
+
 async function addReview(req, res) {
   const { iduser , idgame } = req.params; 
   const { score, description } = req.body;

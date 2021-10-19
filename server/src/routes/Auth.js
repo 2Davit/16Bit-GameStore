@@ -8,7 +8,7 @@ const router = Router();
 router.post("/signup", signUp);
 router.post("/google", signInGoogle);
 router.post("/login", logIn);
-router.get("/getRole", checkJwt, getRole);
+router.get("/getRole", checkJwt, getRole); 
 
 // Se sigue usando el getID? O era de prueba?
 router.get("/getID", checkJwt, (req, res) => {

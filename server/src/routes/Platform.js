@@ -11,7 +11,7 @@ const {
 } = require("../controllers/Platform");
 
 router.get("/", getAllPlatform);
-router.post("/", checkJwt, reqAdmin, createBulkPlatform);
+router.post("/",  checkJwt, reqAdmin,  createBulkPlatform);
 router.post("/onePlatform", checkJwt, reqAdmin, createNewPlatform);
 
 module.exports = router;
