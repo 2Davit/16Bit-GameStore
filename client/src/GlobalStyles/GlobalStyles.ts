@@ -333,15 +333,31 @@ export const Badge = styled.span`
 export const StyledSVG = styled(SVG)``;
 
 export const BtnCartCard = styled.button`
-min-width: 0;
-width: 20%;
-height: 20%;
-background: red !important;
-border: none !important;
+
+width: 38px;
+height: 38px;
+/* height: 20%; */
+background: #0a3364;
+border: none ;
+display: flex;
+justify-content: center;
+align-items: center;
+border-radius: 50%;
+
+&:hover{
+  background: rgb(28, 150, 272);
+}
+&:focus{
+  outline: none;
+}
+
  img {
-    
-    width: 100%;
-    height: 100%;
+   margin: 0;
+    object-fit: cover;
+    padding: 0;
+    margin: 0;
+    width: 70%;
+    height: 70%;
   }
 `
 

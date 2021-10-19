@@ -4,7 +4,7 @@ import "nes.css/css/nes.min.css";
 import { useDispatch } from "react-redux";
 import { addItemCart } from "../../redux/actions/cart_actions";
 import { StyledSVG, Btn, BtnCartCard, OfferImg } from "../../GlobalStyles/GlobalStyles";
-import { StyledProductCard } from "./StyledProductCard";
+import { StyledProductCard, DivBtn } from "./StyledProductCard";
 import cart from "../../assets/img/svg/cart.svg";
 import { toast } from "react-toastify";
 import { animateScroll } from "react-scroll";
@@ -78,14 +78,17 @@ const ProductCard: FC<Props> = ({ game }) => {
         </h3>
         <p className="card__price">$ {game.price_product}</p>
         {!disabled ? (
-          <BtnCartCard
-            onClick={handleClick}
-            // disabled={disabled}
-          >
-            {/* {cartNumber[game.id_product!].quantity >= 1 */}
-            {/* ? "Already in cart"  nose porque no funcaaaaa*/}
-            <img src={cart} />
-          </BtnCartCard>
+          <DivBtn className='div'>
+            <BtnCartCard
+              onClick={handleClick}
+              // disabled={disabled}
+            >
+              {/* {cartNumber[game.id_product!].quantity >= 1 */}
+              {/* ? "Already in cart"  nose porque no funcaaaaa*/}
+              <img src={cart} />
+            </BtnCartCard>
+
+           </DivBtn>
         ) : (
           <Btn className="btn-sinstock">Sin Stock</Btn>
         )}

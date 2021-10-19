@@ -19,6 +19,7 @@ export const StyledProductCard = styled.article`
     box-shadow: 4px 5px 13px 5px rgba(0,0,0,0.36);
     -webkit-box-shadow: 4px 5px 13px 5px rgba(0,0,0,0.36);
     -moz-box-shadow: 4px 5px 13px 5px rgba(0,0,0,0.36);
+    
 
     .card__content {
     padding: 0.5em 1em;
@@ -29,9 +30,14 @@ export const StyledProductCard = styled.article`
     display: flex;
     flex-direction: column;
     background: rgba(40, 40, 40, 0.70);
-   
+      
   }
-  button {
+  .div{
+    &:hover{
+      top: 10%;
+    }
+  }
+  /* button {
     bottom: 0;
     font-size: 0.9em;
     margin-top: auto;
@@ -41,7 +47,7 @@ export const StyledProductCard = styled.article`
     &:focus {
       outline: none;
     }
-  }
+  } */
   } 
 
   .card__link {
@@ -76,11 +82,13 @@ export const StyledProductCard = styled.article`
     height: 30%;
     position: absolute;
     width:100%;
-    bottom: 0;
+    bottom: -10%;
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
     background: rgba(40, 40, 40, 0.70);
     transition: all 0.35s ease-in-out; 
+
   }
 
   .card__title {
@@ -104,7 +112,7 @@ export const StyledProductCard = styled.article`
     
   } */
 
-  button {
+  /* button {
     bottom: -50%;
     font-size: 0.9em;
     margin-top: auto;
@@ -115,10 +123,8 @@ export const StyledProductCard = styled.article`
     &:focus {
       outline: none;
     }
-  }
+  } */
 
- 
-  
 `;
 
 export const MiniCard = styled.article`
@@ -193,3 +199,14 @@ export const MiniCard = styled.article`
     }
   }
 `;
+
+export const DivBtn = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  
+  
+  z-index: 999;
+
+  
+`
