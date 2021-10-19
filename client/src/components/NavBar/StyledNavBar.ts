@@ -1,13 +1,19 @@
 import styled from "styled-components";
 import SVG from "react-inlinesvg";
+import { Container } from "../../GlobalStyles/GlobalStyles";
 
-export const StyledNavBar = styled.nav`
-  background: linear-gradient(180deg, #1f0156, #000);
-  background-position: center center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  padding: 2em 0;
+export const TotalNav = styled.div`
+  width: 100vw;
+  height: 90px;
+  background: ${p => p.theme.backgroundNav};
+  border-bottom: 2px solid rgba(6,31,60,0.9192051820728291);   
+`
 
+export const StyledNavBar = styled(Container)`
+
+  display: flex;
+  justify-content: center;
+  
   a {
     text-decoration: none;
     color: currentColor;
@@ -23,34 +29,58 @@ export const StyledNavBar = styled.nav`
   }
 
   .navbar__top {
+    width: 100%;
     display: flex;
-    justify-content: space-between;
+    
     align-items: center;
-    margin: 1em;
+
+    .search{
+      height: 100%;
+      width: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
     .navbar__logo {
-      flex-basis: 300px;
+      /* flex-basis: 300px; */
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      width: 20%;
+      height: 100%;
     }
 
     form {
-      margin: 0 2em;
-      flex-basis: 400px;
+      /* margin: 0 2em; */
+      /* flex-basis: 400px; */
     }
 
     .navbar__options {
+      margin-top: 20px;
+      width: 30%;
+      height: 100%;
       list-style: none;
       display: flex;
       align-items: center;
-      margin-right: 5vw;
+      justify-content: center;
+      /* margin-right: 5vw; */
 
       & > li {
+        /* background: red; */
         position: relative;
         display: flex;
-        width: 100px;
-        flex-wrap: wrap;
+        width: 33%;
+        height: 100%;
+        justify-content: center;
+        align-items: flex-end;
+        flex-direction: column;
+        font-size: .9rem;
       }
       li svg {
-        /* background:green;    */
+        
+        width: 30px; 
+        height: 30px; 
       }
 
       li:hover {
@@ -58,8 +88,9 @@ export const StyledNavBar = styled.nav`
       }
 
       .navbar__profile-pic {
-        width: 40px;
-        height: 40px;
+        
+        width: 87%;
+        /* height: 100%; */
         border: 3px solid var(--clr-white);
         border-radius: 50%;
         overflow: hidden;
@@ -72,13 +103,14 @@ export const StyledNavBar = styled.nav`
       }
       .cart__number {
         font-size: 0.8em;
-        background: var(--clr-primary);
-        line-height: 1;
-        padding: 0.3em 0.5em;
-        border-radius: 99em;
+        height: 20px;
+        width: 20px;
+        background: red;
+        margin: 0;
+        border-radius: 50%;
         position: absolute;
-        top: -5px;
-        right: 0;
+        top: 10%;
+        right: -9%;
       }
       li:hover .cart__number {
         color: var(--clr-white);
@@ -106,7 +138,7 @@ export const StyledNavBar = styled.nav`
       left: 2.5em;
 
       & > li + li {
-        margin-left: 3.5em;
+        /* margin-left: 3.5em; */
       }
     }
   }
@@ -120,7 +152,7 @@ export const StyledNavBar = styled.nav`
         flex-basis: 0;
       }
       .navbar__logo {
-        margin-bottom: 2em;
+        /* margin-bottom: 2em; */
         flex-basis: 0;
       }
       .navbar__options {
@@ -148,4 +180,6 @@ export const StyledNavBar = styled.nav`
   }
 `;
 
-export const StyledSVG = styled(SVG)``;
+export const StyledSVG = styled(SVG)`
+  width: 10px;
+`;

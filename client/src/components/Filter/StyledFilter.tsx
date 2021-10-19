@@ -3,11 +3,19 @@ import arrow from "../../assets/img/svg/arrow-down.svg";
 
 export const StyledFilter = styled.div`
   display: flex;
-  flex-direction: column;
-  padding: 1rem;
-  background: #000;
-  margin: 0 3em 0 1em;
-  height: min-content;
+  margin: 0 0 40px 0;
+  /* margin: 0 3em 0 1em; */
+  height: 10%;
+  width: 100%;
+
+  section{
+    width: 33%;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-content: flex-start;
+  }
   h5 {
     width: 100%;
     margin-top: 1em;
@@ -43,7 +51,7 @@ export const SelectStyled = styled.select`
   -moz-appearance: none;
   -webkit-appearance: none;
   background: url(${arrow}) 95% center no-repeat;
-  margin-left: 1em;
+  /* margin-left: 1em; */
   text-transform: uppercase;
   color: var(--clr-primary);
   cursor: inherit;

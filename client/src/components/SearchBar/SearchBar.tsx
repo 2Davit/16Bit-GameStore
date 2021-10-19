@@ -46,6 +46,10 @@ const SearchBar = ({ setPage }: any) => {
             }, 200);
           }}
         />
+        <button type="submit">
+          <img src={loupe} alt="" />
+        </button>
+      </FormSearchBar>
         <SearchResults style={{ display: inputText ? "block" : "none" }}>
           {autoComplete.length !== 0
             ? autoComplete.map((product: any) => {
@@ -59,10 +63,6 @@ const SearchBar = ({ setPage }: any) => {
               })
             : ""}
         </SearchResults>
-        <button type="submit">
-          <img src={loupe} alt="" />
-        </button>
-      </FormSearchBar>
     </>
   );
 };

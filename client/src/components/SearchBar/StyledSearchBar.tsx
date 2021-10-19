@@ -4,10 +4,12 @@ export const FormSearchBar = styled.form`
   background: var(--clr-white);
   border: 2px solid var(--clr-primary);
   border-radius: 99em;
-  min-width: 200px;
-  max-width: 400px;
+  width: 90%;
+  height: 50%;
+  
   display: flex;
-  justify-content: space-between;
+  justify-content: start;
+  
   padding: 0 0.7em;
 
   &:hover,
@@ -51,9 +53,10 @@ export const FormSearchBar = styled.form`
 export const SearchResults = styled.div`
   display: flex;
   flex-direction: column;
-  height: 200px;
-  width: 400px;
+  width: 23.2%;
+  
+  /* height: 50%; */
   position: absolute;
-  top: 111px;
+  top: 5.5%;
   z-index: 90;
 `;

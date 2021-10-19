@@ -3,14 +3,16 @@ import styled from "styled-components";
 export const StyledProductCard = styled.article`
   font-size: 0.8em;
   border: 3px solid ${(p) => p.theme.bgBorder};
-  width: 260px;
+  width: 270px;
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 5px 5px 0px ${(p) => p.theme.bgBorder};
   position: relative;
   transition: all 0.25s ease-in-out;
   height: 400px;
-  background: #000;
+  /* margin-right: 4.5em; */
+  /* margin-top: 2em; */
+  
 
   &:hover {
     transform: translate(5px, 5px);
@@ -49,15 +51,19 @@ export const StyledProductCard = styled.article`
     position: relative;
     display: flex;
     flex-direction: column;
+    background: #0bbffc;
+   
   }
 
   .card__title {
     font-size: 1.2em;
     font-weight: 200;
+    color: #000;
   }
 
   .card__price {
     font-size: 1.2em;
+    color: #000;
   }
 
   .card__price::before {
@@ -67,6 +73,7 @@ export const StyledProductCard = styled.article`
     width: 20%;
     height: 5px;
     margin: 0.5em 0;
+    
   }
 
   button {

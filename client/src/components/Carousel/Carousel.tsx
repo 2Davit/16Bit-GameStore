@@ -162,6 +162,7 @@ const Carousel: any = ({ products }: any) => {
                             </h3>
                           </Link>
                         </div>
+                        <div className='image'></div>
                         <div className="slide__details__bot">
                           <div className="container__priceDiscount">
                             <span className="slide__discount">-20%</span>
@@ -170,17 +171,16 @@ const Carousel: any = ({ products }: any) => {
                             </span>
                           </div>
 
-                          <Btn
-                            className=" btn-card btn-img"
+                          <div className="container__priceDiscount2">
+                            <Btn
+                              className=" btn-card btn-img"
+                              onClick={() => handleClick(prod)}
+                            >
+                              Add to cart
+                              <StyledSVG src={cart} />
+                            </Btn>
+                          </div>
 
-                            // onClick={handleClick}
-
-                            onClick={() => handleClick(prod)}
-
-                          >
-                            Add to cart
-                            <StyledSVG src={cart} />
-                          </Btn>
                         </div>
                       </div>
                     </div>

@@ -1,10 +1,12 @@
 import styled, { createGlobalStyle } from "styled-components";
 import SVG from "react-inlinesvg";
+import backGabo from '../assets/img/back.jpeg'
 
 interface DefaultTheme {
   bg: any;
   color: string;
   font: string;
+  background: string;
 }
 
 export const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
@@ -14,8 +16,8 @@ export const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
 }
 
 :root {
-  --clr-primary: #9b5df7;
-  --clr-primary-2: #763fc7;
+  --clr-primary: #00a8ff;
+  --clr-primary-2: #00a8ff;
   --clr-secondary: #5630e4;
   --clr-secondary-2: #4424b9;
   --clr-secondary-3: #5a50f0;
@@ -33,7 +35,7 @@ export const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
 
 /* width */
 ::-webkit-scrollbar {
-  display:none;
+  // display:none;
   width: 14px;
 }
 
@@ -66,16 +68,15 @@ export const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
   box-sizing: border-box;
 }
 
-    body {
-		background:url("https://eightbitweapon.files.wordpress.com/2014/07/8-bit-weapon-bits-with-byte-background.png");
+  body {
+		background: ${p => p.theme.background};
 		background-position:center right;
-  background-size: cover;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
         margin: 0;
         padding: 0;
         font-family: ${(p) => p.theme.font};
-		background-color: ${(p) => p.theme.bg};
         color:white;
 		min-height: 100vh;
 		min-width: 100vw;
@@ -94,6 +95,11 @@ export const Container = styled.div`
   height: 100%;
   margin: 0;
   padding: 0;
+
+  max-width: 1300px;
+    min-width: 300px;
+    margin-right: auto;
+    margin-left: auto;
 `;
 
 // Styled components globales:
@@ -124,7 +130,7 @@ export const Btn = styled.button`
 
   &.btn-card {
     color: white;
-    background-color: var(--clr-primary);
+    background-color: #f741d5;
     border-color: var(--clr-primary);
     box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.15);
   }
