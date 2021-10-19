@@ -31,7 +31,7 @@ async function createNewGenre(req, res, next) {
 async function getAllGenre(req, res, next) {
   try {
     const allGenres = await Genre.findAll();
-    const cleanGenres = allGenres.map((el) => capitalize(el.name_genre));
+    const cleanGenres = allGenres.map((el) => el.name_genre.toLowerCase());
 
     res.status(200).send(cleanGenres);
   } catch (err) {

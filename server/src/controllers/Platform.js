@@ -27,7 +27,7 @@ async function createNewPlatform(req, res, next) {
 async function getAllPlatform(req, res, next) {
   try {
     const allPlatform = await Platform.findAll();
-    const cleanPlatform = allPlatform.map((el) => capitalize(el.name_platform));
+    const cleanPlatform = allPlatform.map((el) => el.name_platform.toLowerCase());
 
     res.status(200).send(cleanPlatform);
   } catch (err) {
