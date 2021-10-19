@@ -16,6 +16,7 @@ import {
   FormProduct,
   FormRegister,
   FormLogin,
+  FormReset,
   FormGenre,
   FormPlatform,
   Terms,
@@ -122,6 +123,7 @@ const App: FC = () => {
             }}
           />
           <Route exact path="/login" component={FormLogin} />
+          <Route exact path="/reset/:token" component={FormReset} />
           <Route exact path="/signup" component={FormRegister} />
           <Route
             exact

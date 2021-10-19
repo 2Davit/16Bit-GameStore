@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const { logIn, signUp, getRole, signInGoogle } = require("../controllers/Auth");
+const { logIn, signUp, getRole, signInGoogle, setPass } = require("../controllers/Auth");
 const checkJwt = require("../middlewares/checkJwt");
 const reqAdmin = require("../middlewares/reqAdmin");
 
@@ -8,6 +8,7 @@ const router = Router();
 router.post("/signup", signUp);
 router.post("/google", signInGoogle);
 router.post("/login", logIn);
+router.post("/reset/:token", setPass);
 router.get("/getRole", checkJwt, getRole); 
 
 // Se sigue usando el getID? O era de prueba?
