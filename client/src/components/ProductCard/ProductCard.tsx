@@ -1,15 +1,15 @@
-import React, { FC, useEffect, useState, useCallback } from "react";
+import { FC, useEffect, useState, useCallback } from "react";
 import { Link } from "react-router-dom";
 import "nes.css/css/nes.min.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addItemCart } from "../../redux/actions/cart_actions";
-import { StyledSVG, Btn, Badge } from "../../GlobalStyles/GlobalStyles";
+import { StyledSVG, Btn, BtnCartCard, OfferImg } from "../../GlobalStyles/GlobalStyles";
 import { StyledProductCard } from "./StyledProductCard";
 import cart from "../../assets/img/svg/cart.svg";
 import { toast } from "react-toastify";
 import { animateScroll } from "react-scroll";
 import { ProductInCart } from "../../interfaces";
-import { Store } from "../../redux/reducer";
+import offer from '../../assets/img/offer.png'
 
 interface Props {
   game: ProductInCart;
@@ -68,6 +68,7 @@ const ProductCard: FC<Props> = ({ game }) => {
           src={game.thumbnail_product}
           alt={game.name_product}
         />
+        {game.on_sale === true ? <OfferImg src={offer}/> : ''}
       </div>
       <div className="card__content">
         <h3 className="card__title">
@@ -77,16 +78,14 @@ const ProductCard: FC<Props> = ({ game }) => {
         </h3>
         <p className="card__price">$ {game.price_product}</p>
         {!disabled ? (
-          <Btn
-            className="btn-card btn-img"
+          <BtnCartCard
             onClick={handleClick}
-            disabled={disabled}
+            // disabled={disabled}
           >
             {/* {cartNumber[game.id_product!].quantity >= 1 */}
             {/* ? "Already in cart"  nose porque no funcaaaaa*/}
-            Add to cart
-            <StyledSVG src={cart} />
-          </Btn>
+            <img src={cart} />
+          </BtnCartCard>
         ) : (
           <Btn className="btn-sinstock">Sin Stock</Btn>
         )}

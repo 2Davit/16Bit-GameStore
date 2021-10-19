@@ -2,27 +2,36 @@ import styled from "styled-components";
 import arrow from "../../assets/img/svg/arrow-down.svg";
 
 export const StyledFilter = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
   margin: 0 0 40px 0;
+  padding: 1rem;
   /* margin: 0 3em 0 1em; */
-  height: 10%;
+  height: 20%;
   width: 100%;
+  background:#48a0f33e;
+  border-top-left-radius: 99px;
+  border-bottom-right-radius: 99px;
+  border-bottom-left-radius: 10px;
+  border-top-right-radius: 10px;
 
   section{
-    width: 33%;
     
     display: flex;
     flex-direction: column;
+    margin-left: 3.8rem;
     justify-content: center;
-    justify-content: flex-start;
   }
   h5 {
     width: 100%;
     margin-top: 1em;
   }
   button {
-    width: 200px;
-    margin-top: 1em;
+    width: 50%;
+
   }
   h2 {
     color: var(--clr-primary);
@@ -44,16 +53,16 @@ export const StyledFilter = styled.div`
 export const SelectStyled = styled.select`
   font-family: inherit;
   font-size: 0.7em;
-  border: 3px solid var(--clr-primary);
+  border: none;
   border-radius: 0.5em;
   width: 200px;
   padding: 0.5em 3em 0.5em 0.7em;
   -moz-appearance: none;
   -webkit-appearance: none;
-  background: url(${arrow}) 95% center no-repeat;
-  /* margin-left: 1em; */
+  background: url(${arrow}) 95% center no-repeat ;
   text-transform: uppercase;
-  color: var(--clr-primary);
+  transition: all 0.25s ease-in-out;
+  color: #e1e1e1;
   cursor: inherit;
   &::-ms-expand {
     display: none;
@@ -61,8 +70,15 @@ export const SelectStyled = styled.select`
 
   &:hover,
   &:focus {
-    outline: 0;
-    border-color: var(--clr-primary-2);
+    border: none;
+    outline: none;
+    scroll-behavior: smooth;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    background-color: #0a3364 ;
+    color: #eeeeee;
+    
   }
+
+
+ 
 `;

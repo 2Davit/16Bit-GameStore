@@ -6,13 +6,15 @@ export const TotalNav = styled.div`
   width: 100vw;
   height: 90px;
   background: ${p => p.theme.backgroundNav};
-  border-bottom: 2px solid rgba(6,31,60,0.9192051820728291);   
+  border-bottom: 2px solid rgba(6,31,60,0.9192051820728291);  
+
 `
 
 export const StyledNavBar = styled(Container)`
 
   display: flex;
   justify-content: center;
+
   
   a {
     text-decoration: none;

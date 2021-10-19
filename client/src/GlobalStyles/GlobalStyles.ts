@@ -118,21 +118,22 @@ export const Btn = styled.button`
     height: 3em;
   }
   &.btn-sec {
-    color: white;
-    background-color: var(--clr-dark-1);
-    box-shadow: rgb(0 0 0 / 50%) 5px 5px 0px;
-    border: 2px solid white;
+    color: #eeeeee;
+    background-color: #911F27;
+    border:none;
     &:hover {
-      border: 2px solid var(--clr-primary);
-      background-color: var(--clr-primary);
+      background-color: #B3141C;
+    }
+    &:focus{
+      outline: none;
     }
   }
 
   &.btn-card {
     color: white;
-    background-color: #f741d5;
+    background-color: #0a3364;
     border-color: var(--clr-primary);
-    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.15);
+    border: none;
   }
 
   &.btn-card:hover {
@@ -179,7 +180,16 @@ export const Btn = styled.button`
   &.btn-sinstock:focus{
     outline: 3px solid var(--clr-primary);
   }
- 
+  &.btn-disabled{
+    background: #222831;
+    border: none;
+    color: #5f5f5f;
+
+    
+  }
+  &.btn-disabled:focus{
+    outline: none;
+  }
 
   &.btn-danger {
     color: var(--clr-error);
@@ -191,7 +201,11 @@ export const Btn = styled.button`
       background-color: var(--clr-error);
     }
   }
+
+
 `;
+
+
 
 export const QuantityButton = styled.button`
   color: var(--clr-white);
@@ -317,3 +331,24 @@ export const Badge = styled.span`
 `
 
 export const StyledSVG = styled(SVG)``;
+
+export const BtnCartCard = styled.button`
+min-width: 0;
+width: 20%;
+height: 20%;
+background: red !important;
+border: none !important;
+ img {
+    
+    width: 100%;
+    height: 100%;
+  }
+`
+
+export const OfferImg = styled.img`
+position: absolute;
+top: 0;
+left: 0;
+width: 20%;
+height: 20%;
+`

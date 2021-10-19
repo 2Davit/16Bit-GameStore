@@ -12,6 +12,7 @@ import { Store } from "../../redux/reducer";
 
 interface Props {
   currentProducts: any;
+
 }
 
 const Catalog: FC<Props> = ({ currentProducts }) => {
@@ -19,7 +20,7 @@ const Catalog: FC<Props> = ({ currentProducts }) => {
     <StyledCatalog id="catalog">
       {currentProducts?.length !== 0 ? (
         currentProducts?.map((product: Product) => (
-          <ProductCard game={product} key={product.id_product} />
+          <ProductCard  game={product} key={product.id_product} />
         ))
       ) : (
         <MarioLoading />

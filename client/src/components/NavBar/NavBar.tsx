@@ -145,16 +145,6 @@ const NavBar: FC<Props> = ({ setPage, toggleModal }: any) => {
             </li>
           </ul>
         </div>
-        {/* <div className="navbar__bottom">
-          <ul className="navbar-bottom__menu">
-            <li>
-              <Link to="/about">About Us</Link>
-            </li>
-            <li>
-              <Link to="/contact">Contact Us</Link>
-            </li>
-          </ul>
-        </div> */}
       
     </StyledNavBar>
     </TotalNav>

@@ -32,6 +32,9 @@ const Footer = () => {
               About Us
             </Link>
           </li>
+          <li>
+              <Link to="/contact">Contact Us</Link>
+            </li>
         </ul>
       </nav>
 
@@ -41,6 +44,7 @@ const Footer = () => {
           href="https://soyhenry.com/"
           target="_blank"
           rel="noopener noreferrer"
+          style={{color:"#ffff01"}}
         >
           Henry
         </a>
