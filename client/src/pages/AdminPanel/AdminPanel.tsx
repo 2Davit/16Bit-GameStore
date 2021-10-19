@@ -1,25 +1,15 @@
 import { useEffect, FC, useState } from "react";
 import { Store } from "../../redux/reducer";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getAllGenres,
-  getAllPlatforms,
-  getAllProducts,
-} from "../../redux/actions/products_action";
+import {getAllGenres,getAllPlatforms,getAllProducts,} from "../../redux/actions/products_action";
 import { getUsers } from "../../redux/actions/admin_actions";
 import { deleteNavbar, getOrders, getSalesData } from "../../redux/actions/admin_actions";
-import {
-  AdminHome,
-  Panel,
-  ProductContent,
-  UserContent,
-  SalesContent,
-} from "../../components";
-import {
-  ContainerAdmin,
-  InfoContainer,
-  MainContainer,
-} from "./AdminPanel.style";
+import {AdminHome,Panel,ProductContent,UserContent,SalesContent,} from "../../components";
+import {ContainerAdmin, InfoContainer,MainContainer,} from "./AdminPanel.style";
+
+
+
+
 
 const AdminPanel: FC = (props) => {
   const dispatch = useDispatch();
@@ -104,7 +94,7 @@ const AdminPanel: FC = (props) => {
         ) : info.setProducts ? (
           <ProductContent totalProducts={totalProducts} />
         ) : info.setSales ? (
-          <SalesContent totalOrders={totalOrders} />
+          <SalesContent totalOrders={totalOrders} totalUsers={totalUsers} />
         ) : info.setUsers ? (
           <UserContent totalUser={totalUsers} />
         ) : (

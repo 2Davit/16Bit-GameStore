@@ -1,31 +1,31 @@
 import { FC } from "react";
-import { ContainerPanel, ContainerImageUser, NameImage, Image, BtnAdminPanel, IconHome, IconSales, IconProducts, IconUsers, LogoAdmin, LogoLink, H2 } from './Panel.style'
+import { ContainerPanel, ContainerImageUser, NameImage, Image, BtnAdminPanel, IconHome, IconSales, IconProducts, IconUsers, LogoLink, H2 } from './Panel.style'
 // import gamestore from '../../assets/img/gamestore.png'
+import defaultAvatar from "../../assets/img/avatars/Avatar_9.png";
 
 
-// interface Info {
-//     setHome: boolean,
-//     setProducts: boolean,
-//     setSales: boolean,
-//     setUsers: boolean,
-// }
+
 
 interface Props {
   handleInfo(v: any): void;
-  // info: Info;
 }
 
 const Panel: FC<Props> = ({ handleInfo /*info*/ }) => {
-  // console.log(info)
+  const userData = JSON.parse(localStorage.getItem("userData") as string)
+  const adminName = userData.data.username
+  const capitalize = (string:string) => {
+    return string[0].toUpperCase() + string.slice(1).toLowerCase();
+  };
+ 
   return (
     <ContainerPanel>
         {/* <LogoLink to='/home'><LogoAdmin src={gamestore} alt="logo-oficial" /></LogoLink> */}
         <LogoLink to='/home'><H2>Gamestore</H2></LogoLink>
         <ContainerImageUser>
           <Image 
-            src="https://d500.epimg.net/cincodias/imagenes/2016/07/04/lifestyle/1467646262_522853_1467646344_noticia_normal.jpg"
+            src={defaultAvatar}
             alt="user"/>
-          <NameImage>Admin Armando</NameImage>
+          <NameImage>{ capitalize(adminName)}</NameImage>
         </ContainerImageUser>
         
           <BtnAdminPanel value="home" onClick={handleInfo} >

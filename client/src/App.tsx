@@ -28,6 +28,7 @@ import {
   Step3,
   UserOrders,
   UserOrderDetail,
+  LeaveReview,
 } from "./pages/";
 import { NavBar, Footer, About, CartSideBar } from "./components";
 import Favorites from "./components/Favorites/Favorites";
@@ -43,6 +44,7 @@ import { Theme } from "./Theme";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Fade } from "react-awesome-reveal";
+import { animateScroll } from "react-scroll";
 
 const App: FC = () => {
   const dispatch = useDispatch();
@@ -59,6 +61,7 @@ const App: FC = () => {
   const [currentPage, setCurrentPage] = useState(1); // empiezo en la pag 1
   const pages = (pageNum: number): void => {
     setCurrentPage(pageNum);
+    animateScroll.scrollTo(500, { duration: 500 });
   };
   const productsPerPage: number = 9;
   let lastIdx: number = currentPage * productsPerPage; // en la primera página, lastIdx = 1 * 9 = 9
@@ -139,11 +142,16 @@ const App: FC = () => {
           <Route exact path="/legal" component={Legal} />
           <Route exact path="/about" component={About} />
           <Route exact path="/orders" component={UserOrders} />
-          <Route exact path="/userorderdetail/:idUser/:idOrder" component={UserOrderDetail} />
+          <Route
+            exact
+            path="/orderdetail/:idUser/:idOrder"
+            component={UserOrderDetail}
+          />
           <Route exact path="/user" component={UserPage} />
           <Route exact path="/edit" component={EditProfile} />
           {/* <Route exact path="/order" component={Order} /> */}
           <Route exact path="/favs" component={Favorites} />
+          <Route exact path="/review/:iduser/:idgame" component={LeaveReview} />
           <Route path="*" component={NotFound} />
         </Switch>
         {deleteNav && <Footer />}

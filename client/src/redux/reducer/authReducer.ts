@@ -11,6 +11,7 @@ const initialState: UserState = {
     name: "",
     lastname: "",
     address: "",
+    admin: false
     /* avatar: "", */
   },
   role: {

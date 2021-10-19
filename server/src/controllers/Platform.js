@@ -1,6 +1,10 @@
 const { Platform } = require("../db");
 const axios = require("axios");
 
+const capitalize = (string) => {
+  return string[0].toUpperCase() + string.slice(1).toLowerCase();
+};
+
 async function createBulkPlatform(req, res) {
   try {
     await Platform.bulkCreate(req.body);
@@ -23,7 +27,7 @@ async function createNewPlatform(req, res, next) {
 async function getAllPlatform(req, res, next) {
   try {
     const allPlatform = await Platform.findAll();
-    const cleanPlatform = allPlatform.map((el) => el.name_platform);
+    const cleanPlatform = allPlatform.map((el) => capitalize(el.name_platform));
 
     res.status(200).send(cleanPlatform);
   } catch (err) {

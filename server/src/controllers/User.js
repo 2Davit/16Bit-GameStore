@@ -52,6 +52,7 @@ async function getUsers(req, res) {
         email: u.email_user,
         active: u.is_active,
         created: u.createdAt,
+        admin: u.is_admin
       };
     });
     res.status(200).send(userData);
@@ -101,6 +102,23 @@ async function updateOneUser(req, res) {
     res.status(404).send("Error");
   }
 }
+async function promoteToAdmin(req, res) {
+
+
+  try {
+      const {id, admin} = req.params;
+    await User.update(
+      {
+        is_admin: admin
+      },
+      { where: { id_user: id } }
+    );
+    res.status(200).send("User updated");
+  } catch (err) {
+    res.status(404).send('hola');
+    console.log(err)
+  }
+}
 
 
 
@@ -111,4 +129,5 @@ module.exports = {
   deleteOneUser,
   banOneUser,
   updateOneUser,
+  promoteToAdmin
 };

@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import { ContainerNav } from "../ProductContent/ProductContent.style";
 import {
   ContainerAdminHome,
@@ -7,18 +7,21 @@ import {
   Vertical,
   Vertical2,
   Horizontal,
+  Horizontal2,
   TableInfo,
   H2,
-  InfoDiv
+  H3,
+  InfoDiv,
+  OnSaleTable,
+  OnSaleDiv,
+  ProductNameDiv,
+  ProductStockDiv
 } from "./AdminHome.style";
 import {
-  VictoryLine,
   VictoryChart,
   VictoryTheme,
-  Curve,
-  VictoryArea,
   VictoryBar,
-  VictoryPolarAxis
+
 } from "victory";
 import { Order, User, Product, DetailData } from "../../interfaces";
 
@@ -34,6 +37,13 @@ const AdminHome: FC<Props> = ({ totalOrders, totalUsers, totalProducts, totalSal
     (user) => user.id_user > totalUsers.length - 10
   );
 
+  
+  const ordered = totalUsers.sort(function (a, b) {
+    return b.id_user - a.id_user;
+  });
+  const filteredUsers = ordered.slice(0, 10)
+
+
   const listStock = totalProducts.filter((product) => product.in_stock <= 5);
       
   const lengthMonth = totalOrders.filter((el) => el.date.slice(5, 7) === "10");
@@ -41,7 +51,6 @@ const AdminHome: FC<Props> = ({ totalOrders, totalUsers, totalProducts, totalSal
   const total = monthAmount?.reduce((a, b) => a + b, 0);
 
   const onSale = totalProducts.filter((p) => p.on_sale === true);
-  console.log(onSale);
 
 
 
@@ -59,11 +68,11 @@ const AdminHome: FC<Props> = ({ totalOrders, totalUsers, totalProducts, totalSal
               <VictoryChart
                 theme={VictoryTheme.grayscale}
                 height={300}
-                width={700}
+                width={1500}
               >
                 <VictoryBar
                   style={{
-                    data: { fill: "#B55400", width: 25 },
+                    data: { fill: "#B55400", width: 45 },
                     parent: { border: "1px solid #ffffff" },
                   }}
                   data={[
@@ -85,44 +94,51 @@ const AdminHome: FC<Props> = ({ totalOrders, totalUsers, totalProducts, totalSal
 
             </GraLine>
           </Horizontal>
-          <Horizontal>
-              { onSale ? onSale.map(product => (
-                <div style={{backgroundColor:"blue"}}>
-                  <div>{product.id_product}</div>
-                <img src={product.thumbnail_product} width="50px" height="50px" alt="img_product"/>
-                <div>{product.name_product}</div>
-                <div>{product.in_stock}</div>
-                </div>
-
-              )): ""}
-          </Horizontal>
+          
         </Vertical>
         <Vertical2>
+        <Horizontal2>
+            <OnSaleTable>
+              <h2>On sale products</h2>
+              { onSale ? onSale.map(product => (
+                <OnSaleDiv>
+                  <h5>{product.id_product}</h5>
+                  <img src={product.thumbnail_product} width="50px" height="50px" alt="img_product"/>
+                  <h4>{product.name_product}</h4>
+                  <h5>{product.in_stock}</h5>
+                </OnSaleDiv>
+
+              )): <h2 style={{ textAlign: 'center' }}>No Products On Sale</h2>}
+             </OnSaleTable> 
+          </Horizontal2>
           <TableInfo >
             <H2>Latest Registered Users</H2>
-            {listUsers.length !== 0 ? (
-              listUsers.map((user) => (
+            <div style={{height: '80%', width: '100%', overflow:"scroll"}}>
+            {filteredUsers.length !== 0 ? (
+              filteredUsers.map((user) => (
                 <InfoDiv>
                   <h4>{user.nickname}</h4>
                   <h5>{user.created.slice(0, 10)}</h5>
                 </InfoDiv>
               ))
-            ) : (
-              <h1 style={{ color: "red" }}>Sin usuarios</h1>
-            )}
+              ) : (
+                <h2 style={{ textAlign: 'center' }}>No Users Registered</h2>
+                )}
+            </div>
+            <H3>Total Users: {totalUsers.length}</H3>
           </TableInfo>
 
           <TableInfo >
-            <H2>Nearly out of stock products</H2>
+            <H2>Low stock products</H2>
             {listStock.length !== 0 ? (
               listStock.slice(0, 10).map((product) => (
                 <InfoDiv>
-                  <h4>{product.name_product}</h4>
-                  <h5>{product.in_stock}</h5>
+                  <ProductNameDiv >{product.name_product.length > 26 ? product.name_product.slice(0,26) + '...' : product.name_product}</ProductNameDiv>
+                  <ProductStockDiv>{product.in_stock}</ProductStockDiv>
                 </InfoDiv>
               ))
             ) : (
-              <h1 style={{ color: "red" }}>Sin products</h1>
+              <h2 style={{ textAlign: 'center' }}>All Seems Ok</h2>
             )}
           </TableInfo>
         </Vertical2>

@@ -1,5 +1,7 @@
 {
   "dependencies": {
-    "react-reveal": "^1.2.2"
+    "@types/react-star-ratings": "^2.3.0",
+    "react-reveal": "^1.2.2",
+    "react-star-ratings": "^2.3.0"
   }
 }

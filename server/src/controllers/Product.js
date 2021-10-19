@@ -404,18 +404,22 @@ async function deleteOneProduct(req, res) {
   }
 }
 async function addReview(req, res) {
-  const { id_product, id_user } = req.params; //trae el usuario
+  const { iduser , idgame } = req.params; 
   const { score, description } = req.body;
+  
   try {
+    
     let aux = await Review.findOne({
       where: {
-        productIdProduct: id_product,
-        userIdUser: id_user,
+        productIdProduct:idgame,
+        userIdUser:iduser,
       },
     })
+    
     if(!aux && (score>=1 && score<=5) ) {
-    let product = await Product.findByPk(parseInt(id_product));
-    let user = await User.findByPk(parseInt(id_user));
+      
+    let product = await Product.findByPk(parseInt(idgame));
+    let user = await User.findByPk(parseInt(iduser));
     let review = await Review.create({
       score,
       description,
@@ -428,44 +432,66 @@ async function addReview(req, res) {
     }
     else res.status(400).send("Ya dejaste una review sobre este producto / valores incorrectos");
   }
-  catch {
+  catch(error){
+    console.log(error)
     res.status(404).send("Error");
   }
 }
 
-/* async function addProductFavorite(req, res) {
-  try{
-   const { product_id, user_id } = req.body;
-  let productDB =  await Product.findByPk({
-    where: {
-      id_product: product_id,
-    },
-  });
-  console.log(productDB)
-  let userDB = await User.findByPk({
-    where: {
-      id_user: user_id,
-    },
-  });
-  console.log(userDB)
-  userDB.addUser(productDB);
 
-  res.status(200).send("Product succesfully added to favorite") 
-} catch(err){
-  res.status(404).send("errrrrrorrrrr");
-}
-} */
+async function getReviews(req, res) {
+  
+  
+  const { idProduct, idUser } = req.params;
 
-/* try { 
-  Product.findAll({
-  include: { 
-      model: User,
-      as: 'favorite',
+  try {
+
+    if (idUser === '0' && idProduct) {
+    const allReviews = await Review.findAll({
+        where: {
+          productIdProduct: idProduct
+        }
+      });
+
+      res.status(200).send(allReviews);
+    }
+
+    
+
+  else if (idUser && idProduct !== '0') {
+
+  const userProductReviews = await Review.findAll({
       where: {
-        id_user: id_user
-      },
-      required: false
-  }}),  */
+        productIdProduct: idProduct,
+        userIdUser: idUser
+      }
+    });
+
+    
+  res.status(200).send(userProductReviews);
+  }
+
+  else {
+
+  const userReviews = await Review.findAll({
+      where: {
+        userIdUser: idUser
+      }
+    });
+
+    res.status(200).send(userReviews);
+  }
+    
+  } catch (error) {
+    console.log(error);
+    res.status(404).send({ error: "error back" });
+  }
+}
+
+
+
+
+
 
 module.exports = {
   listProductOnSale,
@@ -478,4 +504,5 @@ module.exports = {
   updateOneProduct,
   deleteOneProduct,
   addReview,
+  getReviews
 };

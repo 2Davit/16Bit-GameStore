@@ -62,10 +62,11 @@ const StyledFooter = styled.footer`
     position: relative;
     left: -1.5em;
     margin-top: 2em;
+    width: 100vw;
   }
 
   @media (max-width: 1000px) {
-    padding: 3em;
+    padding: 3em 1.5em;
 
     .about__us {
       display: inline;
@@ -75,6 +76,21 @@ const StyledFooter = styled.footer`
       & > li + li {
         margin: 1em 0 0;
       }
+    }
+
+    .navbar__bottom {
+      ul {
+        margin: 0 auto;
+      }
+    }
+
+    p::before {
+      content: "";
+      width: 100%;
+      border-top: 1px solid #333;
+      position: absolute;
+      top: 0;
+      left: 0;
     }
   }
 `;

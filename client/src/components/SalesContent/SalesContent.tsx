@@ -1,5 +1,7 @@
-import { FC, useState } from "react";
-import { Order } from "../../interfaces";
+import { FC, useState, useEffect } from "react";
+import {useDispatch} from "react-redux"
+import { Order, User } from "../../interfaces";
+import { getUserOrders } from "../../redux/actions/orders_action";
 import {
   ContainerNav,
   ContainerMainContent,
@@ -26,9 +28,11 @@ import {
 
 interface Props {
   totalOrders: Array<Order>;
+  totalUsers: Array<User>;
 }
 
-const SalesContent: FC<Props> = ({ totalOrders }) => {
+const SalesContent: FC<Props> = ({ totalOrders, totalUsers }) => {
+  const dispatch = useDispatch();
   const [page, setPage] = useState<number>(0); //iria de 10 en 10 ejm : 0-10,20,30
   const [page2, setPage2] = useState<number>(10); //19
   const [btnNext, setBtnNext] = useState<boolean>(false);
@@ -109,6 +113,13 @@ const SalesContent: FC<Props> = ({ totalOrders }) => {
   //        setOrderSearch(newArray);
   //     }
   //  };
+
+  // const idUsers = totalUsers.map(user => user.id_user)
+  // console.log(idUsers);
+
+  // useEffect(() => {
+  //    dispatch(getUserOrders(idUsers));
+  // }, [dispatch]);
 
   return (
     <ContainerMainContent>

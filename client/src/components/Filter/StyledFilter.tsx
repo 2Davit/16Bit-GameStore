@@ -5,11 +5,9 @@ export const StyledFilter = styled.div`
   display: flex;
   flex-direction: column;
   padding: 1rem;
-  width: 25%;
-  position: relative;
-  top: 5em;
   background: #000;
-
+  margin: 0 3em 0 1em;
+  height: min-content;
   h5 {
     width: 100%;
     margin-top: 1em;
@@ -20,6 +18,18 @@ export const StyledFilter = styled.div`
   }
   h2 {
     color: var(--clr-primary);
+  }
+
+  @media screen and (max-width: 700px) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 2rem;
+
+    h2 {
+      width: 100%;
+      text-align: center;
+    }
   }
 `;
 

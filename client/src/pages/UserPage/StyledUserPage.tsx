@@ -201,6 +201,11 @@ export const FormEditProfile = styled.form`
 `;
 
 export const StyledOrders = styled.div`
+  width: 80%;
+  margin: 2em auto;
+  h2 {
+    margin-bottom: 2em;
+  }
   table {
     border: 1px solid #ccc;
     border-collapse: collapse;
@@ -208,6 +213,136 @@ export const StyledOrders = styled.div`
     padding: 0;
     width: 100%;
     table-layout: fixed;
+  }
+
+  table caption {
+    font-size: 1.5em;
+    margin: 0.5em 0 0.75em;
+  }
+
+  table tr {
+    background-color: #000;
+    border: 1px solid #ddd;
+    padding: 0.35em;
+  }
+
+  table th,
+  table td {
+    padding: 0.625em;
+    text-align: center;
+  }
+
+  table th {
+    font-size: 0.85em;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  @media screen and (max-width: 600px) {
+    table {
+      border: 0;
+    }
+
+    table caption {
+      font-size: 1.3em;
+    }
+
+    table thead {
+      border: none;
+      clip: rect(0 0 0 0);
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      padding: 0;
+      position: absolute;
+      width: 1px;
+    }
+
+    table tr {
+      border-bottom: 3px solid #ddd;
+      display: block;
+      margin-bottom: 0.625em;
+    }
+
+    table td {
+      border-bottom: 1px solid #ddd;
+
+      display: block;
+      font-size: 0.8em;
+      text-align: right;
+    }
+
+    table td::before {
+      content: attr(data-label);
+      float: left;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    table td:last-child {
+      border-bottom: 0;
+    }
+  }
+
+  .btn__orderDetail {
+    font-size: 14px;
+    background: #000;
+    color: white;
+    border: 1px solid white;
+    border-radius: 1em;
+    padding: 0.4em;
+    margin: 1em 1em 1em 0;
+    :hover {
+      color: var(--clr-primary);
+    }
+  }
+  .btn-card {
+    margin: 2em 0;
+  }
+`;
+
+export const StyledOrderDetail = styled.div`
+  width: 80%;
+  margin: 2em auto;
+  h2 {
+    color: var(--clr-primary);
+    text-align: center;
+  }
+
+  .tables-container {
+    display: flex;
+    margin-top: 3em;
+    .table-small {
+      margin-top: 2em;
+    }
+    h2,
+    h3 {
+      margin-bottom: -1em;
+    }
+
+    & > div:first-child {
+      flex: 1 0 30%;
+      margin-right: 2em;
+    }
+
+    @media (max-width: 500px) {
+      flex-direction: column;
+
+      & > div:first-child {
+        margin-right: 0;
+        margin-bottom: 2em;
+      }
+    }
+  }
+
+  table {
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    table-layout: fixed;
+    margin-top: 2em;
   }
 
   table caption {
@@ -275,6 +410,27 @@ export const StyledOrders = styled.div`
 
     table td:last-child {
       border-bottom: 0;
+    }
+  }
+  #link {
+    position: relative;
+    color: currentColor;
+
+    &:hover {
+      text-decoration: none;
+    }
+    background: red;
+    height: 200px;
+  }
+  .btn__leaveReview {
+    font-size: 14px;
+    background: #000;
+    color: white;
+    border: 1px solid white;
+    border-radius: 1em;
+    padding: 0.5em;
+    :hover {
+      color: var(--clr-primary);
     }
   }
 `;

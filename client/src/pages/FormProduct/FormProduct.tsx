@@ -1,9 +1,14 @@
 import { useState, FC, useEffect } from "react";
 import { ProductCreate, ProductValidate } from "../../interfaces";
-import { useDispatch } from "react-redux";
-import { createVideogame } from "../../redux/actions/products_action";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  createVideogame,
+  getAllPlatforms,
+  getAllGenres,
+} from "../../redux/actions/products_action";
 import { deleteNavbar } from "../../redux/actions/admin_actions";
-import axios from 'axios'
+import axios from "axios";
+import { Store } from "../../redux/reducer";
 import { Link } from "react-router-dom";
 import {
   FormContainer,
@@ -22,13 +27,8 @@ import {
   ContainerFormP,
 } from "./FormProduct.style";
 
-interface Info {
-  url: string;
-}
-
 const FormProduct: FC = () => {
   const [images, setImages] = useState<Array<string>>([]);
-  const [info, setInfo] = useState<Info>({ url: "" });
   const dispatch = useDispatch();
   const [error, setError] = useState<ProductValidate>({
     name_product: "",
@@ -59,25 +59,13 @@ const FormProduct: FC = () => {
   //quitamos Nav
   useEffect(() => {
     dispatch(deleteNavbar());
+    dispatch(getAllPlatforms());
+    dispatch(getAllGenres());
   }, [dispatch]);
 
-  // const handleImage = () => {
-  //   setImages([...images, info.url]);
-  //   setInput((prevState: any) => ({
-  //     ...prevState,
-  //     image_product: [...images, info.url],
-  //   }));
-  //   setInfo({ url: "" });
+  const genres = useSelector((state: Store) => state.adminReducer.genres);
 
-  //   alert("has añadido una imagen");
-  // };
-
-  function handleInfoChange(e: React.FormEvent<HTMLInputElement>) {
-    setInfo({
-      ...info,
-      url: e.currentTarget.value,
-    });
-  }
+  const platforms = useSelector((state: Store) => state.adminReducer.platforms);
 
   function handleImageDelete(img: string) {
     setImages(images.filter((image) => image !== img));
@@ -285,34 +273,23 @@ const FormProduct: FC = () => {
     return error;
   };
 
-  const handleImage =  async (e:any) => {
+  const handleImage = async (e: any) => {
     const data = new FormData();
-    data.append("upload_preset", "product_image")
-    data.append("file", e.target.files[0])
-    const fileRequest = await axios.post('https://api.cloudinary.com/v1_1/gamestore-16bit/image/upload', data)
-    const result =  fileRequest?.data.secure_url
-    setImages([
-      ...images, result
-    ])
+    data.append("upload_preset", "product_image");
+    data.append("file", e.target.files[0]);
+    const fileRequest = await axios.post(
+      "https://api.cloudinary.com/v1_1/gamestore-16bit/image/upload",
+      data
+    );
+    const result = fileRequest?.data.secure_url;
+    setImages([...images, result]);
     setInput((prevState: any) => ({
-           ...prevState,
-           image_product: [...images, result],
-         }));
-
-
-  }
-  console.log('por aca', input);
+      ...prevState,
+      image_product: [...images, result],
+    }));
+  };
 
   return (
-    <>
-
-    <input onChange={(e) => handleImage(e)} type="file" />
-    {images? images.map(el => (
-      <img src={el}/>
-    )) : ""}
-
-
-
     <ContainerFormP>
       <Link
         to={{
@@ -362,32 +339,39 @@ const FormProduct: FC = () => {
         {error.image_product && <FormErrors>{error.image_product}</FormErrors>}
         <Fields>
           <FormLabel htmlFor="image_product">Images</FormLabel>
-          <FormInputImg
-            value={info.url}
-            onChange={(e) => handleInfoChange(e)}
-            name="image_product"
-            placeholder="Add Images..."
-          />
-         <BtnAdd type="button" > 
-            Add
-          </BtnAdd>
+          <BtnAdd onChange={(e) => handleImage(e)} type="file" />
         </Fields>
-        {input.image_product &&
-          input.image_product.map((img) => (
-            <div key={img}>
-              <img
-                src={img}
-                style={{ width: "70px", height: "70px" }}
-                alt={img}
-              />
-              <span
-                style={{ cursor: "pointer" }}
-                onClick={() => handleImageDelete(img)}
+        <div style={{ display: "flex" }}>
+          {input.image_product &&
+            input.image_product.map((img) => (
+              <div
+                style={{
+                  position: "relative",
+                  marginRight: "20px",
+                  marginBottom: "20px",
+                }}
+                key={img}
               >
-                x
-              </span>
-            </div>
-          ))}
+                <img
+                  src={img}
+                  style={{ width: "70px", height: "70px" }}
+                  alt={img}
+                />
+                <span
+                  style={{
+                    cursor: "pointer",
+                    top: -5,
+                    left: 60,
+                    position: "absolute",
+                    color: "red",
+                  }}
+                  onClick={() => handleImageDelete(img)}
+                >
+                  x
+                </span>
+              </div>
+            ))}
+        </div>
 
         {error.thumbnail_product && (
           <FormErrors>{error.thumbnail_product}</FormErrors>
@@ -408,15 +392,6 @@ const FormProduct: FC = () => {
             name="in_stock"
             placeholder="Introduce a quantity"
           />
-          {/* <FormSelect
-            onChange={(e) => handleStock(e)}
-            name="in_stock"
-            placeholder="Select an Option"
-          >
-            <option>Select an Option</option>
-            <option value="true">In Stock</option>
-            <option value="false">Out of Stock</option>
-          </FormSelect> */}
         </Fields>
         <Fields>
           <FormLabel htmlFor="on_sale">Sale Discount</FormLabel>
@@ -444,17 +419,10 @@ const FormProduct: FC = () => {
           <FormLabel htmlFor="firstName">Genres</FormLabel>
           <FormSelect name="genres" onChange={(e) => handleSelectGenre(e)}>
             <option>Select an Option</option>
-            <option value="action">Action</option>
-            <option value="shooter">Shooter</option>
-            <option value="racing">Racing</option>
-            <option value="fighting">Fighting</option>
-            <option value="sports">Sports</option>
-            <option value="arcade">Arcade</option>
-            <option value="adventure">Adventure</option>
-            <option value="platform">Platform</option>
-            <option value="puzzle">Puzzle</option>
-            <option value="strategy">Strategy</option>
-            <option value="rpg">RPG</option>
+            {genres &&
+              genres.map((genre: string) => (
+                <option value={genre}>{genre}</option>
+              ))}
           </FormSelect>
         </Fields>
         <div style={{ display: "flex", marginBottom: "2rem" }}>
@@ -476,12 +444,10 @@ const FormProduct: FC = () => {
             onChange={(e) => handleSelectPlatform(e)}
           >
             <option>Select an Option</option>
-            <option value="nes">nes</option>
-            <option value="arcade">arcade</option>
-            <option value="sega">sega</option>
-            <option value="snes">snes</option>
-            <option value="gba">gba</option>
-            <option value="a2600">a2600</option>
+            {platforms &&
+              platforms.map((platform: string) => (
+                <option value={platform}>{platform}</option>
+              ))}
           </FormSelect>
         </Fields>
         <div style={{ display: "flex", marginBottom: "2rem" }}>
@@ -498,7 +464,6 @@ const FormProduct: FC = () => {
         <BtnSubmit type="submit">Submit</BtnSubmit>
       </FormContainer>
     </ContainerFormP>
-    </>
   );
 };
 

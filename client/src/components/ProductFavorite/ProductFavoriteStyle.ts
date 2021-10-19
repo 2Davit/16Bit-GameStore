@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StyledProductCard = styled.article`
+export const StyledFavoriteCard = styled.article`
   font-size: 0.8em;
   border: 3px solid ${(p) => p.theme.bgBorder};
   width: 260px;
@@ -9,7 +9,7 @@ export const StyledProductCard = styled.article`
   box-shadow: 5px 5px 0px ${(p) => p.theme.bgBorder};
   position: relative;
   transition: all 0.25s ease-in-out;
-  height: 400px;
+  height: 560px;
   background: #000;
 
   &:hover {
@@ -79,9 +79,6 @@ export const StyledProductCard = styled.article`
       outline: none;
     }
   }
-
- 
-  
 `;
 
 export const MiniCard = styled.article`
