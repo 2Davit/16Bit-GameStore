@@ -3,10 +3,11 @@ import { ThemeProvider } from "styled-components";
 import { GlobalStyle } from "./GlobalStyles/GlobalStyles";
 import { ButtonTheme } from "./components";
 import backGabo from './assets/img/back.jpeg'
+import blueBack from './assets/img/blueBack.svg'
 
 const themes = {
   original: {
-    background: "linear-gradient(0deg, rgba(6,31,60,1) 0%, rgba(21,90,164,1) 100%);",
+    background: `url(${blueBack})`,
     backgroundNav: "rgba(21,90,164,0.6615021008403361)",
     bg: "#000000",
     bgSub:
