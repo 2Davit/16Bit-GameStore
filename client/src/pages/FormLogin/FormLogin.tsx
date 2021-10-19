@@ -1,4 +1,3 @@
-// import { input, Form, Formik } from "formik";
 import { UserLogin } from "../../interfaces/index";
 import { getRole, login } from "../../redux/actions/auth_actions";
 import React, { FC, useState, useEffect } from "react";
@@ -103,39 +102,35 @@ const FormLogin: FC = () => {
     animateScroll.scrollTo(0, { duration: 300 });
   };
 
+
+
   const handleReset = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    await axios.post('/email/reset', { email: email });
-    /* .then(() => Swal.fire({
-      title: 'Sent',
-      text: 'Go and check your email account',
-      icon: 'success',
-      confirmButtonText: '🚀'
-    })) */
-    alert('/home')
-    /* .catch(() => Swal.fire({
-      title: "Error!",
-      text: "That email account does not exist! ",
-      icon: "error",
-      confirmButtonText: "😓",
-    })) */
+    
+    axios.post('/email/reset', { email: email })
+    .then(() => {
+      Swal.fire({
+        title: 'Sent',
+        text: 'Go and check your email account',
+        icon: 'success',
+        confirmButtonText: '🚀'
+      })
+    })
+    .catch(() => {
+      Swal.fire({
+        title: "Error!",
+        text: "That email account does not exist! ",
+        icon: "error",
+        confirmButtonText: "😓",
+      })
+    })
+    .finally(() => 
+      closeModal
+    )
     closeModal();
     animateScroll.scrollTo(0, { duration: 300 });
   };
 
-  /*   const handleGoogleLogin = async () => {
-    await loginWithPopup();
-    const res = await axios.post("/auth/google", {
-      username: user?.nickname,
-      name: user?.given_name,
-      lastname: user?.family_name,
-      email: user?.email,
-      picture: user?.picture,
-    });
-    localStorage.setItem("userData", JSON.stringify(res.data));
-    history.push("/home");
-  }; */
-  
   return (
     <Modal
       isOpen={loginIsOpen}
@@ -189,13 +184,13 @@ const FormLogin: FC = () => {
             </>
             
             : 
-            <form onSubmit={handleReset}>
+            <form onSubmit={(e) => handleReset(e)}>
               <label htmlFor="username">
                 <span>Please enter your email</span>
                 <input onChange={handleMailChange} />
               </label>
               <Btn
-                onClick={closeModal}
+                // onClick={closeModal}
                 type="submit"
                 className={email.length !== 0 ? "btn-card login" : "btn-disabled"}
                 disabled={email.length === 0 ? true : false}

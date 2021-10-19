@@ -14,21 +14,29 @@ import CloseButton from "../../assets/img/svg/close-filled-purple.svg";
 import { animateScroll } from "react-scroll";
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
+import { useParams } from 'react-router-dom';
 
 
-interface User {
-  username: string;
+interface Password{
   password: string;
+  newPassword: string;
+}
+
+
+interface Props {
+  token: string;
 }
 const FormReset: FC = () => {
   const userData = JSON.parse(localStorage.getItem("userData")!);
   
   const [isUser, setIsUser] = useState<boolean>(false);
-  const [input, setInput] = useState<User>({
-    username: "",
+  const [input, setInput] = useState<Password>({
     password: "",
+    newPassword: "",
   });
 
+  const { token } = useParams<Props>();
+  
   const loginIsOpen = useSelector(
     (state: Store) => state.globalReducer.loginIsOpen
   );
@@ -79,7 +87,7 @@ const FormReset: FC = () => {
     dispatch(openLogin(true));
   }, [userData]);
 
-  let disabled = !(input.username && input.password);
+  let disabled = !(input.password && input.newPassword);
 
   const handleInputChange = (e: React.FormEvent<HTMLInputElement>) => {
     setInput({
@@ -90,7 +98,9 @@ const FormReset: FC = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
+
+    axios.post(`/auth/reset/${token}`, {password: input.newPassword})
+
     setIsUser(true);
     closeModal();
     animateScroll.scrollTo(0, { duration: 300 });
@@ -108,7 +118,6 @@ const FormReset: FC = () => {
       ariaHideApp={false}
       onAfterOpen={afterOpenModal}
     >
-      {!userData ? (
         <StyledReset>
           <button className="button" onClick={closeModal}>
             <StyledSVG src={CloseButton} />
@@ -129,24 +138,14 @@ const FormReset: FC = () => {
               </label>
               <Btn
                 type="submit"
-                className={!disabled ? "btn-card login" : "btn-disabled"}
-                disabled={disabled}
+                className={input.password.length !== 0 && input.newPassword === input.password ? "btn-disabled" : "btn-card login"}
+                disabled={input.password.length !== 0  && input.newPassword === input.password ? false : true}
               >
                 Reset
               </Btn>
             </form>
           </FormStyled>
         </StyledReset>
-      ) : (
-        <StyledReset>
-          <div className="link_container2">
-            <h1>Welcome...</h1>
-            <Link className="shopping" to="/home">
-              Go shopping with your cart!
-            </Link>
-          </div>
-        </StyledReset>
-      )}
     </Modal>
   );
 };

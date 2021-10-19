@@ -239,9 +239,33 @@ const getRole = async (req, res) => {
   }
 };
 
+const setPass = async (req, res) => {
+  const { token } = req.params;
+  const { password } = req.body;
+
+  const decoded = jwt.verify(token, SECRET);
+  const id = decoded.id;
+
+  try {
+    await User.update(
+      {password_user: bcrypt.hashSync(password, 8)},
+      {where: {
+        id_user: id
+      }}
+    )
+
+    res.status(200).send('llegó she piola')
+  } catch(err){
+    console.log(err);
+  }
+
+}
+
+
 module.exports = {
   logIn,
   signUp,
   getRole,
   signInGoogle,
+  setPass
 };

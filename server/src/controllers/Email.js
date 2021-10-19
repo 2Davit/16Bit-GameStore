@@ -4,7 +4,8 @@ const { google } = require("googleapis");
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
 const { User } = require("../db");
-
+const jwt = require("jsonwebtoken");
+const SECRET = process.env.SECRET;
 
 async function sendUserMail(req, res) {
   
@@ -220,7 +221,7 @@ async function sendResetPass(req, res) {
   
   const { email } = req.body;
   
-
+  
   try {
   const user = await User.findOne(
     {
@@ -232,6 +233,9 @@ async function sendResetPass(req, res) {
   
   if (!user) return res.status(400).send("User not found");
 
+  const token = jwt.sign({ id: user.id_user }, SECRET, {
+    expiresIn: 86400, // 24 hours
+  });
 
   const html = `<!DOCTYPE html>
   <html lang="en">
@@ -256,7 +260,7 @@ async function sendResetPass(req, res) {
         <p style="color: #fff; margin-left: 1rem">
           Hi, ${user.nickname_user}! Please enter to this link if you want to reset your 16Bit Gamestore account password:
         </p>
-        <a href="http://localhost:3000/reset" style="text-decoration: none; margin-left: 1rem; font-size: 1.5rem">Click here! 🕹</a>
+        <a href="http://localhost:3000/reset/${token}" style="text-decoration: none; margin-left: 1rem; font-size: 1.5rem">Click here! 🕹</a>
       </div>
       <div style="background-color: #000; color: lightgray; ">
         <p style="margin: 0 1rem; padding: 1rem 0">
@@ -267,12 +271,6 @@ async function sendResetPass(req, res) {
     </div>
   </body>
 </html>`;
-
-
-  
-
-
-  
 
   const CLIENT_ID =
     "629164237375-nd9vo40e7m7p82lr4s7bgecqebbn7i6v.apps.googleusercontent.com";
