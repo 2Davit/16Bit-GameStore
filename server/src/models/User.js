@@ -27,6 +27,7 @@ module.exports = (sequelize) => {
     address_user: {
       type: DataTypes.STRING,
       allowNull: false,
+      defaultValue: "No address provided",
     },
     email_user: {
       type: DataTypes.STRING,
@@ -35,6 +36,10 @@ module.exports = (sequelize) => {
     password_user: {
       type: DataTypes.STRING(60),
       allowNull: true,
+    },
+    loggedWithGoogle: {
+      type: DataTypes.BOOLEAN,
+      default: false,
     },
     is_admin: {
       type: DataTypes.BOOLEAN,

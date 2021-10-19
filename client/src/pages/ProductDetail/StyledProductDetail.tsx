@@ -196,9 +196,8 @@ export const GameDetail = styled.section`
     .game__purchase-container {
       display: flex;
       align-items: center;
-      margin-top: 8em;
+      margin-top: 1em;
       width: 100%;
-
       @media (max-width: 700px) {
         flex-direction: column;
         align-items: center;

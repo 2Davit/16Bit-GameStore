@@ -2,6 +2,7 @@ import React, { FC } from "react";
 import axios from "axios";
 import { ProductInCart } from "../../interfaces";
 import { useHistory } from "react-router";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const LogOut: FC = () => {
   const user = JSON.parse(localStorage.getItem("userData")!);
@@ -10,6 +11,8 @@ const LogOut: FC = () => {
     acc = acc + product.price_product! * product.quantity!;
     return acc;
   }, 0.0);
+
+  const { logout } = useAuth0();
 
   const order = {
     id_user: user.id,
@@ -29,16 +32,10 @@ const LogOut: FC = () => {
       axios.post("/order/save", order);
     }
     localStorage.clear();
-    history.push("/home");
+    logout();
   }
 
-  return (
-    <form>
-      <button type="submit" onClick={handleClick}>
-        Logout
-      </button>
-    </form>
-  );
+  return <button onClick={handleClick}>Logout</button>;
 };
 
 export default LogOut;

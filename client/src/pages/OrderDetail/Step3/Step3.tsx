@@ -7,6 +7,8 @@ import { Btn } from "../../../GlobalStyles/GlobalStyles";
 import Confetti from "react-confetti";
 import { clearCart } from "../../../redux/actions/cart_actions";
 import { sendMail } from "../../../redux/actions/admin_actions";
+import { ProductInCart } from "../../../interfaces";
+
 
 const Step3 = () => {
   
@@ -14,11 +16,22 @@ const Step3 = () => {
   const dispatch = useDispatch();
 
   const user = JSON.parse(localStorage.getItem("userData")!);
+  const cart = JSON.parse(localStorage.getItem("cart")!);
+  const total = cart.reduce((acc: number, product: ProductInCart) => {
+    acc = acc + product.price_product * product.quantity!;
+    return acc;
+  }, 0.0);
   
+  const info = {
+    cart,
+    total
+  }
+
   useEffect(() => {
-      dispatch(clearCart());
-      dispatch(sendMail(user.data.email));
+    dispatch(sendMail(user.data.email, user.data.username, 'purchase', info));
+    dispatch(clearCart());
   }, [dispatch]);
+
 
   return (
     <StepThree>
@@ -31,9 +44,9 @@ const Step3 = () => {
           alt="not found"
         />
         <p>Your purchase has been made successfully</p>
-        <p>
+        {/* <p>
           Your order number is <span>0000</span>
-        </p>
+        </p> */}
       </div>
       <Btn className="btn btn-card" onClick={() => history.push("/home")}>
         Continue shopping

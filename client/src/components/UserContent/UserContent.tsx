@@ -100,6 +100,8 @@ const UserContent: FC<Props> = ({ totalUser }) => {
     }
   };
 
+console.log(totalUser)
+
   const handleDeleteUser = (id: number | unknown) => {
     dispatch(deleteUser(id));
     alert("se fue" + id);

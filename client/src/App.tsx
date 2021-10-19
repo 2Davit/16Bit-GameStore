@@ -118,7 +118,7 @@ const App: FC = () => {
             exact
             path="/admin"
             render={() => {
-              return isAdmin ? <AdminPanel /> : <Redirect to="/home" />;
+              return  isAdmin ? <AdminPanel /> : <Redirect to="/home" />;
             }}
           />
           <Route exact path="/login" component={FormLogin} />

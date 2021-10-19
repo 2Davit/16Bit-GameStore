@@ -11,7 +11,7 @@ const {
 } = require("../controllers/Genre");
 
 router.get("/", getAllGenre);
-router.post("/", checkJwt, reqAdmin, createBulkGenre);
+router.post("/", checkJwt, reqAdmin,  createBulkGenre);
 router.post("/oneGenre", checkJwt, reqAdmin, createNewGenre);
 
 module.exports = router;
