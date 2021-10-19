@@ -1,5 +1,6 @@
 import axios from "axios";
-import { EditProduct } from "../../interfaces";
+import { EditProduct, EmailAction } from "../../interfaces";
+
 
 // import { EDIT_PRODUCT } from "../types";
 import { Dispatch } from "redux";
@@ -62,6 +63,17 @@ export const promoteUser = ( admin: boolean | string, id:number | unknown ) => {
   };
 }
 
+
+export const sendMail = (email: string, username: string, action: string, info?: EmailAction) => {
+  
+  return async function (dispatch: Dispatch<Detail>){
+    const data = await axios.post('/email', { email, username, action, info });
+    return data;
+  };
+};
+    
+    
+    
 export const banUser = (id: number | unknown, status: boolean | string) => {
   const userData = JSON.parse(localStorage.getItem("userData") as string);
   const token = userData?.data.token;
@@ -73,20 +85,8 @@ export const banUser = (id: number | unknown, status: boolean | string) => {
   };
 };
 
-export const sendMail = (email: string) => {
-  const userData = JSON.parse(localStorage.getItem("userData") as string);
-  const token = userData?.data.token;
-  return async function (dispatch: Dispatch<Detail>) {
-    const data = await axios.post(
-      "/user/mail",
-      { email },
-      {
-        headers: { "x-access-token": token },
-      }
-    );
-    return data;
-  };
-};
+
+    
 
 export const getUsers = () => {
   const userData = JSON.parse(localStorage.getItem("userData") as string);
