@@ -54,7 +54,7 @@ const signInGoogle = async (req, res) => {
 
   const user = await User.findOrCreate({
     where: {
-      email_user: email?.toLowerCase(),
+      email_user: email.toLowerCase(),
     },
     defaults: {
       nickname_user: username.toLowerCase(),
