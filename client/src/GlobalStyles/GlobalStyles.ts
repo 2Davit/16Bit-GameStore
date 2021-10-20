@@ -245,7 +245,7 @@ export const Dropdown = styled.li`
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  top: -1px;
+  /* top: -10px; */
 
   &:hover > ul {
     display: block;
@@ -256,8 +256,8 @@ export const Dropdown = styled.li`
     display: none;
     min-width: 150px;
     position: absolute;
-    left: 50%;
-    top: 110%;
+    left: 85%;
+    top: 90%;
     transform: translateX(-50%);
     padding-top: 1em;
     font-size: 0.9em;
