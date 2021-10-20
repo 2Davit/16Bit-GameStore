@@ -9,7 +9,6 @@ import Swal from "sweetalert2";
 import { sendMail } from "../../redux/actions/admin_actions";
 import { useAuth0 } from "@auth0/auth0-react";
 
-
 // Shape of form values
 interface FormValues {
   username: string;
@@ -21,7 +20,7 @@ interface FormValues {
   address: string;
 }
 
-const FormRegister:FC = () => {
+const FormRegister: FC = () => {
   const [isUser, setIsUser] = useState<boolean>(false);
   const [input, setInput] = useState<FormValues>({
     username: "",
@@ -41,7 +40,7 @@ const FormRegister:FC = () => {
     lastname: "",
     address: "",
   });
-  const { user, loginWithPopup } = useAuth0();
+  const { user, loginWithRedirect } = useAuth0();
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -142,12 +141,17 @@ const FormRegister:FC = () => {
         const { username, password } = input;
         dispatch(login({ username, password }));
         Swal.fire({
-          title: 'Success',
-          text: 'Account created',
-          icon: 'success',
-          confirmButtonText: '🚀'
-        }).then((isConfirm) => { if(isConfirm) history.push("/home"); })
-        .then(res => { dispatch(sendMail(input.email, username, 'signup')); })
+          title: "Success",
+          text: "Account created",
+          icon: "success",
+          confirmButtonText: "🚀",
+        })
+          .then((isConfirm) => {
+            if (isConfirm) history.push("/home");
+          })
+          .then((res) => {
+            dispatch(sendMail(input.email, username, "signup"));
+          });
       })
       .catch((err) => {
         Swal.fire({
@@ -158,21 +162,6 @@ const FormRegister:FC = () => {
         });
       });
     setIsUser(true);
-  };
-
-  const handleGoogleLogin = () => {
-    loginWithPopup()
-      .then((res) =>
-        axios.post("/auth/google", {
-          username: user?.nickname,
-          name: user?.given_name,
-          lastname: user?.family_name,
-          email: user?.email,
-          picture: user?.picture,
-        })
-      )
-      .then((res) => localStorage.setItem("userData", JSON.stringify(res.data)))
-      .then((res) => history.push("/home"));
   };
 
   let disabled = !(
@@ -248,7 +237,7 @@ const FormRegister:FC = () => {
           <Link to="/login"> LOG IN</Link>
         </p>
       </form>
-      <Btn className="btn-card" onClick={handleGoogleLogin}>
+      <Btn className="btn-card" onClick={loginWithRedirect}>
         Register with Google
       </Btn>
     </FormStyled>
