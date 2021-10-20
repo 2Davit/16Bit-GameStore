@@ -1,7 +1,8 @@
 import styled from "styled-components";
-import { Container } from "../../GlobalStyles/GlobalStyles";
 
-export const ContainerAdmin = styled(Container)`
+export const ContainerAdmin = styled.div`
+  height: 100%;
+  width: 100%;
   display: flex;
   font-family: ${(p) => p.theme.fontAdmin};
 `;

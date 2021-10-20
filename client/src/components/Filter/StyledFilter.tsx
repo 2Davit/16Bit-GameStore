@@ -38,6 +38,7 @@ export const StyledFilter = styled.div`
     flex-direction: column;
     margin-left: 3.8rem;
     justify-content: center;
+    width: 100%;
     @media screen and (max-width: 414px){
       margin: 0;
       width: 100%;
@@ -103,6 +104,60 @@ export const SelectStyled = styled.select`
  
 `;
 
-export const Btn1 = styled.button`
+export const BtnDisabled = styled.button`
+    padding: 0.7em 1.2em;
+    border-radius: 10em;
+    background: #222831;
+    border: none;
+    width: 100%;
+    color: #5f5f5f;
+    &:focus{
+      outline: none;
+    }
 
+    @media screen and (max-width: 414px){
+     width: 100%;
+     margin-left: 3rem;
+     
+  }
+  
+`
+export const BtnRemoveFilter = styled.button`
+    color: #eeeeee;
+    border-radius: 10em;
+    background-color: #911F27;
+    padding: 0.7em 1.2em;
+    border:none;
+    width: 100%;
+    &:hover {
+      background-color: #B3141C;
+    }
+    &:focus{
+    outline: none;
+  }
+  @media screen and (max-width: 414px){
+     width: 100%;
+     margin-left: 3rem;
+     
+  }
+`
+
+export const BtnOnSale = styled.button`
+  color: #eeeeee;
+  border-radius: 10em;
+  background-color: #0a3364;
+  padding: 0.7em 1.2em;
+  border: none;
+  width: 100%;
+  &:hover{
+    background-color: #00a8ff;
+  }
+  &:focus{
+    outline: none;
+  }
+  @media screen and (max-width: 414px){
+     width: 100%;
+     margin-left: 3rem;
+     
+  }
 `

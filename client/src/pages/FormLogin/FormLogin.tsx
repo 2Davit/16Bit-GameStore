@@ -4,7 +4,7 @@ import React, { FC, useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { FormStyled } from "../FormRegister/StyledFormRegister";
-import { StyledLogin } from "./StyledLogin";
+import { StyledLogin, customStyles } from "./StyledLogin";
 import Modal from "react-modal";
 import { Store } from "../../redux/reducer";
 import { openLogin } from "../../redux/actions/global_actions";
@@ -36,33 +36,7 @@ const FormLogin: FC = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const customStyles = {
-    overlay: {
-      position: "fixed",
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0,
-      backgroundColor: "rgba(10, 10, 10, 0.95)",
-      zIndex: "9999",
-    },
-    content: {
-      top: "50%",
-      left: "50%",
-      right: "auto",
-      bottom: "auto",
-      marginRight: "-50%",
-      transform: "translate(-50%, -50%)",
-      border: "2px solid #9b5df7",
-      borderRadius: "10px",
-      boxShadow: "0 0 15px #9b5df7",
-      color: "#F5F4F8",
-      background: "#111",
-      zIndex: "9999",
-      width: "50%",
-      height: "70%",
-    },
-  };
+  
   const afterOpenModal = () => {
     document.body.style.overflow = "hidden";
   };

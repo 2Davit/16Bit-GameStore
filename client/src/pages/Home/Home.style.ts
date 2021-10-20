@@ -30,11 +30,19 @@ export const ContainerCatalog = styled.div`
     grid-template-areas: "filter catalog ."; */
   
 
-  @media screen and (max-width: 700px) {
-    /* grid-template-rows: .5fr auto;
-    grid-template-columns: 100%;
-    grid-template-areas:  'filter' 'catalog'; */
-  }
+`
+export const MobileCatalog = styled.div`
+    /* background: red; */
+    display:none;
+
+    @media screen and (max-width: 414px){
+      width: 100%;
+    height: 60%;
+    margin-top: 2em;
+    display: flex;
+    flex-direction: column;
+    }
+  
 
 `
 export const ContainerPaginate = styled.div`
@@ -44,4 +52,58 @@ export const ContainerPaginate = styled.div`
     align-items: center;
     width: 100%;
     height: 10%;
+`
+
+export const MobilePaginate = styled.div`
+
+display: none;
+
+
+@media screen and (max-width: 414px){
+  display: block;
+  width: 60%;
+  height: 30%;
+  background: var(--clr-primary);
+  margin-top: 3rem;
+  padding: .4rem 2rem;
+  text-align: center;
+  border-radius: 1.5rem;
+
+  }
+`
+export const MobileDisabled = styled.div`
+
+display: none;
+
+
+@media screen and (max-width: 414px){
+  display: block;
+  width: 60%;
+  height: 30%;
+  background: #222831;
+  margin-top: 3rem;
+  padding: .4rem 2rem;
+  text-align: center;
+  border-radius: 1.5rem;
+
+  }
+`
+
+export const ScrollUp = styled.a`
+
+display: none;
+
+
+@media screen and (max-width: 414px){
+  display:block;
+  padding-top: .5rem;
+  width: 40px;
+  height: 40px;
+  background: var(--clr-primary);
+  margin: 3rem auto 0 auto;
+  text-align: center;
+  border-radius: 1.5rem;
+  color:#eeeeee;
+
+  }
 `

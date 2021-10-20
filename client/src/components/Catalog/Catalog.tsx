@@ -1,32 +1,41 @@
-import React, { FC } from "react";
+import  { FC } from "react";
 import { Product } from "../../interfaces";
 import { ProductCard } from "../index";
-import { StyledCatalog } from "./StyledCatalog";
+import { StyledCatalog, MobileCatalog } from "./StyledCatalog";
 import { MarioLoading } from "../index";
-import { useSelector } from "react-redux";
-import { Store } from "../../redux/reducer";
 
-// interface NavBarProps {
-//     currentProducts: any;
-//   }
+
 
 interface Props {
-  currentProducts: any;
+  currentProducts?: any;
+  mobilePerPage?: any;
 
 }
 
-const Catalog: FC<Props> = ({ currentProducts }) => {
+const Catalog: FC<Props> = ({ currentProducts, mobilePerPage }) => {
   return (
-    <StyledCatalog id="catalog">
-      {currentProducts?.length !== 0 ? (
-        currentProducts?.map((product: Product) => (
-          <ProductCard  game={product} key={product.id_product} />
-        ))
-      ) : (
-        <MarioLoading />
-      )}
-    </StyledCatalog>
-  );
+    <>
+      <StyledCatalog id="catalog">
+        {currentProducts?.length !== 0 ? (
+          currentProducts?.map((product: Product) => (
+            <ProductCard game={product} key={product.id_product} />
+          ))
+        ) : (
+          <MarioLoading />
+        )}
+      </StyledCatalog>
+      {/* -------------------------- Abajo esta mobile NO TOCAR!!! ---------------------------------- */}
+
+      <MobileCatalog id="catalog">
+        {mobilePerPage?.length !== 0 ? (
+          mobilePerPage?.map((product: Product) => (
+            <ProductCard game={product} key={product.id_product} />
+          ))
+        ) : (
+          <MarioLoading />
+        )}
+      </MobileCatalog>
+    </>);
 };
 
 export default Catalog;

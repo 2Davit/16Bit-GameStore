@@ -194,13 +194,7 @@ export const Btn = styled.button`
   &.btn-sinstock:focus{
     outline: 3px solid var(--clr-primary);
   }
-  &.btn-disabled{
-    background: #222831;
-    border: none;
-    color: #5f5f5f;
-
-    
-  }
+  
   &.btn-disabled:focus{
     outline: none;
   }
@@ -373,6 +367,8 @@ border-radius: 50%;
     width: 70%;
     height: 70%;
   }
+
+ 
 `
 
 export const OfferImg = styled.img`

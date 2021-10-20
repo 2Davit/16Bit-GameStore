@@ -14,10 +14,7 @@ export const StyledPaginate = styled.div`
     
   }
   @media screen and (max-width: 414px){
-    width: 400px;
-    height: 60px;
-    overflow-x: scroll;
-    display: flex;
+    display: none;
   }
 `;
 

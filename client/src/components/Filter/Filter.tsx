@@ -1,7 +1,6 @@
-import React, { useState, FC } from "react";
+import { useState, FC } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { StyledFilter, SelectStyled } from "./StyledFilter";
-import { Btn1 } from "./StyledFilter";
+import { StyledFilter, SelectStyled, BtnDisabled, BtnRemoveFilter, BtnOnSale } from "./StyledFilter";
 import {
   doubleFilter,
   onSaleFilter,
@@ -59,6 +58,7 @@ const Filter: FC<Props> = ({ setPage }) => {
     (document.getElementById("filterPlatform") as HTMLInputElement).value = "";
     (document.getElementById("filterGenre") as HTMLInputElement).value = "";
     setPage(1);
+    setShow(true)
   };
 
   const filterPlatform: any = document.getElementById("filterPlatform");
@@ -91,25 +91,25 @@ const Filter: FC<Props> = ({ setPage }) => {
       </section>
       <section>
         {show ? (
-          <Btn1 id="btnSale" className="btn-card" onClick={handleOnSaleFilter}>
+          <BtnOnSale id="btnSale" className="btn-card" onClick={handleOnSaleFilter}>
             On Sale
-          </Btn1>
+          </BtnOnSale>
         ) : (
-          <Btn1 className="btn-card" onClick={handleAll}>
+          <BtnOnSale className="btn-card" onClick={handleAll}>
             All
-          </Btn1>
+          </BtnOnSale>
         )}
       </section>
       <section>
         {!(filterPlatform?.value === "") ||
         !(filterGenre?.value === "") ||
         !btnSale ? (
-          <Btn1 className="btn-sec" onClick={handleReset}>
+          <BtnRemoveFilter  className="btn-sec" onClick={handleReset}>
             Remove
-          </Btn1>
-        ) : <Btn1 className="btn-sec, btn-disabled" onClick={handleReset}>
+          </BtnRemoveFilter>
+        ) : <BtnDisabled className="btn-sec, btn-disabled" onClick={handleReset}>
         Remove
-      </Btn1>}
+      </BtnDisabled>}
       </section>
     </StyledFilter>
   );

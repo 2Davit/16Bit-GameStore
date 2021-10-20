@@ -34,7 +34,7 @@ export const StyledProductCard = styled.article`
   }
   .div{
     &:hover{
-      top: 10%;
+      top: 100%;
     }
   }
   /* button {
@@ -89,6 +89,9 @@ export const StyledProductCard = styled.article`
     background: rgba(40, 40, 40, 0.70);
     transition: all 0.35s ease-in-out; 
 
+    @media screen and (max-width: 414px){
+      bottom: 0%;
+    }
   }
 
   .card__title {

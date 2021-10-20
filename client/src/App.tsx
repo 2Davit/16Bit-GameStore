@@ -64,7 +64,10 @@ const App: FC = () => {
     setCurrentPage(pageNum);
     animateScroll.scrollTo(500, { duration: 500 });
   };
+  const [mobilePage, setMobilePage] = useState(12)
   const productsPerPage: number = 12;
+  const mobilePerPage: Array<Product> = totalProducts.slice(0, mobilePage)
+console.log(totalProducts.length)
   let lastIdx: number = currentPage * productsPerPage; // en la primera página, lastIdx = 1 * 9 = 9
   let firstIdx: number = lastIdx - productsPerPage; // en la primera página, firstIdx = 9 - 9 = 0
   let currentProducts: Array<Product> = totalProducts.slice(firstIdx, lastIdx); // en la primera página, currentCharacters = countries.slice(0,9)
@@ -100,6 +103,9 @@ const App: FC = () => {
                 currentProducts={currentProducts}
                 productsPerPage={productsPerPage}
                 pages={pages}
+                mobilePage={mobilePage}
+                setMobilePage={setMobilePage}
+                mobilePerPage={mobilePerPage}
               />
             </Fade>
           </Route>

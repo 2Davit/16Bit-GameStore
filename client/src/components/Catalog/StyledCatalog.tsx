@@ -17,6 +17,14 @@ export const StyledCatalog = styled.div`
     width: 100%;
     justify-content: center;
   }
+  @media screen and (max-width: 415px){
+    display: none;
+    
+  }
+`;
+export const MobileCatalog = styled.div`
+display: none;
+  
   @media screen and (max-width: 414px){
     gap: 2rem;
     width: 100%;
