@@ -36,18 +36,25 @@ export const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
 /* width */
 ::-webkit-scrollbar {
   // display:none;
-  width: 14px;
+  height: 8px;
+  width: 8px;
+  
+  @media screen and (max-width: 414px){
+    height: 2px;
+    width: 2px;
+  }
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #000;
+  background: transparent;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: var(--clr-primary);
-  border-radius: 10px;
+  background: #7e7e7e;
+  border-radius: 1.5rem;
+  
 }
 
 /* Handle on hover */
@@ -100,6 +107,11 @@ export const Container = styled.div`
     min-width: 300px;
     margin-right: auto;
     margin-left: auto;
+
+    @media screen and (max-width: 414px){
+        width: 100%; 
+        
+    }
 `;
 
 // Styled components globales:
@@ -111,6 +123,8 @@ export const Btn = styled.button`
   min-width: 175px;
   letter-spacing: 0.03em;
   height: fit-content;
+
+ 
 
   &.btn-fav{
     background:red ;  

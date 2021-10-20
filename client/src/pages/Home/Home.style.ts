@@ -11,6 +11,12 @@ export const ContainerCarrusel = styled.div`
     width: 100%;
     height: 30%;
     margin-bottom: 5rem;
+
+    @media screen and (max-width: 414px){
+      height: 100%;
+      margin-top: 3rem;
+      margin-bottom: 2rem;
+    }
 `
 export const ContainerCatalog = styled.div`
     /* background: red; */
@@ -33,6 +39,9 @@ export const ContainerCatalog = styled.div`
 `
 export const ContainerPaginate = styled.div`
     /* background: yellow; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     height: 10%;
 `

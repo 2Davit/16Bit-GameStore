@@ -1,5 +1,7 @@
 import { FC } from "react";
-import { ButtonTheme2 } from "./ButtonTheme.style";
+import { ButtonTheme2, IconTheme } from "./ButtonTheme.style";
+
+
 
 interface Props {
   updateTheme(): void;
@@ -11,10 +13,11 @@ const ButtonTheme: FC<Props> = ({ updateTheme, none, theme }) => {
   return (
     <>
       <ButtonTheme2
-        className="fa fa-power-off"
         onClick={() => updateTheme()}
         none={none}
-      ></ButtonTheme2>
+      >
+        <IconTheme/>
+      </ButtonTheme2>
     </>
   );
 };

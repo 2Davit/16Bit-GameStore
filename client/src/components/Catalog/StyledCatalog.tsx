@@ -17,4 +17,13 @@ export const StyledCatalog = styled.div`
     width: 100%;
     justify-content: center;
   }
+  @media screen and (max-width: 414px){
+    gap: 2rem;
+    width: 100%;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    flex-flow: column wrap;
+    
+  }
 `;
