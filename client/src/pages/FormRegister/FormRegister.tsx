@@ -95,7 +95,7 @@ const FormRegister:FC = () => {
       errors.name = "Name is required";
     } else if (input.name.length < 3 || input.name.length > 15) {
       errors.name = "Must be between 3 and 15 characters in length";
-    } else if (!/^[a-zA-Z]+$/.test(input.name)) {
+    } else if (!/^[a-zA-Z- ]+$/.test(input.name)) {
       errors.name = "Name only can contains letters";
     }
 

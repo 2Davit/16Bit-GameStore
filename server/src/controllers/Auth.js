@@ -1,7 +1,6 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const { User, Order, OrderProduct, Product } = require("../db.js");
-
 const { SECRET } = process.env;
 
 const capitalize = (string) => {
@@ -36,7 +35,6 @@ const signUp = async (req, res) => {
   }
 
   // User create
-
   await User.create({
     nickname_user: username.toLowerCase(),
     password_user: bcrypt.hashSync(password, 8),
@@ -154,7 +152,7 @@ const logIn = async (req, res) => {
       },
     ],
   });
-
+  
   if (user && user.is_active === false) {
     return res.status(403).send({ message: "Suspended account" });
   }
@@ -207,7 +205,7 @@ const logIn = async (req, res) => {
   }
 
   const passwordIsValid = bcrypt.compareSync(password, user.password_user);
-
+  
   if (!passwordIsValid) {
     return res.status(401).send({ message: "Wrong password" });
   }
@@ -245,7 +243,7 @@ const setPass = async (req, res) => {
 
   const decoded = jwt.verify(token, SECRET);
   const id = decoded.id;
-
+  
   try {
     await User.update(
       {password_user: bcrypt.hashSync(password, 8)},
@@ -254,7 +252,7 @@ const setPass = async (req, res) => {
       }}
     )
 
-    res.status(200).send('llegó she piola')
+    res.status(200).send('Password successfully updated')
   } catch(err){
     console.log(err);
   }
