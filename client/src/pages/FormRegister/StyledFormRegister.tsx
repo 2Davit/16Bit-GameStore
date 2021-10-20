@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import checkMark from "../../assets/img/svg/checkMark.svg";
 
 export const FormStyled = styled.div`
   display: flex;
@@ -7,6 +8,15 @@ export const FormStyled = styled.div`
   @media (max-width: 1000px) {
     flex-direction: column;
   }
+
+  input.checked {
+    background: url(${checkMark}) no-repeat;
+    background-position: top 50% right 10px;
+    background-size: 25px;
+    background-color: var(--clr-dark);
+    color: var(--clr-white);
+  }
+
   form {
     position: relative;
     left: 2vw;
