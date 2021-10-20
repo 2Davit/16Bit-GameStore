@@ -19,9 +19,11 @@ import cart from "../../assets/img/svg/cart2.svg";
 import heart from "../../assets/img/svg/heart1.svg";
 import userPic from "../../assets/img/svg/user.svg";
 import defaultAvatar from "../../assets/img/avatars/Avatar_9.png";
+
 import alien from "../../assets/1.png"
 import { FaShoppingCart } from 'react-icons/fa'
 import { BsFillHeartFill } from 'react-icons/bs'
+
 
 interface Props {
   setPage(num: number): void;
@@ -69,7 +71,9 @@ const NavBar: FC<Props> = ({ setPage, toggleModal }: any) => {
           <div className="navbar__logo">
             <Link to="/home" onClick={homeOnClick}>
               {/* <Title /> */}
+
               <Img src={alien} />
+
             </Link>
           </div>
           <div className='search'>

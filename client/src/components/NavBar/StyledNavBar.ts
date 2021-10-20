@@ -41,7 +41,7 @@ export const StyledNavBar = styled(Container)`
 
     .search{
       height: 100%;
-      width: 50%;
+      width: 60%;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -54,6 +54,7 @@ export const StyledNavBar = styled(Container)`
       align-items: center;
       width: 20%;
       height: 100%;
+      margin-left: 1rem;
     }
 
     form {

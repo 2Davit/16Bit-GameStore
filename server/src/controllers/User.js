@@ -115,7 +115,7 @@ async function promoteToAdmin(req, res) {
     );
     res.status(200).send("User updated");
   } catch (err) {
-    res.status(404).send('hola');
+    res.status(404).send(err, 'Error');
     console.log(err)
   }
 }

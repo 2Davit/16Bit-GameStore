@@ -1,7 +1,6 @@
-import { FC, useState, useEffect } from "react";
-import { useDispatch } from "react-redux"
+import { FC, useState } from "react";
 import { Order, User } from "../../interfaces";
-import { getUserOrders } from "../../redux/actions/orders_action";
+import axios from 'axios';
 import {
   ContainerNav,
   ContainerMainContent,
@@ -24,6 +23,7 @@ import {
   TitleOrder,
   OrderSelect,
   NavBtn,
+  InfoSelect
 } from "./SalesContent.style";
 
 interface Props {
@@ -31,12 +31,14 @@ interface Props {
   totalUsers: Array<User>;
 }
 
+
 const SalesContent: FC<Props> = ({ totalOrders, totalUsers }) => {
-  const dispatch = useDispatch();
+
   const [page, setPage] = useState<number>(0); //iria de 10 en 10 ejm : 0-10,20,30
   const [page2, setPage2] = useState<number>(10); //19
   const [btnNext, setBtnNext] = useState<boolean>(false);
   const [btnPrev, setBtnPrev] = useState<boolean>(false);
+
 
   let orderOldest = totalOrders.sort(function (a, b) {
     return a.id_order - b.id_order;
@@ -54,6 +56,10 @@ const SalesContent: FC<Props> = ({ totalOrders, totalUsers }) => {
     } else if (e.target.value === "pending") {
       setOrderSearch(
         totalOrders.filter((orders) => orders.status === "pending")
+      );
+    } else if (e.target.value === "delivered") {
+      setOrderSearch(
+        totalOrders.filter((orders) => orders.status === "delivered")
       );
     } else if (e.target.value === "cancelled") {
       setOrderSearch(
@@ -100,7 +106,7 @@ const SalesContent: FC<Props> = ({ totalOrders, totalUsers }) => {
 
   const searchOrder = (e: any) => {
     let search = e.target.value.toLowerCase();
-    
+
     if (search === "") {
       setOrderSearch(totalOrders);
       setBtnNext(false);
@@ -110,31 +116,37 @@ const SalesContent: FC<Props> = ({ totalOrders, totalUsers }) => {
       let newArray = totalOrders.filter((user: any) => {
         return user.nickname_user.toLowerCase().includes(search);
       });
-     
+
       setPage(0);
       setPage2(10);
       setOrderSearch(newArray);
     }
   };
- 
-  console.log(orderSearch)
-  
-  
+
+  const handleSelectStatus = async (e: any) => {
+    axios.put(`/order/${e.target.name}/${e.target.value}`)
+  }
+
+
+
+
 
   return (
     <ContainerMainContent>
       <ContainerNav>
         <Searchbar    >
-          <Search placeholder=" Search orders..."   onChange={searchOrder}  />
-           
+          <Search placeholder=" Search orders..." onChange={searchOrder} />
+
         </Searchbar>
         <AddBtns>
           <OrderSelect onClick={(e) => handleSelect(e)}>
             <option value="">Order Status</option>
-            <option value="fulfilled">Fulfilled</option>
             <option value="pending">Pending</option>
-            <option value="cart">Cart</option>
+            <option value="fulfilled">Fulfilled</option>
+            <option value="delivered">Delivered</option>
             <option value="cancelled">Cancelled</option>
+            <option value="cart">Cart</option>
+
           </OrderSelect>
           {btnStatus ? (
             <NavBtn onClick={() => handleOldest()}>Older Sales</NavBtn>
@@ -179,7 +191,14 @@ const SalesContent: FC<Props> = ({ totalOrders, totalUsers }) => {
               style={{ color: "black" }}
             >
               <InfoOrder>{o.id_order}</InfoOrder>
-              <InfoOrder>{o.status}</InfoOrder>
+              <InfoSelect name={o.id_order} onClick={(e) => handleSelectStatus(e)}>
+                <option value="pending">Pending</option>
+                <option value="fulfilled">Fulfilled</option>
+                <option value="delivered">Delivered</option>
+                <option value="cancelled">Cancelled</option>
+
+              </InfoSelect>
+              {/* <InfoOrder></InfoOrder> */}
               <InfoOrder>{o.nickname_user}</InfoOrder>
               <InfoOrder>{o.address}</InfoOrder>
               <InfoOrder>{o.amount}</InfoOrder>
