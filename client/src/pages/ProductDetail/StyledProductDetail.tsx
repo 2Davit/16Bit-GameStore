@@ -152,6 +152,7 @@ export const GameDetail = styled.section`
       line-height: 1.5;
       margin-top: 2em;
       font-size: 0.7em;
+      text-align: justify;
     }
 
     .game__quantity {
@@ -160,6 +161,10 @@ export const GameDetail = styled.section`
       span:first-child {
         margin-right: 1em;
       }
+
+      @media screen and (max-width: 414px){
+      margin: 2em auto 2em auto;
+    }
     }
 
     .game__quantityvalue {

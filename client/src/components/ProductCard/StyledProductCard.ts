@@ -32,11 +32,7 @@ export const StyledProductCard = styled.article`
     background: rgba(40, 40, 40, 0.70);
       
   }
-  .div{
-    &:hover{
-      top: 100%;
-    }
-  }
+  
   /* button {
     bottom: 0;
     font-size: 0.9em;
@@ -79,13 +75,13 @@ export const StyledProductCard = styled.article`
 
   .card__content {
     padding: 0.5em 1em;
-    height: 30%;
+    height: 40%;
     position: absolute;
     width:100%;
     bottom: -10%;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+
     background: rgba(40, 40, 40, 0.70);
     transition: all 0.35s ease-in-out; 
 
@@ -93,16 +89,19 @@ export const StyledProductCard = styled.article`
       bottom: 0%;
     }
   }
+  
 
   .card__title {
-    font-size: 1.4em;
-    font-weight: bold;
+    font-size: 1.2em;
     color: #eeeeee;
+    line-height: 20px;
   }
 
   .card__price {
-    font-size: 1.4em;
+    font-size: 1.2em;
     color: #eeeeee;
+    width: 20%;
+    margin: 20px 0 0 0;
   }
 
   /* .card__price::before {
@@ -129,6 +128,18 @@ export const StyledProductCard = styled.article`
   } */
 
 `;
+export const DivBtn = styled.div`
+  width: 90%;
+  display: flex;
+  justify-content: flex-end;
+  z-index: 999;
+  position: absolute;
+  bottom: -15px !important;
+  margin-bottom: 1rem !important;
+  margin-top: 0 !important;
+
+
+`
 
 export const MiniCard = styled.article`
   position: relative;
@@ -203,13 +214,41 @@ export const MiniCard = styled.article`
   }
 `;
 
-export const DivBtn = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-  
-  
-  z-index: 999;
 
-  
+export const PriceGenreCont = styled.div`
+display: flex;
+width: 100%;
+align-items: center;
+margin-top: 1rem;
+
+`
+export const GenresContainer = styled.div`
+width:100%;
+display: flex;
+justify-content: flex-end;
+`
+export const Genres = styled.h5`
+background: #0a3364;
+width: 40%;
+height:100%;
+margin: 0  0 0 .3rem;
+text-align: center;
+align-items: flex-end;
+padding: .3rem;
+border-radius: 10px;
+
+`
+export const Price = styled.h4`
+background: #3fa91e;
+width: 25%;
+height:100%;
+margin-bottom: 0;
+text-align: center;
+border-top-right-radius: 10px;
+border-bottom-right-radius: 10px;
+margin-left: -1rem;
+display:flex;
+align-items: center;
+justify-content: center;
+
 `

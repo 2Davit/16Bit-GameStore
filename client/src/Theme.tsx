@@ -16,7 +16,7 @@ const themes = {
       " linear-gradient(174deg, rgba(222,2,2,1) 0%, rgba(255,222,0,1) 95%)",
     bgBorder: "#ffde00",
     color: "#fff",
-    font: `'Raleway', cursive`,
+    font: `'Poppins', sans-serif`,
     fontAdmin: `'Raleway', cursive`,
   },
   retro: {

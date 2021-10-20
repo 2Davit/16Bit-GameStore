@@ -100,7 +100,7 @@ display: none;
   width: 40px;
   height: 40px;
   background: var(--clr-primary);
-  margin: 3rem auto 0 auto;
+  margin: 3rem auto 1rem auto;
   text-align: center;
   border-radius: 1.5rem;
   color:#eeeeee;

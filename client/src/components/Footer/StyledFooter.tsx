@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const StyledFooter = styled.footer`
-  background: linear-gradient(180deg, transparent, #0266c8);
+  background: linear-gradient(0deg, transparent, #0a3364);
   padding: 3em 0;
   text-align: center;
   width: 100vw;
@@ -22,13 +22,7 @@ const StyledFooter = styled.footer`
     margin: 1rem 0;
     list-style: none;
 
-    &::before {
-      content: "";
-      width: 105vw;
-      border-top: 1px solid #222831;
-      position: absolute;
-      top: -2rem;
-    }
+
 
     li {
       margin: 0 2em;
@@ -46,7 +40,7 @@ const StyledFooter = styled.footer`
 
   p {
     max-width: 60%;
-    margin: 2.5em auto;
+    margin: auto;
     padding-top: 2em;
     font-size: 0.8em;
     line-height: 2;
@@ -72,7 +66,6 @@ const StyledFooter = styled.footer`
   .navbar__bottom {
     position: relative;
     left: -1.5em;
-    margin-top: 2em;
     width: 100vw;
   }
 

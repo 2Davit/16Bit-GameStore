@@ -64,7 +64,7 @@ const Filter: FC<Props> = ({ setPage }) => {
   const filterPlatform: any = document.getElementById("filterPlatform");
   const filterGenre: any = document.getElementById("filterGenre");
   const btnSale: any = document.getElementById("btnSale");
-
+  
   return (
     <StyledFilter>
       
@@ -91,11 +91,11 @@ const Filter: FC<Props> = ({ setPage }) => {
       </section>
       <section>
         {show ? (
-          <BtnOnSale id="btnSale" className="btn-card" onClick={handleOnSaleFilter}>
+          <BtnOnSale  onClick={handleOnSaleFilter}>
             On Sale
           </BtnOnSale>
         ) : (
-          <BtnOnSale className="btn-card" onClick={handleAll}>
+          <BtnOnSale  onClick={handleAll}>
             All
           </BtnOnSale>
         )}
@@ -104,10 +104,10 @@ const Filter: FC<Props> = ({ setPage }) => {
         {!(filterPlatform?.value === "") ||
         !(filterGenre?.value === "") ||
         !btnSale ? (
-          <BtnRemoveFilter  className="btn-sec" onClick={handleReset}>
+          <BtnRemoveFilter   onClick={handleReset}>
             Remove
           </BtnRemoveFilter>
-        ) : <BtnDisabled className="btn-sec, btn-disabled" onClick={handleReset}>
+        ) : <BtnDisabled  onClick={handleReset}>
         Remove
       </BtnDisabled>}
       </section>
