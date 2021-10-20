@@ -116,14 +116,14 @@ export const Container = styled.div`
 
 // Styled components globales:
 export const Btn = styled.button`
-  font-weight: 900;
+  font-weight: bold;
   border-radius: 10em;
   padding: 0.7em 1.2em;
   transition: transform 25ms ease, box-shadow 25ms ease;
   min-width: 175px;
   letter-spacing: 0.03em;
   height: fit-content;
-
+  font-size: ${p => p.theme.fontSize};
  
 
   &.btn-fav{

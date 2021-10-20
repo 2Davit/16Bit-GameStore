@@ -17,7 +17,9 @@ export const StyledNavBar = styled(Container)`
 
   display: flex;
   justify-content: center;
-
+  span{
+      font-size: ${p => p.theme.fontSize};
+    }
   
   a {
     text-decoration: none;
@@ -236,6 +238,10 @@ export const NavbarResponsive = styled.div`
     align-items: center;
     justify-content: center;
     margin: 0 !important;
+
+    span{
+      font-size: ${p => p.theme.fontSize};
+    }
 
     .navbar__options {
       /* background: red; */
