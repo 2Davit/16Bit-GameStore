@@ -22,7 +22,7 @@ const UserOrders = () => {
 
   useEffect(() => {
     dispatch(getUserOrders(user.id));
-  }, [dispatch]);
+  }, [dispatch, user.id]);
 
   return (
     <Fade>
