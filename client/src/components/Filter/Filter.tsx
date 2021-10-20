@@ -1,7 +1,7 @@
 import React, { useState, FC } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { StyledFilter, SelectStyled } from "./StyledFilter";
-import { Btn } from "../../GlobalStyles/GlobalStyles";
+import { Btn1 } from "./StyledFilter";
 import {
   doubleFilter,
   onSaleFilter,
@@ -91,25 +91,25 @@ const Filter: FC<Props> = ({ setPage }) => {
       </section>
       <section>
         {show ? (
-          <Btn id="btnSale" className="btn-card" onClick={handleOnSaleFilter}>
+          <Btn1 id="btnSale" className="btn-card" onClick={handleOnSaleFilter}>
             On Sale
-          </Btn>
+          </Btn1>
         ) : (
-          <Btn className="btn-card" onClick={handleAll}>
+          <Btn1 className="btn-card" onClick={handleAll}>
             All
-          </Btn>
+          </Btn1>
         )}
       </section>
       <section>
         {!(filterPlatform?.value === "") ||
         !(filterGenre?.value === "") ||
         !btnSale ? (
-          <Btn className="btn-sec" onClick={handleReset}>
+          <Btn1 className="btn-sec" onClick={handleReset}>
             Remove
-          </Btn>
-        ) : <Btn className="btn-sec, btn-disabled" onClick={handleReset}>
+          </Btn1>
+        ) : <Btn1 className="btn-sec, btn-disabled" onClick={handleReset}>
         Remove
-      </Btn>}
+      </Btn1>}
       </section>
     </StyledFilter>
   );

@@ -17,13 +17,32 @@ export const StyledFilter = styled.div`
   border-bottom-right-radius: 99px;
   border-bottom-left-radius: 10px;
   border-top-right-radius: 10px;
+  @media screen and (max-width: 414px){
+  
+    gap: 0;
+    margin: 0;
+    padding: 0;
+    
+    width: 100%;
+    height: 50px;
+    overflow-x: scroll;
+    grid-template-columns: repeat(4, 50%);
 
+    &::-webkit-scrollbar:vertical{
+      width: 50px !important;
+    }
+  }
   section{
     
     display: flex;
     flex-direction: column;
     margin-left: 3.8rem;
     justify-content: center;
+    @media screen and (max-width: 414px){
+      margin: 0;
+      width: 100%;
+      margin-left: 220px;
+    }
   }
   h5 {
     width: 100%;
@@ -78,6 +97,12 @@ export const SelectStyled = styled.select`
     
   }
 
-
+  @media screen and (max-width: 414px){
+    /* width: 100% */
+  }
  
 `;
+
+export const Btn1 = styled.button`
+
+`

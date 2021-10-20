@@ -2,11 +2,17 @@ import styled from "styled-components";
 
 export const StyledCarousel = styled.div`
 
+  
+
   .embla {
     position: relative;
     margin-top: 2em;
     height: 300px;
     margin-bottom: 5em;
+    @media screen and (max-width: 414px){
+    margin-bottom: 2em;
+      
+    }
   }
 
   .embla__viewport {
@@ -58,6 +64,8 @@ export const StyledCarousel = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    
+
 
     
 
@@ -184,7 +192,7 @@ export const StyledCarousel = styled.div`
   }
 
   .embla__slide__img {
-    position: absolute;
+    position: absolute; 
     display: block;
     top: 50%;
     left: 50%;

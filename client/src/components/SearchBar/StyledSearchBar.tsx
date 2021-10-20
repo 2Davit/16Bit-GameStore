@@ -59,4 +59,8 @@ export const SearchResults = styled.div`
   position: absolute;
   top: 5.5%;
   z-index: 90;
+  @media screen and (max-width: 414px){
+    top: 7.2%;
+    width: 50%;
+  }
 `;
