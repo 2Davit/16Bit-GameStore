@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const StyledCarousel = styled.div`
 
-  
+font-size: ${p => p.theme.fontSize};
 
   .embla {
     position: relative;
@@ -64,7 +64,7 @@ export const StyledCarousel = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    
+
 
 
     
@@ -120,35 +120,39 @@ export const StyledCarousel = styled.div`
 		  }
       }
 
-      @media (max-width: 1000px) {
+      
         font-size: 0.7em;
         height: 100%;
         flex-direction: column;
         padding: 2em;
 
         .slide__details__top {
+          display: flex;
+          justify-content: center;
+          align-items: center;
           text-align: center;
-          max-width: 100%;
+          /* max-width: 100%; */
           width: 100%;
+          height: auto;
+          background: rgba(0,168,255,0.4500175070028011);
+          border-top-left-radius: 99px;
+          border-bottom-right-radius: 99px;
+          border-bottom-left-radius: 10px;
+          border-top-right-radius: 10px;
+          margin: 0 auto;
+          padding: .5rem;
         }
 
         .slide__details__bot {
-          margin-top: 25%;
-
-		  
+          margin-top: 25%;	  
         }
 		
-      }
+      
 
       .slide__title {
-        text-shadow: 5px 5px 0px var(--clr-primary-2),
-          0 0 20px rgba(0, 0, 0, 0.5);
-        transition: text-shadow 0.15s ease-in-out, transform 0.15s ease-in-out;
-
-        &:hover {
-          transform: translate(3px, 3px);
-          text-shadow: 2px 2px 0px var(--clr-secondary),
-            0 0 20px rgba(0, 0, 0, 0.5);
+        font-size: ${p => p.theme.fontSizeTitle};
+        @media screen and (max-width: 414px){
+          font-size: ${p => p.theme.fontSize};
         }
       }
 

@@ -118,7 +118,7 @@ export const BtnDisabled = styled.button`
     @media screen and (max-width: 414px){
      width: 100%;
      margin-left: 3rem;
-     
+     font-size: ${p => p.theme.fontSize};
   }
   
 `
@@ -138,7 +138,7 @@ export const BtnRemoveFilter = styled.button`
   @media screen and (max-width: 414px){
      width: 100%;
      margin-left: 3rem;
-     
+     font-size: ${p => p.theme.fontSize};
   }
 `
 
@@ -158,6 +158,6 @@ export const BtnOnSale = styled.button`
   @media screen and (max-width: 414px){
      width: 100%;
      margin-left: 3rem;
-     
+     font-size: ${p => p.theme.fontSize};
   }
 `

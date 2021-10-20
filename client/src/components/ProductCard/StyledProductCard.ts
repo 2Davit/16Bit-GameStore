@@ -12,7 +12,7 @@ export const StyledProductCard = styled.article`
   height: 400px;
   /* margin-right: 4.5em; */
   /* margin-top: 2em; */
-  
+  font-size: ${p => p.theme.fontSize};
 
    &:hover {
     transform: scale(1.05);

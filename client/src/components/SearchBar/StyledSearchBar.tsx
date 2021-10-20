@@ -39,7 +39,7 @@ export const FormSearchBar = styled.form`
   input {
     background: transparent;
     border: none;
-    font-size: 12px;
+    font-size: ${p => p.theme.fontSize};
     padding: 0.7em 1em;
     width: 90%;
   }
