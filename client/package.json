@@ -28,6 +28,7 @@
     "react-icons": "^4.2.0",
     "react-inlinesvg": "^2.3.0",
     "react-modal": "^3.14.3",
+    "react-motion": "^0.5.2",
     "react-rating": "^2.0.5",
     "react-rating-stars-component": "^2.2.0",
     "react-redux": "^7.2.5",

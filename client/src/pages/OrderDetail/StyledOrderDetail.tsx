@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import SVG from "react-inlinesvg";
 
-
 export const StepOne = styled.div`
   display: flex;
   width: 80%;
@@ -24,8 +23,15 @@ export const StepOne = styled.div`
     position: sticky;
 
     h3 {
-      margin-bottom: 3.5em;
+      /* margin-bottom: 3.5em; */
       text-align: center;
+    }
+
+    .coupon {
+      flex-direction: column;
+      button {
+        margin-bottom: 2em;
+      }
     }
 
     .aside__total,
@@ -78,7 +84,6 @@ export const StepOne = styled.div`
   }
 `;
 
-
 export const StepTwo = styled.div`
   display: flex;
   flex-direction: column;
@@ -127,7 +132,6 @@ export const StepTwo = styled.div`
   }
 `;
 
-
 export const StepThree = styled.div`
   display: flex;
   flex-direction: column;
@@ -150,6 +154,27 @@ export const StepThree = styled.div`
     width: 15em;
     height: 15em;
     margin: 2em auto 2em;
+  }
+`;
+
+export const GameClose = styled.button`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: none;
+  width: 25px;
+  height: 25px;
+  background: transparent;
+
+  svg {
+    fill: var(--clr-primary);
+    transition: fill 0.2s ease-in-out;
+    width: 25px;
+    height: 25px;
+  }
+
+  &:hover svg {
+    fill: var(--clr-primary-2);
   }
 `;
 
