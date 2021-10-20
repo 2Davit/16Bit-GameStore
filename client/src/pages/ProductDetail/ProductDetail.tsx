@@ -1,23 +1,26 @@
 import React, { FC, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
+import axios from "axios";
+//Redux
 import {
   getProductDetail,
   resetDetail,
 } from "../../redux/actions/products_action";
+import { addItemCart } from "../../redux/actions/cart_actions";
+import { addFavorites } from "../../redux/actions/favorite_actions";
 import { Store } from "../../redux/reducer/";
+//Estilos
 import { GameDetail, StyledSVG } from "./StyledProductDetail";
 import { Btn, QuantityButton } from "../../GlobalStyles/GlobalStyles";
+import { toast } from "react-toastify";
+//images
 import cart from "../../assets/img/svg/cart.svg";
 import joystick from "../../assets/img/svg/joystick.svg";
 import mercadopagoimg from "../../assets/img/mercadopagoimg.webp";
-
-import { addItemCart } from "../../redux/actions/cart_actions";
-import { toast } from "react-toastify";
-import { ProductInCart } from "../../interfaces";
-import { addFavorites } from "../../redux/actions/favorite_actions";
 import heart from "../../assets/img/svg/heart1.svg";
-import axios from "axios";
+//Interfaces
+import { ProductInCart } from "../../interfaces";
 
 interface Props {
   id: string;

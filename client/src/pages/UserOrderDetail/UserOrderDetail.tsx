@@ -18,13 +18,12 @@ interface OrderDetail {
   orderProduct: Array<any>;
   id_order: number;
 }
-interface InputReview {
-  score: number;
-  description: string;
-}
+// interface InputReview {
+//   score: number;
+//   description: string;
+// }
 
 function UserOrderDetail() {
-  
   const history = useHistory();
   const { idOrder, idUser } = useParams<Props>();
   const [orderDetail, setOrderDetail] = useState<OrderDetail>({
@@ -37,17 +36,16 @@ function UserOrderDetail() {
   });
 
   const [userReview, setUserReview] = useState<Array<any>>([]);
-  const [input, setInput] = useState<InputReview>({
-    score: 0,
-    description: "",
-  });
+  // const [input, setInput] = useState<InputReview>({
+  //   score: 0,
+  //   description: "",
+  // });
 
-  
   const user = JSON.parse(localStorage.getItem("userData")!);
   useEffect(() => {
     async function getUserReviews(idUser: string) {
       let userReviews = await axios.get(`/videogames/review/0/${idUser}`);
-      setUserReview(userReviews.data)
+      setUserReview(userReviews.data);
       return userReviews.data;
     }
 
@@ -59,10 +57,9 @@ function UserOrderDetail() {
     }
     getOrderDetail(idOrder);
     getUserReviews(idUser);
-  }, [idOrder, idUser])
-  
-  
- /*  function handleChange(e: React.FormEvent<HTMLInputElement>) {
+  }, [idOrder, idUser]);
+
+  /*  function handleChange(e: React.FormEvent<HTMLInputElement>) {
     setInput({
       ...input,
       [e.currentTarget.name]: e.currentTarget.value,
@@ -119,56 +116,61 @@ function UserOrderDetail() {
                 </tr>
               </thead>
               <tbody>
-              
-                {orderDetail?.status_order === 'fulfilled' ?
-                  orderDetail.orderProduct.map((index) => {
-
-                    
-                    return (
-                      <tr key={index.id}>
-                        <td data-label="Name">{index.product.name_product}</td>
-                        <td data-label="Quantity">{index.quantity}</td>
-                        <td data-label="Unit Price">
-                          ${index.product.price_product}
-                        </td>
-                        <td data-label="Total Price">
-                          ${index.quantity * index.product.price_product}
-                        </td>
-                        <td>
-                          <Link to={`/review/${user.id}/${index.product.id_product}`}>
-                            <button className="btn__leaveReview">
-                            {!userReview.find((r: any) => r.productIdProduct === index.product.id_product) ? 'Leave a review 🖋' : 'Check your review 🔍'}
-                            </button>
-                          </Link>
-                        </td>
-                      </tr>
-                    );
-                  })
-                  :
-                  orderDetail.orderProduct.map((index) => {
-
-                    
-                    return (
-                      <tr key={index.id}>
-                        <td data-label="Name">{index.product.name_product}</td>
-                        <td data-label="Quantity">{index.quantity}</td>
-                        <td data-label="Unit Price">
-                          ${index.product.price_product}
-                        </td>
-                        <td data-label="Total Price">
-                          ${index.quantity * index.product.price_product}
-                        </td>
-                        <td>
-                          <Link to={`/game/${index.product.id_product}`}>
-                            <button className="btn__leaveReview">
+                {orderDetail?.status_order === "fulfilled"
+                  ? orderDetail.orderProduct.map((index) => {
+                      return (
+                        <tr key={index.id}>
+                          <td data-label="Name">
+                            {index.product.name_product}
+                          </td>
+                          <td data-label="Quantity">{index.quantity}</td>
+                          <td data-label="Unit Price">
+                            ${index.product.price_product}
+                          </td>
+                          <td data-label="Total Price">
+                            ${index.quantity * index.product.price_product}
+                          </td>
+                          <td>
+                            <Link
+                              to={`/review/${user.id}/${index.product.id_product}`}
+                            >
+                              <button className="btn__leaveReview">
+                                {!userReview.find(
+                                  (r: any) =>
+                                    r.productIdProduct ===
+                                    index.product.id_product
+                                )
+                                  ? "Leave a review 🖋"
+                                  : "Check your review 🔍"}
+                              </button>
+                            </Link>
+                          </td>
+                        </tr>
+                      );
+                    })
+                  : orderDetail.orderProduct.map((index) => {
+                      return (
+                        <tr key={index.id}>
+                          <td data-label="Name">
+                            {index.product.name_product}
+                          </td>
+                          <td data-label="Quantity">{index.quantity}</td>
+                          <td data-label="Unit Price">
+                            ${index.product.price_product}
+                          </td>
+                          <td data-label="Total Price">
+                            ${index.quantity * index.product.price_product}
+                          </td>
+                          <td>
+                            <Link to={`/game/${index.product.id_product}`}>
+                              <button className="btn__leaveReview">
                                 Product detail
-                            </button>
-                          </Link>
-                        </td>
-                      </tr>
-                    );
-                  })
-                }
+                              </button>
+                            </Link>
+                          </td>
+                        </tr>
+                      );
+                    })}
               </tbody>
               <tfoot>
                 <tr>
