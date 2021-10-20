@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import axios from "axios";
 import { ProductInCart } from "../../interfaces";
-import { useHistory } from "react-router";
+
 import { useAuth0 } from "@auth0/auth0-react";
 
 const LogOut: FC = () => {
@@ -25,7 +25,7 @@ const LogOut: FC = () => {
     })),
   };
 
-  const history = useHistory();
+  
 
   function handleClick() {
     if (order.amount_order > 0) {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getAllFavorites,
@@ -18,7 +18,7 @@ const Favorites = () => {
 
   useEffect(() => {
     dispatch(getAllFavorites({ idUser: idUser.id }));
-  }, []);
+  }, [dispatch, idUser.id]);
 
   const favProducts = useSelector(
     (state: Store) => state.favoriteReducer.favorites

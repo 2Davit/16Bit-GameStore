@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { StyledOrderDetail } from "../UserPage/StyledUserPage";
@@ -25,7 +24,7 @@ interface InputReview {
 }
 
 function UserOrderDetail() {
-  const dispatch = useDispatch();
+  
   const history = useHistory();
   const { idOrder, idUser } = useParams<Props>();
   const [orderDetail, setOrderDetail] = useState<OrderDetail>({
@@ -63,7 +62,7 @@ function UserOrderDetail() {
   }, [idOrder, idUser])
   
   
-  function handleChange(e: React.FormEvent<HTMLInputElement>) {
+ /*  function handleChange(e: React.FormEvent<HTMLInputElement>) {
     setInput({
       ...input,
       [e.currentTarget.name]: e.currentTarget.value,
@@ -81,8 +80,8 @@ function UserOrderDetail() {
     } catch {
       alert("Ya dejaste una review");
     }
-  }
-  console.log(userReview);
+  } */
+
   return (
     <Fade>
       <StyledOrderDetail>

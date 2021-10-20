@@ -1,6 +1,6 @@
 import styled, { createGlobalStyle } from "styled-components";
 import SVG from "react-inlinesvg";
-import backGabo from '../assets/img/back.jpeg'
+
 
 interface DefaultTheme {
   bg: any;

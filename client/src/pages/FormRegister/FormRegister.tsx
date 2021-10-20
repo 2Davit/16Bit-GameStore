@@ -21,7 +21,7 @@ interface FormValues {
   address: string;
 }
 
-const FormRegister = () => {
+const FormRegister:FC = () => {
   const [isUser, setIsUser] = useState<boolean>(false);
   const [input, setInput] = useState<FormValues>({
     username: "",
@@ -66,7 +66,7 @@ const FormRegister = () => {
 
     if (!input.password) errors.password = "Password is required";
     if (!/[0-9]/.test(input.password))
-      errors.password = "Must contain a number" + " (0-9)";
+      errors.password = "Must contain a number (0-9)";
     if (input.password.length < 6 || input.password.length > 15)
       errors.password = "Must be between 6 and 15 characters in length";
 
@@ -77,7 +77,7 @@ const FormRegister = () => {
     } else if (input.confirmPassword !== input.password) {
       errors.confirmPassword = "Wrong password";
     } else if (!/[0-9]/.test(input.confirmPassword)) {
-      errors.confirmPassword = "Must contain a number" + " (0-9)";
+      errors.confirmPassword = "Must contain a number (0-9)";
     } else if (input.password.length < 6 || input.password.length > 15) {
       errors.confirmPassword = "Must be between 6 and 15 characters in length";
     }

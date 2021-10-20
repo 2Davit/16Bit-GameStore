@@ -3,7 +3,7 @@ import { User } from "../../interfaces";
 import { LOGIN, USER_ROLE } from "../types";
 import { Dispatch } from "react";
 import Swal from "sweetalert2";
-import { Redirect, useHistory } from "react-router";
+
 
 interface loginProps {
   type: string;

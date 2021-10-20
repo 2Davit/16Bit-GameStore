@@ -11,7 +11,7 @@ import { Btn, QuantityButton } from "../../GlobalStyles/GlobalStyles";
 import cart from "../../assets/img/svg/cart.svg";
 import joystick from "../../assets/img/svg/joystick.svg";
 import mercadopagoimg from "../../assets/img/mercadopagoimg.webp";
-import fivestars from "../../assets/img/fivestars.png";
+
 import { addItemCart } from "../../redux/actions/cart_actions";
 import { toast } from "react-toastify";
 import { ProductInCart } from "../../interfaces";

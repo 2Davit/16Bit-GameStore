@@ -30,7 +30,7 @@ const Step3 = () => {
   useEffect(() => {
     dispatch(sendMail(user.data.email, user.data.username, 'purchase', info));
     dispatch(clearCart());
-  }, [dispatch]);
+  }, [dispatch, info, user.data.email, user.data.username ]);
 
 
   return (

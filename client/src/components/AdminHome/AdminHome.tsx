@@ -33,9 +33,9 @@ interface Props {
 }
 
 const AdminHome: FC<Props> = ({ totalOrders, totalUsers, totalProducts, totalSalesData }) => {
-  const listUsers = totalUsers.filter(
+ /*  const listUsers = totalUsers.filter(
     (user) => user.id_user > totalUsers.length - 10
-  );
+  ); */
 
   
   const ordered = totalUsers.sort(function (a, b) {

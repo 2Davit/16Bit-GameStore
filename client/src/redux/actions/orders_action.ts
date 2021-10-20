@@ -15,7 +15,7 @@ export const getUserOrders = (payload: number | any) => {
         payload: orders.data,
         
       });
-      console.log(payload)
+    
     });
   };
 };

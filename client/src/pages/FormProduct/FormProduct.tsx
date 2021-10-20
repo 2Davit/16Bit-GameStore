@@ -18,7 +18,6 @@ import {
   FormErrors,
   FormSelect,
   FormTextarea,
-  FormInputImg,
   FormOpt,
   BtnAdd,
   BtnSubmit,
@@ -54,7 +53,7 @@ const FormProduct: FC = () => {
     genres: [],
     platforms: [],
   });
-  // console.log(input)
+  
 
   //quitamos Nav
   useEffect(() => {
@@ -184,7 +183,7 @@ const FormProduct: FC = () => {
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    // console.log(input)
+    
     if (
       input.name_product === "" ||
       input.price_product === 0 ||

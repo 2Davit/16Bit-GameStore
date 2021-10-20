@@ -3,7 +3,7 @@ import { Link, useHistory } from "react-router-dom";
 //Componentes
 import { SearchBar } from "../index";
 import { LogOut } from "../index";
-import { Title } from "../index";
+
 //Redux
 import { getAllProducts } from "../../redux/actions/products_action";
 import { Store } from "../../redux/reducer";
@@ -43,9 +43,9 @@ const NavBar: FC<Props> = ({ setPage, toggleModal }: any) => {
     dispatch(openLogin(true));
   };
 
-  const cartNumber: any = useSelector(
+  /* const cartNumber: any = useSelector(
     (state: Store) => state.cartReducer.cart.list
-  );
+  ); */
 
   const isAdmin = useSelector((state: Store) => state.authReducer.role.admin);
 

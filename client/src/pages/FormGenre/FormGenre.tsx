@@ -47,7 +47,7 @@ const FormGenre: FC = () => {
   }
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    // console.log(input)
+    
     if (input.genre === "") {
       e.preventDefault();
       alert("Please complete the required field");
@@ -57,7 +57,7 @@ const FormGenre: FC = () => {
       setInput({
         genre: "",
       });
-      // history.push('/home');
+      
     }
   }
 

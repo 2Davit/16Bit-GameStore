@@ -1,4 +1,4 @@
-import { FC, useState, useEffect } from "react";
+import { FC, useState } from "react";
 import { AdminProduct } from "../../interfaces/index";
 import PanelCatalog from "../PanelCatalog/PanelCatalog";
 import { ContainerMainContent, ContainerNav, Searchbar, AddBtns, AddBtn, Search, ContainerCards, IconNext, IconPrev, IconContainer, BtnPaged1, BtnPaged2, ContainerNotExist, H2 } from "./ProductContent.style"
@@ -14,12 +14,9 @@ const MainContent: FC<Props> = ({ totalProducts }) => {
   const [btnPrev, setBtnPrev] = useState<boolean>(false)
   const [productSearch, setProductSearch] = useState(totalProducts.renderingProducts);
   let onViewProducts = productSearch.slice(page, page2)
-  console.log(productSearch)
+ 
 
-  useEffect(() => {
-   /*  console.log('useEffect acaaaaaaa',productSearch) */
-  },[productSearch])
-
+ 
 
 
   const handleNextPage = () => {
