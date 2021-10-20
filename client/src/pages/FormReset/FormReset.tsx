@@ -1,4 +1,3 @@
-
 import React, { FC, useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -10,7 +9,7 @@ import { openLogin } from "../../redux/actions/global_actions";
 import { StyledSVG, Btn } from "../../GlobalStyles/GlobalStyles";
 import CloseButton from "../../assets/img/svg/close-filled-purple.svg";
 import { animateScroll } from "react-scroll";
-
+import Swal from 'sweetalert2';
 import axios from "axios";
 import { useParams } from 'react-router-dom';
 
@@ -32,6 +31,36 @@ const FormReset: FC = () => {
     password: "",
     newPassword: "",
   });
+
+  const [errors, setErrors] = useState<Password>({
+    password: "",
+    newPassword: ""
+  });
+
+  const validate = (input: Password) => {
+    let errors: Password = {
+      password: "",
+      newPassword: "",
+    };
+    /* -------- PASSWORD ---------- */
+
+    if (!input.newPassword) errors.newPassword = "new password is required";
+    if (!/[0-9]/.test(input.newPassword))
+      errors.newPassword = "Must contain a number (0-9)";
+    if (input.newPassword.length < 6 || input.newPassword.length > 15)
+      errors.newPassword = "Must be between 6 and 15 characters in length";
+
+    /* -------- NEW - PASSWORD ---------- */
+ 
+    if (!input.password) {
+      errors.password = "Please confirm your password";
+    } else if (input.password !== input.newPassword) {
+      errors.password = "Wrong password";
+    }
+
+    return errors;
+  
+  };
 
   const { token } = useParams<Props>();
   
@@ -85,25 +114,42 @@ const FormReset: FC = () => {
     dispatch(openLogin(true));
   }, [dispatch, userData]);
 
-  /* let disabled = !(input.password && input.newPassword); */
+  
 
   const handleInputChange = (e: React.FormEvent<HTMLInputElement>) => {
     setInput({
       ...input,
       [e.currentTarget.name]: e.currentTarget.value,
     });
+    setErrors(
+      validate({
+        ...input,
+        [e.currentTarget.name]: e.currentTarget.value,
+      })
+    );
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    axios.post(`/auth/reset/${token}`, {password: input.newPassword})
-
-    setIsUser(true);
-    closeModal();
-    animateScroll.scrollTo(0, { duration: 300 });
+    console.log(input.newPassword)
+    axios.post(`/auth/reset/${token}`, { password: input.newPassword })
+    closeModal()
+    Swal.fire({
+        title: 'Password updated',
+        text: 'You can log in now!',
+        icon: 'success',
+        confirmButtonText: '🚀'
+      })
+    setIsUser(true)
+    animateScroll.scrollTo(0, { duration: 300 })
   };
 
+  let disabled = !(
+    input.newPassword &&
+    input.password &&
+    !errors.newPassword &&
+    !errors.password
+  );
   
 
   return (
@@ -121,11 +167,12 @@ const FormReset: FC = () => {
             <StyledSVG src={CloseButton} />
           </button>
           <FormStyled>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={(e) => handleSubmit(e)}>
               <label htmlFor="username">
                 <span>New password</span>
-                <input name="username" onChange={handleInputChange} />
+                <input name="newPassword" type="password" onChange={handleInputChange} />
               </label>
+              {errors.newPassword && <span>{errors.newPassword}</span>}
               <label htmlFor="password">
                 <span>Confirm password</span>
                 <input
@@ -134,10 +181,11 @@ const FormReset: FC = () => {
                   onChange={handleInputChange}
                 />
               </label>
+              {errors.password && <span>{errors.password}</span>}
               <Btn
                 type="submit"
-                className={input.password.length !== 0 && input.newPassword === input.password ? "btn-disabled" : "btn-card login"}
-                disabled={input.password.length !== 0  && input.newPassword === input.password ? false : true}
+                className={!disabled ? "btn-card login": "btn-disabled"}
+                disabled={disabled}
               >
                 Reset
               </Btn>
