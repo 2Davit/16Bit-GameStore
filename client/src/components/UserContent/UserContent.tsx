@@ -58,7 +58,7 @@ const UserContent: FC<Props> = ({ totalUser }) => {
   const [btnAlphabet, setBtnAlphabet] = useState<boolean>(true);
   
   let onViewUsers = userSearch.slice(page, page2);
-  console.log('asdnasnd', onViewUsers)
+  
 
   let alphabet = totalUser.sort(function (a, b) {
     if (a.nickname.toLowerCase() > b.nickname.toLowerCase()) {
@@ -100,7 +100,7 @@ const UserContent: FC<Props> = ({ totalUser }) => {
     }
   };
 
-console.log(totalUser)
+
 
   const handleDeleteUser = (id: number | unknown) => {
     dispatch(deleteUser(id));

@@ -110,7 +110,7 @@ export const getOrders = () => {
     const { data } = await axios.get(`/order`, {
       headers: { "x-access-token": token },
     });
-    // console.log('action creator;' , data)
+    
     return dispatch({
       type: GET_ORDERS,
       payload: data,

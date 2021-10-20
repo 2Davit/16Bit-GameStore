@@ -1,7 +1,7 @@
 import React, { FC, useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import {  useParams } from "react-router-dom";
 import axios from "axios";
-import Swal from "sweetalert2/dist/sweetalert2.js";
+
 import StarRatings from "react-star-ratings";
 import { FormStyled } from "../../FormRegister/StyledFormRegister";
 import { Btn } from "../../../GlobalStyles/GlobalStyles";

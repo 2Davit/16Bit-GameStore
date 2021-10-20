@@ -201,7 +201,7 @@ async function getAllProduct(req, res) {
     }
     //fin del try!!!!
   } catch (error) {
-    console.log(error);
+    
     res.status(404).send({ error: "error back" });
   }
 }
@@ -262,7 +262,7 @@ async function postOneProduct(req, res) {
       productCreated.addPlatform(platformDB);
       res.status(200).send("Product succesfully added");
     } catch (error) {
-      console.log(error);
+    
       res.status(404).send("Error");
     }
   } else {
@@ -386,7 +386,7 @@ async function updateOneProduct(req, res) {
     productUpdated.addPlatform(platformDB);
     res.status(200).send("Product succesfully updated");
   } catch (error) {
-    console.log(error);
+    
     res.status(404).send("Error");
   }
 }
@@ -499,7 +499,7 @@ async function getReviews(req, res) {
   }
     
   } catch (error) {
-    console.log(error);
+   
     res.status(404).send({ error: "error back" });
   }
 }

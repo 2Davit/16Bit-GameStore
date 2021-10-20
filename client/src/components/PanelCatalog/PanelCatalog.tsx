@@ -99,7 +99,7 @@ const PanelCatalog: FC<Props> = ({
     });
   }
   function handleChangeYear(e: React.FormEvent<HTMLSelectElement>) {
-    console.log(e.currentTarget);
+   
     setInput({
       ...input,
       released: parseInt(e.currentTarget.value),

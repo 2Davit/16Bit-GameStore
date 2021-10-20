@@ -1,9 +1,7 @@
-// import { input, Form, Formik } from "formik";
-import { UserLogin } from "../../interfaces/index";
-import { getRole, login } from "../../redux/actions/auth_actions";
+
 import React, { FC, useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { FormStyled } from "../FormRegister/StyledFormRegister";
 import { StyledReset } from "./StyledReset";
 import Modal from "react-modal";
@@ -12,7 +10,7 @@ import { openLogin } from "../../redux/actions/global_actions";
 import { StyledSVG, Btn } from "../../GlobalStyles/GlobalStyles";
 import CloseButton from "../../assets/img/svg/close-filled-purple.svg";
 import { animateScroll } from "react-scroll";
-import { useAuth0 } from "@auth0/auth0-react";
+
 import axios from "axios";
 import { useParams } from 'react-router-dom';
 
@@ -85,9 +83,9 @@ const FormReset: FC = () => {
       setIsUser(true);
     }
     dispatch(openLogin(true));
-  }, [userData]);
+  }, [dispatch, userData]);
 
-  let disabled = !(input.password && input.newPassword);
+  /* let disabled = !(input.password && input.newPassword); */
 
   const handleInputChange = (e: React.FormEvent<HTMLInputElement>) => {
     setInput({

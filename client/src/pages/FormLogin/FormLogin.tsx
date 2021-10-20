@@ -1,4 +1,4 @@
-import { UserLogin } from "../../interfaces/index";
+import Swal from 'sweetalert2';
 import { getRole, login } from "../../redux/actions/auth_actions";
 import React, { FC, useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,7 +13,7 @@ import CloseButton from "../../assets/img/svg/close-filled-purple.svg";
 import { animateScroll } from "react-scroll";
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
-import Swal from 'sweetalert2';
+
 
 
 interface User {
@@ -52,7 +52,7 @@ const FormLogin: FC = () => {
       setIsUser(true);
     }
     dispatch(openLogin(true));
-  }, [userData]);
+  }, [dispatch, userData]);
 
   let disabled = !(input.username && input.password);
 

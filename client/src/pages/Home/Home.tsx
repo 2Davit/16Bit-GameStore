@@ -66,7 +66,7 @@ const Home = ({ setPage, currentProducts, productsPerPage, pages, setMobilePage,
 
 
   }
-  console.log(mobilePerPage.length)
+
 
   return (
     <ContainerHome>

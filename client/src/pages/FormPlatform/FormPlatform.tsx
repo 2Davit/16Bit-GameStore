@@ -47,7 +47,7 @@ const FormPlatform: FC = () => {
   }
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    // console.log(input)
+    
     if (input.platform === "") {
       e.preventDefault();
       alert("Please complete the required field");
@@ -57,7 +57,7 @@ const FormPlatform: FC = () => {
       setInput({
         platform: "",
       });
-      // history.push('/home');
+      
     }
   }
 
