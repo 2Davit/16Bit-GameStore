@@ -116,7 +116,9 @@ export const BtnDisabled = styled.button`
     }
 
     @media screen and (max-width: 414px){
-     width: 100%;
+      width: 100%;
+     height: 45px;
+     padding: 0;
      margin-left: 3rem;
      font-size: ${p => p.theme.fontSize};
   }
@@ -136,7 +138,9 @@ export const BtnRemoveFilter = styled.button`
     outline: none;
   }
   @media screen and (max-width: 414px){
-     width: 100%;
+    width: 100%;
+     height: 45px;
+     padding: 0;
      margin-left: 3rem;
      font-size: ${p => p.theme.fontSize};
   }
@@ -149,6 +153,7 @@ export const BtnOnSale = styled.button`
   padding: 0.7em 1.2em;
   border: none;
   width: 100%;
+
   &:hover{
     background-color: #00a8ff;
   }
@@ -157,6 +162,8 @@ export const BtnOnSale = styled.button`
   }
   @media screen and (max-width: 414px){
      width: 100%;
+     height: 45px;
+     padding: 0;
      margin-left: 3rem;
      font-size: ${p => p.theme.fontSize};
   }

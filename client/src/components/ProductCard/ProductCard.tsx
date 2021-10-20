@@ -4,7 +4,7 @@ import "nes.css/css/nes.min.css";
 import { useDispatch } from "react-redux";
 import { addItemCart } from "../../redux/actions/cart_actions";
 import {  Btn, BtnCartCard, OfferImg } from "../../GlobalStyles/GlobalStyles";
-import { StyledProductCard, DivBtn } from "./StyledProductCard";
+import { StyledProductCard, DivBtn, PriceGenreCont, Genres, Price, GenresContainer} from "./StyledProductCard";
 import cart from "../../assets/img/svg/cart.svg";
 import { toast } from "react-toastify";
 import { animateScroll } from "react-scroll";
@@ -43,6 +43,10 @@ const ProductCard: FC<Props> = ({ game }) => {
     animateScroll.scrollTo(230, { duration: 300 });
   };
 
+  const capitalize = (string:string) => {
+    return string[0].toUpperCase() + string.slice(1);
+  };
+
   const handleClick = () => {
     setMessage(message + "a");
     //el message de arriba es esencial. Se agradece no tocar!!
@@ -71,21 +75,35 @@ const ProductCard: FC<Props> = ({ game }) => {
         {game.on_sale === true ? <OfferImg src={offer}/> : ''}
       </div>
       <div className="card__content">
-        <h3 className="card__title">
+        <p className="card__title">
           {game.name_product?.length > 33
-            ? game.name_product.substring(0, 30) + "..."
-            : game.name_product}
-        </h3>
-        <p className="card__price">$ {game.price_product}</p>
+            ? capitalize(game.name_product.substring(0, 30)) + "..."
+            : capitalize(game.name_product)}
+        </p>
+        <PriceGenreCont>
+        <Price>${game.price_product}</Price>
+        <GenresContainer>
+          {game.name_genre? game.name_genre.map(genre => (
+            
+            <Genres>{genre}</Genres>
+          )) : game.genres.map(genre => (
+            
+            <Genres>{genre.name_genre}</Genres>
+          ))}
+          </GenresContainer>
+        </PriceGenreCont>
+        
         {!disabled ? (
           <DivBtn className='div'>
             <BtnCartCard
               onClick={handleClick}
               // disabled={disabled}
             >
+              {/* <p>Add Cart</p> */}
               {/* {cartNumber[game.id_product!].quantity >= 1 */}
               {/* ? "Already in cart"  nose porque no funcaaaaa*/}
               <img src={cart} alt="not found" />
+
             </BtnCartCard>
 
            </DivBtn>
