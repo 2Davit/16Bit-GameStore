@@ -13,6 +13,6 @@ router.get('/:idOrder', getOrderDetail)
 router.post("/", createOrder)
 router.get("/prueba/payment", createPayment)
 router.post("/save", saveOrder)
-router.put("/:idOrder/:newStatus", checkJwt, reqAdmin,  setStatusOrder)
+router.put("/:idOrder/:newStatus",  setStatusOrder)
 
 module.exports = router;
