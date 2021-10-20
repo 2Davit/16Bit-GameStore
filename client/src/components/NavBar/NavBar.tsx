@@ -19,7 +19,7 @@ import cart from "../../assets/img/svg/cart2.svg";
 import heart from "../../assets/img/svg/heart1.svg";
 import userPic from "../../assets/img/svg/user.svg";
 import defaultAvatar from "../../assets/img/avatars/Avatar_9.png";
-import alien from "../../assets/1.png"
+import logo from "../../assets/1.png"
 
 interface Props {
   setPage(num: number): void;
@@ -67,7 +67,7 @@ const NavBar: FC<Props> = ({ setPage, toggleModal }: any) => {
           <div className="navbar__logo">
             <Link to="/home" onClick={homeOnClick}>
               {/* <Title /> */}
-              <img src={alien} style={{width: '125px', height: '90px'}}/>
+              <img src={logo} style={{width: '130px', height: '90px'}}/>
             </Link>
           </div>
           <div className='search'>

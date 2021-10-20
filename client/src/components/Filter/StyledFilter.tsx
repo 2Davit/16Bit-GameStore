@@ -70,9 +70,8 @@ export const SelectStyled = styled.select`
 
   &:hover,
   &:focus {
-    border: none;
+    border:none;
     outline: none;
-    scroll-behavior: smooth;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
     background-color: #0a3364 ;
     color: #eeeeee;

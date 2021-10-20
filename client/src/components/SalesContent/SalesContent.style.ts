@@ -32,6 +32,12 @@ export const InfoOrder = styled.span`
   width: 16.666%;
   padding: 0.25rem;
 `;
+export const InfoSelect = styled.select`
+  border: 1px solid #222831;
+  color: #000000;
+  width: 16.666%;
+  padding: 0.25rem;
+`;
 
 export const TitleOrder = styled.span`
   color: #eeeeee;
