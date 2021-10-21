@@ -42,9 +42,9 @@ const NavBar: FC<Props> = ({ setPage, toggleModal }: any) => {
     dispatch(openLogin(true));
   };
 
-  /* const cartNumber: any = useSelector(
+   const cartNumber: any = useSelector(
     (state: Store) => state.cartReducer.cart.list
-  ); */
+  ); 
 
   const isAdmin = useSelector((state: Store) => state.authReducer.role.admin);
 
