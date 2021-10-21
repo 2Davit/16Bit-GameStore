@@ -85,6 +85,17 @@ export const banUser = (id: number | unknown, status: boolean | string) => {
   };
 };
 
+export const changeStatus = (id: number | unknown, status: string | any ) => {
+  const userData = JSON.parse(localStorage.getItem("userData") as string);
+  const token = userData?.data.token;
+  return async function (dispatch: Dispatch<Detail>) {
+    const data = await axios.put(`/order/${id}/${status}`, {
+      headers: { "x-access-token": token },
+    });
+    return data;
+  };
+};
+
 
     
 
@@ -148,3 +159,6 @@ export const getSalesData = () => {
     });
   };
 };
+
+
+
