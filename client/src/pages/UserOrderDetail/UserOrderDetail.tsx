@@ -105,7 +105,7 @@ function UserOrderDetail() {
           </div>
           <div>
             <h3>Products</h3>
-            <table>
+            <table >
               <thead>
                 <tr>
                   <th scope="col">Name</th>
@@ -174,11 +174,12 @@ function UserOrderDetail() {
               </tbody>
               <tfoot>
                 <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td>Total: ${orderDetail?.amount_order}</td>
-                  <td></td>
+                  <td style={{border: 'none'}}></td>
+                  <td style={{border: 'none'}}></td>
+                  <td style={{border: 'none'}}></td>
+                  
+                  <td >Total: ${orderDetail?.amount_order}</td>
+                  <td style={{border: 'none'}}></td>
                 </tr>
               </tfoot>
             </table>

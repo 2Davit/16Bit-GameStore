@@ -11,8 +11,8 @@ export const UserCard = styled.div`
 
   ul {
     flex-basis: 300px;
-    background-color: #223;
-    color: var(--clr-white);
+    background-color: #031e3f;
+    color: var(--clr-#eeeeee);
     text-transform: uppercase;
     margin: 0;
 
@@ -23,7 +23,7 @@ export const UserCard = styled.div`
       padding: 2em;
       border-right: 5px solid transparent;
       &:hover {
-        background-color: var(--clr-dark);
+        background-color: #042a58;
         border-color: var(--clr-primary);
       }
     }
@@ -59,6 +59,7 @@ export const UserCard = styled.div`
 
 export const ProfileStyled = styled.div`
   text-align: center;
+  background: #e1e1e137;
   flex: 1;
   padding: 2em;
   .img-container {
@@ -137,7 +138,7 @@ export const FormEditProfile = styled.form`
 
     input {
       background: #000;
-      color: var(--clr-white);
+      color: var(--clr-#eeeeee);
       font-size: 0.8em;
       padding: 1em;
       border: 3px solid var(--clr-primary);
@@ -177,8 +178,8 @@ export const FormEditProfile = styled.form`
   }
   .small-text {
     position: relative;
-    margin: 0 auto 2em;
-    width: 60%;
+    margin: 0 auto 2em auto;
+    width: 70%;
     font-size: 0.7em;
     padding: 1em 1em 1em 3em;
     border-top: 1px solid var(--clr-error-2);
@@ -192,7 +193,9 @@ export const FormEditProfile = styled.form`
     color: var(--clr-error);
     position: absolute;
     left: 0;
-    top: 1;
+    top: 0;
+    margin-left:10px;
+    margin-top: 7px;
   }
 
   .deleteAccount {
@@ -221,9 +224,9 @@ export const StyledOrders = styled.div`
   }
 
   table tr {
-    background-color: #000;
+    background-color: #031e3f;
     border: 1px solid #ddd;
-    padding: 0.35em;
+    padding: 0.35em 0;
   }
 
   table th,
@@ -286,14 +289,14 @@ export const StyledOrders = styled.div`
 
   .btn__orderDetail {
     font-size: 14px;
-    background: #000;
-    color: white;
-    border: 1px solid white;
+    background: #0a3364;
+    color: #eeeeee;
+    border: 1px solid #eeeeee;
     border-radius: 1em;
     padding: 0.4em;
-    margin: 1em 1em 1em 0;
+    margin: 1em 1em 1em 1.5em;
     :hover {
-      color: var(--clr-primary);
+      background: var(--clr-primary);
     }
   }
   .btn-card {
@@ -343,6 +346,7 @@ export const StyledOrderDetail = styled.div`
     width: 100%;
     table-layout: fixed;
     margin-top: 2em;
+
   }
 
   table caption {
@@ -351,7 +355,7 @@ export const StyledOrderDetail = styled.div`
   }
 
   table tr {
-    background-color: #000;
+    background-color: #031e3f;
     border: 1px solid #ddd;
     padding: 0.35em;
   }
@@ -424,13 +428,30 @@ export const StyledOrderDetail = styled.div`
   }
   .btn__leaveReview {
     font-size: 14px;
-    background: #000;
-    color: white;
-    border: 1px solid white;
+    background: #0a3364;
+    color: #eeeeee;
+    border: 1px solid #eeeeee;
     border-radius: 1em;
     padding: 0.5em;
     :hover {
-      color: var(--clr-primary);
+      background: var(--clr-primary);
     }
   }
 `;
+
+
+export const EditBtnContainer = styled.div`
+
+  margin: 0 25px !important;
+  padding: 0;
+  width: 100%;
+
+  @media (max-width: 414px){
+    display:flex;
+    flex-direction: column!important;
+    align-items: center!important;
+    justify-content: center!important;
+    margin-right: 5rem !important;
+    width: auto;
+  }
+`
