@@ -75,7 +75,7 @@ const signInGoogle = async (req, res) => {
     return res.status(403).send({ message: "Suspended account" });
   }
 
-  if (user[0] && user[0].orders?.length) {
+  if (user[0] && user[0].orders.length) {
     user[0].orders.sort((a, b) => {
       if (a.dataValues.id_order > b.dataValues.id_order) {
         return 1;

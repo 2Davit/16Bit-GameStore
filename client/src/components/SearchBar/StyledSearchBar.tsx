@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
 export const FormSearchBar = styled.form`
-  background: var(--clr-white);
-  border: 2px solid var(--clr-primary);
-  border-radius: 99em;
+  background: ${p => p.theme.backgroundSearch};
+  border: 2px solid ${p => p.theme.borderSearch};
+  border-radius: ${p => p.theme.radiusSearch};
   width: 90%;
   height: 50%;
   
@@ -42,6 +42,10 @@ export const FormSearchBar = styled.form`
     font-size: ${p => p.theme.fontSize};
     padding: 0.7em 1em;
     width: 90%;
+    color: ${p => p.theme.colorSearch};
+    &::placeholder{
+      color: ${p => p.theme.colorSearch};
+    }
   }
 
   button:focus,

@@ -214,8 +214,8 @@ export const StyledSVG = styled(SVG)`
 `;
 
 export const Img = styled.img`
-  width: 120px;
-  height: 90px;
+  width: 100px;
+  height: 70px;
   @media screen and (max-width: 414px){
     width: 100px;
     height: 70px;

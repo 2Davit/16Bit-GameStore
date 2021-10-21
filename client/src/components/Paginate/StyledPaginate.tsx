@@ -4,7 +4,7 @@ export const StyledPaginate = styled.div`
   display: flex;
   justify-content: center;
   margin: 2em 0;
-  font-size: 1.2em;
+  font-size: ${p => p.theme.paginateFontSize};
 
   @media screen and (max-width: 700px) {
     width: 400px;
@@ -21,11 +21,16 @@ export const StyledPaginate = styled.div`
 export const StyledButton = styled.button`
   width: 2em;
   height: 2em;
-  border-radius: 99em;
+  border-radius: ${p => p.theme.paginateBtnRadius};
   border: 2px solid transparent;
   margin: 0 0.5em;
-  background: var(--clr-primary);
-  color: var(--clr-white);
+  background: ${p => p.theme.paginateBackBtn};
+  padding: .5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: ${p => p.theme.paginateBtnColor};
+  
 
   &:hover {
     border-color: var(--clr-white);
