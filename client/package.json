@@ -5,6 +5,7 @@
   "dependencies": {
     "@auth0/auth0-react": "^1.8.0",
     "@chakra-ui/react": "^1.6.8",
+    "@formspree/react": "^2.2.4",
     "@reduxjs/toolkit": "^1.6.1",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
