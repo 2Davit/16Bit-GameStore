@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Btn } from "../../GlobalStyles/GlobalStyles";
 import {
@@ -17,13 +17,25 @@ const Favorites = () => {
   let idUser = JSON.parse(localStorage.getItem("userData")!);
   const history = useHistory();
 
-  useEffect(() => {
-    dispatch(getAllFavorites({ idUser: idUser.id }));
-  }, [dispatch, idUser.id]);
+   const [favs, setFavs] = useState<boolean>(false); 
 
+
+   useEffect(() => {
+    dispatch(getAllFavorites({ idUser: idUser.id }));
+  }, [dispatch, favs]);
+
+ 
+
+/*   useEffect(() => {
+    dispatch(getAllFavorites({ idUser: idUser.id }));
+  }, [favs]); */
+
+  
   const favProducts = useSelector(
     (state: Store) => state.favoriteReducer.favorites
   );
+
+  console.log(favProducts)
 
   function handleOnClose(e: any) {
     let idProduct = e;
@@ -31,8 +43,10 @@ const Favorites = () => {
       idUser: idUser.id,
       idProduct: idProduct,
     };
+    
     dispatch(removeFavorites(ids));
-    history.go(0);
+    setFavs(!favs)
+   
   }
   return (
     <StyledContainer>

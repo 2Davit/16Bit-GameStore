@@ -140,10 +140,6 @@ const SalesContent: FC<Props> = ({ totalOrders, totalUsers }) => {
     }
   }
 
-
-
-
-
   return (
     <ContainerMainContent>
       <ContainerNav>
@@ -206,12 +202,12 @@ const SalesContent: FC<Props> = ({ totalOrders, totalUsers }) => {
             >
               <InfoOrder>{o.id_order}</InfoOrder>
               <InfoSelect name={o.id_order} onChange={(e) => handleSelectStatus(e)}>
-                <option>{o.status}</option>
-                <option value="pending">Pending</option>
-                <option value="fulfilled">Fulfilled</option>
-                <option value="delivered">Delivered</option>
-                <option value="cancelled">Cancelled</option>
-                <option value="dispatched">Dispatched</option>
+                <option style={{textTransform: 'capitalize'}} >{o.status}</option>
+                 { o.status!== "pending" ? <option value="pending">Pending</option> : null  }
+                 { o.status!== "fulfilled" ? <option value="fulfilled">Fulfilled</option> : null  }
+                 { o.status!== "delivered" ? <option value="delivered">Delivered</option> : null  }
+                 { o.status!== "cancelled" ? <option value="cancelled">Cancelled</option> : null  }
+                 { o.status!== "dispatched" ? <option value="dispatched">Dispatched</option> : null  }
 
               </InfoSelect>
               {/* <InfoOrder></InfoOrder> */}

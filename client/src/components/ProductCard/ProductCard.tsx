@@ -34,9 +34,9 @@ const ProductCard: FC<Props> = ({ game }) => {
   const user = JSON.parse(localStorage.getItem("userData")!);
   const [message, setMessage] = useState<string>("");
   const dispatch = useDispatch();
-  const detailProduct = useSelector(
+  /* const detailProduct = useSelector(
     (state: Store) => state.productsReducer.detailProduct
-  );
+  ); */
 
   const handleEffect = useCallback(() => {
     let stockInLocal = JSON.parse(localStorage.getItem("cart")!);
@@ -80,13 +80,14 @@ const ProductCard: FC<Props> = ({ game }) => {
     });
   };
   const handleAddFavorites = () => {
-    let idProduct = detailProduct.id_product;
+    let idProduct = game.id_product;
     let idUser = JSON.parse(localStorage.getItem("userData")!);
     if (idUser) {
       let ids = {
         idProduct: idProduct,
         idUser: idUser.id,
       };
+      
       dispatch(addFavorites(ids));
       toast.info(`${game.name_product} was added to your favorites! 💜`, {
         position: "top-center",
