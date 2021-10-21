@@ -123,8 +123,12 @@ const SalesContent: FC<Props> = ({ totalOrders, totalUsers }) => {
     }
   };
 
-  const handleSelectStatus = async (e: any) => {
+  const handleSelectStatus = (e: any) => {
     axios.put(`/order/${e.target.name}/${e.target.value}`)
+    if (e.target.value === 'dispatched' || e.target.value === 'delivered') {
+        axios.post('/email/status', { id_order: e.target.name,
+                                      status: e.target.value })
+    }
   }
 
 
@@ -144,6 +148,7 @@ const SalesContent: FC<Props> = ({ totalOrders, totalUsers }) => {
             <option value="pending">Pending</option>
             <option value="fulfilled">Fulfilled</option>
             <option value="delivered">Delivered</option>
+            <option value="dispatched">Dispatched</option>
             <option value="cancelled">Cancelled</option>
             <option value="cart">Cart</option>
 
@@ -196,6 +201,7 @@ const SalesContent: FC<Props> = ({ totalOrders, totalUsers }) => {
                 <option value="fulfilled">Fulfilled</option>
                 <option value="delivered">Delivered</option>
                 <option value="cancelled">Cancelled</option>
+                <option value="dispatched">Dispatched</option>
 
               </InfoSelect>
               {/* <InfoOrder></InfoOrder> */}

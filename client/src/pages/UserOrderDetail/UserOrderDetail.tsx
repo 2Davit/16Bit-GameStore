@@ -116,7 +116,7 @@ function UserOrderDetail() {
                 </tr>
               </thead>
               <tbody>
-                {orderDetail?.status_order === "fulfilled"
+                {orderDetail?.status_order === "delivered"
                   ? orderDetail.orderProduct.map((index) => {
                       return (
                         <tr key={index.id}>
