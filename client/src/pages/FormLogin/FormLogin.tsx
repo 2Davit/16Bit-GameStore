@@ -93,7 +93,7 @@ const FormLogin: FC = () => {
     .catch(() => {
       Swal.fire({
         title: "Error!",
-        text: "That email account does not exist! ",
+        text: "That email account does not exist!",
         icon: "error",
         confirmButtonText: "😓",
       })

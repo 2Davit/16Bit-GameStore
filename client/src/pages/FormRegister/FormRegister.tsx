@@ -172,7 +172,7 @@ const FormRegister:FC = () => {
         })
       )
       .then((res) => localStorage.setItem("userData", JSON.stringify(res.data)))
-      .then((res) => history.push("/home"));
+      .then((res) => history.push("/home"))
   };
 
   let disabled = !(

@@ -94,7 +94,7 @@ const Step1 = () => {
     }
   };
 
-  if (cart.length < 1) {
+  if (cart?.length < 1) {
     history.push("/home");
   }
   return (
