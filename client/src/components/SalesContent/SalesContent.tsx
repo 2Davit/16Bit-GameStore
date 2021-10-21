@@ -69,8 +69,8 @@ const SalesContent: FC<Props> = ({ totalOrders, totalUsers }) => {
       setOrderSearch(
         totalOrders.filter((orders) => orders.status === "cancelled")
       );
-    } else if (e.target.value === "cart") {
-      setOrderSearch(totalOrders.filter((orders) => orders.status === "cart"));
+    } else if (e.target.value === "dispatched") {
+      setOrderSearch(totalOrders.filter((orders) => orders.status === "dispatched"));
     } else {
       setOrderSearch(totalOrders);
     }
@@ -155,8 +155,6 @@ const SalesContent: FC<Props> = ({ totalOrders, totalUsers }) => {
             <option value="delivered">Delivered</option>
             <option value="dispatched">Dispatched</option>
             <option value="cancelled">Cancelled</option>
-            <option value="cart">Cart</option>
-
           </OrderSelect>
           {btnStatus ? (
             <NavBtn onClick={() => handleOldest()}>Older Sales</NavBtn>
@@ -192,8 +190,12 @@ const SalesContent: FC<Props> = ({ totalOrders, totalUsers }) => {
           <TitleOrder>Date</TitleOrder>
         </TitleContainer>
         {onViewOrders.length > 0 ? (
-          onViewOrders.map((o: Order) => (
-            <OrderContainer
+          onViewOrders.map((o: Order) => {
+            
+            if (o.status !== 'cart') {
+            
+            
+              return ( <OrderContainer
               backg={
                 o.id_order ? (o.id_order % 2 === 0 ? "#e1e1e1" : "#eeeeee") : ""
               }
@@ -215,9 +217,9 @@ const SalesContent: FC<Props> = ({ totalOrders, totalUsers }) => {
               <InfoOrder>{o.address}</InfoOrder>
               <InfoOrder>{o.amount}</InfoOrder>
               <InfoOrder>{o.date.slice(0, 10)}</InfoOrder>
-            </OrderContainer>
-          ))
-        ) : (
+            </OrderContainer> )
+            } }
+        )) : (
           <ContainerNotExist>
             <H2>Oops, No Orders Found...</H2>
           </ContainerNotExist>

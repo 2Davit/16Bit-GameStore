@@ -140,6 +140,7 @@ const signInGoogle = async (req, res) => {
 const logIn = async (req, res) => {
   const { username, password } = req.body;
 
+  
   const user = await User.findOne({
     where: {
       nickname_user: username.toLowerCase(),
@@ -147,24 +148,34 @@ const logIn = async (req, res) => {
     include: [
       {
         model: Order,
-        where: { status_order: "cart" },
         required: false,
       },
     ],
   });
 
+  if (!user) {
+    return res.status(404).send({ message: "User not found" });
+  }
+
+
   if (user && user.is_active === false) {
     return res.status(403).send({ message: "Suspended account" });
   }
 
-  if (user && user.orders.length) {
-    user.orders.sort((a, b) => {
-      if (a.dataValues.id_order > b.dataValues.id_order) {
-        return 1;
-      } else if (b.dataValues.id_order > a.dataValues.id_order) {
-        return -1;
-      } else return 0;
-    });
+
+
+  user.orders.length && user.orders.sort((a, b) => {
+    if (a.dataValues.id_order > b.dataValues.id_order) {
+      return 1;
+    } else if (b.dataValues.id_order > a.dataValues.id_order) {
+      return -1;
+    } else return 0;
+  });
+
+  
+  
+  if (user.orders.length && user.orders[user.orders.length - 1].dataValues.status_order === 'cart') {
+
 
     const lastCartOrder = await Order.findOne({
       where: {
@@ -199,10 +210,8 @@ const logIn = async (req, res) => {
       });
     }
   }
-
-  if (!user) {
-    return res.status(404).send({ message: "User not found" });
-  }
+  
+  
 
   const passwordIsValid = bcrypt.compareSync(password, user.password_user);
 

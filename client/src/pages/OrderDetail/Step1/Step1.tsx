@@ -130,7 +130,7 @@ const Step1 = () => {
       <Fade>
         <StepOne>
           <div>
-            {cart.map((purchase: ProductInCart) => {
+            {cart?.map((purchase: ProductInCart) => {
               return <Mini detail={purchase} key={purchase.id_product} />;
             })}
           </div>
