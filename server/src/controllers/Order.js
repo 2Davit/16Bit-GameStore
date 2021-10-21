@@ -10,7 +10,7 @@ mercadopago.configure({
 async function getOrders(req, res) {
   const { idUser } = req.query;
   try{
-  if(idUser) {
+  if (idUser) {
     const userOrders = await Order.findAll({
       where: {
         userIdUser: idUser,
