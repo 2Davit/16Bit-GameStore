@@ -197,7 +197,7 @@ const Detail: FC = () => {
           </p>
 
           <div className="game__quantity">
-            <span>Amount to buy:</span>
+            <span>Amount:</span>
             <QuantityButton
               className="quantitybutton-small"
               onClick={() => handleQuantityChange(-1)}

@@ -2,28 +2,28 @@ import { FC, useState } from "react";
 import { ThemeProvider } from "styled-components";
 import { GlobalStyle } from "./GlobalStyles/GlobalStyles";
 import { ButtonTheme } from "./components";
-import backGabo from './assets/img/back.jpeg'
-import blueBack from './assets/img/blueBack.svg'
+import backGabo from "./assets/img/back.jpeg";
+import blueBack from "./assets/img/blueBack.svg";
 
 const themes = {
   original: {
     background: `url(${blueBack})`,
     backgroundNav: "rgba(21,90,164,0.6615021008403361)",
-    fontSize: '1rem',
-    fontSizeTitle: '2.4rem',
+    fontSize: "1rem",
+    fontSizeTitle: "2.4rem",
     bg: "#000000",
     bgSub:
       " linear-gradient(174deg, rgba(222,2,2,1) 0%, rgba(255,222,0,1) 95%)",
-    bgBorder: "#ffde00",
+    bgBorder: "#7361a1",
     color: "#fff",
-    font: `'Raleway', cursive`,
+    font: `'Poppins', sans-serif`,
     fontAdmin: `'Raleway', cursive`,
   },
   retro: {
     background: `url(${backGabo})`,
     backgroundNav: "linear-gradient(180deg, #0266c8, transparent);",
-    fontSize: '.65rem',
-    fontSizeTitle: '2rem',
+    fontSize: ".65rem",
+    fontSizeTitle: "2rem",
     bg: "#2c2f31",
     bgSub: "#f741d5",
     bgBorder: "#00a8ff",

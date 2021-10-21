@@ -98,7 +98,6 @@ export const StyledNavBar = styled(Container)`
       .navbar__profile-pic {
         
         width: 87%;
-        /* height: 100%; */
         border: 3px solid var(--clr-white);
         border-radius: 50%;
         overflow: hidden;

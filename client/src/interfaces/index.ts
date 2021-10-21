@@ -24,6 +24,8 @@ export interface Product {
   release_year: number;
   genres: Array<Genre>;
   platforms: Array<Platform>;
+  name_genre?: Array<Genre>;
+  name_platform?: Array<Platform>;
 }
 
 export interface ProductCreate {
@@ -68,6 +70,7 @@ export interface ProductsState {
   users?: Array<String>;
   orders?: Array<String>;
   sales?: Array<DetailData>;
+
 }
 
 export interface CartState {
