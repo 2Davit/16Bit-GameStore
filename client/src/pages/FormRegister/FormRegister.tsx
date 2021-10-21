@@ -136,7 +136,7 @@ const FormRegister: FC = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     axios
-      .post("http://localhost:3001/auth/signup", input)
+      .post("/auth/signup", input)
       .then((res) => {
         const { username, password } = input;
         dispatch(login({ username, password }));
