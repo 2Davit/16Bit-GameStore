@@ -14,24 +14,23 @@ interface AllFavorites {
 
 export const addFavorites = (payload: any) => {
   return async function (dispatch: Dispatch<Name>) {
-    const data = await axios.post("/favorites", payload);
-    return data;
+    axios.post("/favorites", payload);
   };
 };
 
 export const getAllFavorites = (user: any) => {
-  return async (dispatch: Dispatch<AllFavorites>): Promise<any> => {
-    const json = await axios.get(`/favorites/${user.idUser}`, { params: user });
-    return dispatch({
+  return (dispatch: Dispatch<AllFavorites>): any => {
+    axios(`/favorites/${user.idUser}`)
+    .then((res) => dispatch({
       type: GET_ALL_FAVORITES,
-      payload: json.data,
-    });
+      payload: res.data
+    }))
   };
 };
 
 export const removeFavorites = (payload: any) => {
   return async function (dispatch: Dispatch<Name>) {
-    const data = await axios.delete(`/favorites/${payload.idUser}?idProduct=${payload.idProduct}`);
+    axios.delete(`/favorites/${payload.idUser}?idProduct=${payload.idProduct}`);
     return dispatch({
       type: REMOVE_FAVORITE,
       payload,
