@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { ContainerContact, ContactForm, Form, ContactUs, SendForm } from "./Contact.style";
 import { useForm, ValidationError } from "@formspree/react";
-import LogoG from "../../assets/1.png" 
+// import LogoG from "../../assets/1.png" 
 
 const Contact: FC = () => {
   const [state, handleSubmit] = useForm("xyylapkg");
@@ -40,6 +40,7 @@ const Contact: FC = () => {
           <button type="submit" disabled={state.submitting}>
             Submit
           </button>
+          {/* Por si queremos agregar un logo */}
           {/* <Logo src={LogoG} alt='logo gamestore'/> */}
         </Form>
       </ContactForm>
