@@ -24,18 +24,10 @@ const Favorites = () => {
     dispatch(getAllFavorites({ idUser: idUser.id }));
   }, [dispatch, favs]);
 
- 
-
-/*   useEffect(() => {
-    dispatch(getAllFavorites({ idUser: idUser.id }));
-  }, [favs]); */
-
-  
   const favProducts = useSelector(
     (state: Store) => state.favoriteReducer.favorites
   );
 
-  console.log(favProducts)
 
   function handleOnClose(e: any) {
     let idProduct = e;
@@ -50,7 +42,7 @@ const Favorites = () => {
   }
   return (
     <StyledContainer>
-      {favProducts.length > 0 ? (
+      {favProducts?.length > 0 ? (
         favProducts.map((game: Product) => {
           return (
             <ProductFavorite
