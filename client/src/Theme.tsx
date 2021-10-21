@@ -2,7 +2,7 @@ import { FC, useState } from "react";
 import { ThemeProvider } from "styled-components";
 import { GlobalStyle } from "./GlobalStyles/GlobalStyles";
 import { ButtonTheme } from "./components";
-import backRetro from "./assets/back.png";
+import backRetro from "./assets/retroBack.png";
 import blueBack from "./assets/img/blueBack.svg";
 
 const themes = {
@@ -45,6 +45,18 @@ const themes = {
     footerBorderTop: 'none',
     footerColor: '#ffffff',
     footerColorHover: '#00a8ff',
+    cardPricedBackground: '#3fa91e',
+    cardPriceBorder: "transparent",
+    cardPriceBorderTopRight: '10px',
+    cardPriceBorderBottomRight: '10px',
+    cardGenreBackground: '#0a3364',
+    cardGenreBorder: "transparent",
+    cardGenreBorderRadius: '10px',
+    cardContentTopBorder: 'transparent',
+    cardContentBackground: 'rgba(40, 40, 40, 0.7)',
+    cardContentCart: '50%',
+    cardContentCartBackground: '#0a3364',
+    cardContentCartBorder: 'transparent',
     bg: "#000000",
     bgSub:
       " linear-gradient(174deg, rgba(222,2,2,1) 0%, rgba(255,222,0,1) 95%)",
@@ -76,7 +88,7 @@ const themes = {
     removeBorderBtn: '4px double red',
     removeColorBtn: 'red',
     removeColorBtnHover: '#000000',
-    onSaleFilBtn: 'transparent',
+    onSaleFilBtn: '#000',
     onSaleFilBtnHover: '#0175b1',
     onSaleBorderBtn: '5px double #00a8ff',
     onsaleColorBtn: '#00a8ff',
@@ -92,6 +104,18 @@ const themes = {
     footerBorderTop: '12px double rgb(253, 44, 201)',
     footerColor: 'greenyellow',
     footerColorHover: 'green',
+    cardPricedBackground: '#000',
+    cardPriceBorder: "#3fa91e",
+    cardPriceBorderTopRight: '0',
+    cardPriceBorderBottomRight: '0',
+    cardGenreBackground: '#000',
+    cardGenreBorder: "#00a8ff",
+    cardGenreBorderRadius: '0',
+    cardContentTopBorder: 'rgb(253, 44, 201)',
+    cardContentBackground: '#000',
+    cardContentCart: '0',
+    cardContentCartBackground: 'transparent',
+    cardContentCartBorder: '#00a8ff',
     bg: "#2c2f31",
     bgSub: "#f741d5",
     bgBorder: "5px 5px 0px rgb(253, 44, 201)",

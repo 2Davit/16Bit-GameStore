@@ -154,8 +154,8 @@ export const BtnOnSale = styled.button`
   color: ${ p => p.theme.onsaleColorBtn};
   border-radius: ${ p => p.theme.filterButtonBorder };
   background-color: ${ p => p.theme.onSaleFilBtn};
-  padding: 0.6em .4em;
   border: ${ p => p.theme.onSaleBorderBtn};
+  padding: 0.6em .4em;
   width: 100%;
 
   &:hover{

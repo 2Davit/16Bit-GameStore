@@ -77,7 +77,7 @@ export const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
 
   body {
 		background: ${p => p.theme.background};
-		background-position:center right;
+		background-position:center center;
     background-size: cover;
     background-attachment: fixed;
     background-repeat: no-repeat;
@@ -85,8 +85,8 @@ export const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
         padding: 0;
         font-family: ${(p) => p.theme.font};
         color:white;
-		min-height: 100vh;
-		min-width: 100vw;
+		height: 100vh;
+		width: 100vw;
 		overflow-x: hidden;
     }
 
@@ -143,7 +143,30 @@ export const Btn = styled.button`
     }
   }
 
-  &.btn-card {
+  &.btn-card-carrousel {
+    width: 100px !important;
+    height: 50px;
+    color: ${ p => p.theme.onsaleColorBtn};
+  border-radius: ${ p => p.theme.filterButtonBorder };
+  background-color: ${ p => p.theme.onSaleFilBtn};
+  border: ${ p => p.theme.onSaleBorderBtn};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  }
+  &.btn-card-carrousel:hover {
+    background-image: linear-gradient(
+      45deg,
+      var(--clr-primary),
+      var(--clr-primary-2)
+    );
+    background-color: ${ p => p.theme.onSaleFilBtnHover};
+    color: ${ p => p.theme.onsaleColorBtnHover };
+  }
+  &.btn-card-carrousel:focus {
+    outline: none;
+  }
+  &.btn-card{
     color: white;
     background-color: #0a3364;
     border-color: var(--clr-primary);
@@ -346,12 +369,12 @@ export const BtnCartCard = styled.button`
 width: 38px;
 height: 38px;
 /* height: 20%; */
-background: #0a3364;
-border: none ;
+background:${p => p.theme.cardContentCartBackground};
+border: 2px solid  ${p => p.theme.cardContentCartBorder};
 display: flex;
 justify-content: center;
 align-items: center;
-border-radius: 50%;
+border-radius: ${p => p.theme.cardContentCart};
 
 &:hover{
   background: rgb(28, 150, 272);
