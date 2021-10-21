@@ -11,7 +11,7 @@ export const StyledAbout = styled.div`
     margin-bottom: 1em;
     text-transform: uppercase;
     font-size: 2em;
-    color: var(--clr-primary);
+    color: #eeeeee;
   }
 
   h3 {
@@ -20,6 +20,7 @@ export const StyledAbout = styled.div`
     text-align: center;
     width: max-content;
   }
+ 
 
   .about_coders_container {
     display: flex;
@@ -43,10 +44,12 @@ export const StyledAbout = styled.div`
         border-radius: 99em;
         object-fit: cover;
         border: 5px solid var(--clr-primary);
-        transition: filter 0.2s ease-in-out;
+        transition: 0.25s ease-in-out;
 
         &:hover {
-          filter: grayscale(100%);
+          transition:0.25s ease-in-out;
+          transform: scale(1.1);
+
         }
       }
 
@@ -62,7 +65,7 @@ export const StyledAbout = styled.div`
           border-radius: 10px;
           text-decoration: none;
           font-size: 2em;
-          color: var(--clr-white);
+          color: #eeeeee;
           transition: color 0.2s ease-in-out;
 
           &:hover {
@@ -99,3 +102,8 @@ export const StyledAbout = styled.div`
     }
   }
 `;
+
+export const TextAbout = styled.div`
+width: 80%;
+margin: 0 auto;
+`

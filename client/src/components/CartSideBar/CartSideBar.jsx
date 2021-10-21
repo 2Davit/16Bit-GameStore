@@ -64,7 +64,7 @@ const CartSideBar /*: FC<CartSideBarProps>*/ = ({ closeCallback, show }) => {
             <StyledCloseBtn src={BigCloseButton} />
           </button>
 
-          <h2 className="modal__title">Your Cart:</h2>
+          <h2 className="modal__title">My Cart:</h2>
           {cartStorage?.map((purchase /*: ProductInCart*/) => (
             <Mini detail={purchase} key={purchase.id_product} />
           ))}

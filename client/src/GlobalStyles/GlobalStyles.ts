@@ -203,7 +203,8 @@ export const Btn = styled.button`
     color: var(--clr-error);
     border-color: var(--clr-error);
     box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.15);
-
+    background-color: #222831;
+    margin-bottom: 2rem;
     &:hover {
       color: var(--clr-white);
       background-color: var(--clr-error);

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Btn, Hr } from "../../../GlobalStyles/GlobalStyles";
-import { FormEditProfile, StyledEditProfile } from "../StyledUserPage";
+import { FormEditProfile, StyledEditProfile, EditBtnContainer } from "../StyledUserPage";
 import { useHistory } from "react-router-dom";
 import { Fade } from "react-awesome-reveal";
 import axios from "axios";
@@ -126,6 +126,7 @@ const EditProfile = () => {
                   value={input.password}
                   name="password"
                   onChange={handleChange}
+            
                 />
               </label>
               <div className="small-text small-spacing small-warning">
@@ -133,14 +134,14 @@ const EditProfile = () => {
                 <p>Otherwise, leave it empty.</p>
               </div>
             </div>
-            <div className="buttons">
-              <Btn type="submit" className="btn-card">
+            <EditBtnContainer>
+              <Btn style={{marginBottom:"1rem"}} type="submit" className="btn-card">
                 Confirm
               </Btn>
               <Btn onClick={() => history.push("/user")} className="btn-sec">
                 Cancel
               </Btn>
-            </div>
+            </EditBtnContainer>
           </FormEditProfile>
           <Hr />
           <section className="deleteAccount">
