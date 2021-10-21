@@ -1,6 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
 import StyledFooter from "./StyledFooter";
+import { LinkStyled } from "./StyledFooter";
 import { animateScroll } from "react-scroll";
 
 const Footer = () => {
@@ -13,27 +12,27 @@ const Footer = () => {
       <nav className="navbar__bottom">
         <ul>
           <li>
-            <Link onClick={handleClick} to="/terms">
+            <LinkStyled onClick={handleClick} to="/terms">
               Terms of service
-            </Link>
+            </LinkStyled>
           </li>
           <li>
-            <Link onClick={handleClick} to="/privacy">
+            <LinkStyled onClick={handleClick} to="/privacy">
               Privacy
-            </Link>
+            </LinkStyled>
           </li>
           <li>
-            <Link onClick={handleClick} to="/legal">
+            <LinkStyled onClick={handleClick} to="/legal">
               Legal
-            </Link>
+            </LinkStyled>
           </li>
           <li>
-            <Link onClick={handleClick} to="/about">
+            <LinkStyled onClick={handleClick} to="/about">
               About Us
-            </Link>
+            </LinkStyled>
           </li>
           <li>
-              <Link to="/contact">Contact Us</Link>
+              <LinkStyled to="/contact">Contact Us</LinkStyled>
             </li>
         </ul>
       </nav>

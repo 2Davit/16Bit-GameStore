@@ -59,8 +59,8 @@ font-size: ${p => p.theme.fontSize};
     overflow: hidden;
     width: 100%;
     height: 100%;
-    border-radius: 3em;
-    /* border: 5px solid var(--clr-primary); */
+    border-radius: ${p => p.theme.carouselBorderRadius} ;
+    border: ${p => p.theme.carouselBorderOnsale};
     display: flex;
     justify-content: center;
     align-items: center;
@@ -134,11 +134,12 @@ font-size: ${p => p.theme.fontSize};
           /* max-width: 100%; */
           width: 100%;
           height: auto;
-          background: rgba(0,168,255,0.4500175070028011);
-          border-top-left-radius: 99px;
-          border-bottom-right-radius: 99px;
-          border-bottom-left-radius: 10px;
-          border-top-right-radius: 10px;
+          background: ${p => p.theme.carouselBackg};
+          border-top-left-radius: ${p => p.theme.top};
+          border-bottom-right-radius: ${p => p.theme.top};
+          border-bottom-left-radius: ${p => p.theme.bottom};
+          border-top-right-radius: ${p => p.theme.bottom};
+          border: ${p => p.theme.carouselBorder};
           margin: 0 auto;
           padding: .5rem;
         }
@@ -151,6 +152,7 @@ font-size: ${p => p.theme.fontSize};
 
       .slide__title {
         font-size: ${p => p.theme.fontSizeTitle};
+        color: ${p => p.theme.carouselColor};
         @media screen and (max-width: 414px){
           font-size: ${p => p.theme.fontSize};
         }
@@ -214,8 +216,8 @@ font-size: ${p => p.theme.fontSize};
     z-index: 1;
     top: 50%;
     border: 0;
-    border-radius: 2em;
-    background-color: var(--clr-primary);
+    border-radius: ${p => p.theme.carouselBtnArrow};
+    background-color: ${p => p.theme.carouselBtnBack};
     opacity: 0.8;
     box-shadow: 0 0.25em 0.5em 0 rgba(0, 0, 0, 0.5);
     width: 40px;
@@ -231,7 +233,8 @@ font-size: ${p => p.theme.fontSize};
     }
 
     &:hover {
-      background-color: var(--clr-primary-2);
+      background-color: ${p => p.theme.carouselBtnBack};
+      opacity: 1;
     }
   }
 

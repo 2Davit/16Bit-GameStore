@@ -12,11 +12,13 @@ export const StyledFilter = styled.div`
   /* margin: 0 3em 0 1em; */
   height: 20%;
   width: 100%;
-  background:#48a0f33e;
-  border-top-left-radius: 99px;
-  border-bottom-right-radius: 99px;
-  border-bottom-left-radius: 10px;
-  border-top-right-radius: 10px;
+  background: ${p => p.theme.carouselBackg};
+  border-top-left-radius: ${p => p.theme.top};
+  border-bottom-right-radius: ${p => p.theme.top};
+  border-bottom-left-radius: ${p => p.theme.bottom};
+  border-top-right-radius: ${p => p.theme.bottom};
+  border: ${p => p.theme.carouselBorder};
+  
   @media screen and (max-width: 414px){
   
     gap: 0;
@@ -24,7 +26,7 @@ export const StyledFilter = styled.div`
     padding: 0;
     
     width: 100%;
-    height: 50px;
+    height: 65px;
     overflow-x: scroll;
     grid-template-columns: repeat(4, 50%);
 
@@ -82,7 +84,7 @@ export const SelectStyled = styled.select`
   background: url(${arrow}) 95% center no-repeat ;
   text-transform: uppercase;
   transition: all 0.25s ease-in-out;
-  color: #e1e1e1;
+  color: ${p => p.theme.selectTextColor};
   cursor: inherit;
   &::-ms-expand {
     display: none;
@@ -93,8 +95,8 @@ export const SelectStyled = styled.select`
     border:none;
     outline: none;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
-    background-color: #0a3364 ;
-    color: #eeeeee;
+    background-color: ${p => p.theme.selectHoverColor};
+    color: ${p => p.theme.slectHoverColor};
     
   }
 
@@ -105,8 +107,8 @@ export const SelectStyled = styled.select`
 `;
 
 export const BtnDisabled = styled.button`
-    padding: 0.7em 1.2em;
-    border-radius: 10em;
+    padding: 0.6em .4em;
+    border-radius: ${ p => p.theme.filterButtonBorder };
     background: #222831;
     border: none;
     width: 100%;
@@ -126,13 +128,15 @@ export const BtnDisabled = styled.button`
 `
 export const BtnRemoveFilter = styled.button`
     color: #eeeeee;
-    border-radius: 10em;
-    background-color: #911F27;
-    padding: 0.7em 1.2em;
-    border:none;
+    border-radius: ${ p => p.theme.filterButtonBorder };
+    background-color: ${ p => p.theme.removeFilBtn};
+    border: ${ p => p.theme.removeBorderBtn};
+    color: ${ p => p.theme.removeColorBtn};
+    padding: 0.6em .4em;
     width: 100%;
     &:hover {
       background-color: #B3141C;
+      color: ${ p => p.theme.removeColorBtnHover};
     }
     &:focus{
     outline: none;
@@ -147,15 +151,16 @@ export const BtnRemoveFilter = styled.button`
 `
 
 export const BtnOnSale = styled.button`
-  color: #eeeeee;
-  border-radius: 10em;
-  background-color: #0a3364;
-  padding: 0.7em 1.2em;
-  border: none;
+  color: ${ p => p.theme.onsaleColorBtn};
+  border-radius: ${ p => p.theme.filterButtonBorder };
+  background-color: ${ p => p.theme.onSaleFilBtn};
+  padding: 0.6em .4em;
+  border: ${ p => p.theme.onSaleBorderBtn};
   width: 100%;
 
   &:hover{
-    background-color: #00a8ff;
+    background-color: ${ p => p.theme.onSaleFilBtnHover};
+    color: ${ p => p.theme.onsaleColorBtnHover };
   }
   &:focus{
     outline: none;

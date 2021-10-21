@@ -1,12 +1,14 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const StyledFooter = styled.footer`
-  background: linear-gradient(0deg, transparent, #0a3364);
+  background: ${p => p.theme.footerBack};
+  border-top: ${p => p.theme.footerBorderTop};
   padding: 3em 0;
   text-align: center;
   width: 100vw;
 
-  a {
+  /* a {
     color: #eeeeee;
     text-decoration: none;
     
@@ -14,7 +16,7 @@ const StyledFooter = styled.footer`
     &:hover {
       color: var(--clr-primary-2);
     }
-  }
+  } */
 
   ul {
     display: flex;
@@ -26,15 +28,6 @@ const StyledFooter = styled.footer`
 
     li {
       margin: 0 2em;
-    }
-
-    a {
-      color: currentColor;
-
-      &:hover {
-        color: var(--clr-primary);
-      }
-      
     }
   }
 
@@ -100,3 +93,12 @@ const StyledFooter = styled.footer`
 `;
 
 export default StyledFooter;
+
+export const LinkStyled = styled(Link)`
+  color: ${p => p.theme.footerColor};
+  
+  &:hover{
+    color: ${p => p.theme.footerColorHover};
+    text-decoration: none;
+  }
+`
