@@ -28,9 +28,12 @@ const Step3 = () => {
   }
 
   useEffect(() => {
-    dispatch(sendMail(user.data.email, user.data.username, 'purchase', info));
     dispatch(clearCart());
-  }, [dispatch, info, user.data.email, user.data.username ]);
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(sendMail(user.data.email, user.data.username, 'purchase', info));
+  }, []);
 
 
   return (

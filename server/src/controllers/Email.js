@@ -96,7 +96,7 @@ async function sendUserMail(req, res) {
           />
           <div style="display: flex; flex-direction: column; align-items: flex-start; ">
           <div style ="margin: 0.5rem 1rem; color: black">
-            <h4 style="margin: 0; padding-top: 5px;"><b>${product.name_product}</b></h4>
+            <h4 style="margin: 0; padding-top: 5px;"><b>${product.name_product.length <= 13 ? product.name_product : product.name_product.slice(0, 13) + '...' }</b></h4>
             <h5 style="margin: 0; padding-top: 5px" >Price: $${product.price_product}</h5>
             <h5 style="margin: 0; margin-bottom: 5px; padding-top: 5px" >Quantity: ${product.quantity}</h5>
           </div>
