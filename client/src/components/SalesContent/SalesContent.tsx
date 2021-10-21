@@ -130,7 +130,7 @@ const SalesContent: FC<Props> = ({ totalOrders, totalUsers }) => {
   const handleSelectStatus = (e: any) => {
     
     axios.put(`/order/${e.target.name}/${e.target.value}`)
-    alert(`Cambiaste el status de la orden a ${e.target.value}` )
+    alert(`You have changed this order status to ${e.target.value}` )
     if (e.target.value === 'dispatched' || e.target.value === 'delivered') {
       axios.post('/email/status', {
         id_order: e.target.name,

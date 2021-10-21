@@ -8,8 +8,8 @@ import axios from "axios";
 import { Auth0Provider } from "@auth0/auth0-react";
 dotenv.config();
 
-/* axios.defaults.baseURL = process.env.REACT_APP_API || "http://localhost:3001";
- */ axios.defaults.baseURL = "http://localhost:3001";
+axios.defaults.baseURL = process.env.REACT_APP_API || "http://localhost:3001";
+ 
 
 ReactDOM.render(
   <Auth0Provider
