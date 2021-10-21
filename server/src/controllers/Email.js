@@ -3,7 +3,7 @@ const nodemailer = require("nodemailer");
 const { google } = require("googleapis");
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
-const { User } = require("../db");
+const { User, Order } = require("../db");
 const jwt = require("jsonwebtoken");
 const SECRET = process.env.SECRET;
 
@@ -320,7 +320,116 @@ async function sendResetPass(req, res) {
 
 
 
+
+async function statusEmail(req, res) {
+  
+
+  const { id_order, status } = req.body;
+  
+  
+  try {
+
+  const order = await Order.findOne({
+          where: { id_order: id_order },
+          include: {
+              model: User,
+              attributes: [ 'email_user', 'nickname_user' ]
+          }, 
+  });
+
+  
+
+  if (!order) return res.status(400).send("Order not found");
+
+  let content = status === 'delivered' ? 'Your product/s have arrived! Enjoy them 😀.' : 'Your product/s are coming! Hope you are visiting us again soon 😀.';
+
+  let linkContent = status === 'delivered' ? 'Leave us a review about your new videogame/s 🖋' : 'Track your order! 🚀';
+
+  const html = `<!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Static Template</title>
+  </head>
+  <body style="margin: 0; padding: 0">
+    <div style="width: 100%; background-color: #000;">
+      
+        <a href="https://16-bit-game-store.vercel.app/home" target="_blank" style="margin: 0%; background-color:black; display: flex;justify-content: center;">
+          <img
+            src="https://res.cloudinary.com/druj3xeao/image/upload/v1634145513/samples/16bit_p3aiqt.jpg"
+            alt="16Bit"
+            style="max-width: 40rem; height: 15rem; margin-bottom: 0%; margin: auto"
+          />
+        </a>
+      
+      <div style="background-color: rgb(0, 0, 0); padding: 0.1rem; border-top: solid 2px #9b5df7"; id="header"  >
+        <p style="color: #fff; margin-left: 1rem">
+          Hi, ${order.user.nickname_user}! ${content}
+        </p>
+        <a href="http://localhost:3000/orderdetail/${order.userIdUser}/${order.id_order}" style="text-decoration: none; margin-left: 1rem; font-size: 1.5rem">${linkContent}</a>
+      </div>
+      <div style="background-color: #000; color: lightgray; ">
+        <p style="margin: 0 1rem; padding: 1rem 0">
+        All rights reserved. All trademarks, service marks and company names are the property of their respective owners.
+        © 16bitStore ~ This is a fictional project for the bootcamp.
+      </p>  
+      </div>
+    </div>
+  </body>
+</html>`;
+
+  const CLIENT_ID =
+    "629164237375-nd9vo40e7m7p82lr4s7bgecqebbn7i6v.apps.googleusercontent.com";
+  const CLIENT_SECRET = "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";
+  const REDIRECT_URI = "https://developers.google.com/oauthplayground";
+  const REFRESH_TOKEN =
+    "1//044c2jHqjFfgACgYIARAAGAQSNwF-L9Irv0YSqP8EJos551tZlxLetRQyLhatO8FnlGacYXpCR5rK1dnB0UnMJ11_roWPauDdmoM";
+
+  const oAuth2Client = new google.auth.OAuth2(
+    CLIENT_ID,
+    CLIENT_SECRET,
+    REDIRECT_URI
+  );
+
+  oAuth2Client.setCredentials({ refresh_token: REFRESH_TOKEN });
+
+  
+    const accessToken = await oAuth2Client.getAccessToken();
+    let transporter = nodemailer.createTransport({
+      service: "gmail",
+      host: "imap.ethereal.email",
+      post: 993,
+      secure: false,
+      auth: {
+        type: "OAuth2",
+        user: "guido.gambini@usal.edu.ar",
+        clientId: CLIENT_ID,
+        clientSecret: CLIENT_SECRET,
+        refreshToken: REFRESH_TOKEN,
+        accessToken: accessToken,
+      },
+    });
+
+    let mailOptions = {
+      from: "16Bit-GameStore",
+      to: order.user.email_user,
+      subject: status === 'dispatched' ? "Your purchase is coming!" : "Enjoy your new videogame/s!",
+      html: html,
+    };
+
+    const result = await transporter.sendMail(mailOptions);
+    res.status(200).send(result);
+  } catch (err) {
+    console.log(err);
+  };
+};
+
+
+
 module.exports = {
   sendUserMail,
-  sendResetPass
+  sendResetPass,
+  statusEmail
 };

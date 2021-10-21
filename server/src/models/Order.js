@@ -9,7 +9,7 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     status_order: {
-      type: DataTypes.ENUM("fulfilled", "pending", "cancelled", "cart", "delivered"),
+      type: DataTypes.ENUM("fulfilled", "pending", "cancelled", "cart", "delivered", "dispatched"),
       allowNull: false,
     },
     amount_order: {
@@ -19,10 +19,6 @@ module.exports = (sequelize) => {
     address_order: {
       type: DataTypes.STRING,
       allowNull: false,
-    },
-    /* date_order: {
-      type: DataTypes.DATE,
-      allownull: false,
-    }, */
+    }
   });
 };
