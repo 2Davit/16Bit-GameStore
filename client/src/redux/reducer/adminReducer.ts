@@ -1,4 +1,4 @@
-import { EDIT_PRODUCT, EDIT_NAVBAR, CREATE_NAVBAR, DELETE_PRODUCT, USERS_INFO, GET_ORDERS, GET_SALES_DATA, GET_ALL_GENRES, GET_ALL_PLATFORMS } from "../types";
+import { EDIT_PRODUCT, EDIT_NAVBAR, CREATE_NAVBAR, DELETE_PRODUCT, USERS_INFO, GET_ORDERS, GET_SALES_DATA, GET_ALL_GENRES, GET_ALL_PLATFORMS, CHANGE_ORDER_STATUS } from "../types";
 import { ProductsState } from "../../interfaces";
 
 const initialState: ProductsState = {
@@ -60,7 +60,10 @@ export function adminReducer(state: ProductsState = initialState, action: any) {
           ...state,
           platforms: payload
         }
-
+      case CHANGE_ORDER_STATUS: 
+      return {
+        ...state
+      }
     default:
       return state;
   }

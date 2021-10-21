@@ -1,5 +1,7 @@
 import { FC, useState } from "react";
+import { useDispatch } from "react-redux";
 import { Order, User } from "../../interfaces";
+import Swal from 'sweetalert2';
 import axios from 'axios';
 import {
   ContainerNav,
@@ -26,6 +28,8 @@ import {
   InfoSelect
 } from "./SalesContent.style";
 
+import { changeStatus } from '../../redux/actions/admin_actions'
+
 interface Props {
   totalOrders: Array<Order>;
   totalUsers: Array<User>;
@@ -38,7 +42,7 @@ const SalesContent: FC<Props> = ({ totalOrders, totalUsers }) => {
   const [page2, setPage2] = useState<number>(10); //19
   const [btnNext, setBtnNext] = useState<boolean>(false);
   const [btnPrev, setBtnPrev] = useState<boolean>(false);
-
+  const dispatch = useDispatch();
 
   let orderOldest = totalOrders.sort(function (a, b) {
     return a.id_order - b.id_order;
@@ -124,10 +128,15 @@ const SalesContent: FC<Props> = ({ totalOrders, totalUsers }) => {
   };
 
   const handleSelectStatus = (e: any) => {
+    
     axios.put(`/order/${e.target.name}/${e.target.value}`)
+    alert(`Cambiaste el status de la orden a ${e.target.value}` )
     if (e.target.value === 'dispatched' || e.target.value === 'delivered') {
-        axios.post('/email/status', { id_order: e.target.name,
-                                      status: e.target.value })
+      axios.post('/email/status', {
+        id_order: e.target.name,
+        status: e.target.value
+      })
+      
     }
   }
 
@@ -196,7 +205,8 @@ const SalesContent: FC<Props> = ({ totalOrders, totalUsers }) => {
               style={{ color: "black" }}
             >
               <InfoOrder>{o.id_order}</InfoOrder>
-              <InfoSelect name={o.id_order} onClick={(e) => handleSelectStatus(e)}>
+              <InfoSelect name={o.id_order} onChange={(e) => handleSelectStatus(e)}>
+                <option>{o.status}</option>
                 <option value="pending">Pending</option>
                 <option value="fulfilled">Fulfilled</option>
                 <option value="delivered">Delivered</option>
