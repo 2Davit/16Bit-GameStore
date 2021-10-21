@@ -26,5 +26,7 @@ export const GET_ORDERS: string = "GET_ORDERS";
 export const GET_USER_ORDERS: string = "GET_USER_ORDERS";
 export const OPEN_LOGIN: string = "OPEN_LOGIN";
 export const GET_ALL_FAVORITES: string = "GET_ALL_FAVORITES";
+export const REMOVE_FAVORITE: string = "REMOVE_FAVORITE";
 export const GET_SALES_DATA: string = "GET_SALE_DATA";
 export const CHANGE_ORDER_STATUS: string = "CHANGE_ORDER_STATUS";
+

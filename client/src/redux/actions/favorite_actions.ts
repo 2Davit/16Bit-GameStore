@@ -1,6 +1,6 @@
 import axios from "axios";
 import { Dispatch } from "redux";
-import { GET_ALL_FAVORITES } from "../types";
+import { GET_ALL_FAVORITES, REMOVE_FAVORITE } from "../types";
 
 interface Name {
   type: string;
@@ -32,6 +32,11 @@ export const getAllFavorites = (user: any) => {
 export const removeFavorites = (payload: any) => {
   return async function (dispatch: Dispatch<Name>) {
     const data = await axios.delete(`/favorites/${payload.idUser}?idProduct=${payload.idProduct}`);
-    return data;
+    return dispatch({
+      type: REMOVE_FAVORITE,
+      payload,
+    });
   };
 };
+
+
