@@ -30,6 +30,7 @@ import {
   UserOrders,
   UserOrderDetail,
   LeaveReview,
+  Contact,
 } from "./pages/";
 import { NavBar, Footer, About, CartSideBar } from "./components";
 import Favorites from "./components/Favorites/Favorites";
@@ -138,6 +139,7 @@ const App: FC = () => {
             }}
           />
           <Route exact path="/signup" component={FormRegister} />
+          <Route exact path="/contact" component={Contact} />
           <Route
             exact
             path="/createGenre"
