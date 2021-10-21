@@ -64,9 +64,9 @@ const App: FC = () => {
     setCurrentPage(pageNum);
     animateScroll.scrollTo(500, { duration: 500 });
   };
-  const [mobilePage, setMobilePage] = useState(12)
+  const [mobilePage, setMobilePage] = useState(12);
   const productsPerPage: number = 12;
-  const mobilePerPage: Array<Product> = totalProducts.slice(0, mobilePage)
+  const mobilePerPage: Array<Product> = totalProducts.slice(0, mobilePage);
 
   let lastIdx: number = currentPage * productsPerPage; // en la primera página, lastIdx = 1 * 9 = 9
   let firstIdx: number = lastIdx - productsPerPage; // en la primera página, firstIdx = 9 - 9 = 0
@@ -75,6 +75,7 @@ const App: FC = () => {
 
   const showCart = useSelector((state: Store) => state.globalReducer.showCart);
   const isAdmin = useSelector((state: Store) => state.authReducer.role.admin);
+  const isLogged = JSON.parse(localStorage.getItem("userData") as string);
   //cart modal -
   const toggleModal: any = () => {
     dispatch(toggleCart());
@@ -125,11 +126,17 @@ const App: FC = () => {
             exact
             path="/admin"
             render={() => {
-              return  isAdmin ? <AdminPanel /> : <Redirect to="/home" />;
+              return isAdmin ? <AdminPanel /> : <Redirect to="/home" />;
             }}
           />
           <Route exact path="/login" component={FormLogin} />
-          <Route exact path="/reset/:token" component={FormReset} />
+          <Route
+            exact
+            path="/reset/:token"
+            render={() => {
+              return !isLogged ? <FormReset /> : <Redirect to="/home" />;
+            }}
+          />
           <Route exact path="/signup" component={FormRegister} />
           <Route
             exact
