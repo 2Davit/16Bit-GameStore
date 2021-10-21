@@ -75,7 +75,7 @@ const signInGoogle = async (req, res) => {
     return res.status(403).send({ message: "Suspended account" });
   }
 
-  if (user[0] && user[0].orders.length) {
+  if (user[0] && user[0].orders?.length) {
     user[0].orders.sort((a, b) => {
       if (a.dataValues.id_order > b.dataValues.id_order) {
         return 1;
@@ -152,7 +152,7 @@ const logIn = async (req, res) => {
       },
     ],
   });
-  
+
   if (user && user.is_active === false) {
     return res.status(403).send({ message: "Suspended account" });
   }
@@ -205,7 +205,7 @@ const logIn = async (req, res) => {
   }
 
   const passwordIsValid = bcrypt.compareSync(password, user.password_user);
-  
+
   if (!passwordIsValid) {
     return res.status(401).send({ message: "Wrong password" });
   }
@@ -243,27 +243,27 @@ const setPass = async (req, res) => {
 
   const decoded = jwt.verify(token, SECRET);
   const id = decoded.id;
-  
+
   try {
     await User.update(
-      {password_user: bcrypt.hashSync(password, 8)},
-      {where: {
-        id_user: id
-      }}
-    )
+      { password_user: bcrypt.hashSync(password, 8) },
+      {
+        where: {
+          id_user: id,
+        },
+      }
+    );
 
-    res.status(200).send('Password successfully updated')
-  } catch(err){
+    res.status(200).send("Password successfully updated");
+  } catch (err) {
     console.log(err);
   }
-
-}
-
+};
 
 module.exports = {
   logIn,
   signUp,
   getRole,
   signInGoogle,
-  setPass
+  setPass,
 };
