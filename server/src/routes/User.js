@@ -5,7 +5,6 @@ const reqAdmin = require("../middlewares/reqAdmin");
 const router = Router();
 
 const {
-  postUser,
   getUsers,
   deleteOneUser,
   banOneUser,
@@ -13,7 +12,7 @@ const {
   promoteToAdmin
 } = require("../controllers/User");
 
-router.post("/", postUser);
+/* router.post("/", postUser); */
 router.get("/", getUsers);
 router.delete("/:id", deleteOneUser);
 router.put("/:id/:status", banOneUser);
