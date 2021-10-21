@@ -47,7 +47,6 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Fade } from "react-awesome-reveal";
 import { animateScroll } from "react-scroll";
-import { getAllFavorites } from "./redux/actions/favorite_actions";
 
 const App: FC = () => {
   const dispatch = useDispatch();
@@ -86,7 +85,6 @@ const App: FC = () => {
 
   useEffect(() => {
     dispatch(getCart());
-    isLogged && dispatch(getAllFavorites(isLogged.id))
   }, [dispatch]);
 
   
