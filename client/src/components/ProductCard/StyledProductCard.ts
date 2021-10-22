@@ -175,25 +175,23 @@ export const DivBtn = styled.div`
 export const MiniCard = styled.article`
   position: relative;
   display: flex;
-  border: 2px solid var(--clr-primary);
+  border: 2px solid ${p => p.theme.cartColor};
   border-radius: 0.5em;
   margin-bottom: 1em;
   align-items: center;
   justify-content: flex-start;
   padding: 1em 1.5em 1em 1em;
-
+  font-size: ${p => p.theme.fontSize};
   a {
     color: currentColor;
     text-decoration: none;
 
     &:hover {
-      color: var(--clr-primary);
+      color: ${p => p.theme.cartColor};
     }
   }
 
-  &:hover {
-    border: 2px solid var(--clr-primary-2);
-  }
+  
 
   .article__img {
     height: 100px;

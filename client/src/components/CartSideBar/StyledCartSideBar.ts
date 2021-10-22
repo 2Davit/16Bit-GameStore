@@ -21,10 +21,10 @@ export const StyledCartSideBar = styled.div`
     padding: 4em 2em;
     overflow: auto;
     box-shadow: 0 0 50px rgba(0, 0, 0, 0.7);
-    background: linear-gradient(195deg, rgba(10,51,100,1) 29%, rgba(0,168,255,1) 100%);
+    background: ${p => p.theme.cartBack};
 
     .modal__title {
-      color: var(--clr-primary);
+      color: ${p => p.theme.cartColor};
       margin: 1em 0;
       text-align: center;
     }

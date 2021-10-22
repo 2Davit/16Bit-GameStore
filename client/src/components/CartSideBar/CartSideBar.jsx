@@ -10,6 +10,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { clearCart } from "../../redux/actions/cart_actions";
 import { Slide } from "react-reveal";
 import Swal from 'sweetalert2';
+import { BtnOnSale, BtnRemoveFilter } from "../Filter/StyledFilter";
 // interface CartSideBarProps {
 //   show: boolean;
 //   closeCallback: any;
@@ -96,13 +97,13 @@ const CartSideBar /*: FC<CartSideBarProps>*/ = ({ closeCallback, show }) => {
           </div>
           <div id="modal__buttons" className="modal__buttons">
             <Link to="/order">
-              <Btn className="btn btn-card" onClick={closeCallback}>
+              <BtnOnSale style={{width: '50%', marginBottom: '5px'}} onClick={closeCallback}>
                 Checkout
-              </Btn>
+              </BtnOnSale>
             </Link>
-            <Btn className="btn btn-sec" onClick={handleClearCart}>
+            <BtnRemoveFilter style={{width: '50%', marginBottom: '5px'}} onClick={handleClearCart}>
               Clear Cart
-            </Btn>
+            </BtnRemoveFilter>
           </div>
         </div>
       </Slide>
