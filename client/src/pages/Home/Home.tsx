@@ -44,7 +44,7 @@ const Home = ({ setPage, currentProducts, productsPerPage, pages, setMobilePage,
         .then((res) =>
           localStorage.setItem("userData", JSON.stringify(res.data))
         )
-        .then((res) => window.location.reload());
+        .then((res) => window.location.reload())
     }
     dispatch(getAllProducts());
     dispatch(onSaleFilter("carousel"));

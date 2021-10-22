@@ -47,6 +47,7 @@ export const login = (values: any) => {
         }
         localStorage.setItem("cart", JSON.stringify(lastArray));
       }
+      window.location.reload();
       return dispatch({
         type: LOGIN,
         payload: userData.data,
@@ -61,6 +62,8 @@ export const login = (values: any) => {
     }
   };
 };
+
+
 export const getRole = () => {
   return async (dispatch: Dispatch<any>): Promise<any> => {
     const userData = JSON.parse(localStorage.getItem("userData") as string);
