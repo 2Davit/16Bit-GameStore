@@ -25,7 +25,7 @@ async function sendUserMail(req, res) {
   <body style="margin: 0; padding: 0">
     <div style="width: 100%; background-color: #000;">
       
-        <a href="https://16-bit-game-store.vercel.app/home" target="_blank" style="margin: 0%; background-color:black; display: flex;justify-content: center;">
+        <a href="https://16bit-gamestore.vercel.app/home" target="_blank" style="margin: 0%; background-color:black; display: flex;justify-content: center;">
           <img
             src="https://res.cloudinary.com/druj3xeao/image/upload/v1634145513/samples/16bit_p3aiqt.jpg"
             alt="16Bit"
@@ -119,7 +119,7 @@ async function sendUserMail(req, res) {
   } else {
     dom.window.document.getElementById(
       "total"
-    ).innerHTML = `<h2 style="color: #fff; margin: 2.5rem 0rem;"><a href="https://16-bit-game-store.vercel.app/home" target="_blank" style='text-decoration: none'>Start your retro trip! 🕹</a></h2>`;
+    ).innerHTML = `<h2 style="color: #fff; margin: 2.5rem 0rem;"><a href="https://16bit-gamestore.vercel.app/home" target="_blank" style='text-decoration: none'>Start your retro trip! 🕹</a></h2>`;
 
     dom.window.document.getElementById(
       "header"
@@ -243,7 +243,7 @@ async function sendResetPass(req, res) {
   <body style="margin: 0; padding: 0">
     <div style="width: 100%; background-color: #000;">
       
-        <a href="https://16-bit-game-store.vercel.app/home" target="_blank" style="margin: 0%; background-color:black; display: flex;justify-content: center;">
+        <a href="https://16bit-gamestore.vercel.app/home" target="_blank" style="margin: 0%; background-color:black; display: flex;justify-content: center;">
           <img
             src="https://res.cloudinary.com/druj3xeao/image/upload/v1634145513/samples/16bit_p3aiqt.jpg"
             alt="16Bit"
@@ -255,7 +255,7 @@ async function sendResetPass(req, res) {
         <p style="color: #fff; margin-left: 1rem">
           Hi, ${user.nickname_user}! Please enter to this link if you want to reset your 16Bit Gamestore account password:
         </p>
-        <a href="https://16-bit-game-store.vercel.app/reset/${token}" style="text-decoration: none; margin-left: 1rem; font-size: 1.5rem">Click here! 🕹</a>
+        <a href="https://16bit-gamestore.vercel.app/reset/${token}" style="text-decoration: none; margin-left: 1rem; font-size: 1.5rem">Click here! 🕹</a>
       </div>
       <div style="background-color: #000; color: lightgray; ">
         <p style="margin: 0 1rem; padding: 1rem 0">
@@ -347,7 +347,7 @@ async function statusEmail(req, res) {
   <body style="margin: 0; padding: 0">
     <div style="width: 100%; background-color: #000;">
       
-        <a href="https://16-bit-game-store.vercel.app/home" target="_blank" style="margin: 0%; background-color:black; display: flex;justify-content: center;">
+        <a href="https://16bit-gamestore.vercel.app/home" target="_blank" style="margin: 0%; background-color:black; display: flex;justify-content: center;">
           <img
             src="https://res.cloudinary.com/druj3xeao/image/upload/v1634145513/samples/16bit_p3aiqt.jpg"
             alt="16Bit"
@@ -359,7 +359,7 @@ async function statusEmail(req, res) {
         <p style="color: #fff; margin-left: 1rem">
           Hi, ${order.user.nickname_user}! ${content}
         </p>
-        <a href="https://16-bit-game-store.vercel.app/orderdetail/${order.userIdUser}/${order.id_order}" style="text-decoration: none; margin-left: 1rem; font-size: 1.5rem">${linkContent}</a>
+        <a href="https://16bit-gamestore.vercel.app/orderdetail/${order.userIdUser}/${order.id_order}" style="text-decoration: none; margin-left: 1rem; font-size: 1.5rem">${linkContent}</a>
       </div>
       <div style="background-color: #000; color: lightgray; ">
         <p style="margin: 0 1rem; padding: 1rem 0">

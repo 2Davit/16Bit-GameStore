@@ -9,61 +9,60 @@ mercadopago.configure({
 
 async function getOrders(req, res) {
   const { idUser } = req.query;
-  try{
-  if (idUser) {
-    const userOrders = await Order.findAll({
-      where: {
-        userIdUser: idUser,
-      }
-    })
-    const userOrdersData = userOrders.map((u) => {
-      return {
-        id_order: u.id_order,
-        status: u.status_order,
-        amount: u.amount_order,
-        address: u.address_order,
-        date: u.createdAt,
-      };
-    });
-    res.status(200).send(userOrdersData);
-  }
-  else  {
-    const orders = await Order.findAll();
-    const ordersData = orders.map((u) => {
-      return {
-        id_order: u.id_order,
-        status: u.status_order,
-        amount: u.amount_order,
-        address: u.address_order,
-        date: u.createdAt,
-        nickname_user: u.userIdUser
-      };
-    });
+  try {
+    if (idUser) {
+      const userOrders = await Order.findAll({
+        where: {
+          userIdUser: idUser,
+        },
+      });
+      const userOrdersData = userOrders.map((u) => {
+        return {
+          id_order: u.id_order,
+          status: u.status_order,
+          amount: u.amount_order,
+          address: u.address_order,
+          date: u.createdAt,
+        };
+      });
+      res.status(200).send(userOrdersData);
+    } else {
+      const orders = await Order.findAll();
+      const ordersData = orders.map((u) => {
+        return {
+          id_order: u.id_order,
+          status: u.status_order,
+          amount: u.amount_order,
+          address: u.address_order,
+          date: u.createdAt,
+          nickname_user: u.userIdUser,
+        };
+      });
 
-    const users = ordersData.map(e => {
-      return User.findByPk(e.nickname_user)
-    })
+      const users = ordersData.map((e) => {
+        return User.findByPk(e.nickname_user);
+      });
 
-const usersTwo = await Promise.all(users)
+      const usersTwo = await Promise.all(users);
 
+      ordersData.forEach((index) => {
+        usersTwo.map((i) => {
+          if (i.dataValues.id_user === index.nickname_user) {
+            return (index.nickname_user = i.dataValues.nickname_user);
+          }
+        });
+      });
 
-ordersData.forEach(index => {
-  usersTwo.map(i => {
-    if(i.dataValues.id_user === index.nickname_user) {return index.nickname_user= i.dataValues.nickname_user}
-  })
-})
-
-    res.status(200).send(ordersData);
-  } 
-  }
-catch (err) {
+      res.status(200).send(ordersData);
+    }
+  } catch (err) {
     res.status(404).send(err);
   }
 }
 
 async function createOrder(req, res, next) {
   const { id_user, status_order, amount_order, cart, address_order } = req.body;
-  console.log(amount_order)
+  console.log(amount_order);
   try {
     var user = await User.findByPk(id_user);
     const order = await Order.create({
@@ -92,9 +91,12 @@ async function createOrder(req, res, next) {
       })),
       external_reference: `${order.id_order}`,
       back_urls: {
-        success: "https://videogame-store-16bit.herokuapp.com/order/prueba/payment",
-        failure: "https://videogame-store-16bit.herokuapp.com/order/prueba/payment",
-        pending: "https://videogame-store-16bit.herokuapp.com/order/prueba/payment",
+        success:
+          "https://videogame-store-16bit.herokuapp.com/order/prueba/payment",
+        failure:
+          "https://videogame-store-16bit.herokuapp.com/order/prueba/payment",
+        pending:
+          "https://videogame-store-16bit.herokuapp.com/order/prueba/payment",
       },
       auto_return: "approved",
     };
@@ -111,13 +113,13 @@ async function createOrder(req, res, next) {
 
 async function createPayment(req, res) {
   const external_reference = req.query.external_reference;
-  
+
   try {
     await Order.update(
       { status_order: "fulfilled" },
       { where: { id_order: external_reference } }
     );
-    
+
     const foundOrder = await Order.findOne({
       where: {
         id_order: external_reference,
@@ -129,7 +131,7 @@ async function createPayment(req, res) {
         },
       ],
     });
-    
+
     await foundOrder.orderProducts.forEach((e) => {
       Product.decrement("in_stock", {
         by: e.quantity_orderProduct,
@@ -138,7 +140,7 @@ async function createPayment(req, res) {
         },
       });
     });
-    
+
     await foundOrder.orderProducts.forEach((e) => {
       Product.decrement("in_stock", {
         by: e.quantity_orderProduct,
@@ -147,19 +149,16 @@ async function createPayment(req, res) {
         },
       });
     });
-    
-    return res.redirect("https://16-bit-game-store.vercel.app/order/detail");
-    
+
+    return res.redirect("https://16bit-gamestore.vercel.app/order/detail");
   } catch (err) {
     res.send(err);
   }
 }
 
-
-
 async function saveOrder(req, res, next) {
   const { id_user, status_order, amount_order, cart } = req.body;
-  
+
   if (status_order === "cart") {
     try {
       var user = await User.findByPk(id_user);
@@ -169,10 +168,10 @@ async function saveOrder(req, res, next) {
           amount_order,
           address_order: user.address_user,
         });
-        
+
         await user.addOrder(order.id_order);
         await order.setUser(user.id_user);
-        
+
         cart.forEach(async (product) => {
           const orderProducts = await OrderProduct.create({
             quantity_orderProduct: product.quantity,
@@ -181,7 +180,7 @@ async function saveOrder(req, res, next) {
           await orderProducts.setOrder(order.id_order);
           await orderProducts.setProduct(product.id_product);
         });
-        
+
         res.status(200).send({ success: true });
       } else res.status(400).send({ error: "invalid user" });
     } catch (err) {
@@ -196,40 +195,41 @@ async function getOrderDetail(req, res) {
   try {
     const order = await Order.findOne({
       where: {
-        id_order: idOrder
+        id_order: idOrder,
       },
       include: [
         {
           model: OrderProduct,
           required: false,
         },
-      ]
-    })
+      ],
+    });
     const filterOrder = {
       id_order: order.dataValues.id_order,
       status_order: order.dataValues.status_order,
       amount_order: order.dataValues.amount_order,
       address_order: order.dataValues.address_order,
       date: order.dataValues.createdAt,
-      orderProduct: order.dataValues.orderProducts.map( index => {
+      orderProduct: order.dataValues.orderProducts.map((index) => {
         return {
           product: index.dataValues.productIdProduct,
-          quantity:index.dataValues.quantity_orderProduct,
+          quantity: index.dataValues.quantity_orderProduct,
+        };
+      }),
+    };
+    let filterOrderThree = filterOrder.orderProduct.map(async (index) => {
+      return await Product.findByPk(index.product);
+    });
+    let filterOrderFour = await Promise.all(filterOrderThree);
+    filterOrder.orderProduct.forEach((index) => {
+      filterOrderFour.map((i) => {
+        if (i.dataValues.id_product === index.product) {
+          return (index.product = i.dataValues);
         }
-      })
-    }
-    let filterOrderThree = filterOrder.orderProduct.map(async index => {
-      return await (Product.findByPk(index.product))
-    })
-    let filterOrderFour = await Promise.all(filterOrderThree)
-    filterOrder.orderProduct.forEach(index => {
-      filterOrderFour.map(i => {
-        if(i.dataValues.id_product === index.product) {return index.product= i.dataValues}
-      })
-    })
+      });
+    });
     res.status(200).send(filterOrder);
-  }
-  catch (err) {
+  } catch (err) {
     res.status(404).send(err);
   }
 }
@@ -245,7 +245,6 @@ async function setStatusOrder(req, res) {
     console.log(error);
   }
 }
-
 
 module.exports = {
   createOrder,
