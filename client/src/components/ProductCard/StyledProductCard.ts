@@ -53,7 +53,7 @@ export const StyledProductCard = styled.article`
       bottom: 0;
       display: flex;
       flex-direction: column;
-      background: rgba(40, 40, 40, 0.7);
+      background:  ${(p) => p.theme.cardContentBackground};;
     }
 
     /* button {
@@ -103,8 +103,8 @@ export const StyledProductCard = styled.article`
     bottom: -10%;
     display: flex;
     flex-direction: column;
-
-    background: rgba(40, 40, 40, 0.7);
+    border-top: 2px solid ${(p) => p.theme.cardContentTopBorder};
+    background: ${(p) => p.theme.cardContentBackground};
     transition: all 0.35s ease-in-out;
 
     @media screen and (max-width: 414px) {
@@ -244,24 +244,26 @@ export const GenresContainer = styled.div`
   justify-content: flex-end;
 `;
 export const Genres = styled.h5`
-  background: #0a3364;
-  width: 40%;
+  background: ${p => p.theme.cardGenreBackground}; 
+  width: 45%;
   height: 100%;
-  margin: 0 0 0 0.3rem;
+  margin: 0 0 0 0.2rem;
   text-align: center;
   align-items: flex-end;
+  border: 4px double ${p => p.theme.cardGenreBorder};
   padding: 0.3rem;
-  border-radius: 10px;
+  border-radius: ${p => p.theme.cardGenreBorderRadius};
 `;
 export const Price = styled.h4`
-  background: #3fa91e;
+  background: ${p => p.theme.cardPricedBackground};
   width: 25%;
   height: 100%;
   margin-bottom: 0;
   text-align: center;
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
+  border-top-right-radius: ${p => p.theme.cardPriceBorderTopRight};
+  border-bottom-right-radius: ${p => p.theme.cardPriceBorderBottomRight};
   margin-left: -1rem;
+  border: 4px double ${p => p.theme.cardPriceBorder};
   display: flex;
   align-items: center;
   justify-content: center;
