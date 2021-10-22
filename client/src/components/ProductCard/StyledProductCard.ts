@@ -244,7 +244,7 @@ export const GenresContainer = styled.div`
   justify-content: flex-end;
 `;
 export const Genres = styled.h5`
-  background: ${p => p.theme.cardGenreBackground};
+  background: ${p => p.theme.cardGenreBackground}; 
   width: 45%;
   height: 100%;
   margin: 0 0 0 0.2rem;
