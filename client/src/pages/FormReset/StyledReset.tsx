@@ -1,11 +1,15 @@
 import styled from "styled-components";
 
 export const StyledReset = styled.div`
+
+
   .link_container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     margin-top: 2em;
+    width:100%;
+    
 
     a {
       color: var(--clr-white);
@@ -89,4 +93,8 @@ export const StyledReset = styled.div`
       }
     }
   }
+
+
 `;
+
+

@@ -5,7 +5,12 @@ export const StepOne = styled.div`
   display: flex;
   width: 80%;
   margin: 0 auto;
+  height: 100vh;
 
+  @media (max-width:414px){
+    height:100%;
+    margin-bottom: 20px !important;
+  }
   & > div:first-child {
     margin-right: 4em;
     flex: 1;
@@ -137,6 +142,7 @@ export const StepThree = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
+  height: 100vh;
   .step__info {
     text-align: center;
     p {

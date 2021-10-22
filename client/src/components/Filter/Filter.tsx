@@ -72,7 +72,7 @@ const Filter: FC<Props> = ({ setPage }) => {
       {/* <h2>Filter:</h2> */}
       <section>
         <SelectStyled id="filterPlatform" onChange={handleFilter}>
-          <option value="">Platforms</option>
+          <option style={{marginRight: ".5em"}} value="">Platforms</option>
           {totalPlatforms.map((index: any) => (
             <option value={index} key={index}>
               {index}
@@ -82,7 +82,7 @@ const Filter: FC<Props> = ({ setPage }) => {
       </section>
       <section>
         <SelectStyled id="filterGenre" onChange={handleFilter}>
-          <option value="">Genres</option>
+          <option  value="">Genres</option>
           {totalGenres.map((index: any) => (
             <option value={index} key={index}>
               {index}

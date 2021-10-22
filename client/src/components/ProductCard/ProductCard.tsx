@@ -17,6 +17,7 @@ import {
   Price,
   GenresContainer,
 } from "./StyledProductCard";
+import {BtnNoStock } from "../Filter/StyledFilter";
 import cart from "../../assets/img/svg/cart.svg";
 import { toast } from "react-toastify";
 import { animateScroll } from "react-scroll";
@@ -143,7 +144,7 @@ const ProductCard: FC<Props> = ({ game }) => {
             </BtnCartCard>
           </DivBtn>
         ) : (
-          <Btn className="btn-sinstock">Sin Stock</Btn>
+          <BtnNoStock style={{width:"150px" ,zIndex: 20, top:"55px",left:"-15px" , position: "absolute"}}>Sin Stock</BtnNoStock>
         )}
       </div>
       <Link

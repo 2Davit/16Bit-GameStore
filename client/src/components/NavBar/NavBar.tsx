@@ -12,7 +12,7 @@ import { openLogin } from "../../redux/actions/global_actions";
 //Interfaces
 import { ProductInCart } from "../../interfaces";
 //Estilos
-import { StyledNavBar, TotalNav, Img, NavbarResponsive } from "./StyledNavBar";
+import { StyledNavBar, TotalNav, Img, NavbarResponsive, CartIconDiv, CartIconNumber, CartIconRed } from "./StyledNavBar";
 import { Dropdown, StyledSVG } from "../../GlobalStyles/GlobalStyles";
 //Assets
 import cart from "../../assets/img/svg/cart2.svg";
@@ -23,6 +23,7 @@ import defaultAvatar from "../../assets/img/avatars/Avatar_9.png";
 import alien from "../../assets/1.png";
 import { FaShoppingCart } from "react-icons/fa";
 import { BsFillHeartFill } from "react-icons/bs";
+import { BiUserCircle } from "react-icons/bi"
 
 interface Props {
   setPage(num: number): void;
@@ -44,9 +45,9 @@ const NavBar: FC<Props> = ({ setPage, toggleModal }: any) => {
     dispatch(openLogin(true));
   };
 
-   const cartNumber: any = useSelector(
+  const cartNumber: any = useSelector(
     (state: Store) => state.cartReducer.cart.list
-  ); 
+  );
 
   const isAdmin = useSelector((state: Store) => state.authReducer.role.admin);
 
@@ -60,7 +61,7 @@ const NavBar: FC<Props> = ({ setPage, toggleModal }: any) => {
   }
 
   useEffect(() => {
-      handleEffect();
+    handleEffect();
   }, [handleEffect, num])
 
   /* const cartStorage = JSON.parse(localStorage.getItem("cart")!); */
@@ -167,15 +168,23 @@ const NavBar: FC<Props> = ({ setPage, toggleModal }: any) => {
                 onClick={toggleModal}
                 style={{ display: "flex", flexDirection: "column" }}
               >
-                <StyledSVG src={cart} />
+                <CartIconDiv>
+                  <StyledSVG src={cart} />
+                  <CartIconRed>
+                    {/* number */ num > 0 && (
+                      <CartIconNumber >
+                        {num >= 100 ? "99+" : num}
+
+                      </CartIconNumber>
+                  
+                )}
+                </CartIconRed>
+                </CartIconDiv>
                 <span>
                   Cart
-                  {/* number */ num > 0 && (
-                    <span className="cart__number">
-                      {num >= 100 ? "99+" : num}
-                    </span>
-                  )}
+
                 </span>
+
               </button>
             </li>
           </ul>
@@ -211,7 +220,7 @@ const NavBar: FC<Props> = ({ setPage, toggleModal }: any) => {
                   <img src={defaultAvatar} alt="Imagen de perfil" />
                 </div>
               ) : (
-                <StyledSVG src={userPic} />
+                <BiUserCircle/>
               )}
               <span>User</span>
             </div>
@@ -256,21 +265,29 @@ const NavBar: FC<Props> = ({ setPage, toggleModal }: any) => {
           </Dropdown>
 
           <li>
-            <button
-              onClick={toggleModal}
-              style={{ display: "flex", flexDirection: "column" }}
-            >
-              <FaShoppingCart />
-              <span>
-                Cart
-                {num > 0 && (
-                  <span className="cart__number">
-                    {num >= 100 ? "99+" : num}
-                  </span>
+              <button
+                onClick={toggleModal}
+                style={{ display: "flex", flexDirection: "column" }}
+              >
+                <CartIconDiv>
+                  <FaShoppingCart />
+                  <CartIconRed>
+                    {/* number */ num > 0 && (
+                      <CartIconNumber >
+                        {num >= 100 ? "99+" : num}
+
+                      </CartIconNumber>
+                  
                 )}
-              </span>
-            </button>
-          </li>
+                </CartIconRed>
+                </CartIconDiv>
+                <span>
+                  Cart
+
+                </span>
+
+              </button>
+            </li>
         </ul>
       </NavbarResponsive>
     </TotalNav>

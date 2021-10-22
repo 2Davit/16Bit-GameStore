@@ -25,7 +25,7 @@ const UserOrders = () => {
   }, [dispatch, user.id]);
 
   return (
-    <Fade>
+    <Fade style={{height: "100vh",}}> 
       {orders.length > 0 ? (
         <StyledOrders>
           <h2>Your Orders</h2>
@@ -68,11 +68,12 @@ const UserOrders = () => {
           </Btn>
         </StyledOrders>
       ) : (
-        <div>
-          <h2>You don't have any orders</h2>
-          <Btn className="btn-card" onClick={() => history.push("/user")}>
-            <i className="fas fa-caret-left"></i> Go back
-          </Btn>
+        <div style={{width:"100%", display:"flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", height: "100%"}}>
+          <h2 >You don't have any orders</h2>
+          
+          <Btn style={{}} className=" btn-card" onClick={() => history.push("/user")}>
+          <i className="fas fa-caret-left"></i> Go back
+        </Btn>
         </div>
       )}
     </Fade>

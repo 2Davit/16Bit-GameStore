@@ -87,15 +87,18 @@ const FormReset: FC = () => {
       bottom: "auto",
       marginRight: "-50%",
       transform: "translate(-50%, -50%)",
-      border: "2px solid #9b5df7",
+      border: "2px solid #009ded",
       borderRadius: "10px",
-      boxShadow: "0 0 15px #9b5df7",
+      boxShadow: "0 0 15px #009ded",
       color: "#F5F4F8",
       background: "#111",
       zIndex: "9999",
       width: "50%",
       height: "70%",
+      
     },
+
+  
   };
   const afterOpenModal = () => {
     document.body.style.overflow = "hidden";
@@ -182,7 +185,7 @@ const FormReset: FC = () => {
                 />
               </label>
               {errors.password && <span>{errors.password}</span>}
-              <Btn
+              <Btn style={{marginLeft:"8rem", marginTop:"2rem"}}
                 type="submit"
                 className={!disabled ? "btn-card login": "btn-disabled"}
                 disabled={disabled}

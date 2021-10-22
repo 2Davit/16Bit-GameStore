@@ -90,7 +90,7 @@ const themes = {
     carouselBtnArrow: '0',
     carouselBtnBack: 'rgb(155, 99, 244)',
     filterButtonBorder: '0',
-    removeFilBtn: 'transparent',
+    removeFilBtn: '#000',
     removeBorderBtn: '4px double red',
     removeColorBtn: 'red',
     removeColorBtnHover: '#000000',

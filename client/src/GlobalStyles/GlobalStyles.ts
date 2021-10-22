@@ -372,8 +372,10 @@ export const Badge = styled.span`
 `
 
 export const StyledSVG = styled(SVG)`
+position: relative;
   /* color: ${p => p.theme.cartColor}; */
 `
+
 
 export const BtnCartCard = styled.button`
 

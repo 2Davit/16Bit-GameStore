@@ -56,7 +56,8 @@ const CartSideBar /*: FC<CartSideBarProps>*/ = ({ closeCallback, show }) => {
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, clear it!'
+      confirmButtonText: 'Yes, clear it!',
+      zIndex: "9999"
     }).then((result) => {
       if (result.isConfirmed) {
         dispatch(clearCart());

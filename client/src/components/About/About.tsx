@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import { StyledAbout, TextAbout } from "./StyledAbout";
 import { Fade } from "react-awesome-reveal";
-import Alex from './Members/Alex.jpeg'
+import Alex from './Members/AlexNueva.jpeg'
 import Carlos from './Members/Carlos.png'
 import David from './Members/David.jpeg'
 import Denis from './Members/Denis.jpeg'
@@ -13,7 +13,7 @@ import Guido from './Members/Guido.jpeg'
 
 
 import DenisPixel from './Members/pixelDenis.png'
-import AlexPixel from './Members/pixelAlex.png'
+import AlexPixel from './Members/AlexPixel.png'
 import GabrielPixel from './Members/pixelGabriel.png'
 import CarlosPixel from './Members/pixelCarlos.png'
 import FrancoPixel from './Members/pixelFranco.png'

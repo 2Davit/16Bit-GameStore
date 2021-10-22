@@ -10,6 +10,18 @@ export const StyledProductCard = styled.article`
   transition: all 0.35s ease-in-out;
   height: 400px;
   font-size: ${(p) => p.theme.fontSize};
+
+
+  .card__content__favorite {
+      padding: 0.5em 1em;
+      height: 40%;
+      position: absolute;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      background:  ${(p) => p.theme.cardContentBackground};;
+
+    }
  
     .btn-fav {
     border: none;
@@ -37,17 +49,7 @@ export const StyledProductCard = styled.article`
       outline: none;
     }
   }
-  .card__content__favorite {
-      padding: 0.5em 1em;
-      height: 40%;
-      position: absolute;
-      width: 100%;
-      bottom: 0;
-      display: flex;
-      flex-direction: column;
-      background:  ${(p) => p.theme.cardContentBackground};;
 
-    }
 
   &:hover {
     transform: scale(1.05);
@@ -279,3 +281,12 @@ export const Price = styled.h4`
   align-items: center;
   justify-content: center;
 `;
+
+
+export const BtnsFavoriteCardContainer = styled.div`
+display: flex;
+width: 40%;
+margin-left: 10rem ;
+margin-top: -1rem;
+z-index: 2;
+`

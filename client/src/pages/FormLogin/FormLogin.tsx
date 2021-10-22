@@ -136,9 +136,9 @@ const FormLogin: FC = () => {
                 />
               </label>
               <ForgotPasswordContainer className="link_container">
-                <span onClick={() => setResetPass(true)}>
+                <a  onClick={() => setResetPass(true)}>
                   I forgot my password
-                </span>
+                </a>
                 <Link to="/signup" onClick={closeModal}>
                   Create an Account
                 </Link>
