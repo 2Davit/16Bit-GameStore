@@ -47,7 +47,6 @@ export const login = (values: any) => {
         }
         localStorage.setItem("cart", JSON.stringify(lastArray));
       }
-      window.location.reload();
       return dispatch({
         type: LOGIN,
         payload: userData.data,

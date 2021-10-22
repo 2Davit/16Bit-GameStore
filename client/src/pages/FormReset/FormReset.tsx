@@ -134,7 +134,6 @@ const FormReset: FC = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(input.newPassword)
     axios.post(`/auth/reset/${token}`, { password: input.newPassword })
     closeModal()
     Swal.fire({
