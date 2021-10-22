@@ -78,7 +78,6 @@ const FormLogin: FC = () => {
     setIsUser(true);
     closeModal();
     animateScroll.scrollTo(0, { duration: 300 });
-    window.location.reload();
   };
 
   const handleReset = async (e: React.FormEvent<HTMLFormElement>) => {
