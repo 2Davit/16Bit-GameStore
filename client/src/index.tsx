@@ -10,7 +10,6 @@ dotenv.config();
 
 axios.defaults.baseURL = process.env.REACT_APP_API || "http://localhost:3001";
 
-
 ReactDOM.render(
   <Auth0Provider
     domain="16bit-game-store.us.auth0.com"

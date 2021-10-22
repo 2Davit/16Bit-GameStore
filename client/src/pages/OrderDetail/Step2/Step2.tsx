@@ -7,35 +7,55 @@ import { StepTwo } from "../StyledOrderDetail";
 const Order = () => {
   const user = JSON.parse(localStorage.getItem("userData")!);
   const cart: any = JSON.parse(localStorage.getItem("cart")!);
+  const coupon: number = JSON.parse(localStorage.getItem("coupon")!);
   const [subtotal, setSubtotal] = useState(0.0);
   const [inputAddress, setinputAddress] = useState({
     address: user.data.address,
   });
   const [error, setError] = useState({ address: "" });
 
+
+  if (coupon > 0) {
+    var newCart = cart?.map((c: ProductInCart) => ({
+      id_product: c.id_product,
+      price_product: c.price_product - c.price_product * (coupon / 100),
+      quantity: c.quantity,
+    }))
+  }
+  
+
   useEffect(() => {
     if (cart) {
+      !coupon ?
       setSubtotal(
         cart.reduce((acc: number, product: ProductInCart) => {
           acc = acc + product.price_product! * product.quantity!;
           return acc;
         }, 0.0)
-      );
+      ) :
+      setSubtotal(
+        newCart.reduce((acc: number, product: ProductInCart) => {
+          acc = acc + product.price_product! * product.quantity!;
+          return acc;
+        }, 0.0)
+      )
     }
-  }, [cart]);
-
+  }, [cart, newCart]);
+  
   const order = {
     id_user: user?.id,
     status_order: "pending",
-    amount_order: subtotal,
-    cart: cart?.map((c: ProductInCart) => ({
+    amount_order: Math.floor(subtotal),
+    cart: !coupon ? cart?.map((c: ProductInCart) => ({
       id_product: c.id_product,
       price_product: c.price_product,
       quantity: c.quantity,
-    })),
+    }))
+    :
+    newCart,
     address_order: inputAddress.address,
   };
-
+  
   const validate = (address: any) => {
     let errors = {
       address: "",

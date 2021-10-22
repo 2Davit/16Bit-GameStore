@@ -249,17 +249,17 @@ export const Btn = styled.button`
 
 
 export const QuantityButton = styled.button`
-  color: var(--clr-white);
-  background-color: var(--clr-primary);
+  color: ${p => p.theme.removeColorBtnHover};
+  background-color: ${p => p.theme.cartColor};
   border-radius: 100%;
   border: none;
   width: 25px;
   height: 25px;
   font-weight: 400;
 
-  &:active {
+  /* &:active {
     background-color: var(--clr-primary-2);
-  }
+  } */
   &:focus {
     outline: none;
   }
@@ -373,7 +373,9 @@ export const Badge = styled.span`
 
 export const StyledSVG = styled(SVG)`
 position: relative;
-`;
+  /* color: ${p => p.theme.cartColor}; */
+`
+
 
 export const BtnCartCard = styled.button`
 

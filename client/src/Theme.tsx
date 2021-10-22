@@ -68,6 +68,8 @@ const themes = {
     contactUsBtn: '#00a8ff',
     contactUsBack: '#ffffff',
     contactUsColor: 'gray',
+    cartBack: 'linear-gradient(195deg, rgba(10,51,100,1) 29%, rgba(0,168,255,1) 100%)',
+    cartColor: '#00a8ff',
   },
   retro: {
     background: `url(${backRetro})`,
@@ -130,6 +132,8 @@ const themes = {
     contactUsBtn: 'rgb(55, 244, 59)',
     contactUsBack: '#000000',
     contactUsColor: 'rgb(55, 244, 59)',
+    cartBack: '#000000',
+    cartColor: 'rgb(55, 244, 59)',
   },
 };
 

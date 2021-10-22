@@ -232,6 +232,7 @@ const FormRegister: FC = () => {
         <Btn style={{marginBottom:"1rem"}} type="submit" className="btn-card" disabled={disabled}>
           Register
         </Btn>
+
       <Btn style={{marginBottom:"1rem"}} className="btn-card" onClick={loginWithRedirect}>
         Sign up with Google
       </Btn>
