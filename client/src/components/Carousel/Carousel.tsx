@@ -171,7 +171,7 @@ const Carousel: any = ({ products }: any) => {
                             </span>
                           </div>
 
-                          <div className="container__priceDiscount2">
+                          {/* <div className="container__priceDiscount2">
                             <Btn
                               className=" btn-card btn-img"
                               onClick={() => handleClick(prod)}
@@ -179,7 +179,7 @@ const Carousel: any = ({ products }: any) => {
                               Add to cart
                               <StyledSVG src={cart} />
                             </Btn>
-                          </div>
+                          </div> */}
 
                         </div>
                       </div>

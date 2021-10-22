@@ -17,7 +17,6 @@ const EditProfile = () => {
 
   const [input, setInput] = useState({
     id: user.id,
-    password: "",
     email: user.data.email,
     address: user.data.address,
     name: user.data.name,
@@ -118,22 +117,6 @@ const EditProfile = () => {
                 onChange={handleChange}
               />
             </label>
-            <div className="passwordSection">
-              <label>
-                <span>Password:</span>
-                <input
-                  type="password"
-                  value={input.password}
-                  name="password"
-                  onChange={handleChange}
-            
-                />
-              </label>
-              <div className="small-text small-spacing small-warning">
-                <p>Edit this field only if you want to change your password.</p>
-                <p>Otherwise, leave it empty.</p>
-              </div>
-            </div>
             <EditBtnContainer>
               <Btn style={{marginBottom:"1rem"}} type="submit" className="btn-card">
                 Confirm
