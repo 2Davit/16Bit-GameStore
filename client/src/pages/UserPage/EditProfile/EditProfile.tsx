@@ -84,7 +84,7 @@ const EditProfile = () => {
             <h1 className="form__title">Edit User</h1>
             <label>
               <span>First Name:</span>
-              <input
+              <input style={{color: 'white'}}
                 type="text"
                 value={input.name}
                 name="name"
@@ -93,7 +93,7 @@ const EditProfile = () => {
             </label>
             <label>
               <span>Last Name:</span>
-              <input
+              <input style={{color: 'white'}}
                 type="text"
                 value={input.lastname}
                 name="lastname"
@@ -102,7 +102,7 @@ const EditProfile = () => {
             </label>
             <label>
               <span>Email:</span>
-              <input
+              <input style={{color: 'white'}}
                 type="email"
                 value={input.email}
                 name="email"
@@ -111,7 +111,7 @@ const EditProfile = () => {
             </label>
             <label>
               <span>Address:</span>
-              <input
+              <input style={{color: 'white'}}
                 type="text"
                 value={input.address}
                 name="address"
@@ -121,7 +121,7 @@ const EditProfile = () => {
             <div className="passwordSection">
               <label>
                 <span>Password:</span>
-                <input
+                <input 
                   type="password"
                   value={input.password}
                   name="password"

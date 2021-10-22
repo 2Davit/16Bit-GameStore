@@ -4,7 +4,7 @@ import React, { FC, useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { FormStyled } from "../FormRegister/StyledFormRegister";
-import { StyledLogin, customStyles } from "./StyledLogin";
+import { StyledLogin, customStyles, BtnContainerLogin, BtnLogin, ForgotPasswordContainer } from "./StyledLogin";
 import Modal from "react-modal";
 import { Store } from "../../redux/reducer";
 import { openLogin } from "../../redux/actions/global_actions";
@@ -12,6 +12,7 @@ import { StyledSVG, Btn } from "../../GlobalStyles/GlobalStyles";
 import CloseButton from "../../assets/img/svg/close-filled-purple.svg";
 import { animateScroll } from "react-scroll";
 import { useAuth0 } from "@auth0/auth0-react";
+import { FcGoogle } from 'react-icons/fc'
 import axios from "axios";
 
 
@@ -122,7 +123,7 @@ const FormLogin: FC = () => {
           <FormStyled>
             { !resetPass ?
             
-            <>
+            
             <form onSubmit={handleSubmit}>
               <label htmlFor="username">
                 <span>Username</span>
@@ -136,26 +137,25 @@ const FormLogin: FC = () => {
                   onChange={handleInputChange}
                 />
               </label>
-              <div className="link_container">
+              <ForgotPasswordContainer className="link_container">
                 <span onClick={() => setResetPass(true)}>
                   I forgot my password
                 </span>
                 <Link to="/signup" onClick={closeModal}>
                   Create an Account
                 </Link>
-              </div>
-              <Btn
+              </ForgotPasswordContainer>
+              <BtnContainerLogin>
+              <BtnLogin
                 type="submit"
-                className={!disabled ? "btn-card login" : "btn-disabled"}
+                className={!disabled ? "" : ""}
                 disabled={disabled}
-              >
-                Log In
-              </Btn>
+              >Log In</BtnLogin>
+            <BtnLogin onClick={loginWithRedirect}>
+            <FcGoogle style={{fontSize: "30px"}}/>
+            </BtnLogin>
+            </BtnContainerLogin>
             </form>
-            <Btn className={"btn-card login"} onClick={loginWithRedirect}>
-              Log In with Google
-            </Btn>
-            </>
             
             : 
             <form onSubmit={(e) => handleReset(e)}>

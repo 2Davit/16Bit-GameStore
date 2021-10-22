@@ -105,13 +105,53 @@ export const customStyles = {
     left: "50%",
     right: "auto",
     bottom: "auto",
+    
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
-    border: "2px solid #9b5df7",
+    border: "2px solid #0a3364",
     borderRadius: "10px",
-    boxShadow: "0 0 15px #9b5df7",
+    boxShadow: "0 0 30px #0a3364",
     color: "#F5F4F8",
     background: "#111",
     zIndex: "9999",
   },
 };
+
+export const BtnContainerLogin = styled.div`
+display: flex;
+flex-direction: column;
+align-items: center !important;
+justify-content: center !important;
+padding: 0 1rem 0 0 !important;
+width: 50%;
+margin: 0 auto;
+`
+
+export const BtnLogin = styled.button`
+color: ${ p => p.theme.onsaleColorBtn};
+  border-radius: ${ p => p.theme.filterButtonBorder };
+  background-color: ${ p => p.theme.onSaleFilBtn};
+  border: ${ p => p.theme.onSaleBorderBtn};
+  padding: 0.6em .4em;
+  width: 100%;
+  margin: .5rem auto;
+
+  &:hover{
+    background-color: ${ p => p.theme.onSaleFilBtnHover};
+    color: ${ p => p.theme.onsaleColorBtnHover };
+  }
+  &:focus{
+    outline: none;
+  }
+  @media screen and (max-width: 414px){
+     width: 100%;
+     height: 45px;
+     padding: 0;
+     font-size: ${p => p.theme.fontSize};
+  }
+
+`
+
+export const ForgotPasswordContainer = styled.div`
+margin-left: 25px;
+`

@@ -5,9 +5,8 @@ export const FormStyled = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  @media (max-width: 1000px) {
-    flex-direction: column;
-  }
+  flex-direction: column;
+
 
   input.checked {
     background: url(${checkMark}) no-repeat;
@@ -19,7 +18,7 @@ export const FormStyled = styled.div`
 
   form {
     position: relative;
-    left: 2vw;
+
   }
   .form__title {
     margin-top: 1.5em;
@@ -31,7 +30,7 @@ export const FormStyled = styled.div`
     display: block;
     position: relative;
     width: 400px;
-    margin: 2em auto;
+    margin: 2em 2em;
     @media (max-width: 600px) {
       width: 100%;
     }
@@ -83,9 +82,9 @@ export const FormStyled = styled.div`
   a {
     text-decoration: none;
   }
-  button {
+  /* button {
     position: relative;
     left: 30%;
     margin-bottom: 2em;
-  }
+  } */
 `;

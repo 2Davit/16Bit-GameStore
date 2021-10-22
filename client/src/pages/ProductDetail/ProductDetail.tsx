@@ -142,7 +142,11 @@ const Detail: FC = () => {
   const user = JSON.parse(localStorage.getItem("userData")!);
   return (
     <>
+          <Btn style={{marginTop: "1rem", marginLeft:"1rem"}} className=" btn-card" onClick={() => history.push("/orders")}>
+          <i className="fas fa-caret-left"></i> Go back
+        </Btn>
       <GameDetail>
+
         <div className="game__img">
           {detailProduct.image_product?.map((e: string, i: number) => (
             <img

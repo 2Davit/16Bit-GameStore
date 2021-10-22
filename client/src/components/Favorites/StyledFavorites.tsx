@@ -8,6 +8,12 @@ export const StyledContainer = styled.div`
   align-items: center;
   flex-wrap: wrap;
   padding: 3rem;
-  padding-top: 2rem
+  padding-top: 2rem;
+  height: 100vh;
+  width: 100vw;
 
+`
+
+export const TextFavorite = styled.h5`
+font-size: 20px;
 `
