@@ -151,7 +151,7 @@ export const GameDetail = styled.section`
     .game__description {
       line-height: 1.5;
       margin-top: 2em;
-      font-size: 0.7em;
+      font-size: 0.85em;
       text-align: justify;
     }
 

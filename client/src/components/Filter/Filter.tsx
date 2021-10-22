@@ -46,6 +46,7 @@ const Filter: FC<Props> = ({ setPage }) => {
   const handleOnSaleFilter = () => {
     dispatch(onSaleFilter("filter"));
     setShow(!show);
+    setPage(1);
   };
 
   const handleAll = () => {

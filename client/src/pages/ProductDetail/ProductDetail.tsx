@@ -21,6 +21,7 @@ import mercadopagoimg from "../../assets/img/mercadopagoimg.webp";
 import heart from "../../assets/img/svg/heart1.svg";
 //Interfaces
 import { ProductInCart } from "../../interfaces";
+import Swal from 'sweetalert2';
 
 interface Props {
   id: string;
@@ -138,19 +139,12 @@ const Detail: FC = () => {
         idUser: idUser.id,
       };
       dispatch(addFavorites(ids));
-      toast.info(
-        `${detailProduct.name_product} was added to your favorites! 💜`,
-        {
-          position: "top-center",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-        }
-      );
+      Swal.fire({
+        title: "Success",
+        text: "Added to favs!",
+        icon: "success",
+        confirmButtonText: "💜",
+      })
     } else alert("Login please");
   };
 

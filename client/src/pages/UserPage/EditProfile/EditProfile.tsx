@@ -53,6 +53,9 @@ const EditProfile = () => {
       progress: undefined,
       theme: "dark",
     });
+
+    history.push('/user');
+
   };
 
   const handleDelete = () => {
