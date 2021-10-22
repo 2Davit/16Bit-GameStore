@@ -1,8 +1,7 @@
-import React, { FC, useEffect } from "react";
+import { FC, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
 import { deleteNavbar } from "../../redux/actions/admin_actions";
-import { StyledLanding } from "./StyledLanding";
+import { StyledLanding, ArcadeLanding, ArcadeGi, TitleLanding, ButtonL, ContinerBtnLanding } from "./StyledLanding";
 
 const Landing: FC = () => {
   const dispatch = useDispatch();
@@ -13,11 +12,15 @@ const Landing: FC = () => {
 
   return (
     <StyledLanding>
-      <Link to="/home">
-        <button type="button" className="nes-btn is-warning">
-          HOME
-        </button>
-      </Link>
+      <TitleLanding>GameStore</TitleLanding>
+      <ArcadeLanding>
+        <ArcadeGi/>
+      </ArcadeLanding>
+        <ContinerBtnLanding style={{textDecoration: 'none'}} to="/home">
+          <ButtonL type="button" >
+            Press Start
+          </ButtonL>
+        </ContinerBtnLanding>
     </StyledLanding>
   );
 };
