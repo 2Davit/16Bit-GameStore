@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useEffect, useState, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import axios from "axios";
@@ -44,10 +44,27 @@ const Detail: FC = () => {
     return game;
   };
 
+  const [message, setMessage] = useState<string>("");
   const [reviewsMean, setReviewsMean] = useState<number>(0);
   const [reviews, setReviews] = useState<Array<any>>([]);
 
   let game: any = getAll();
+
+  const handleEffect = useCallback(() => {
+    let stockInLocal = JSON.parse(localStorage.getItem("cart")!);
+    let gameStorage = stockInLocal?.find(
+      (g: ProductInCart) => g.id_product === detailProduct.id_product
+    );
+
+    let unavailable = gameStorage?.quantity >= detailProduct.in_stock ? true : false;
+    return unavailable;
+  }, [detailProduct.id_product, detailProduct.in_stock]);
+
+  let disabled = handleEffect();
+
+  useEffect(() => {
+    handleEffect();
+  }, [message, handleEffect]);
 
   useEffect(() => {
     dispatch(getProductDetail(parseInt(id)));
@@ -85,6 +102,7 @@ const Detail: FC = () => {
   }
 
   const handleClick = () => {
+    setMessage(message + "a");
     let productToDispatch = { ...detailProduct };
     productToDispatch.quantity = quantity;
     dispatch(addItemCart(productToDispatch));
@@ -136,8 +154,7 @@ const Detail: FC = () => {
     } else alert("Login please");
   };
 
-  let unavailable =
-    quantity + game?.quantity === detailProduct.in_stock + 1 ? true : false;
+  let unavailable = quantity + game?.quantity === detailProduct.in_stock + 1 ? true : false;
 
   const user = JSON.parse(localStorage.getItem("userData")!);
   return (
@@ -229,7 +246,7 @@ const Detail: FC = () => {
                 <StyledSVG src={joystick} />
               </Btn>
 
-              {!unavailable ? (
+              {!disabled ? (
                 <Btn
                   disabled={unavailable}
                   className="btn-card btn-img"
