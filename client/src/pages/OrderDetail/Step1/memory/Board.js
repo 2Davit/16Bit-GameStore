@@ -46,6 +46,10 @@ function Board() {
   };
   const hasWon = isSolved(tiles);
 
+  let coupons = ['BIT', 'LUCK', 'GOOD', 'TUKI', 'TUQUI']
+
+  let randomItem = coupons[Math.floor(Math.random() * coupons.length)];
+
   return (
     <StyledMemory>
       <ul style={style} className="board">
@@ -64,7 +68,7 @@ function Board() {
         <div className="win-text">
           <h3>Congratulations! You won a discount coupon!</h3>
           <p>Copy the following discount code:</p>
-          <p className="Code">ALEXITO</p>
+          <p className="Code">{randomItem}</p>
         </div>
       ) : (
         <div className="win-text">
