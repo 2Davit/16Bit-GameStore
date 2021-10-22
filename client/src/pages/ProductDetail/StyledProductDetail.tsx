@@ -225,3 +225,55 @@ export const GameDetail = styled.section`
 
 export const StyledSVG = styled(SVG)`
 `;
+
+export const ReviewContainer = styled.div`
+background: ${p => p.theme.carouselBackg};
+border-radius: ${p => p.theme.cardGenreBorderRadius};
+border : 4px double  ${p => p.theme.cardContentCartBorder} ;
+width: 70%;
+height:  10%;
+overflow-y: scroll;
+display: flex;
+align-items: center;
+flex-direction: column;
+margin: 0 auto;
+margin-bottom: 1rem;
+text-align: left;
+
+@media (max-width: 414px) {
+  display:flex;
+  flex-direction: column;
+  height: 50%;
+  width: 90%;
+}
+`
+
+export const UserInfoContainer = styled.div`
+display: flex;
+width: 900px;
+margin-bottom: 1rem;
+
+@media (max-width: 414px) {
+  display:flex;
+  flex-direction: column;
+  width: 90%;
+}
+`
+
+export const UserReviewFields = styled.li`
+padding: 1rem;
+ width: 33%;
+
+ @media (max-width: 414px) {
+  width: 100%;
+}
+`
+
+export const UserReviewText = styled.li`
+padding: 1rem;
+ width: 100%;
+
+ @media (max-width: 414px) {
+  width: 100%;
+}
+`

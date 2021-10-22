@@ -11,7 +11,7 @@ import { addItemCart } from "../../redux/actions/cart_actions";
 import { addFavorites } from "../../redux/actions/favorite_actions";
 import { Store } from "../../redux/reducer/";
 //Estilos
-import { GameDetail, StyledSVG } from "./StyledProductDetail";
+import { GameDetail, StyledSVG, ReviewContainer, UserInfoContainer, UserReviewFields, UserReviewText } from "./StyledProductDetail";
 import { Btn, QuantityButton } from "../../GlobalStyles/GlobalStyles";
 import { toast } from "react-toastify";
 //images
@@ -48,7 +48,7 @@ const Detail: FC = () => {
   const [message, setMessage] = useState<string>("");
   const [reviewsMean, setReviewsMean] = useState<number>(0);
   const [reviews, setReviews] = useState<Array<any>>([]);
-
+  console.log(reviews)
   let game: any = getAll();
 
   const handleEffect = useCallback(() => {
@@ -228,8 +228,8 @@ const Detail: FC = () => {
               +
             </QuantityButton>
           </div>
-          {quantity === detailProduct.in_stock ? <p>Limit stock</p> : null}
           <div className="game__purchase-container">
+          {quantity === detailProduct.in_stock ? <p>Limit stock</p> : null}
             <div className="game__buttons">
               <Btn
                 onClick={() => handleBuyNow()}
@@ -274,32 +274,23 @@ const Detail: FC = () => {
         </div>
       </GameDetail>
       {reviews?.length ? (
-        <div style={{ display: "flex", justifyContent: "center" }}>
-          <div
-            style={{
-              backgroundColor: "#4424b9",
-              borderRadius: "2rem 0 0 2rem",
-              width: "70%",
-              height: "130px",
-              overflowY: "scroll",
-              display: "flex",
-              alignItems: "center",
-              flexDirection: "column",
-            }}
-          >
+        <ReviewContainer >
+          
+            
             {reviews.map((r) => {
               return (
-                <ol
+                <div
                   style={{
-                    listStyle: "none",
-                    display: "flex",
-                    alignItems: "center",
-                    padding: "1rem",
-                    borderBottom: "6px solid white",
+                   listStyle: "none",
+                    // display: "flex",
+                    // alignItems: "center",
+                    // padding: "1rem",
+                   
                   }}
-                >
-                  <li style={{ padding: "2rem" }}>{r.userIdUser}</li>
-                  <li style={{ padding: "2rem" }}>
+                > <UserInfoContainer>
+                  <UserReviewFields>User: {r.userIdUser}</UserReviewFields>
+                  <UserReviewFields>
+                    Rating: 
                     {r.score === 5
                       ? "⭐⭐⭐⭐⭐"
                       : r.score === 4
@@ -309,16 +300,18 @@ const Detail: FC = () => {
                       : r.score === 2
                       ? "⭐⭐"
                       : "⭐"}
-                  </li>
-                  <li style={{ padding: "2rem" }}>{r.description}</li>
-                  <li style={{ padding: "2rem" }}>
-                    {r.createdAt.split("T")[0]}
-                  </li>
-                </ol>
+                  </UserReviewFields>
+                  <UserReviewFields>
+                    Date: {r.createdAt.split("T")[0]}
+                  </UserReviewFields>
+                  </UserInfoContainer>
+                  <p style={{padding:"0 1rem"}}>Review:</p>
+                  <UserReviewText>{r.description}</UserReviewText>
+                </div>
               );
             })}
-          </div>
-        </div>
+          
+        </ReviewContainer>
       ) : null}
     </>
   );
