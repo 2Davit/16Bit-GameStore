@@ -1,9 +1,20 @@
 import styled from "styled-components";
+import { Container } from "../../GlobalStyles/GlobalStyles";
 
-export const StyledTerms = styled.div`
+
+export const StyledTerms = styled(Container)`
   font-family: Raleway;
-  margin: 3vh 5vw;
+  /* margin: 3vh 5vw; */
+  padding: 4em;
   font-size: 1em;
+  
+
+
+  @media (max-width: 414px) {
+    width: 90%;
+    height: 100%;
+    padding: 0;
+  }
   h2 {
     text-align: center;
     margin-bottom: 1em;

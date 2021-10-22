@@ -1,10 +1,9 @@
-import React from "react";
-import { StyledTerms } from "../StyledTerms";
+import { ContainerLegal } from "./Legal.style";
 import { Fade } from "react-awesome-reveal";
 
 const Legal = () => {
   return (
-    <StyledTerms>
+    <ContainerLegal>
       <Fade>
         <h2>Legal Information</h2>
         <>
@@ -32,7 +31,7 @@ const Legal = () => {
           </section>
         </>
       </Fade>
-    </StyledTerms>
+    </ContainerLegal>
   );
 };
 
