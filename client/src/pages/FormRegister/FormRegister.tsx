@@ -232,14 +232,14 @@ const FormRegister: FC = () => {
         <Btn type="submit" className="btn-card" disabled={disabled}>
           Register
         </Btn>
+        <Btn type="button" className="btn-card" onClick={loginWithRedirect}>
+          Register with Google
+        </Btn>
         <p>
           Already have an account?
           <Link to="/login"> LOG IN</Link>
         </p>
       </form>
-      <Btn className="btn-card" onClick={loginWithRedirect}>
-        Register with Google
-      </Btn>
     </FormStyled>
   );
 };
