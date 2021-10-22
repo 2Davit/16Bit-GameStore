@@ -17,14 +17,30 @@ const Step3 = () => {
 
   const user = JSON.parse(localStorage.getItem("userData")!);
   const cart = JSON.parse(localStorage.getItem("cart")!);
-  const total = cart.reduce((acc: number, product: ProductInCart) => {
+  const coupon = JSON.parse(localStorage.getItem("coupon")!);
+
+  if (coupon > 0) {
+    var newCart = cart?.map((c: ProductInCart) => ({
+      ...c,
+      price_product: c.price_product - c.price_product * (coupon / 100),
+      
+    }))
+  }
+
+
+  const total = coupon === 0 ? cart.reduce((acc: number, product: ProductInCart) => {
     acc = acc + product.price_product * product.quantity!;
     return acc;
-  }, 0.0);
+  }, 0.0) :
+  newCart.reduce((acc: number, product: ProductInCart) => {
+    acc = acc + product.price_product! * product.quantity!;
+    return acc;
+  }, 0.0)
   
+
   const info = {
-    cart,
-    total
+    cart: coupon > 0 ? newCart : cart,
+    total: Math.floor(total)
   }
 
   useEffect(() => {

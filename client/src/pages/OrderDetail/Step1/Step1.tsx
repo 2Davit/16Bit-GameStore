@@ -65,6 +65,8 @@ const Step1 = () => {
     setTotal(subtotal - subtotal * (coupon / 100));
   }, [subtotal, coupon]);
 
+  localStorage.setItem("coupon", JSON.stringify(coupon));
+
   let userInStorage = JSON.parse(localStorage.getItem("userData")!);
 
   let isRegister = userInStorage ? "/order/payment" : "/signup";
@@ -87,9 +89,22 @@ const Step1 = () => {
   };
 
   const handleCoupon = (e: any) => {
-    if (e.target.value === "ALEXITO") {
+    if (e.target.value === "BIT") {
       setCoupon(25);
-    } else {
+    } 
+    else if (e.target.value === "TUQUI") {
+      setCoupon(20);
+    } 
+    else if (e.target.value === "LUCK") {
+      setCoupon(15);
+    } 
+    else if (e.target.value === "GOOD") {
+      setCoupon(10);
+    } 
+    else if (e.target.value === "TUKI") {
+      setCoupon(5);
+    }  
+    else {
       setCoupon(0);
     }
   };
