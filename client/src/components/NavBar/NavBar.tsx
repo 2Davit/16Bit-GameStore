@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 //Componentes
 import { SearchBar } from "../index";
@@ -33,6 +33,8 @@ const NavBar: FC<Props> = ({ setPage, toggleModal }: any) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  const [num, setNum] = useState<number>(0);
+
   const homeOnClick = () => {
     dispatch(getAllProducts());
   };
@@ -48,17 +50,29 @@ const NavBar: FC<Props> = ({ setPage, toggleModal }: any) => {
 
   const isAdmin = useSelector((state: Store) => state.authReducer.role.admin);
 
-  const cartStorage = JSON.parse(localStorage.getItem("cart")!);
+  function handleEffect() {
+    const cartStorage = JSON.parse(localStorage.getItem("cart")!);
+    const number = cartStorage?.reduce((acc: number, prod: ProductInCart) => {
+      acc = acc + prod.quantity!;
+      return acc;
+    }, 0);
+    setNum(number);
+  }
 
-  // ================Dejar comentado==================
-  // const user: User = useSelector((state: Store) => state.authReducer.user);
-  // const userIsAdmin: UserState = useSelector((state: Store) => state.authReducer.role.admin);
-  // ================Dejar comentado==================
+  useEffect(() => {
+      handleEffect();
+  }, [handleEffect, num])
 
-  const number = cartStorage?.reduce((acc: number, prod: ProductInCart) => {
+  /* const cartStorage = JSON.parse(localStorage.getItem("cart")!); */
+
+
+
+  /* const number = cartStorage?.reduce((acc: number, prod: ProductInCart) => {
     acc = acc + prod.quantity!;
     return acc;
-  }, 0);
+  }, 0); */
+
+
 
   const user = JSON.parse(localStorage.getItem("userData")!);
 
@@ -156,9 +170,9 @@ const NavBar: FC<Props> = ({ setPage, toggleModal }: any) => {
                 <StyledSVG src={cart} />
                 <span>
                   Cart
-                  {number > 0 && (
+                  {/* number */ num > 0 && (
                     <span className="cart__number">
-                      {number >= 100 ? "99+" : number}
+                      {num >= 100 ? "99+" : num}
                     </span>
                   )}
                 </span>
@@ -249,9 +263,9 @@ const NavBar: FC<Props> = ({ setPage, toggleModal }: any) => {
               <FaShoppingCart />
               <span>
                 Cart
-                {number > 0 && (
+                {num > 0 && (
                   <span className="cart__number">
-                    {number >= 100 ? "99+" : number}
+                    {num >= 100 ? "99+" : num}
                   </span>
                 )}
               </span>

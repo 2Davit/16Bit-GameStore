@@ -8,16 +8,11 @@ const jwt = require("jsonwebtoken");
 const SECRET = process.env.SECRET;
 
 async function sendUserMail(req, res) {
-  
   const { email, username, action, info } = req.body;
 
   if (info) {
-
     var { cart, total } = info;
-
   }
-  
-
 
   const dom = new JSDOM(`<!DOCTYPE html>
   <html lang="en">
@@ -78,9 +73,7 @@ async function sendUserMail(req, res) {
   </body>
 </html>`);
 
-
   if (action === "purchase") {
-    
     let aux = ``;
 
     cart.forEach((product) => {
@@ -96,9 +89,17 @@ async function sendUserMail(req, res) {
           />
           <div style="display: flex; flex-direction: column; align-items: flex-start; ">
           <div style ="margin: 0.5rem 1rem; color: black">
-            <h4 style="margin: 0; padding-top: 5px;"><b>${product.name_product.length <= 13 ? product.name_product : product.name_product.slice(0, 13) + '...' }</b></h4>
-            <h5 style="margin: 0; padding-top: 5px" >Price: $${product.price_product}</h5>
-            <h5 style="margin: 0; margin-bottom: 5px; padding-top: 5px" >Quantity: ${product.quantity}</h5>
+            <h4 style="margin: 0; padding-top: 5px;"><b>${
+              product.name_product.length <= 13
+                ? product.name_product
+                : product.name_product.slice(0, 13) + "..."
+            }</b></h4>
+            <h5 style="margin: 0; padding-top: 5px" >Price: $${
+              product.price_product
+            }</h5>
+            <h5 style="margin: 0; margin-bottom: 5px; padding-top: 5px" >Quantity: ${
+              product.quantity
+            }</h5>
           </div>
           </div>
           </div>
@@ -108,20 +109,21 @@ async function sendUserMail(req, res) {
       dom.window.document.getElementById("container").innerHTML = aux;
     });
 
-    dom.window.document.getElementById("total").innerHTML = `<h2 style="color: #fff; margin: 2.5rem 0rem;">Total: $${total}</h2>`;
+    dom.window.document.getElementById(
+      "total"
+    ).innerHTML = `<h2 style="color: #fff; margin: 2.5rem 0rem;">Total: $${total}</h2>`;
 
-    dom.window.document.getElementById("header").innerText = `Hi, ${username}! We really appreciate your last visit. Hope you are enjoying your products. Check your purchase summary:`
+    dom.window.document.getElementById(
+      "header"
+    ).innerText = `Hi, ${username}! We really appreciate your last visit. Hope you are enjoying your products. Check your purchase summary:`;
+  } else {
+    dom.window.document.getElementById(
+      "total"
+    ).innerHTML = `<h2 style="color: #fff; margin: 2.5rem 0rem;"><a href="https://16-bit-game-store.vercel.app/home" target="_blank" style='text-decoration: none'>Start your retro trip! 🕹</a></h2>`;
 
-  }
-
-
-  else {
-
-    dom.window.document.getElementById("total").innerHTML = `<h2 style="color: #fff; margin: 2.5rem 0rem;"><a href="https://16-bit-game-store.vercel.app/home" target="_blank" style='text-decoration: none'>Start your retro trip! 🕹</a></h2>`;
-
-    dom.window.document.getElementById("header").innerHTML = `<p style="color: #fff; margin-left: 1rem">Hi, ${username}! Welcome to 16Bit community. The biggest retro videogames e-shop in Latam. Check the highlights of the month:</p>`
-    
-
+    dom.window.document.getElementById(
+      "header"
+    ).innerHTML = `<p style="color: #fff; margin-left: 1rem">Hi, ${username}! Welcome to 16Bit community. The biggest retro videogames e-shop in Latam. Check the highlights of the month:</p>`;
 
     let aux = `
         
@@ -160,10 +162,9 @@ async function sendUserMail(req, res) {
     </div>
 
 
-  `
+  `;
 
-  dom.window.document.getElementById("container").innerHTML = aux;
-
+    dom.window.document.getElementById("container").innerHTML = aux;
   }
 
   const CLIENT_ID =
@@ -212,32 +213,26 @@ async function sendUserMail(req, res) {
     res.status(200).send(result);
   } catch (err) {
     console.log(err);
-  };
-};
-
-
+  }
+}
 
 async function sendResetPass(req, res) {
-  
   const { email } = req.body;
-  
-  
+
   try {
-  const user = await User.findOne(
-    {
+    const user = await User.findOne({
       where: {
-          email_user: email
-      }
-    }
-  )
-  
-  if (!user) return res.status(400).send("User not found");
+        email_user: email,
+      },
+    });
 
-  const token = jwt.sign({ id: user.id_user }, SECRET, {
-    expiresIn: 86400, // 24 hours
-  });
+    if (!user) return res.status(400).send("User not found");
 
-  const html = `<!DOCTYPE html>
+    const token = jwt.sign({ id: user.id_user }, SECRET, {
+      expiresIn: 86400, // 24 hours
+    });
+
+    const html = `<!DOCTYPE html>
   <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -260,7 +255,7 @@ async function sendResetPass(req, res) {
         <p style="color: #fff; margin-left: 1rem">
           Hi, ${user.nickname_user}! Please enter to this link if you want to reset your 16Bit Gamestore account password:
         </p>
-        <a href="http://localhost:3000/reset/${token}" style="text-decoration: none; margin-left: 1rem; font-size: 1.5rem">Click here! 🕹</a>
+        <a href="https://16-bit-game-store.vercel.app/reset/${token}" style="text-decoration: none; margin-left: 1rem; font-size: 1.5rem">Click here! 🕹</a>
       </div>
       <div style="background-color: #000; color: lightgray; ">
         <p style="margin: 0 1rem; padding: 1rem 0">
@@ -272,22 +267,21 @@ async function sendResetPass(req, res) {
   </body>
 </html>`;
 
-  const CLIENT_ID =
-    "629164237375-nd9vo40e7m7p82lr4s7bgecqebbn7i6v.apps.googleusercontent.com";
-  const CLIENT_SECRET = "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";
-  const REDIRECT_URI = "https://developers.google.com/oauthplayground";
-  const REFRESH_TOKEN =
-    "1//044c2jHqjFfgACgYIARAAGAQSNwF-L9Irv0YSqP8EJos551tZlxLetRQyLhatO8FnlGacYXpCR5rK1dnB0UnMJ11_roWPauDdmoM";
+    const CLIENT_ID =
+      "629164237375-nd9vo40e7m7p82lr4s7bgecqebbn7i6v.apps.googleusercontent.com";
+    const CLIENT_SECRET = "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";
+    const REDIRECT_URI = "https://developers.google.com/oauthplayground";
+    const REFRESH_TOKEN =
+      "1//044c2jHqjFfgACgYIARAAGAQSNwF-L9Irv0YSqP8EJos551tZlxLetRQyLhatO8FnlGacYXpCR5rK1dnB0UnMJ11_roWPauDdmoM";
 
-  const oAuth2Client = new google.auth.OAuth2(
-    CLIENT_ID,
-    CLIENT_SECRET,
-    REDIRECT_URI
-  );
+    const oAuth2Client = new google.auth.OAuth2(
+      CLIENT_ID,
+      CLIENT_SECRET,
+      REDIRECT_URI
+    );
 
-  oAuth2Client.setCredentials({ refresh_token: REFRESH_TOKEN });
+    oAuth2Client.setCredentials({ refresh_token: REFRESH_TOKEN });
 
-  
     const accessToken = await oAuth2Client.getAccessToken();
     let transporter = nodemailer.createTransport({
       service: "gmail",
@@ -315,37 +309,34 @@ async function sendResetPass(req, res) {
     res.status(200).send(result);
   } catch (err) {
     console.log(err);
-  };
-};
-
-
-
+  }
+}
 
 async function statusEmail(req, res) {
-  
-
   const { id_order, status } = req.body;
-  
-  
+
   try {
+    const order = await Order.findOne({
+      where: { id_order: id_order },
+      include: {
+        model: User,
+        attributes: ["email_user", "nickname_user"],
+      },
+    });
 
-  const order = await Order.findOne({
-          where: { id_order: id_order },
-          include: {
-              model: User,
-              attributes: [ 'email_user', 'nickname_user' ]
-          }, 
-  });
+    if (!order) return res.status(400).send("Order not found");
 
-  
+    let content =
+      status === "delivered"
+        ? "Your product/s have arrived! Enjoy them 😀."
+        : "Your product/s are coming! Hope you are visiting us again soon 😀.";
 
-  if (!order) return res.status(400).send("Order not found");
+    let linkContent =
+      status === "delivered"
+        ? "Leave us a review about your new videogame/s 🖋"
+        : "Track your order! 🚀";
 
-  let content = status === 'delivered' ? 'Your product/s have arrived! Enjoy them 😀.' : 'Your product/s are coming! Hope you are visiting us again soon 😀.';
-
-  let linkContent = status === 'delivered' ? 'Leave us a review about your new videogame/s 🖋' : 'Track your order! 🚀';
-
-  const html = `<!DOCTYPE html>
+    const html = `<!DOCTYPE html>
   <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -368,7 +359,7 @@ async function statusEmail(req, res) {
         <p style="color: #fff; margin-left: 1rem">
           Hi, ${order.user.nickname_user}! ${content}
         </p>
-        <a href="http://localhost:3000/orderdetail/${order.userIdUser}/${order.id_order}" style="text-decoration: none; margin-left: 1rem; font-size: 1.5rem">${linkContent}</a>
+        <a href="https://16-bit-game-store.vercel.app/orderdetail/${order.userIdUser}/${order.id_order}" style="text-decoration: none; margin-left: 1rem; font-size: 1.5rem">${linkContent}</a>
       </div>
       <div style="background-color: #000; color: lightgray; ">
         <p style="margin: 0 1rem; padding: 1rem 0">
@@ -380,22 +371,21 @@ async function statusEmail(req, res) {
   </body>
 </html>`;
 
-  const CLIENT_ID =
-    "629164237375-nd9vo40e7m7p82lr4s7bgecqebbn7i6v.apps.googleusercontent.com";
-  const CLIENT_SECRET = "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";
-  const REDIRECT_URI = "https://developers.google.com/oauthplayground";
-  const REFRESH_TOKEN =
-    "1//044c2jHqjFfgACgYIARAAGAQSNwF-L9Irv0YSqP8EJos551tZlxLetRQyLhatO8FnlGacYXpCR5rK1dnB0UnMJ11_roWPauDdmoM";
+    const CLIENT_ID =
+      "629164237375-nd9vo40e7m7p82lr4s7bgecqebbn7i6v.apps.googleusercontent.com";
+    const CLIENT_SECRET = "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";
+    const REDIRECT_URI = "https://developers.google.com/oauthplayground";
+    const REFRESH_TOKEN =
+      "1//044c2jHqjFfgACgYIARAAGAQSNwF-L9Irv0YSqP8EJos551tZlxLetRQyLhatO8FnlGacYXpCR5rK1dnB0UnMJ11_roWPauDdmoM";
 
-  const oAuth2Client = new google.auth.OAuth2(
-    CLIENT_ID,
-    CLIENT_SECRET,
-    REDIRECT_URI
-  );
+    const oAuth2Client = new google.auth.OAuth2(
+      CLIENT_ID,
+      CLIENT_SECRET,
+      REDIRECT_URI
+    );
 
-  oAuth2Client.setCredentials({ refresh_token: REFRESH_TOKEN });
+    oAuth2Client.setCredentials({ refresh_token: REFRESH_TOKEN });
 
-  
     const accessToken = await oAuth2Client.getAccessToken();
     let transporter = nodemailer.createTransport({
       service: "gmail",
@@ -415,7 +405,10 @@ async function statusEmail(req, res) {
     let mailOptions = {
       from: "16Bit-GameStore",
       to: order.user.email_user,
-      subject: status === 'dispatched' ? "Your purchase is coming!" : "Enjoy your new videogame/s!",
+      subject:
+        status === "dispatched"
+          ? "Your purchase is coming!"
+          : "Enjoy your new videogame/s!",
       html: html,
     };
 
@@ -423,13 +416,11 @@ async function statusEmail(req, res) {
     res.status(200).send(result);
   } catch (err) {
     console.log(err);
-  };
-};
-
-
+  }
+}
 
 module.exports = {
   sendUserMail,
   sendResetPass,
-  statusEmail
+  statusEmail,
 };

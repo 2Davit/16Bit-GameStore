@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useEffect, useState, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import axios from "axios";
@@ -21,6 +21,7 @@ import mercadopagoimg from "../../assets/img/mercadopagoimg.webp";
 import heart from "../../assets/img/svg/heart1.svg";
 //Interfaces
 import { ProductInCart } from "../../interfaces";
+import Swal from 'sweetalert2';
 
 interface Props {
   id: string;
@@ -44,10 +45,27 @@ const Detail: FC = () => {
     return game;
   };
 
+  const [message, setMessage] = useState<string>("");
   const [reviewsMean, setReviewsMean] = useState<number>(0);
   const [reviews, setReviews] = useState<Array<any>>([]);
 
   let game: any = getAll();
+
+  const handleEffect = useCallback(() => {
+    let stockInLocal = JSON.parse(localStorage.getItem("cart")!);
+    let gameStorage = stockInLocal?.find(
+      (g: ProductInCart) => g.id_product === detailProduct.id_product
+    );
+
+    let unavailable = gameStorage?.quantity >= detailProduct.in_stock ? true : false;
+    return unavailable;
+  }, [detailProduct.id_product, detailProduct.in_stock]);
+
+  let disabled = handleEffect();
+
+  useEffect(() => {
+    handleEffect();
+  }, [message, handleEffect]);
 
   useEffect(() => {
     dispatch(getProductDetail(parseInt(id)));
@@ -85,6 +103,7 @@ const Detail: FC = () => {
   }
 
   const handleClick = () => {
+    setMessage(message + "a");
     let productToDispatch = { ...detailProduct };
     productToDispatch.quantity = quantity;
     dispatch(addItemCart(productToDispatch));
@@ -120,24 +139,16 @@ const Detail: FC = () => {
         idUser: idUser.id,
       };
       dispatch(addFavorites(ids));
-      toast.info(
-        `${detailProduct.name_product} was added to your favorites! 💜`,
-        {
-          position: "top-center",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-        }
-      );
+      Swal.fire({
+        title: "Success",
+        text: "Added to favs!",
+        icon: "success",
+        confirmButtonText: "💜",
+      })
     } else alert("Login please");
   };
 
-  let unavailable =
-    quantity + game?.quantity === detailProduct.in_stock + 1 ? true : false;
+  let unavailable = quantity + game?.quantity === detailProduct.in_stock + 1 ? true : false;
 
   const user = JSON.parse(localStorage.getItem("userData")!);
   return (
@@ -233,7 +244,7 @@ const Detail: FC = () => {
                 <StyledSVG src={joystick} />
               </Btn>
 
-              {!unavailable ? (
+              {!disabled ? (
                 <Btn
                   disabled={unavailable}
                   className="btn-card btn-img"

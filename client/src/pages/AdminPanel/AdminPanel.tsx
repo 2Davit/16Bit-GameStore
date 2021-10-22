@@ -1,15 +1,30 @@
 import { useEffect, FC, useState } from "react";
 import { Store } from "../../redux/reducer";
 import { useDispatch, useSelector } from "react-redux";
-import {getAllGenres,getAllPlatforms,getAllProducts,} from "../../redux/actions/products_action";
+import {
+  getAllGenres,
+  getAllPlatforms,
+  getAllProducts,
+} from "../../redux/actions/products_action";
 import { getUsers } from "../../redux/actions/admin_actions";
-import { deleteNavbar, getOrders, getSalesData } from "../../redux/actions/admin_actions";
-import {AdminHome,Panel,ProductContent,UserContent,SalesContent,} from "../../components";
-import {ContainerAdmin, InfoContainer,MainContainer,} from "./AdminPanel.style";
-
-
-
-
+import {
+  deleteNavbar,
+  getOrders,
+  getSalesData,
+} from "../../redux/actions/admin_actions";
+import {
+  AdminHome,
+  Panel,
+  ProductContent,
+  UserContent,
+  SalesContent,
+} from "../../components";
+import {
+  ContainerAdmin,
+  InfoContainer,
+  MainContainer,
+} from "./AdminPanel.style";
+import { getRole } from "../../redux/actions/auth_actions";
 
 const AdminPanel: FC = (props) => {
   const dispatch = useDispatch();
@@ -67,6 +82,7 @@ const AdminPanel: FC = (props) => {
     // }
   };
   useEffect(() => {
+    dispatch(getRole());
     dispatch(getAllProducts());
     dispatch(getAllGenres());
     dispatch(getAllPlatforms());
@@ -77,11 +93,12 @@ const AdminPanel: FC = (props) => {
   }, [dispatch]);
   const totalProducts: any = useSelector(
     (state: Store) => state.productsReducer
-
   );
   const totalUsers = useSelector((state: Store) => state.adminReducer.users);
   const totalOrders = useSelector((state: Store) => state.adminReducer.orders);
-  const totalSalesData = useSelector((state: Store) => state.adminReducer.sales);
+  const totalSalesData = useSelector(
+    (state: Store) => state.adminReducer.sales
+  );
 
   return (
     <ContainerAdmin>
@@ -90,7 +107,12 @@ const AdminPanel: FC = (props) => {
       </InfoContainer>
       <MainContainer>
         {info.setHome ? (
-          <AdminHome totalOrders={totalOrders} totalUsers={totalUsers} totalProducts={totalProducts.totalProducts} totalSalesData={totalSalesData} />
+          <AdminHome
+            totalOrders={totalOrders}
+            totalUsers={totalUsers}
+            totalProducts={totalProducts.totalProducts}
+            totalSalesData={totalSalesData}
+          />
         ) : info.setProducts ? (
           <ProductContent totalProducts={totalProducts} />
         ) : info.setSales ? (

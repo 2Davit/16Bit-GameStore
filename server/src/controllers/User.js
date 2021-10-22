@@ -6,7 +6,7 @@ const { SECRET } = process.env;
 
 
 
-async function postUser(req, res) {
+/* async function postUser(req, res) {
   const {
     id_user,
     nickname_user,
@@ -37,7 +37,7 @@ async function postUser(req, res) {
   } catch {
     res.status(404).send("Error");
   }
-}
+} */
 
 async function getUsers(req, res) {
   try {
@@ -124,7 +124,6 @@ async function promoteToAdmin(req, res) {
 
 
 module.exports = {
-  postUser,
   getUsers,
   deleteOneUser,
   banOneUser,

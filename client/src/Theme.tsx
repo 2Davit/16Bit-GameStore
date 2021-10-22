@@ -64,6 +64,10 @@ const themes = {
     color: "#fff",
     font: `'Poppins', sans-serif`,
     fontAdmin: `'Raleway', cursive`,
+    contactUsBorder: '2px solid #00a8ff',
+    contactUsBtn: '#00a8ff',
+    contactUsBack: '#ffffff',
+    contactUsColor: 'gray',
   },
   retro: {
     background: `url(${backRetro})`,
@@ -122,6 +126,10 @@ const themes = {
     color: "#F5F4F8",
     font: `'Press Start 2P', cursive`,
     fontAdmin: `'Raleway', cursive`,
+    contactUsBorder: '2px solid rgb(55, 244, 59)',
+    contactUsBtn: 'rgb(55, 244, 59)',
+    contactUsBack: '#000000',
+    contactUsColor: 'rgb(55, 244, 59)',
   },
 };
 

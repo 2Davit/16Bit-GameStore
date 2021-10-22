@@ -10,7 +10,7 @@ mercadopago.configure({
 async function getOrders(req, res) {
   const { idUser } = req.query;
   try{
-  if(idUser) {
+  if (idUser) {
     const userOrders = await Order.findAll({
       where: {
         userIdUser: idUser,
@@ -91,9 +91,9 @@ async function createOrder(req, res, next) {
       })),
       external_reference: `${order.id_order}`,
       back_urls: {
-        success: "http://localhost:3001/order/prueba/payment",
-        failure: "http://localhost:3001/order/prueba/payment",
-        pending: "http://localhost:3001/order/prueba/payment",
+        success: "https://videogame-store-16bit.herokuapp.com/order/prueba/payment",
+        failure: "https://videogame-store-16bit.herokuapp.com/order/prueba/payment",
+        pending: "https://videogame-store-16bit.herokuapp.com/order/prueba/payment",
       },
       auto_return: "approved",
     };
@@ -147,7 +147,7 @@ async function createPayment(req, res) {
       });
     });
     
-    return res.redirect("http://localhost:3000/order/detail");
+    return res.redirect("https://16-bit-game-store.vercel.app/order/detail");
     
   } catch (err) {
     res.send(err);

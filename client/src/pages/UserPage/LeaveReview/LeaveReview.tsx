@@ -1,7 +1,6 @@
 import React, { FC, useState, useEffect } from "react";
 import {  useParams } from "react-router-dom";
 import axios from "axios";
-
 import StarRatings from "react-star-ratings";
 import { FormStyled } from "../../FormRegister/StyledFormRegister";
 import { Btn } from "../../../GlobalStyles/GlobalStyles";
@@ -98,6 +97,7 @@ const LeaveReview: FC = () => {
     <>
     { !userReview.length ?
     <StyledLeaveReview>
+      
       <FormStyled>
         <form>
           <span className="span__score">Score:</span>
@@ -119,14 +119,20 @@ const LeaveReview: FC = () => {
               onChange={(e: any) => handleChange(e)}
             ></textarea>
           </label>
+          <Btn style={{marginTop:'-18rem'}} className="btn-card" onClick={() => history.push('/user')}>
+          <i className="fas fa-caret-left"></i> My Profile
+          </Btn>
           <Btn
+            style={{ marginLeft:'4em'}}
             className="btn-card"
             onClick={() => handleReview(iduser, idgame)}
           >
             Send Review
           </Btn>
         </form>
+      
       </FormStyled>
+      
       </StyledLeaveReview>
       : 
       <StyledCheckReview>
@@ -151,8 +157,8 @@ const LeaveReview: FC = () => {
         <StyledParagraph>{userReview[0].description}</StyledParagraph>
         </div>
         </div>
-        <Btn style={{marginTop:'-18rem'}} className="btn-card" onClick={() => history.goBack()}>
-            <i className="fas fa-caret-left"></i> Go back
+        <Btn style={{marginTop:'-18rem'}} className="btn-card" onClick={() => history.push('/user')}>
+            <i className="fas fa-caret-left"></i> My Profile
         </Btn>
           </StyledCheckReview>
         }

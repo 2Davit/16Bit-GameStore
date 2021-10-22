@@ -9,7 +9,7 @@ import { Mini } from "../index";
 import { useSelector, useDispatch } from "react-redux";
 import { clearCart } from "../../redux/actions/cart_actions";
 import { Slide } from "react-reveal";
-
+import Swal from 'sweetalert2';
 // interface CartSideBarProps {
 //   show: boolean;
 //   closeCallback: any;
@@ -47,6 +47,27 @@ const CartSideBar /*: FC<CartSideBarProps>*/ = ({ closeCallback, show }) => {
     }
   }, [cartList]);
 
+  function handleClearCart() {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "Your cart will be empty!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, clear it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(clearCart());
+        Swal.fire(
+          'Done!',
+          'Items has been removed from your cart',
+          'success'
+        )
+      }
+    })
+  }
+
   return ReactDOM.createPortal(
     <StyledCartSideBar>
       <div
@@ -79,7 +100,7 @@ const CartSideBar /*: FC<CartSideBarProps>*/ = ({ closeCallback, show }) => {
                 Checkout
               </Btn>
             </Link>
-            <Btn className="btn btn-sec" onClick={() => dispatch(clearCart())}>
+            <Btn className="btn btn-sec" onClick={handleClearCart}>
               Clear Cart
             </Btn>
           </div>

@@ -1,7 +1,6 @@
 import axios from "axios";
 import { EditProduct, EmailAction } from "../../interfaces";
 
-
 // import { EDIT_PRODUCT } from "../types";
 import { Dispatch } from "redux";
 import {
@@ -50,9 +49,9 @@ export const deleteUser = (id: number | unknown) => {
       headers: { "x-access-token": token },
     });
     return data;
-  }
-}
-export const promoteUser = ( admin: boolean | string, id:number | unknown ) => {
+  };
+};
+export const promoteUser = (admin: boolean | string, id: number | unknown) => {
   const userData = JSON.parse(localStorage.getItem("userData") as string);
   const token = userData?.data.token;
   return async function (dispatch: Dispatch<Detail>) {
@@ -61,19 +60,20 @@ export const promoteUser = ( admin: boolean | string, id:number | unknown ) => {
     });
     return data;
   };
-}
+};
 
-
-export const sendMail = (email: string, username: string, action: string, info?: EmailAction) => {
-  
-  return async function (dispatch: Dispatch<Detail>){
-    const data = await axios.post('/email', { email, username, action, info });
+export const sendMail = (
+  email: string,
+  username: string,
+  action: string,
+  info?: EmailAction
+) => {
+  return async function (dispatch: Dispatch<Detail>) {
+    const data = await axios.post("/email", { email, username, action, info });
     return data;
   };
 };
-    
-    
-    
+
 export const banUser = (id: number | unknown, status: boolean | string) => {
   const userData = JSON.parse(localStorage.getItem("userData") as string);
   const token = userData?.data.token;
@@ -85,7 +85,7 @@ export const banUser = (id: number | unknown, status: boolean | string) => {
   };
 };
 
-export const changeStatus = (id: number | unknown, status: string | any ) => {
+export const changeStatus = (id: number | unknown, status: string | any) => {
   const userData = JSON.parse(localStorage.getItem("userData") as string);
   const token = userData?.data.token;
   return async function (dispatch: Dispatch<Detail>) {
@@ -95,9 +95,6 @@ export const changeStatus = (id: number | unknown, status: string | any ) => {
     return data;
   };
 };
-
-
-    
 
 export const getUsers = () => {
   const userData = JSON.parse(localStorage.getItem("userData") as string);
@@ -121,7 +118,7 @@ export const getOrders = () => {
     const { data } = await axios.get(`/order`, {
       headers: { "x-access-token": token },
     });
-    
+
     return dispatch({
       type: GET_ORDERS,
       payload: data,
@@ -150,7 +147,7 @@ export const getSalesData = () => {
   const userData = JSON.parse(localStorage.getItem("userData") as string);
   const token = userData?.data.token;
   return async function (dispatch: Dispatch<Detail>) {
-    const { data } = await axios.get(`http://localhost:3001/orderproduct`, {
+    const { data } = await axios.get(`/orderproduct`, {
       headers: { "x-access-token": token },
     });
     return dispatch({
@@ -159,6 +156,3 @@ export const getSalesData = () => {
     });
   };
 };
-
-
-
