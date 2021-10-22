@@ -31,8 +31,9 @@ export const FormStyled = styled.div`
     position: relative;
     width: 400px;
     margin: 2em 2em;
-    @media (max-width: 600px) {
-      width: 100%;
+    @media (max-width: 414px) {
+      width: 90%;
+      margin: 2em 1em;
     }
 
     span {

@@ -1,4 +1,4 @@
-import  { FC } from "react";
+import { FC } from "react";
 import { Product } from "../../interfaces";
 import { ProductCard } from "../index";
 import { StyledCatalog, MobileCatalog } from "./StyledCatalog";
@@ -21,7 +21,7 @@ const Catalog: FC<Props> = ({ currentProducts, mobilePerPage }) => {
             <ProductCard game={product} key={product.id_product} />
           ))
         ) : (
-          <MarioLoading />
+          <div style={{width: '500%', height:'100%', display: 'flex', justifyContent: "center"}}><MarioLoading /></div>
         )}
       </StyledCatalog>
       {/* -------------------------- Abajo esta mobile NO TOCAR!!! ---------------------------------- */}
@@ -32,7 +32,7 @@ const Catalog: FC<Props> = ({ currentProducts, mobilePerPage }) => {
             <ProductCard game={product} key={product.id_product} />
           ))
         ) : (
-          <MarioLoading />
+          <div><MarioLoading /></div>
         )}
       </MobileCatalog>
     </>);

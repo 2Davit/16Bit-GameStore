@@ -153,7 +153,7 @@ const Detail: FC = () => {
   const user = JSON.parse(localStorage.getItem("userData")!);
   return (
     <>
-          <Btn style={{marginTop: "1rem", marginLeft:"1rem"}} className=" btn-card" onClick={() => history.push("/orders")}>
+          <Btn style={{marginTop: "1rem", marginLeft:"1rem"}} className=" btn-card" onClick={() => history.push("/home")}>
           <i className="fas fa-caret-left"></i> Go back
         </Btn>
       <GameDetail>
@@ -265,11 +265,11 @@ const Detail: FC = () => {
                 </Btn>
               ) : null}
             </div>
-            <img
+            {/* <img
               className="game__payment-methods-icons"
               src={mercadopagoimg}
               alt="mercadopago img"
-            />
+            /> */}
           </div>
         </div>
       </GameDetail>

@@ -74,7 +74,7 @@ export const StyledFilter = styled.div`
 
 export const SelectStyled = styled.select`
   font-family: inherit;
-  font-size: 0.7em;
+  font-size: 1em;
   border: none;
   border-radius: 0.5em;
   width: 200px;
@@ -102,6 +102,7 @@ export const SelectStyled = styled.select`
 
   @media screen and (max-width: 414px){
     /* width: 100% */
+    width: 90%;
   }
  
 `;
@@ -146,6 +147,25 @@ export const BtnRemoveFilter = styled.button`
      height: 45px;
      padding: 0;
      margin-left: 3rem;
+     font-size: ${p => p.theme.fontSize};
+  }
+`
+export const BtnNoStock = styled.button`
+    color: #eeeeee;
+    border-radius: ${ p => p.theme.filterButtonBorder };
+    background-color: ${ p => p.theme.removeFilBtn};
+    border: ${ p => p.theme.removeBorderBtn};
+    color: ${ p => p.theme.removeColorBtn};
+    padding: 0.6em .4em;
+    width: 100%;
+    &:focus{
+    outline: none;
+  }
+  @media screen and (max-width: 414px){
+    width: 100%;
+     height: 42px;
+     padding: 0;
+     /* margin-left: 3rem; */
      font-size: ${p => p.theme.fontSize};
   }
 `

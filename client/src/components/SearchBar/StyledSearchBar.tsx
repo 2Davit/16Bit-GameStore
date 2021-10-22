@@ -57,11 +57,11 @@ export const FormSearchBar = styled.form`
 export const SearchResults = styled.div`
   display: flex;
   flex-direction: column;
-  width: 23.2%;
-  
+  width: 41%;
+  color: white;
   /* height: 50%; */
   position: absolute;
-  top: 5.5%;
+  top: 9%;
   z-index: 90;
   @media screen and (max-width: 414px){
     top: 7.2%;

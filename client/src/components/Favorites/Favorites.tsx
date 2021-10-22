@@ -14,11 +14,11 @@ const Favorites = () => {
   const dispatch = useDispatch();
   let idUser = JSON.parse(localStorage.getItem("userData")!);
 
-   const [favs, setFavs] = useState<any>(false); 
+  const [favs, setFavs] = useState<any>(false);
 
   useEffect(() => {
     axios(`/favorites/${idUser.id}`)
-    .then((res) => setFavs(res.data))
+      .then((res) => setFavs(res.data))
   }, [])
 
   function handleOnClose(id: any) {
@@ -27,38 +27,47 @@ const Favorites = () => {
       idUser: idUser.id,
       idProduct: idProduct,
     };
-    
+
     dispatch(removeFavorites(ids));
-    setFavs(favs.filter((index:any) => 
+    setFavs(favs.filter((index: any) =>
       index.id_product !== id
     ))
   }
   return (
-    <StyledContainer>
-      {favs?.length > 0 ? (
-        favs.map((game: Product) => {
-          return (
-            <ProductFavorite
-              onClose={() => handleOnClose(game.id_product)}
-              key={game.id_product}
-              game={game}
-            />
-          );
-        })
-      ) : (
-        <div>
-          <TextFavorite
-            style={{display: "flex",justifyContent: "center"}}>
-            No favorites games yet!
-          </TextFavorite>
-          <Link style={{ textDecoration: "none" }} to="/home">
-          <Btn style={{marginTop: "2rem", marginLeft:"2rem"}} className=" btn-card">
+    <>
+
+      <Link style={{ textDecoration: "none" }} to="/home">
+        <Btn style={{ marginTop: "2rem", marginLeft: "2rem" }} className=" btn-card">
           <i className="fas fa-caret-left"></i> Go back
         </Btn>
-          </Link>
-        </div>
-      )}
-    </StyledContainer>
+      </Link>
+      <StyledContainer>
+
+        {favs?.length > 0 ? (
+          favs.map((game: Product) => {
+            return (
+              <ProductFavorite
+                onClose={() => handleOnClose(game.id_product)}
+                key={game.id_product}
+                game={game}
+              />
+            );
+          })
+        ) : (
+          <div>
+            <TextFavorite
+              style={{ display: "flex", justifyContent: "center" }}>
+              No favorites games yet!
+            </TextFavorite>
+            <Link style={{ textDecoration: "none" }} to="/home">
+              <Btn style={{ marginTop: "2rem", marginLeft: "2rem" }} className=" btn-card">
+                <i className="fas fa-caret-left"></i> Go back
+              </Btn>
+            </Link>
+          </div>
+        )}
+      </StyledContainer>
+    </>
   );
 };
 

@@ -210,20 +210,16 @@ export const GameDetail = styled.section`
       display: flex;
       align-items: center;
       margin-top: 1em;
-      width: 100%;
-      @media (max-width: 700px) {
-        flex-direction: column;
-        align-items: center;
+      margin-left: 25em;
+      width: 50%;
+
+      @media (max-width: 414px) {
+        margin-left: 4em;
+        width:80%;
       }
     }
 
-    .game__payment-methods-icons {
-      max-width: 300px;
 
-      @media (max-width: 700px) {
-        margin-top: 2em;
-      }
-    }
   }
 `;
 

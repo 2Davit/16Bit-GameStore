@@ -103,7 +103,7 @@ const Order = () => {
 
   return (
     <>
-      <StepTwo>
+      <StepTwo style={{height:"100vh"}}>
         <h2>Your adress:</h2>
         <StyledSVG src={PurchaseStep2} />
         <form onSubmit={(e) => handleSubmit(e)}>

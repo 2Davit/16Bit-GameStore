@@ -127,8 +127,8 @@ const Step1 = () => {
         <h2>Your Cart:</h2>
         <StyledSVG src={PurchaseStep1} />
       </div>
-      <Fade>
-        <StepOne>
+      <Fade >
+        <StepOne >
           <div>
             {cart?.map((purchase: ProductInCart) => {
               return <Mini detail={purchase} key={purchase.id_product} />;
@@ -169,7 +169,7 @@ const Step1 = () => {
             </aside>
           </div>
         </StepOne>
-      </Fade>
+      </Fade >
     </div>
   );
 };

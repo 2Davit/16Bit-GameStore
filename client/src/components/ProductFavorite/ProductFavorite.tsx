@@ -4,7 +4,7 @@ import "nes.css/css/nes.min.css";
 import { useDispatch } from "react-redux";
 import { addItemCart } from "../../redux/actions/cart_actions";
 import { StyledSVG, BtnCartCard } from "../../GlobalStyles/GlobalStyles";
-import { StyledProductCard, Price } from "../ProductCard/StyledProductCard";
+import { StyledProductCard, Price , BtnsFavoriteCardContainer} from "../ProductCard/StyledProductCard";
 import cart from "../../assets/img/svg/cart.svg";
 import { toast } from "react-toastify";
 import { animateScroll } from "react-scroll";
@@ -63,7 +63,7 @@ const ProductFavorite: FC<Props> = ({ game, onClose }) => {
   };
 
   return (
-    <StyledProductCard >
+    <StyledProductCard style={{marginBottom:"1em"}}>
       <div className="card__imgContainer">
         <img
           className="card__img"
@@ -71,20 +71,22 @@ const ProductFavorite: FC<Props> = ({ game, onClose }) => {
           alt={game.name_product}
         />
       </div>
-      <div className="card__content_favorite">
+      <div className="card__content">
         <h3 className="card__title">
           {game.name_product?.length > 33
             ? game.name_product.substring(0, 30) + "..."
             : game.name_product}
         </h3>
         <Price style={{height: '30px'}}>${game.price_product}</Price>
-        <BtnCartCard onClick={handleClick} disabled={disabled} >
-          <StyledSVG src={cart} />
+        <BtnsFavoriteCardContainer>
+        <BtnCartCard style={{marginRight: "4px"}} onClick={handleClick} disabled={disabled} >
+          <StyledSVG src={cart} style={{ width:"80%", height:"80%"}} />
         </BtnCartCard>
         <BtnCartCard onClick={() => onClose(game.id_product)} disabled={disabled} >
-          Remove
-          <FaTrash />
+
+          <FaTrash style={{color:"red", width:"70%", height:"70%"}}/>
         </BtnCartCard>
+        </BtnsFavoriteCardContainer>
       </div>
       <Link
         to={`/game/${game.id_product}`}

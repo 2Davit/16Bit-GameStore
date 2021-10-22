@@ -328,3 +328,27 @@ export const NavbarResponsive = styled.div`
     }
   }
 `
+
+export const CartIconDiv = styled.div`
+  position: relative;
+`
+export const CartIconNumber = styled.p`
+
+  background: red;
+  border-radius: 9999px;
+  min-width: 20px;
+  min-height: 21px;
+  font-size: 15px !important;
+  margin: 0;
+  top: -10px;
+  left: 20px !important;
+  position: absolute;
+`
+
+export const CartIconRed = styled.div`
+display: flex;
+align-items: center;
+justify-content: center;
+text-align: center;
+
+`

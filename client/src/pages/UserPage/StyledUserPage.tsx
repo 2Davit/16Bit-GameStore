@@ -206,6 +206,7 @@ export const FormEditProfile = styled.form`
 export const StyledOrders = styled.div`
   width: 80%;
   margin: 2em auto;
+  height: 100vh;
   h2 {
     margin-bottom: 2em;
   }

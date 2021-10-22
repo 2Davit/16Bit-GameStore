@@ -228,18 +228,21 @@ const FormRegister: FC = () => {
           <input id="address" name="address" onChange={handleChange} />
         </label>
         {errors.address && <span>{errors.address}</span>}
-
-        <Btn type="submit" className="btn-card" disabled={disabled}>
+        <div style={{ display:"flex",flexDirection: "column", alignItems: "center", justifyContent: "center"}}>
+        <Btn style={{marginBottom:"1rem"}} type="submit" className="btn-card" disabled={disabled}>
           Register
         </Btn>
-        <p>
+      <Btn style={{marginBottom:"1rem"}} className="btn-card" onClick={loginWithRedirect}>
+        Sign up with Google
+      </Btn>
+      </div >
+      <div style={{textAlign:"center"}}>
+        <p >
           Already have an account?
           <Link to="/login"> LOG IN</Link>
         </p>
+        </div>
       </form>
-      <Btn className="btn-card" onClick={loginWithRedirect}>
-        Register with Google
-      </Btn>
     </FormStyled>
   );
 };
