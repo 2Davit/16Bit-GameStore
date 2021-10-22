@@ -37,7 +37,17 @@ export const StyledProductCard = styled.article`
       outline: none;
     }
   }
- 
+  .card__content__favorite {
+      padding: 0.5em 1em;
+      height: 40%;
+      position: absolute;
+      width: 100%;
+      bottom: 0;
+      display: flex;
+      flex-direction: column;
+      background:  ${(p) => p.theme.cardContentBackground};;
+
+    }
 
   &:hover {
     transform: scale(1.05);
@@ -55,6 +65,9 @@ export const StyledProductCard = styled.article`
       flex-direction: column;
       background:  ${(p) => p.theme.cardContentBackground};;
     }
+
+ 
+
 
     /* button {
     bottom: 0;

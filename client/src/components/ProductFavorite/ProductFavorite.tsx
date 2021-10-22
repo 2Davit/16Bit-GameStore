@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import "nes.css/css/nes.min.css";
 import { useDispatch } from "react-redux";
 import { addItemCart } from "../../redux/actions/cart_actions";
-import { StyledSVG, Btn } from "../../GlobalStyles/GlobalStyles";
-import { StyledFavoriteCard } from "../ProductFavorite/ProductFavoriteStyle";
+import { StyledSVG, BtnCartCard } from "../../GlobalStyles/GlobalStyles";
+import { StyledProductCard, Price } from "../ProductCard/StyledProductCard";
 import cart from "../../assets/img/svg/cart.svg";
 import { toast } from "react-toastify";
 import { animateScroll } from "react-scroll";
@@ -63,7 +63,7 @@ const ProductFavorite: FC<Props> = ({ game, onClose }) => {
   };
 
   return (
-    <StyledFavoriteCard className="card">
+    <StyledProductCard >
       <div className="card__imgContainer">
         <img
           className="card__img"
@@ -71,21 +71,20 @@ const ProductFavorite: FC<Props> = ({ game, onClose }) => {
           alt={game.name_product}
         />
       </div>
-      <div className="card__content">
+      <div className="card__content_favorite">
         <h3 className="card__title">
           {game.name_product?.length > 33
             ? game.name_product.substring(0, 30) + "..."
             : game.name_product}
         </h3>
-        <p className="card__price">$ {game.price_product}</p>
-        <Btn className="btn-card btn-img" onClick={handleClick} disabled={disabled} >
-          Add to cart
+        <Price style={{height: '30px'}}>${game.price_product}</Price>
+        <BtnCartCard onClick={handleClick} disabled={disabled} >
           <StyledSVG src={cart} />
-        </Btn>
-        <Btn className="btn-card btn-img" onClick={() => onClose(game.id_product)} disabled={disabled} >
-          Remove favorite
+        </BtnCartCard>
+        <BtnCartCard onClick={() => onClose(game.id_product)} disabled={disabled} >
+          Remove
           <FaTrash />
-        </Btn>
+        </BtnCartCard>
       </div>
       <Link
         to={`/game/${game.id_product}`}
@@ -94,7 +93,7 @@ const ProductFavorite: FC<Props> = ({ game, onClose }) => {
       >
         
       </Link>
-    </StyledFavoriteCard>
+    </StyledProductCard>
   );
 };
 

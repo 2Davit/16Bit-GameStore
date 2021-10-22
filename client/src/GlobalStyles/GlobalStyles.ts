@@ -129,8 +129,15 @@ export const Btn = styled.button`
   &.btn-fav{
     background:red ;  
     width: 1em;
-    height: 3em;
+    height: 2em;
+
+    @media (width:414px) {
+      background: blue;
+      width: .8em;
+      height: .8em;
+    }
   }
+  
   &.btn-sec {
     color: #eeeeee;
     background-color: #911F27;
@@ -142,6 +149,8 @@ export const Btn = styled.button`
       outline: none;
     }
   }
+
+
 
   &.btn-card-carrousel {
     width: 100px !important;
