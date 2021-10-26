@@ -34,7 +34,7 @@ export const StyledCheckReview = styled.div`
   margin-left: 4rem;
   margin-right: 4rem;
   padding: 3rem;
-  flex-direction: column;
+  flex-direction: row;
   
   h3 {
     letter-spacing: 0.5rem;
