@@ -136,7 +136,7 @@ const LeaveReview: FC = () => {
       </StyledLeaveReview>
       : 
       <StyledCheckReview>
-      <div style={{display:'flex', flexDirection:'column', marginTop:'-17em'}}>
+      <div style={{display:'flex', flexDirection:'column', marginTop:'-10rem'}}>
       <h1>Hi, {user.data.username}!</h1>
       <p>Your opinion about this game has been uploaded on {userReview[0].createdAt.split("T")[0]}.</p>
       </div>

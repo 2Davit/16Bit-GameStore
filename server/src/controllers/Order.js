@@ -63,7 +63,7 @@ catch (err) {
 
 async function createOrder(req, res, next) {
   const { id_user, status_order, amount_order, cart, address_order } = req.body;
-  console.log(amount_order)
+  
   try {
     var user = await User.findByPk(id_user);
     const order = await Order.create({

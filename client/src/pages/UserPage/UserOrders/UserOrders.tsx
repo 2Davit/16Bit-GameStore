@@ -25,7 +25,7 @@ const UserOrders = () => {
   }, [dispatch, user.id]);
 
   return (
-    <Fade style={{height: "100vh",}}> 
+    <Fade style={{/* height: "100vh", */ height:'600px', overflow:'auto'}}> 
       {orders.length > 0 ? (
         <StyledOrders>
           <h2>Your Orders</h2>
