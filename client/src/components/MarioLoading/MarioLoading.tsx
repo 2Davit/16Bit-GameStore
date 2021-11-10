@@ -7,7 +7,7 @@ const MarioLoading: FC = () => {
   return (
     <div
       style={{
-        background: 'var(--clr-primary)',
+        background: "var(--clr-primary)",
         borderRadius: "2rem",
         padding: "2rem",
         display: "flex",
@@ -17,7 +17,7 @@ const MarioLoading: FC = () => {
       }}
     >
       <Mario src={Mariogif} />
-      <h2>No games found</h2>
+      <h2>Loading..</h2>
     </div>
   );
 };
