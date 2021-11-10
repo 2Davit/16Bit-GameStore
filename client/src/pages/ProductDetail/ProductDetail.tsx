@@ -48,7 +48,6 @@ const Detail: FC = () => {
   const [message, setMessage] = useState<string>("");
   const [reviewsMean, setReviewsMean] = useState<number>(0);
   const [reviews, setReviews] = useState<Array<any>>([]);
-  console.log(reviews)
   let game: any = getAll();
 
   const handleEffect = useCallback(() => {
