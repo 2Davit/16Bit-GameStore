@@ -26,24 +26,6 @@ const Carousel: any = ({ products }: any) => {
   const [message, setMessage] = useState<string>("");
   const dispatch = useDispatch();
 
-
-  // const handleEffect = useCallback(() => {
-  //   let stockInLocal = JSON.parse(localStorage.getItem("cart")!);
-  //   let gameStorage = stockInLocal?.find(
-  //     (g: ProductInCart) => g.id_product === product!.id_product
-  //   );
-
-  //   let unavailable = gameStorage?.quantity >= product!.in_stock ? true : false;
-  //   return unavailable;
-  // }, [product!.id_product, product!.in_stock]);
-
-  // let disabled = handleEffect();
-
-  // useEffect(() => {
-  //   handleEffect();
-  // }, [message, handleEffect]);
-
-
   const history = useHistory();
 
   const scrollPrev = useCallback(() => embla && embla.scrollPrev(), [embla]);
@@ -83,25 +65,6 @@ const Carousel: any = ({ products }: any) => {
     play();
   }, [play]);
 
-
-  // const handleClick = () => {
-  //   setMessage(message + "a");
-  //   //el message de arriba es esencial. Se agradece no tocar!!
-  //   let gameToDispatch = { ...product };
-  //   gameToDispatch.quantity = 1;
-  //   dispatch(addItemCart(gameToDispatch));
-  //   toast.success(`${product!.name_product} was added to your cart! 👾`, {
-  //     position: "bottom-left",
-  //     autoClose: 3000,
-  //     hideProgressBar: false,
-  //     closeOnClick: true,
-  //     pauseOnHover: true,
-  //     draggable: true,
-  //     progress: undefined,
-  //     theme: "dark",
-  //   });
-  // };
-
   const handleClick = (prod: ProductInCart) => {
     setMessage(message + "a");
     //el message de arriba es esencial. Se agradece no tocar!!
@@ -119,7 +82,6 @@ const Carousel: any = ({ products }: any) => {
       theme: "dark",
     });
   };
-
 
   const handleSlideClick = (ev: any, id_product: number) => {
     let slide = ev.target;
@@ -162,7 +124,7 @@ const Carousel: any = ({ products }: any) => {
                             </h3>
                           </Link>
                         </div>
-                        <div className='image'></div>
+                        <div className="image"></div>
                         <div className="slide__details__bot">
                           <div className="container__priceDiscount">
                             <span className="slide__discount">-20%</span>
@@ -170,17 +132,6 @@ const Carousel: any = ({ products }: any) => {
                               ${prod.price_product}
                             </span>
                           </div>
-
-                          {/* <div className="container__priceDiscount2">
-                            <Btn
-                              className=" btn-card-carrousel btn-img"
-                              onClick={() => handleClick(prod)}
-                            >
-                              Buy Now
-                              <StyledSVG src={cart} />
-                            </Btn>
-                          </div> */}
-
                         </div>
                       </div>
                     </div>
